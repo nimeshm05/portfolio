@@ -22,9 +22,9 @@ export const profile = {
   avatarSrc: "/assets/profile.jpeg",
   avatarAlt: "Portrait of Nimesh Mohanakrishnan",
   bioByTab: {
-    work: "I'm a product designer living in Seattle, currently a masters student in the HCDE program at the University of Washington.",
+    work: "Product designer based in Seattle, currently earning my master's in HCDE at the University of Washington.",
     about:
-      "I'm a product designer living in Seattle, currently a masters student in the HCDE program at the University of Washington.",
+      "Product designer based in Seattle, currently earning my master's in HCDE at the University of Washington.",
   },
 } as const;
 

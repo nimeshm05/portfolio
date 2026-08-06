@@ -26,10 +26,12 @@ export type ProjectPageData = {
   bannerSrc: string;
   bannerAlt: string;
   bannerType?: "image" | "video";
+  bannerBackgroundSrc?: string;
   nav: ProjectNavItem[];
   overview: {
+    eyebrow: string;
     heading: string;
-    paragraphs: string[];
+    items: ExpandableItemContent[];
   };
   problem: {
     eyebrow: string;

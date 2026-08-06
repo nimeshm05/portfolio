@@ -6,7 +6,6 @@ type ProjectSectionProps = {
   id: string;
   eyebrow?: string;
   heading?: string;
-  gap?: "overview" | "block";
   children: ReactNode;
 };
 
@@ -14,12 +13,11 @@ export function ProjectSection({
   id,
   eyebrow,
   heading,
-  gap = "block",
   children,
 }: ProjectSectionProps) {
   return (
     <section
-      className={`project-section project-section--${gap}`}
+      className="project-section"
       id={id}
       aria-labelledby={heading || eyebrow ? `${id}-heading` : undefined}
     >

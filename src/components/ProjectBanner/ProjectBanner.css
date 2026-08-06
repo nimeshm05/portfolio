@@ -3,12 +3,18 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  align-self: center;
+  width: calc(100% + 2 * var(--space-120));
   height: var(--size-banner-height);
-  padding: var(--inset-x);
-  background: var(--color-bg-muted);
+  margin-inline: calc(-1 * var(--space-120));
+  padding: var(--space-20);
+  background-color: var(--color-bg-muted);
+  background-image: var(--project-banner-bg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   border: var(--border-width) solid var(--color-border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-sm);
 }
 
 .project-banner-media {

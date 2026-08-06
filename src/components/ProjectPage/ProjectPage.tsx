@@ -17,21 +17,26 @@ export function ProjectPage({ project }: ProjectPageProps) {
     <div className="project-page">
       <ProjectSidebar items={project.nav} />
       <main className="project-body">
-        <ProjectHeader title={project.title} subtitle={project.subtitle} />
-        <ProjectBanner
-          src={project.bannerSrc}
-          alt={project.bannerAlt}
-          type={project.bannerType}
-        />
+        <div className="project-intro">
+          <ProjectHeader title={project.title} subtitle={project.subtitle} />
+          <ProjectBanner
+            src={project.bannerSrc}
+            alt={project.bannerAlt}
+            type={project.bannerType}
+            backgroundSrc={project.bannerBackgroundSrc}
+          />
+        </div>
 
         <ProjectSection
           id="overview"
+          eyebrow={project.overview.eyebrow}
           heading={project.overview.heading}
-          gap="overview"
         >
-          <div className="project-section-body">
-            {project.overview.paragraphs.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
+          <div className="project-section-list">
+            {project.overview.items.map((item) => (
+              <ListItem key={item.id} title={item.title} icon={item.icon}>
+                {item.content ? <RichText content={item.content} /> : null}
+              </ListItem>
             ))}
           </div>
         </ProjectSection>

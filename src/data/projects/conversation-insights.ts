@@ -11,6 +11,7 @@ export const conversationInsights: ProjectPageData = {
   bannerSrc: asset("conversation-insights-banner.mp4"),
   bannerAlt: "Conversation Insights dashboard preview",
   bannerType: "video",
+  bannerBackgroundSrc: asset("background-1.png"),
   nav: [
     { id: "overview", label: "Overview", href: "#overview" },
     { id: "problem", label: "Problem", href: "#problem" },
@@ -23,10 +24,67 @@ export const conversationInsights: ProjectPageData = {
     { id: "reflection", label: "Reflection" },
   ],
   overview: {
-    heading: "Overview",
-    paragraphs: [
-      "Conversation Insights is a self-serve analytics platform built for Air Canada's contact centre (CC) teams. Every day, hundreds of thousands of customers call Air Canada's contact centre to resolve their issues. RozieAI's AI models process these calls to identify emerging trends and operational signals. Before the platform existed, these insights were delivered to the Air Canada CC team members through weekly reports which were manually crafted by RozieAI product owners, making it difficult for the members to independently investigate issues, understand their operational impact, and take timely action.",
-      "As the product designer on the Conversation Insights team, I led the end-to-end design of a dashboard experience that brought AI-generated insights, operational data into a single self-serve workflow, enabling teams to move from identifying issues to taking operational action without relying on manual reports.",
+    eyebrow: "Overview",
+    heading: "For those skimming quickly, here’s what you need to know...",
+    items: [
+      {
+        id: "context",
+        title: "Context",
+        icon: "globe",
+        content: {
+          type: "paragraphs",
+          paragraphs: [
+            "Conversation Insights is an enterprise analytics platform developed by RozieAI for Air Canada's contact centre teams. The platform uses AI to analyze hundreds of thousands of customer conversations, surfacing trends and operational signals that help teams understand customer issues at scale. Although initially built to meet Air Canada's operational needs, the product was designed as a scalable solution for future enterprise customers.",
+          ],
+        },
+      },
+      {
+        id: "problem",
+        title: "Problem",
+        icon: "target",
+        content: {
+          type: "paragraphs",
+          paragraphs: [
+            "Before Conversation Insights, these insights were delivered through manually prepared weekly reports created by RozieAI's product team. This made it difficult for Air Canada's contact centre teams to independently investigate emerging issues, understand their operational impact, and take timely action.",
+          ],
+        },
+      },
+      {
+        id: "my-role",
+        title: "My Role",
+        icon: "user-star",
+        content: {
+          type: "paragraphs-with-list",
+          intro: ["I led the design for dashboard experience which included:"],
+          items: [
+            "Conducted user conversations with Air Canada's contact centre teams to understand workflows, pain points, and opportunities.",
+            "Created high-fidelity mockups and prototypes in Figma to communicate and validate design solutions.",
+            "Collaborated with engineering teams to ensure designs were technically feasible and aligned with product constraints.",
+          ],
+        },
+      },
+      {
+        id: "solution",
+        title: "Solution",
+        icon: "lightbulb",
+        content: {
+          type: "paragraphs",
+          paragraphs: [
+            "I designed a dashboard that combined AI-generated conversation insights with operational metrics, enabling teams to discover trends, investigate root causes, and move from insight to action within a single experience.",
+          ],
+        },
+      },
+      {
+        id: "outcome",
+        title: "Outcome",
+        icon: "trophy",
+        content: {
+          type: "paragraphs",
+          paragraphs: [
+            "Conversation Insights replaced a manual reporting workflow with a self-serve analytics platform, empowering Air Canada's contact centre teams to access insights on demand while laying the foundation for a product that could scale to future enterprise customers.",
+          ],
+        },
+      },
     ],
   },
   problem: {

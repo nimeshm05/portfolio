@@ -1,18 +1,28 @@
+import type { CSSProperties } from "react";
 import "./ProjectBanner.css";
 
 type ProjectBannerProps = {
   src: string;
   alt: string;
   type?: "image" | "video";
+  backgroundSrc?: string;
 };
 
 export function ProjectBanner({
   src,
   alt,
   type = "image",
+  backgroundSrc,
 }: ProjectBannerProps) {
   return (
-    <div className="project-banner">
+    <div
+      className="project-banner"
+      style={
+        backgroundSrc
+          ? ({ "--project-banner-bg": `url(${backgroundSrc})` } as CSSProperties)
+          : undefined
+      }
+    >
       <div className="project-banner-media">
         {type === "video" ? (
           <video

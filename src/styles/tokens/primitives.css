@@ -59,16 +59,18 @@
   /* Sizes */
   --size-icon: 20px;
   --size-icon-sm: 16px;
-  --size-avatar: 60px;
+  --size-avatar: 80px;
   --size-tab-width: 80px;
   --size-hairline: 1px;
   --size-border-callout: 4px;
   --size-sidebar-width: 180px;
-  --size-banner-height: 436px;
+  --size-banner-height: 560px;
 
   /* Shadows */
-  --shadow-tab: 0 0 1px oklch(0% 0 0 / 0.12);
+  --shadow-tab:
+    lch(0 0 0 / 0.02) 0px 3px 6px -2px,
+    lch(0 0 0 / 0.04) 0px 1px 1px 0px;
 
   /* Layout */
-  --layout-content-width: 40rem;
+  --layout-content-width: 42.5rem;
 }

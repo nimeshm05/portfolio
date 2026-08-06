@@ -21,6 +21,7 @@
   height: var(--size-avatar);
   flex-shrink: 0;
   overflow: hidden;
+  border: var(--size-hairline) solid var(--color-neutral-100);
   border-radius: var(--radius-full);
 }
 
@@ -47,6 +48,7 @@
 }
 
 .site-header-bio {
+  max-width: 36rem;
   color: var(--color-text-muted);
   font-size: var(--text-display-size);
   font-weight: var(--text-display-weight);
