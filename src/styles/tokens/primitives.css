@@ -10,6 +10,8 @@
   --color-neutral-400: #a3a3a3;
   --color-neutral-500: #737373;
   --color-neutral-600: #525252;
+  --color-blue-400: #60a5fa;
+  --color-blue-600: #2679f3;
 
   /* Spacing */
   --space-2: 2px;
@@ -20,41 +22,55 @@
   --space-20: 20px;
   --space-24: 24px;
   --space-32: 32px;
+  --space-40: 40px;
   --space-48: 48px;
   --space-60: 60px;
+  --space-80: 80px;
+  --space-120: 120px;
   --space-128: 128px;
 
   /* Radius */
   --radius-4: 4px;
   --radius-6: 6px;
+  --radius-8: 8px;
   --radius-full: 9999px;
 
   /* Font sizes */
+  --font-size-14: 14px;
   --font-size-15: 15px;
   --font-size-16: 16px;
   --font-size-18: 18px;
   --font-size-20: 20px;
+  --font-size-22: 22px;
   --font-size-24: 24px;
+  --font-size-28: 28px;
+  --font-size-32: 32px;
 
   /* Line heights */
   --line-height-15: 15px;
   --line-height-16: 16px;
   --line-height-24: 24px;
+  --line-height-28: 28px;
   --line-height-32: 32px;
 
   /* Font weights */
-  --font-weight-regular: 400;
+  --font-weight-regular: 450;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
+  --font-weight-bold: 700;
 
   /* Letter spacing */
   --letter-spacing-tight: -0.02em;
 
   /* Sizes */
   --size-icon: 20px;
+  --size-icon-sm: 16px;
   --size-avatar: 60px;
   --size-tab-width: 80px;
   --size-hairline: 1px;
+  --size-border-callout: 4px;
+  --size-sidebar-width: 180px;
+  --size-banner-height: 436px;
 
   /* Shadows */
   --shadow-tab: 0 0 1px rgba(0, 0, 0, 0.12);

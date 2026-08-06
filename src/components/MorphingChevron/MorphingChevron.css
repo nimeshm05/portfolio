@@ -1,0 +1,7 @@
+.morphing-chevron {
+  display: block;
+  flex-shrink: 0;
+  width: var(--size-icon);
+  height: var(--size-icon);
+  color: var(--color-text-label);
+}

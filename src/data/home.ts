@@ -1,10 +1,12 @@
+import type { IconName } from "@/components/Icon/Icon";
+
 export type HomeTab = "work" | "about";
 
 export type ListItemData = {
   id: string;
   title: string;
   meta?: string;
-  icon?: string;
+  icon?: IconName;
   href?: string;
 };
 
@@ -34,20 +36,20 @@ export const workSections: ContentSectionData[] = [
       {
         id: "discovery-responses",
         title: "Discovery Responses",
-        icon: "/assets/icons/discovery-responses.svg",
-        href: "#",
+        icon: "message-circle-more",
+        href: "/work/discovery-responses",
       },
       {
         id: "conversation-insights",
         title: "Conversation Insights",
-        icon: "/assets/icons/conversation-insights.svg",
-        href: "#",
+        icon: "chart-pie",
+        href: "/work/conversation-insights",
       },
       {
         id: "architecture-agent",
         title: "Architecture Agent",
-        icon: "/assets/icons/architecture-agent.svg",
-        href: "#",
+        icon: "bot",
+        href: "/work/architecture-agent",
       },
     ],
   },
@@ -58,20 +60,20 @@ export const workSections: ContentSectionData[] = [
       {
         id: "digital-footprints",
         title: "Digital Footprints",
-        icon: "/assets/icons/digital-footprints.svg",
-        href: "#",
+        icon: "footprints",
+        href: "/work/digital-footprints",
       },
       {
         id: "kar-no-key",
         title: "kar-no-key",
-        icon: "/assets/icons/kar-no-key.svg",
-        href: "#",
+        icon: "music-2",
+        href: "/work/kar-no-key",
       },
       {
         id: "gz-lang",
         title: "gz-lang",
-        icon: "/assets/icons/gz-lang.svg",
-        href: "#",
+        icon: "code-xml",
+        href: "/work/gz-lang",
       },
     ],
   },
@@ -83,13 +85,13 @@ export const workSections: ContentSectionData[] = [
       {
         id: "writing-kar-no-key",
         title: "kar-no-key",
-        icon: "/assets/icons/kar-no-key.svg",
+        icon: "music-2",
         href: "#",
       },
       {
         id: "writing-gz-lang",
         title: "gz-lang",
-        icon: "/assets/icons/gz-lang.svg",
+        icon: "code-xml",
         href: "#",
       },
     ],

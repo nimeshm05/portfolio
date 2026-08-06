@@ -1,0 +1,47 @@
+import type { IconName } from "@/components/Icon/Icon";
+
+export type ProjectNavItem = {
+  id: string;
+  label: string;
+};
+
+export type RichTextBlock =
+  | { type: "paragraphs"; paragraphs: string[] }
+  | { type: "paragraphs-with-list"; intro: string[]; items: string[]; outro?: string[] };
+
+export type ExpandableItemContent = {
+  id: string;
+  title: string;
+  icon: IconName;
+  content?: RichTextBlock;
+  imageSrc?: string;
+  imageAlt?: string;
+};
+
+export type ProjectPageData = {
+  slug: string;
+  title: string;
+  subtitle: string;
+  bannerSrc: string;
+  bannerAlt: string;
+  nav: ProjectNavItem[];
+  overview: {
+    heading: string;
+    paragraphs: string[];
+  };
+  problem: {
+    eyebrow: string;
+    heading: string;
+    paragraphs: string[];
+    imageSrc: string;
+    imageAlt: string;
+  };
+  calloutOne: string;
+  discovery: {
+    eyebrow: string;
+    heading: string;
+    paragraphs: string[];
+    items: ExpandableItemContent[];
+  };
+  calloutTwo: string;
+};

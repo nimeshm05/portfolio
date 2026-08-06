@@ -1,0 +1,27 @@
+.project-banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: var(--size-banner);
+  padding: var(--banner-padding);
+  background: var(--color-bg-banner);
+  border: var(--border-width-subtle) solid var(--color-border-banner);
+  border-radius: var(--banner-radius);
+}
+
+.project-banner-media {
+  position: relative;
+  flex: 1 0 0;
+  width: 100%;
+  min-height: 0;
+}
+
+.project-banner-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}

@@ -3,18 +3,26 @@
   --color-bg-page: var(--color-white);
   --color-bg-control: var(--color-neutral-100);
   --color-bg-control-active: var(--color-white);
+  --color-bg-banner: var(--color-neutral-100);
+  --color-bg-list-hover: var(--color-neutral-100);
 
   /* Text */
   --color-text-primary: var(--color-black);
   --color-text-secondary: var(--color-neutral-600);
   --color-text-muted: var(--color-neutral-350);
   --color-text-subtle: var(--color-neutral-500);
+  --color-text-label: var(--color-neutral-400);
+  --color-text-body: var(--color-neutral-600);
+  --color-accent: var(--color-blue-600);
+  --color-accent-soft: var(--color-blue-400);
 
   /* Borders */
-  --color-border-subtle: var(--color-neutral-50);
+  --color-border-subtle: var(--color-neutral-100);
+  --color-border-banner: var(--color-neutral-200);
   --color-divider: var(--color-neutral-100);
   --border-width-subtle: var(--size-hairline);
   --divider-padding-x: var(--space-12);
+  --callout-border-width: var(--size-border-callout);
 
   /* Font family */
   --font-family-sans: var(--font-inter), "Segoe UI", sans-serif;
@@ -45,17 +53,52 @@
   --text-nav-line-height: var(--line-height-15);
   --text-nav-weight: var(--font-weight-regular);
 
+  /* Typography: project title */
+  --text-project-title-size: var(--font-size-32);
+  --text-project-title-line-height: var(--line-height-32);
+  --text-project-title-weight: var(--font-weight-bold);
+
+  /* Typography: project subtitle */
+  --text-project-subtitle-size: var(--font-size-18);
+  --text-project-subtitle-line-height: var(--line-height-28);
+  --text-project-subtitle-weight: var(--font-weight-medium);
+
+  /* Typography: section heading */
+  --text-section-heading-size: var(--font-size-22);
+  --text-section-heading-line-height: 1.4;
+  --text-section-heading-weight: var(--font-weight-semibold);
+
+  /* Typography: body */
+  --text-body-size: var(--font-size-16);
+  --text-body-line-height: var(--line-height-28);
+  --text-body-weight: var(--font-weight-regular);
+
+  /* Typography: callout */
+  --text-callout-size: var(--font-size-22);
+  --text-callout-line-height: var(--line-height-32);
+  --text-callout-weight: var(--font-weight-semibold);
+
+  /* Typography: sidebar */
+  --text-sidebar-size: var(--font-size-14);
+  --text-sidebar-weight: var(--font-weight-medium);
+
   /* Component sizes */
   --size-avatar-image: var(--size-avatar);
   --size-list-icon: var(--size-icon);
   --size-chevron: var(--size-icon);
+  --size-sidebar-icon: var(--size-icon-sm);
   --size-nav-tab: var(--size-tab-width);
+  --size-banner: var(--size-banner-height);
+  --sidebar-width: var(--size-sidebar-width);
 
   /* Radius */
   --radius-control: var(--radius-6);
   --radius-control-item: var(--radius-4);
   --radius-list-item: var(--radius-6);
+  --radius-expandable-item: var(--radius-4);
   --radius-avatar: var(--radius-full);
+  --banner-radius: var(--radius-8);
+  --media-radius: var(--radius-8);
 
   /* Shadows */
   --shadow-control-active: var(--shadow-tab);
@@ -83,4 +126,25 @@
   --list-item-padding-x: var(--space-12);
   --list-item-gap: var(--space-12);
   --list-item-gap-compact: var(--space-8);
+
+  /* Project page */
+  --project-padding-y: var(--space-120);
+  --project-section-gap: var(--space-120);
+  --project-block-gap: var(--space-40);
+  --project-heading-gap: var(--space-8);
+  --project-overview-gap: var(--space-20);
+  --project-title-gap: var(--space-16);
+  --project-inset-x: var(--space-12);
+  --callout-padding-y: var(--space-40);
+  --callout-padding-x: var(--space-12);
+  --expandable-panel-padding-top: var(--space-12);
+  --expandable-panel-padding-bottom: var(--space-20);
+  --expandable-panel-padding-x: var(--space-12);
+  --expandable-media-gap: var(--space-40);
+  --banner-padding: var(--space-12);
+  --sidebar-gap: var(--space-20);
+  --sidebar-item-padding-x: var(--space-12);
+  --sidebar-item-padding-y: var(--space-8);
+  --sidebar-item-gap: var(--space-8);
+  --sidebar-back-gap: var(--space-8);
 }

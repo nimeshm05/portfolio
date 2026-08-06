@@ -1,0 +1,20 @@
+.rich-text p,
+.rich-text li {
+  color: var(--color-text-body);
+  font-size: var(--text-body-size);
+  font-weight: var(--text-body-weight);
+  line-height: var(--text-body-line-height);
+}
+
+.rich-text p + p {
+  margin-top: var(--text-body-line-height);
+}
+
+.rich-text ol {
+  margin-top: var(--text-body-line-height);
+  padding-left: var(--space-24);
+}
+
+.rich-text li + li {
+  margin-top: 0;
+}

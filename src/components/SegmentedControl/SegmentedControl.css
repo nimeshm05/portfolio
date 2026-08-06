@@ -20,11 +20,6 @@
   line-height: var(--text-nav-line-height);
   text-transform: capitalize;
   opacity: 0.8;
-  transition:
-    background-color 160ms ease,
-    color 160ms ease,
-    box-shadow 160ms ease,
-    opacity 160ms ease;
 }
 
 .segmented-control-tab.is-active {
