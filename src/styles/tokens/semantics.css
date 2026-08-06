@@ -1,0 +1,86 @@
+:root {
+  /* Surfaces */
+  --color-bg-page: var(--color-white);
+  --color-bg-control: var(--color-neutral-100);
+  --color-bg-control-active: var(--color-white);
+
+  /* Text */
+  --color-text-primary: var(--color-black);
+  --color-text-secondary: var(--color-neutral-600);
+  --color-text-muted: var(--color-neutral-350);
+  --color-text-subtle: var(--color-neutral-500);
+
+  /* Borders */
+  --color-border-subtle: var(--color-neutral-50);
+  --color-divider: var(--color-neutral-100);
+  --border-width-subtle: var(--size-hairline);
+  --divider-padding-x: var(--space-12);
+
+  /* Font family */
+  --font-family-sans: var(--font-inter), "Segoe UI", sans-serif;
+  --letter-spacing-body: var(--letter-spacing-tight);
+
+  /* Typography: name */
+  --text-name-size: var(--font-size-24);
+  --text-name-line-height: var(--line-height-32);
+  --text-name-weight: var(--font-weight-semibold);
+
+  /* Typography: bio */
+  --text-bio-size: var(--font-size-24);
+  --text-bio-line-height: var(--line-height-32);
+  --text-bio-weight: var(--font-weight-semibold);
+
+  /* Typography: section label */
+  --text-section-label-size: var(--font-size-16);
+  --text-section-label-line-height: var(--line-height-16);
+  --text-section-label-weight: var(--font-weight-medium);
+
+  /* Typography: list item */
+  --text-list-item-size: var(--font-size-18);
+  --text-list-item-line-height: var(--line-height-24);
+  --text-list-item-weight: var(--font-weight-semibold);
+
+  /* Typography: nav */
+  --text-nav-size: var(--font-size-15);
+  --text-nav-line-height: var(--line-height-15);
+  --text-nav-weight: var(--font-weight-regular);
+
+  /* Component sizes */
+  --size-avatar-image: var(--size-avatar);
+  --size-list-icon: var(--size-icon);
+  --size-chevron: var(--size-icon);
+  --size-nav-tab: var(--size-tab-width);
+
+  /* Radius */
+  --radius-control: var(--radius-6);
+  --radius-control-item: var(--radius-4);
+  --radius-list-item: var(--radius-6);
+  --radius-avatar: var(--radius-full);
+
+  /* Shadows */
+  --shadow-control-active: var(--shadow-tab);
+
+  /* Spacing / layout */
+  --page-padding-x: var(--space-12);
+  --page-padding-y: var(--space-128);
+  --page-gap-major: var(--space-60);
+  --page-content-width: var(--layout-content-width);
+
+  --header-gap: var(--space-32);
+  --header-info-gap: var(--space-12);
+  --header-avatar-gap: var(--space-48);
+  --header-inset-x: var(--space-12);
+
+  --control-container-padding-x: var(--space-12);
+  --control-padding: var(--space-4);
+  --control-gap: var(--space-2);
+  --control-item-padding-x: var(--space-12);
+  --control-item-padding-y: var(--space-8);
+
+  --content-gap: var(--space-20);
+  --section-label-padding: var(--space-12);
+  --list-item-padding-y: var(--space-16);
+  --list-item-padding-x: var(--space-12);
+  --list-item-gap: var(--space-12);
+  --list-item-gap-compact: var(--space-8);
+}

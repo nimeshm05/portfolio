@@ -1,0 +1,35 @@
+.segmented-control {
+  display: flex;
+  align-items: center;
+  gap: var(--control-gap);
+  padding: var(--control-padding);
+  background: var(--color-bg-control);
+  border-radius: var(--radius-control);
+}
+
+.segmented-control-tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--size-nav-tab);
+  padding: var(--control-item-padding-y) var(--control-item-padding-x);
+  border-radius: var(--radius-control-item);
+  color: var(--color-text-subtle);
+  font-size: var(--text-nav-size);
+  font-weight: var(--text-nav-weight);
+  line-height: var(--text-nav-line-height);
+  text-transform: capitalize;
+  opacity: 0.8;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease,
+    box-shadow 160ms ease,
+    opacity 160ms ease;
+}
+
+.segmented-control-tab.is-active {
+  background: var(--color-bg-control-active);
+  color: var(--color-text-primary);
+  box-shadow: var(--shadow-control-active);
+  opacity: 1;
+}
