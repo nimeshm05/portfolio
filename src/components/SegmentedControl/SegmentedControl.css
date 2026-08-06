@@ -1,19 +1,19 @@
 .segmented-control {
   display: flex;
   align-items: center;
-  gap: var(--control-gap);
-  padding: var(--control-padding);
-  background: var(--color-bg-control);
-  border-radius: var(--radius-control);
+  gap: var(--space-2);
+  padding: var(--space-4);
+  background: var(--color-bg-muted);
+  border-radius: var(--radius-md);
 }
 
 .segmented-control-tab {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: var(--size-nav-tab);
-  padding: var(--control-item-padding-y) var(--control-item-padding-x);
-  border-radius: var(--radius-control-item);
+  width: var(--size-tab-width);
+  padding: var(--space-8) var(--inset-x);
+  border-radius: var(--radius-sm);
   color: var(--color-text-subtle);
   font-size: var(--text-nav-size);
   font-weight: var(--text-nav-weight);
@@ -23,8 +23,8 @@
 }
 
 .segmented-control-tab.is-active {
-  background: var(--color-bg-control-active);
+  background: var(--color-bg-page);
   color: var(--color-text-primary);
-  box-shadow: var(--shadow-control-active);
+  box-shadow: var(--shadow-tab);
   opacity: 1;
 }

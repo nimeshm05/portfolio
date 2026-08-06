@@ -3,6 +3,7 @@ import type { IconName } from "@/components/Icon/Icon";
 export type ProjectNavItem = {
   id: string;
   label: string;
+  href?: string;
 };
 
 export type RichTextBlock =
@@ -24,6 +25,7 @@ export type ProjectPageData = {
   subtitle: string;
   bannerSrc: string;
   bannerAlt: string;
+  bannerType?: "image" | "video";
   nav: ProjectNavItem[];
   overview: {
     heading: string;
@@ -33,8 +35,8 @@ export type ProjectPageData = {
     eyebrow: string;
     heading: string;
     paragraphs: string[];
-    imageSrc: string;
-    imageAlt: string;
+    imageSrc?: string;
+    imageAlt?: string;
   };
   calloutOne: string;
   discovery: {

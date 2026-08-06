@@ -9,14 +9,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--section-label-padding);
+  padding: var(--inset-x);
 }
 
 .content-section-label {
   color: var(--color-text-muted);
-  font-size: var(--text-section-label-size);
-  font-weight: var(--text-section-label-weight);
-  line-height: var(--text-section-label-line-height);
+  font-size: var(--text-label-size);
+  font-weight: var(--text-label-weight);
+  line-height: var(--text-label-line-height);
   white-space: nowrap;
 }
 
@@ -30,7 +30,7 @@
 .content-section-divider {
   align-self: stretch;
   height: 0;
-  margin-inline: var(--divider-padding-x);
+  margin-inline: var(--inset-x);
   border: 0;
-  border-top: var(--border-width-subtle) solid var(--color-divider);
+  border-top: var(--border-width) solid var(--color-bg-muted);
 }

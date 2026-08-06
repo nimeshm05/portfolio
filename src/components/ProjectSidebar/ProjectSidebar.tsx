@@ -7,24 +7,38 @@ type ProjectSidebarProps = {
   items: ProjectNavItem[];
 };
 
+function NavItemContent({ label }: { label: string }) {
+  return (
+    <>
+      <span className="project-sidebar-icon" aria-hidden="true">
+        <Icon name="chevron-right" size={16} />
+      </span>
+      <span>{label}</span>
+    </>
+  );
+}
+
 export function ProjectSidebar({ items }: ProjectSidebarProps) {
   return (
     <aside className="project-sidebar" aria-label="Project navigation">
       <Link className="project-sidebar-back" href="/">
         <span className="project-sidebar-icon" aria-hidden="true">
-          <Icon name="arrow-left" size={16} />
+          <Icon name="chevron-left" size={16} />
         </span>
         <span>Back</span>
       </Link>
       <nav className="project-sidebar-nav">
-        {items.map((item) => (
-          <a key={item.id} className="project-sidebar-link" href={`#${item.id}`}>
-            <span className="project-sidebar-icon" aria-hidden="true">
-              <Icon name="chevron-right" size={16} />
+        {items.map((item) =>
+          item.href ? (
+            <a key={item.id} className="project-sidebar-link" href={item.href}>
+              <NavItemContent label={item.label} />
+            </a>
+          ) : (
+            <span key={item.id} className="project-sidebar-link">
+              <NavItemContent label={item.label} />
             </span>
-            <span>{item.label}</span>
-          </a>
-        ))}
+          ),
+        )}
       </nav>
     </aside>
   );

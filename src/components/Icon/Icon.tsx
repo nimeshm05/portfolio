@@ -1,21 +1,16 @@
 import type { LucideIcon } from "lucide-react";
 import {
-  ArrowLeft,
-  BookOpenText,
   Bot,
-  Briefcase,
   Bug,
   ChartPie,
-  ChevronDown,
+  ChevronLeft,
   ChevronRight,
   CodeXml,
   Database,
   Footprints,
   MessageCircleMore,
   Music2,
-  Sprout,
   Users,
-  X,
 } from "lucide-react";
 import "./Icon.css";
 
@@ -25,13 +20,8 @@ export type IconName =
   | "music-2"
   | "chart-pie"
   | "code-xml"
-  | "x"
-  | "book-open-text"
-  | "briefcase"
-  | "sprout"
-  | "chevron-down"
   | "footprints"
-  | "arrow-left"
+  | "chevron-left"
   | "users"
   | "bug"
   | "database"
@@ -43,13 +33,8 @@ const icons: Record<IconName, LucideIcon> = {
   "music-2": Music2,
   "chart-pie": ChartPie,
   "code-xml": CodeXml,
-  x: X,
-  "book-open-text": BookOpenText,
-  briefcase: Briefcase,
-  sprout: Sprout,
-  "chevron-down": ChevronDown,
   footprints: Footprints,
-  "arrow-left": ArrowLeft,
+  "chevron-left": ChevronLeft,
   users: Users,
   bug: Bug,
   database: Database,

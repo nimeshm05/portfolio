@@ -12,10 +12,10 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--project-section-gap);
+  gap: var(--space-120);
   width: 100%;
-  max-width: var(--page-content-width);
-  padding: var(--project-padding-y) var(--page-padding-x);
+  max-width: var(--content-width);
+  padding: var(--space-120) var(--inset-x);
 }
 
 .project-section-body {
@@ -24,7 +24,7 @@
 
 .project-section--block .project-section-body,
 .project-section--block .project-section-media {
-  padding-inline: var(--project-inset-x);
+  padding-inline: var(--inset-x);
 }
 
 .project-section-body p {
@@ -45,7 +45,7 @@
 .project-section-media img {
   width: 100%;
   height: auto;
-  border-radius: var(--media-radius);
+  border-radius: var(--radius-lg);
 }
 
 .project-section-list {

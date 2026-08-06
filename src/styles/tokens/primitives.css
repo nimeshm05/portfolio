@@ -1,17 +1,14 @@
 :root {
-  /* Colors */
-  --color-white: #ffffff;
-  --color-black: #000000;
-  --color-neutral-50: #fafafa;
-  --color-neutral-100: #f5f5f5;
-  --color-neutral-200: #e5e5e5;
-  --color-neutral-300: #d4d4d4;
-  --color-neutral-350: #bcbcbc;
-  --color-neutral-400: #a3a3a3;
-  --color-neutral-500: #737373;
-  --color-neutral-600: #525252;
-  --color-blue-400: #60a5fa;
-  --color-blue-600: #2679f3;
+  /* Colors (oklch) */
+  --color-white: oklch(100% 0 0);
+  --color-black: oklch(0% 0 0);
+  --color-neutral-100: oklch(97.02% 0 0);
+  --color-neutral-200: oklch(92.19% 0 0);
+  --color-neutral-350: oklch(79.52% 0 0);
+  --color-neutral-400: oklch(71.55% 0 0);
+  --color-neutral-500: oklch(55.55% 0 0);
+  --color-neutral-600: oklch(43.86% 0 0);
+  --color-blue-600: oklch(62% 0.19 260);
 
   /* Spacing */
   --space-2: 2px;
@@ -25,7 +22,6 @@
   --space-40: 40px;
   --space-48: 48px;
   --space-60: 60px;
-  --space-80: 80px;
   --space-120: 120px;
   --space-128: 128px;
 
@@ -40,10 +36,8 @@
   --font-size-15: 15px;
   --font-size-16: 16px;
   --font-size-18: 18px;
-  --font-size-20: 20px;
   --font-size-22: 22px;
   --font-size-24: 24px;
-  --font-size-28: 28px;
   --font-size-32: 32px;
 
   /* Line heights */
@@ -73,7 +67,7 @@
   --size-banner-height: 436px;
 
   /* Shadows */
-  --shadow-tab: 0 0 1px rgba(0, 0, 0, 0.12);
+  --shadow-tab: 0 0 1px oklch(0% 0 0 / 0.12);
 
   /* Layout */
   --layout-content-width: 40rem;

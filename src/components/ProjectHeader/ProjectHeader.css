@@ -3,27 +3,27 @@
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-  padding-inline: var(--project-inset-x);
+  padding-inline: var(--inset-x);
 }
 
 .project-header-info {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--project-title-gap);
+  gap: var(--space-16);
   width: 100%;
 }
 
 .project-header-title {
   color: var(--color-text-primary);
-  font-size: var(--text-project-title-size);
-  font-weight: var(--text-project-title-weight);
-  line-height: var(--text-project-title-line-height);
+  font-size: var(--text-title-size);
+  font-weight: var(--text-title-weight);
+  line-height: var(--text-title-line-height);
 }
 
 .project-header-subtitle {
   color: var(--color-text-subtle);
-  font-size: var(--text-project-subtitle-size);
-  font-weight: var(--text-project-subtitle-weight);
-  line-height: var(--text-project-subtitle-line-height);
+  font-size: var(--text-subtitle-size);
+  font-weight: var(--text-subtitle-weight);
+  line-height: var(--text-subtitle-line-height);
 }

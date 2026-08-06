@@ -18,7 +18,11 @@ export function ProjectPage({ project }: ProjectPageProps) {
       <ProjectSidebar items={project.nav} />
       <main className="project-body">
         <ProjectHeader title={project.title} subtitle={project.subtitle} />
-        <ProjectBanner src={project.bannerSrc} alt={project.bannerAlt} />
+        <ProjectBanner
+          src={project.bannerSrc}
+          alt={project.bannerAlt}
+          type={project.bannerType}
+        />
 
         <ProjectSection
           id="overview"
@@ -42,13 +46,15 @@ export function ProjectPage({ project }: ProjectPageProps) {
               <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
-          <div className="project-section-media">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={project.problem.imageSrc}
-              alt={project.problem.imageAlt}
-            />
-          </div>
+          {project.problem.imageSrc ? (
+            <div className="project-section-media">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={project.problem.imageSrc}
+                alt={project.problem.imageAlt ?? ""}
+              />
+            </div>
+          ) : null}
         </ProjectSection>
 
         <Callout>{project.calloutOne}</Callout>

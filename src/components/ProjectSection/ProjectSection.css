@@ -3,36 +3,36 @@
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-  scroll-margin-top: var(--project-padding-y);
+  scroll-margin-top: var(--space-120);
 }
 
 .project-section--overview {
-  gap: var(--project-overview-gap);
-  padding-inline: var(--project-inset-x);
+  gap: var(--space-20);
+  padding-inline: var(--inset-x);
 }
 
 .project-section--block {
-  gap: var(--project-block-gap);
+  gap: var(--space-40);
 }
 
 .project-section-heading {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--project-heading-gap);
+  gap: var(--space-8);
   width: 100%;
 }
 
 .project-section--block .project-section-heading {
-  padding-inline: var(--project-inset-x);
+  padding-inline: var(--inset-x);
 }
 
 .project-section-title {
   max-width: 30rem;
   color: var(--color-text-primary);
-  font-size: var(--text-section-heading-size);
-  font-weight: var(--text-section-heading-weight);
-  line-height: var(--text-section-heading-line-height);
+  font-size: var(--text-heading-size);
+  font-weight: var(--text-heading-weight);
+  line-height: var(--text-heading-line-height);
 }
 
 .project-section--overview .project-section-title {

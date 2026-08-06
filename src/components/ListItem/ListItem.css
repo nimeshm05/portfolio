@@ -5,19 +5,19 @@
 .list-item {
   display: flex;
   align-items: center;
-  gap: var(--list-item-gap);
+  gap: var(--space-12);
   width: 100%;
-  padding: var(--list-item-padding-y) var(--list-item-padding-x);
-  border-radius: var(--radius-list-item);
+  padding: var(--space-16) var(--inset-x);
+  border-radius: var(--radius-md);
   text-align: left;
 }
 
 .list-item--compact {
-  gap: var(--list-item-gap-compact);
+  gap: var(--space-8);
 }
 
 .list-item--expandable {
-  border-radius: var(--radius-expandable-item);
+  border-radius: var(--radius-sm);
   background: var(--color-bg-page);
 }
 
@@ -27,8 +27,8 @@
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  width: var(--size-list-icon);
-  height: var(--size-list-icon);
+  width: var(--size-icon);
+  height: var(--size-icon);
   overflow: hidden;
 }
 
@@ -42,13 +42,13 @@
   flex: 1 0 0;
   min-width: 0;
   color: var(--color-text-subtle);
-  font-size: var(--text-list-item-size);
-  font-weight: var(--text-list-item-weight);
-  line-height: var(--text-list-item-line-height);
+  font-size: var(--text-list-size);
+  font-weight: var(--text-list-weight);
+  line-height: var(--text-list-line-height);
 }
 
 .list-item--expandable .list-item-title {
-  color: var(--color-text-secondary);
+  color: var(--color-text-body);
 }
 
 .list-item-meta {
@@ -56,7 +56,7 @@
 }
 
 .list-item:hover {
-  background-color: var(--color-bg-list-hover);
+  background-color: var(--color-bg-muted);
 }
 
 .list-item:hover .list-item-title,
@@ -67,16 +67,15 @@
 .list-item-panel {
   display: flex;
   flex-direction: column;
-  gap: var(--expandable-media-gap);
+  gap: var(--space-40);
   width: 100%;
-  padding: var(--expandable-panel-padding-top)
-    var(--expandable-panel-padding-x) var(--expandable-panel-padding-bottom);
+  padding: var(--space-12) var(--inset-x) var(--space-20);
 }
 
 .list-item-media {
   width: 100%;
   overflow: hidden;
-  border-radius: var(--media-radius);
+  border-radius: var(--radius-lg);
 }
 
 .list-item-media img {

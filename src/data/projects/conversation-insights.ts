@@ -8,12 +8,19 @@ export const conversationInsights: ProjectPageData = {
   title: "Conversation Insights",
   subtitle:
     "An analytics platform built to overcome manual workflow problem to enable faster operational decision making.",
-  bannerSrc: asset("banner.png"),
+  bannerSrc: asset("conversation-insights-banner.mp4"),
   bannerAlt: "Conversation Insights dashboard preview",
+  bannerType: "video",
   nav: [
-    { id: "overview", label: "Overview" },
-    { id: "problem", label: "Problem" },
-    { id: "discovery", label: "Discovery & Insights" },
+    { id: "overview", label: "Overview", href: "#overview" },
+    { id: "problem", label: "Problem", href: "#problem" },
+    { id: "discovery", label: "Discovery & Insights", href: "#discovery" },
+    { id: "constraints", label: "Constraints" },
+    { id: "early-designs", label: "Early Designs" },
+    { id: "learnings", label: "Learnings" },
+    { id: "solutions", label: "Solutions" },
+    { id: "outcome", label: "Outcome" },
+    { id: "reflection", label: "Reflection" },
   ],
   overview: {
     heading: "Overview",
@@ -30,7 +37,7 @@ export const conversationInsights: ProjectPageData = {
       "Before Conversation Insights platform existed, AI-generated insights were delivered through weekly reports prepared by RozieAI product owners. These reports helped Air Canada contact centre teams identify emerging issues, but understanding where and why those issues were occurring required investigation across multiple sources.",
       "Air Canada contact centre teams often moved between reports, AWS Connect portal, and follow-up discussions with RozieAI stakeholders to connect insights with operational data. This fragmented workflow slowed their operational decision-making.",
     ],
-    imageSrc: asset("problem-diagram.png"),
+    imageSrc: asset("problem.svg"),
     imageAlt:
       "Diagram showing fragmented investigation across Outlook, Teams, Excel, Word, and AWS Connect",
   },
@@ -74,7 +81,7 @@ export const conversationInsights: ProjectPageData = {
             "Operational metadata from the AWS Connect call system, including routing profiles, queues, and agent-level attributes, provided context on who & how those conversations were handled.",
           ],
         },
-        imageSrc: asset("data-diagram.png"),
+        imageSrc: asset("data.svg"),
         imageAlt:
           "Diagram comparing AI-derived signals with AWS Connect operational metadata",
       },
@@ -89,7 +96,7 @@ export const conversationInsights: ProjectPageData = {
             "The teams consistently followed this investigation workflow:",
           ],
         },
-        imageSrc: asset("analysis-flowchart.png"),
+        imageSrc: asset("workflow.svg"),
         imageAlt:
           "Flowchart of the contact centre investigation workflow from insight to operational action",
       },

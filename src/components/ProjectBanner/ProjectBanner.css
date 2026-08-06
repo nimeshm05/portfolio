@@ -4,11 +4,11 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: var(--size-banner);
-  padding: var(--banner-padding);
-  background: var(--color-bg-banner);
-  border: var(--border-width-subtle) solid var(--color-border-banner);
-  border-radius: var(--banner-radius);
+  height: var(--size-banner-height);
+  padding: var(--inset-x);
+  background: var(--color-bg-muted);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-lg);
 }
 
 .project-banner-media {
@@ -18,7 +18,8 @@
   min-height: 0;
 }
 
-.project-banner-media img {
+.project-banner-media img,
+.project-banner-media video {
   position: absolute;
   inset: 0;
   width: 100%;
