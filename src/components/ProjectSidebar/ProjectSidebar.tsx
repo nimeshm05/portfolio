@@ -16,7 +16,7 @@ function NavItemContent({ label }: { label: string }) {
       <span className="project-sidebar-icon" aria-hidden="true">
         <Icon name="chevron-right" size={16} />
       </span>
-      <span>{label}</span>
+      <span>/ {label}</span>
     </>
   );
 }

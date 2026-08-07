@@ -19,7 +19,7 @@ export type ContentSectionData = {
 
 export const profile = {
   name: "Nimesh Mohanakrishnan",
-  avatarSrc: "/assets/profile-3.jpeg",
+  avatarSrc: "/assets/profile-4.jpg",
   avatarAlt: "Portrait of Nimesh Mohanakrishnan",
   bioByTab: {
     work: "Product designer based in Seattle, currently earning my master's in HCDE at the University of Washington.",

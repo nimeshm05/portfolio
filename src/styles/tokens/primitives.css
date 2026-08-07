@@ -88,7 +88,7 @@
     var(--shadow-tab-elevation);
 
   /* Layout */
-  --layout-content-width: 42.5rem;
+  --layout-content-width: 42rem;
   --layout-prose-width: 30rem;
   --layout-bio-width: 34rem;
   --breakpoint-sidebar: 1100px;
