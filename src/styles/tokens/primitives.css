@@ -71,12 +71,12 @@
   --size-icon: 20px;
   --size-icon-sm: 16px;
   --size-social: 40px;
-  --size-avatar: 80px;
+  --size-avatar: 60px;
   --size-tab-container: 248px;
   --size-hairline: 1px;
   --size-border-callout: 4px;
   --size-sidebar-width: 180px;
-  --size-banner-height: 560px;
+  --size-banner-height: 660px;
 
   /* Shadows */
   --shadow-tab-ring-color: lab(67.37% 0 -0.01 / 0.09);
