@@ -1,7 +1,10 @@
 "use client";
 
 import { motion } from "motion/react";
-import { ListItem } from "@/components/ListItem/ListItem";
+import {
+  ListItem,
+  type ChevronOrientation,
+} from "@/components/ListItem/ListItem";
 import type { ContentSectionData } from "@/data/home";
 import {
   tabContentBlurVariants,
@@ -13,11 +16,13 @@ import "./ContentSection.css";
 type ContentSectionProps = {
   section: ContentSectionData;
   showDivider?: boolean;
+  chevronOrientation?: ChevronOrientation;
 };
 
 export function ContentSection({
   section,
   showDivider = false,
+  chevronOrientation,
 }: ContentSectionProps) {
   const blurOnTabChange = useTabContentMotion();
 
@@ -50,6 +55,7 @@ export function ContentSection({
               icon={item.icon}
               href={item.href}
               compactGap={section.compactGap}
+              chevronOrientation={chevronOrientation}
             >
               {item.description ? (
                 <p className="list-item-description">{item.description}</p>

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { ContentSection } from "@/components/ContentSection/ContentSection";
 import { Header } from "@/components/Header/Header";
+import type { ChevronOrientation } from "@/components/ListItem/ListItem";
 import { SegmentedControl } from "@/components/SegmentedControl/SegmentedControl";
 import { ViewportEdgeBlur } from "@/components/ViewportEdgeBlur/ViewportEdgeBlur";
 import {
@@ -22,6 +23,8 @@ import "./HomePage.css";
 export function HomePage() {
   const [activeTab, setActiveTab] = useState<HomeTab>("work");
   const sections = activeTab === "work" ? workSections : aboutSections;
+  const chevronOrientation: ChevronOrientation =
+    activeTab === "about" ? "down" : "right";
 
   return (
     <div className="home-page">
@@ -58,6 +61,7 @@ export function HomePage() {
                   key={section.id}
                   section={section}
                   showDivider={index > 0}
+                  chevronOrientation={chevronOrientation}
                 />
               ))}
             </TabContentMotionProvider>
