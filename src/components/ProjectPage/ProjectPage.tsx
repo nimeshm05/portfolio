@@ -109,6 +109,38 @@ export function ProjectPage({ project }: ProjectPageProps) {
             ))}
           </div>
         </ProjectSection>
+
+        <ProjectSection
+          id="early-designs"
+          eyebrow={project.earlyDesigns.eyebrow}
+          heading={project.earlyDesigns.heading}
+        >
+          <div className="project-section-body">
+            {project.earlyDesigns.paragraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
+          <div className="project-section-list">
+            {project.earlyDesigns.items.map((item) => (
+              <ListItem key={item.id} title={item.title} icon={item.icon}>
+                {item.content || item.imageSrc ? (
+                  <>
+                    {item.content ? <RichText content={item.content} /> : null}
+                    {item.imageSrc ? (
+                      <div className="list-item-media">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={item.imageSrc}
+                          alt={item.imageAlt ?? ""}
+                        />
+                      </div>
+                    ) : null}
+                  </>
+                ) : null}
+              </ListItem>
+            ))}
+          </div>
+        </ProjectSection>
       </main>
     </div>
   );

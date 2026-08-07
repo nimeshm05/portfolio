@@ -17,7 +17,7 @@ export const conversationInsights: ProjectPageData = {
     { id: "problem", label: "Problem", href: "#problem" },
     { id: "discovery", label: "Discovery & Insights", href: "#discovery" },
     { id: "constraints", label: "Constraints", href: "#constraints" },
-    { id: "early-designs", label: "Early Designs" },
+    { id: "early-designs", label: "Early Designs", href: "#early-designs" },
     { id: "learnings", label: "Learnings" },
     { id: "solutions", label: "Solutions" },
     { id: "outcome", label: "Outcome" },
@@ -173,6 +173,30 @@ export const conversationInsights: ProjectPageData = {
     paragraphs: [
       "Two constraints shaped the initial phase. RozieAI needed to demonstrate value to Air Canada ahead of a contract renewal, and a working release (not a wireframe) was what would reinforce that trust. At the same time, engineering had only days, not weeks, to build. There wasn't room to design something new from ground-up for this product, so the product owner made the call: reuse the patterns and components already built for another RozieAI product, rather than design something new here.",
       "I didn't have room to design the ideal solution; the decision was made for the sake of shipping. What I could still control was how we'd know if that decision was wrong. Instead of just shipping and moving on, we set up weekly calls with Air Canada teams, where they'd share their screen and walk through how they were actually using the product to analyze issues. That gave us a plan: ship fast now, and use direct observation, not just what users said but what they actually did, to find out where the reused patterns broke.",
+    ],
+  },
+  earlyDesigns: {
+    eyebrow: "Early Designs",
+    heading: "Initial Product Hypothesis",
+    paragraphs: [
+      "The investigation workflow I uncovered during discovery gave me a clear structure to design against. Teams consistently moved through four stages - Scope, Identify, Understand, Trace — and the product needed to support that sequence, not just surface data. This shaped three decisions in the initial layout.",
+    ],
+    items: [
+      {
+        id: "visualisation-for-insights",
+        title: "Visualisation for Insights",
+        icon: "users",
+      },
+      {
+        id: "data-table-operational-metadata",
+        title: "Data Table Operational Metadata",
+        icon: "database",
+      },
+      {
+        id: "column-and-date-filters",
+        title: "Column and Date Filters",
+        icon: "bug",
+      },
     ],
   },
 };

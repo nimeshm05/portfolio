@@ -1,5 +1,13 @@
+"use client";
+
+import { motion } from "motion/react";
 import { ListItem } from "@/components/ListItem/ListItem";
 import type { ContentSectionData } from "@/data/home";
+import {
+  tabContentBlurVariants,
+  tabContentTransition,
+  useTabContentMotion,
+} from "@/motion/tabContent";
 import "./ContentSection.css";
 
 type ContentSectionProps = {
@@ -11,14 +19,27 @@ export function ContentSection({
   section,
   showDivider = false,
 }: ContentSectionProps) {
+  const blurOnTabChange = useTabContentMotion();
+
   return (
     <>
       {showDivider ? <hr className="content-section-divider" /> : null}
       <section className="content-section" aria-labelledby={section.id}>
         <div className="content-section-label-wrap">
-          <h2 className="content-section-label" id={section.id}>
-            {section.label}
-          </h2>
+          {blurOnTabChange ? (
+            <motion.h2
+              className="content-section-label"
+              id={section.id}
+              variants={tabContentBlurVariants}
+              transition={tabContentTransition}
+            >
+              {section.label}
+            </motion.h2>
+          ) : (
+            <h2 className="content-section-label" id={section.id}>
+              {section.label}
+            </h2>
+          )}
         </div>
         <div className="content-section-list">
           {section.items.map((item) => (

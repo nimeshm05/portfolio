@@ -1,19 +1,35 @@
 .segmented-control {
+  position: relative;
   display: flex;
   align-items: center;
   gap: var(--space-2);
+  width: var(--size-tab-container);
   padding: var(--space-4);
   background: var(--color-bg-muted);
   border-radius: var(--radius-md);
 }
 
+.segmented-control-pill {
+  position: absolute;
+  top: var(--space-4);
+  bottom: var(--space-4);
+  z-index: 0;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-page);
+  box-shadow: var(--shadow-tab);
+  pointer-events: none;
+}
+
 .segmented-control-tab {
+  position: relative;
+  z-index: 1;
   display: flex;
+  flex: 1;
   align-items: center;
   justify-content: center;
-  width: var(--size-tab-width);
   padding: var(--space-8) var(--inset-x);
   border-radius: var(--radius-sm);
+  background: transparent;
   color: var(--color-text-subtle);
   font-size: var(--text-nav-size);
   font-weight: var(--text-nav-weight);
@@ -22,9 +38,8 @@
   opacity: var(--opacity-subtle);
 }
 
+.segmented-control-tab:hover,
 .segmented-control-tab.is-active {
-  background: var(--color-bg-page);
   color: var(--color-text-primary);
-  box-shadow: var(--shadow-tab);
   opacity: 1;
 }

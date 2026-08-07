@@ -53,4 +53,10 @@ export type ProjectPageData = {
     heading: string;
     paragraphs: string[];
   };
+  earlyDesigns: {
+    eyebrow: string;
+    heading: string;
+    paragraphs: string[];
+    items: ExpandableItemContent[];
+  };
 };
