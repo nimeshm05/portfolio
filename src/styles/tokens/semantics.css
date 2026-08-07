@@ -10,6 +10,7 @@
   --color-text-label: var(--color-neutral-400);
   --color-text-muted: var(--color-neutral-350);
   --color-accent: var(--color-blue-600);
+  --color-footer: var(--color-blue-600);
 
   /* Borders */
   --color-border: var(--color-neutral-200);
