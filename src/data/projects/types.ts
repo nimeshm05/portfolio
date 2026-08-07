@@ -60,4 +60,10 @@ export type ProjectPageData = {
     items: ExpandableItemContent[];
     closingParagraphs: string[];
   };
+  learnings: {
+    eyebrow: string;
+    heading: string;
+    paragraphs: string[];
+    items: ExpandableItemContent[];
+  };
 };

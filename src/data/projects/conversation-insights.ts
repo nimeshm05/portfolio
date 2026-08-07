@@ -18,7 +18,7 @@ export const conversationInsights: ProjectPageData = {
     { id: "discovery", label: "Discovery & Insights", href: "#discovery" },
     { id: "constraints", label: "Constraints", href: "#constraints" },
     { id: "early-designs", label: "Early Designs", href: "#early-designs" },
-    { id: "learnings", label: "Learnings" },
+    { id: "learnings", label: "Learnings", href: "#learnings" },
     { id: "solutions", label: "Solutions" },
     { id: "outcome", label: "Outcome" },
     { id: "reflection", label: "Reflection" },
@@ -227,6 +227,56 @@ export const conversationInsights: ProjectPageData = {
     ],
     closingParagraphs: [
       "The deeper constraint I was designing against: AI-derived signals and operational metadata had previously lived in separate places, forcing teams to piece together a picture across reports and systems. Combining both layers in a single scrollable view was the core structural decision, not a layout preference, but a direct response to where the workflow broke down.",
+    ],
+  },
+  learnings: {
+    eyebrow: "Learnings from User Test Sessions",
+    heading: "Evolving designs based on user feedback and constraints",
+    paragraphs: [
+      "After releasing the first version of the product, we conducted weekly feedback calls with our users to identify points of friction and additional requirements. Here's a list of all the problems from multiple user test sessions.",
+    ],
+    items: [
+      {
+        id: "users-preferred-direct-answers",
+        title: "Users preferred direct answers",
+        icon: "users",
+        content: {
+          type: "paragraphs",
+          paragraphs: [
+            'Over a few weeks of feedback calls, I noticed teams consistently bypassed the interactive charts and went straight to conversation records. When I looked closer at what they actually wanted, it wasn\'t complex: for a topic like "Bookings," they just wanted to see the label and its call count, like 1,345 calls. That was the insight. They didn\'t need to hover across a trend line or compare it against other topics to get there.',
+            'The chart I designed assumed users wanted to explore how an issue moved over time: is this topic trending up, how does it compare to others this week. But for a lot of what teams needed first, the question wasn\'t "how is this trending," it was "what are the biggest issues right now, and how many calls does each represent." I\'d designed for exploration when what was needed, at least as a starting point, was a direct, scannable summary.',
+          ],
+        },
+        imageSrc: asset("learnings/old-chart.png"),
+        imageAlt:
+          "Early chart visualization that users bypassed in favor of direct conversation records",
+      },
+      {
+        id: "filtering-didnt-scale",
+        title: "Filtering didn't scale with complex investigations.",
+        icon: "database",
+        content: {
+          type: "paragraphs",
+          paragraphs: [
+            'The filter pattern we reused to hit the initial launch, built originally for a product with simpler filtering needs, started breaking down as investigations grew more complex. During the bi-weekly calls, I watched users apply several filters, then struggle to relocate a specific one they\'d already set among the chips stacked across the toolbar. Each chip showed only a count ("Primary Topics: 12 selected"), so once five or six were applied, users had to open chips one by one to find the one they actually wanted to check or adjust.',
+            "The deeper issue wasn't just the pattern itself; it was what the pattern was doing to the page. Filters had grown to occupy as much visual space as the data they were meant to scope. That inverted the priority of the dashboard: filters are an affordance to control what data is visible, not the content users came to see. Once filtering started competing with the charts and table for attention, the product was asking users to work through the tool before they could get to the information.",
+          ],
+        },
+        imageSrc: asset("learnings/old-filters.png"),
+        imageAlt:
+          "Early filter toolbar with stacked chips that became hard to manage during complex investigations",
+      },
+      {
+        id: "gap-in-discovery",
+        title: "A gap in discovery, not a cut made under pressure.",
+        icon: "settings",
+        content: {
+          type: "paragraphs",
+          paragraphs: [
+            "Another gap that surfaced during feedback calls was that teams relied on operational metrics, like call volume and resolution rate, to decide whether an issue needed attention in the first place. This wasn't something I'd cut for time; it was something my discovery interviews hadn't surfaced. My original interviews focused on how teams moved through an investigation once they'd identified an issue worth digging into. What I hadn't fully asked was: how do you decide something is worth investigating at all? That earlier decision point turned out to depend heavily on these operational numbers, and it was a blind spot in my initial research scope rather than a deliberate tradeoff.",
+          ],
+        },
+      },
     ],
   },
 };

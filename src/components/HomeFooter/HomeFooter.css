@@ -1,0 +1,40 @@
+.home-footer {
+  display: flex;
+  width: 100%;
+  padding-inline: var(--inset-x);
+}
+
+.home-footer-credit {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15em;
+  margin: 0;
+  max-width: 100%;
+  color: var(--color-text-label);
+  font-family: var(--font-family-hand);
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+}
+
+.home-footer-line {
+  display: block;
+  white-space: pre-wrap;
+}
+
+.home-footer-letter,
+.home-footer-space {
+  display: inline-block;
+}
+
+.home-footer-letter {
+  will-change: clip-path;
+}
+
+@media (min-width: 640px) {
+  .home-footer-credit {
+    font-size: 1.375rem;
+  }
+}

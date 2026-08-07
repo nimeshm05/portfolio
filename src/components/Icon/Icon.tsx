@@ -14,6 +14,7 @@ import {
   MessageCircleMore,
   Music2,
   SendToBack,
+  Settings,
   Target,
   Trophy,
   UserStar,
@@ -41,7 +42,8 @@ export type IconName =
   | "trophy"
   | "send-to-back"
   | "coffee"
-  | "workflow";
+  | "workflow"
+  | "settings";
 
 const icons: Record<IconName, LucideIcon> = {
   "message-circle-more": MessageCircleMore,
@@ -63,6 +65,7 @@ const icons: Record<IconName, LucideIcon> = {
   "send-to-back": SendToBack,
   coffee: Coffee,
   workflow: Workflow,
+  settings: Settings,
 };
 
 type IconProps = {

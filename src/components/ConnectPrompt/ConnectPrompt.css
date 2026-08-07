@@ -11,6 +11,13 @@
   text-align: center;
 }
 
+.connect-prompt-step {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
 .connect-prompt-text {
   color: var(--color-text-muted);
 }

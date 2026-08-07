@@ -146,6 +146,37 @@ export function ProjectPage({ project }: ProjectPageProps) {
             ))}
           </div>
         </ProjectSection>
+
+        <ProjectSection
+          id="learnings"
+          eyebrow={project.learnings.eyebrow}
+          heading={project.learnings.heading}
+        >
+          <div className="project-section-body">
+            {project.learnings.paragraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
+          <div className="project-section-list">
+            {project.learnings.items.map((item) => (
+              <ListItem key={item.id} title={item.title} icon={item.icon}>
+                {item.content || item.imageSrc ? (
+                  <>
+                    {item.content ? <RichText content={item.content} /> : null}
+                    {item.imageSrc ? (
+                      <ProjectBanner
+                        src={item.imageSrc}
+                        alt={item.imageAlt ?? ""}
+                        backgroundSrc={project.bannerBackgroundSrc}
+                        hugContent
+                      />
+                    ) : null}
+                  </>
+                ) : null}
+              </ListItem>
+            ))}
+          </div>
+        </ProjectSection>
       </main>
     </div>
   );

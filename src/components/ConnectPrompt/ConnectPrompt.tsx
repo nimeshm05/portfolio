@@ -1,9 +1,14 @@
 "use client";
 
 import { Fragment, useState, type ReactNode } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import { Icon } from "@/components/Icon/Icon";
 import { MorphingConnectIcon } from "@/components/MorphingConnectIcon/MorphingConnectIcon";
 import { connect } from "@/data/home";
+import {
+  tabContentBlurVariants,
+  tabContentTransition,
+} from "@/motion/tabContent";
 import "./ConnectPrompt.css";
 
 type ConnectStep = "invite" | "prefer" | "social" | "inPerson" | "phone";
@@ -220,7 +225,19 @@ export function ConnectPrompt() {
           variant={isInvite ? "workflow" : "send-to-back"}
         />
       </button>
-      {content}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={step}
+          className="connect-prompt-step"
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          variants={tabContentBlurVariants}
+          transition={tabContentTransition}
+        >
+          {content}
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 }

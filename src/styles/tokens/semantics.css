@@ -19,6 +19,7 @@
 
   /* Shared layout */
   --font-family-sans: var(--font-inter), "Segoe UI", sans-serif;
+  --font-family-hand: var(--font-delius), cursive;
   --letter-spacing-body: var(--letter-spacing-tight);
   --inset-x: var(--space-12);
   --content-width: var(--layout-content-width);

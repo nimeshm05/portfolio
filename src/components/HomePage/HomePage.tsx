@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { ConnectPrompt } from "@/components/ConnectPrompt/ConnectPrompt";
 import { ContentSection } from "@/components/ContentSection/ContentSection";
 import { Header } from "@/components/Header/Header";
+import { HomeFooter } from "@/components/HomeFooter/HomeFooter";
 import type { ChevronOrientation } from "@/components/ListItem/ListItem";
 import { SegmentedControl } from "@/components/SegmentedControl/SegmentedControl";
 import { ViewportEdgeBlur } from "@/components/ViewportEdgeBlur/ViewportEdgeBlur";
@@ -38,6 +39,9 @@ export function HomePage() {
             avatarSrc={profile.avatarSrc}
             avatarAlt={profile.avatarAlt}
           />
+          <div className="home-connect">
+            <ConnectPrompt />
+          </div>
           <div className="home-nav">
             <SegmentedControl
               tabs={homeTabs}
@@ -68,9 +72,7 @@ export function HomePage() {
             </TabContentMotionProvider>
           </motion.div>
         </AnimatePresence>
-        <div className="home-connect">
-          <ConnectPrompt />
-        </div>
+        <HomeFooter />
       </main>
     </div>
   );
