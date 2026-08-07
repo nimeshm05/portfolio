@@ -130,7 +130,7 @@ export const aboutSections: ContentSectionData[] = [
         title: "Product Designer,",
         meta: "RozieAI",
         description:
-          "Led end-to-end design for a couple of internal tools like conversation insights and experience studio for clients like Air Canada.",
+          "Led end-to-end design for a couple of internal tools like conversation insights and experience studio, which was used by clients like Air Canada.",
       },
       {
         id: "rozieai-intern",

@@ -3,6 +3,7 @@
 import { useId, useState, type ReactNode } from "react";
 import { motion } from "motion/react";
 import { Icon, type IconName } from "@/components/Icon/Icon";
+import { MorphingChevron } from "@/components/MorphingChevron/MorphingChevron";
 import {
   tabContentBlurVariants,
   tabContentTransition,
@@ -28,16 +29,24 @@ const CHEVRON_TRANSITION = {
   ease: [0.22, 1, 0.36, 1] as const,
 };
 
-function getChevronRotate(
-  closedOrientation: ChevronOrientation,
-  isExpandable: boolean,
+/**
+ * Link chevrons use chevron-right as the base glyph.
+ * Expandable chevrons use MorphingChevron (down/up) as the base glyph,
+ * so "right" is expressed as -90° on that down-facing path.
+ */
+function getLinkChevronRotate(orientation: ChevronOrientation) {
+  return orientation === "down" ? 90 : 0;
+}
+
+function getExpandableChevronRotate(
+  orientation: ChevronOrientation,
   isOpen: boolean,
 ) {
-  if (isExpandable && isOpen) {
-    return -90;
+  if (isOpen) {
+    return 0;
   }
 
-  return closedOrientation === "down" ? 90 : 0;
+  return orientation === "right" ? -90 : 0;
 }
 
 export function ListItem({
@@ -57,11 +66,6 @@ export function ListItem({
   const hasContent = Boolean(children);
   const closedOrientation =
     chevronOrientation ?? (isExpandable ? "down" : "right");
-  const chevronRotate = getChevronRotate(
-    closedOrientation,
-    isExpandable,
-    isOpen,
-  );
   const className = `list-item${compactGap ? " list-item--compact" : ""}${
     isExpandable ? " list-item--expandable" : ""
   }${isExpandable && isOpen ? " is-open" : ""}`;
@@ -99,23 +103,45 @@ export function ListItem({
     </span>
   );
 
+  const chevronRotate = isExpandable
+    ? getExpandableChevronRotate(closedOrientation, isOpen)
+    : getLinkChevronRotate(closedOrientation);
+
+  const chevronInitialRotate = blurOnTabChange
+    ? isExpandable
+      ? chevronRotate === 0
+        ? -90
+        : 0
+      : chevronRotate === 90
+        ? 0
+        : 90
+    : false;
+
+  const chevronNode = (
+    <motion.span
+      className="list-item-chevron"
+      aria-hidden="true"
+      initial={
+        chevronInitialRotate === false
+          ? false
+          : { rotate: chevronInitialRotate }
+      }
+      animate={{ rotate: chevronRotate }}
+      transition={CHEVRON_TRANSITION}
+    >
+      {isExpandable ? (
+        <MorphingChevron isOpen={isOpen} />
+      ) : (
+        <Icon name="chevron-right" />
+      )}
+    </motion.span>
+  );
+
   const content = (
     <>
       {iconNode}
       {titleNode}
-      <motion.span
-        className="list-item-chevron"
-        aria-hidden="true"
-        initial={
-          blurOnTabChange
-            ? { rotate: chevronRotate === 90 ? 0 : 90 }
-            : false
-        }
-        animate={{ rotate: chevronRotate }}
-        transition={CHEVRON_TRANSITION}
-      >
-        <Icon name="chevron-right" />
-      </motion.span>
+      {chevronNode}
     </>
   );
 
