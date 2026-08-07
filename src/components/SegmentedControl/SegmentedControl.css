@@ -19,7 +19,7 @@
   font-weight: var(--text-nav-weight);
   line-height: var(--text-nav-line-height);
   text-transform: capitalize;
-  opacity: 0.8;
+  opacity: var(--opacity-subtle);
 }
 
 .segmented-control-tab.is-active {

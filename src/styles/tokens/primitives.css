@@ -24,6 +24,7 @@
   --space-60: 60px;
   --space-120: 120px;
   --space-128: 128px;
+  --space-160: 160px;
 
   /* Radius */
   --radius-4: 4px;
@@ -46,6 +47,8 @@
   --line-height-24: 24px;
   --line-height-28: 28px;
   --line-height-32: 32px;
+  --line-height-tight: 1.4;
+  --line-height-body: 1.6;
 
   /* Font weights */
   --font-weight-regular: 450;
@@ -56,9 +59,18 @@
   /* Letter spacing */
   --letter-spacing-tight: -0.02em;
 
+  /* Opacity */
+  --opacity-muted: 0.7;
+  --opacity-subtle: 0.8;
+
+  /* Motion */
+  --duration-fast: 160ms;
+  --ease-default: ease;
+
   /* Sizes */
   --size-icon: 20px;
   --size-icon-sm: 16px;
+  --size-social: 40px;
   --size-avatar: 80px;
   --size-tab-width: 80px;
   --size-hairline: 1px;
@@ -73,4 +85,7 @@
 
   /* Layout */
   --layout-content-width: 42.5rem;
+  --layout-prose-width: 30rem;
+  --layout-bio-width: 34rem;
+  --breakpoint-sidebar: 1100px;
 }

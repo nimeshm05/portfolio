@@ -19,13 +19,27 @@ export type ContentSectionData = {
 
 export const profile = {
   name: "Nimesh Mohanakrishnan",
-  avatarSrc: "/assets/profile.jpeg",
+  avatarSrc: "/assets/profile-3.jpeg",
   avatarAlt: "Portrait of Nimesh Mohanakrishnan",
   bioByTab: {
     work: "Product designer based in Seattle, currently earning my master's in HCDE at the University of Washington.",
     about:
       "Product designer based in Seattle, currently earning my master's in HCDE at the University of Washington.",
   },
+  socialLinks: [
+    {
+      id: "github",
+      label: "GitHub",
+      href: "https://github.com/nimeshm05",
+      iconSrc: "/assets/icons/github.svg",
+    },
+    {
+      id: "linkedin",
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/in/nimesh-mohanakrishnan",
+      iconSrc: "/assets/icons/linkedin.svg",
+    },
+  ],
 } as const;
 
 export const workSections: ContentSectionData[] = [

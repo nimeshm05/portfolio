@@ -97,6 +97,18 @@ export function ProjectPage({ project }: ProjectPageProps) {
         </ProjectSection>
 
         <Callout>{project.calloutTwo}</Callout>
+
+        <ProjectSection
+          id="constraints"
+          eyebrow={project.constraints.eyebrow}
+          heading={project.constraints.heading}
+        >
+          <div className="project-section-body">
+            {project.constraints.paragraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
+        </ProjectSection>
       </main>
     </div>
   );

@@ -13,6 +13,7 @@
 
   /* Borders */
   --color-border: var(--color-neutral-200);
+  --color-border-muted: var(--color-neutral-100);
   --border-width: var(--size-hairline);
   --callout-border-width: var(--size-border-callout);
 
@@ -21,6 +22,11 @@
   --letter-spacing-body: var(--letter-spacing-tight);
   --inset-x: var(--space-12);
   --content-width: var(--layout-content-width);
+  --max-width-prose: var(--layout-prose-width);
+  --max-width-bio: var(--layout-bio-width);
+
+  /* Motion */
+  --transition-fast: var(--duration-fast) var(--ease-default);
 
   /* Radius */
   --radius-sm: var(--radius-4);
@@ -42,10 +48,15 @@
   --text-subtitle-line-height: var(--line-height-28);
   --text-subtitle-weight: var(--font-weight-medium);
 
-  /* Typography: heading (section title, callout) */
+  /* Typography: heading (section title) */
   --text-heading-size: var(--font-size-22);
-  --text-heading-line-height: 1.4;
+  --text-heading-line-height: var(--line-height-tight);
   --text-heading-weight: var(--font-weight-bold);
+
+  /* Typography: callout (reuses heading size/line-height) */
+  --text-callout-size: var(--text-heading-size);
+  --text-callout-line-height: var(--text-heading-line-height);
+  --text-callout-weight: var(--font-weight-semibold);
 
   /* Typography: label (section label / eyebrow) */
   --text-label-size: var(--font-size-16);
@@ -59,8 +70,9 @@
 
   /* Typography: body */
   --text-body-size: var(--font-size-16);
-  --text-body-line-height: var(--line-height-28);
+  --text-body-line-height: var(--line-height-body);
   --text-body-weight: var(--font-weight-regular);
+  --text-body-paragraph-gap: 1lh;
 
   /* Typography: nav */
   --text-nav-size: var(--font-size-15);
@@ -69,5 +81,6 @@
 
   /* Typography: sidebar */
   --text-sidebar-size: var(--font-size-14);
+  --text-sidebar-line-height: normal;
   --text-sidebar-weight: var(--font-weight-medium);
 }

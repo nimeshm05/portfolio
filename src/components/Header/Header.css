@@ -21,7 +21,7 @@
   height: var(--size-avatar);
   flex-shrink: 0;
   overflow: hidden;
-  border: var(--size-hairline) solid var(--color-neutral-100);
+  border: var(--border-width) solid var(--color-border-muted);
   border-radius: var(--radius-full);
 }
 
@@ -29,7 +29,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: grayscale(1);
 }
 
 .site-header-info {
@@ -48,7 +47,7 @@
 }
 
 .site-header-bio {
-  max-width: 34rem;
+  max-width: var(--max-width-bio);
   color: var(--color-text-muted);
   font-size: var(--text-display-size);
   font-weight: var(--text-display-weight);

@@ -43,7 +43,7 @@
 }
 
 .project-section-body p + p {
-  margin-top: var(--text-body-line-height);
+  margin-top: var(--text-body-paragraph-gap);
 }
 
 .project-section-media {

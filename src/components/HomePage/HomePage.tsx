@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ContentSection } from "@/components/ContentSection/ContentSection";
 import { Header } from "@/components/Header/Header";
 import { SegmentedControl } from "@/components/SegmentedControl/SegmentedControl";
+import { SocialLinks } from "@/components/SocialLinks/SocialLinks";
 import {
   aboutSections,
   homeTabs,
@@ -33,6 +34,7 @@ export function HomePage() {
               activeTab={activeTab}
               onChange={setActiveTab}
             />
+            {/* <SocialLinks links={profile.socialLinks} /> */}
           </div>
         </div>
         <div className="home-content" role="tabpanel">

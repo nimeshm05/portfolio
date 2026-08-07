@@ -1,7 +1,7 @@
 .project-sidebar {
   position: fixed;
   top: var(--space-120);
-  left: var(--space-48);
+  left: var(--space-32);
   z-index: 2;
   display: none;
   flex-direction: column;
@@ -20,7 +20,7 @@
   color: var(--color-text-label);
   font-size: var(--text-sidebar-size);
   font-weight: var(--text-sidebar-weight);
-  line-height: normal;
+  line-height: var(--text-sidebar-line-height);
   white-space: nowrap;
 }
 

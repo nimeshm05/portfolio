@@ -48,4 +48,9 @@ export type ProjectPageData = {
     items: ExpandableItemContent[];
   };
   calloutTwo: string;
+  constraints: {
+    eyebrow: string;
+    heading: string;
+    paragraphs: string[];
+  };
 };

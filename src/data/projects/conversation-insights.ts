@@ -16,7 +16,7 @@ export const conversationInsights: ProjectPageData = {
     { id: "overview", label: "Overview", href: "#overview" },
     { id: "problem", label: "Problem", href: "#problem" },
     { id: "discovery", label: "Discovery & Insights", href: "#discovery" },
-    { id: "constraints", label: "Constraints" },
+    { id: "constraints", label: "Constraints", href: "#constraints" },
     { id: "early-designs", label: "Early Designs" },
     { id: "learnings", label: "Learnings" },
     { id: "solutions", label: "Solutions" },
@@ -106,8 +106,7 @@ export const conversationInsights: ProjectPageData = {
     heading:
       "Understanding the system - users, data, & how teams analyzed customer issues.",
     paragraphs: [
-      "Before diving into design, I initiated conversations with RozieAI product owners, data scientists, and Air Canada stakeholders to understand how insights were generated, delivered, and operationalized.",
-      "I started here because designing a self-serve workflow without first understanding the existing investigation behavior risked solving the wrong problem - building a faster way to deliver the same static reports, rather than addressing the actual workflow underneath them.",
+      "I first aligned with RozieAI product owners, data scientists, and Air Canada stakeholders to understand how insights were generated, delivered, and used. This helped me avoid simply recreating static reports and instead design a self-serve experience that supported the underlying investigation workflow.",
     ],
     items: [
       {
@@ -167,4 +166,13 @@ export const conversationInsights: ProjectPageData = {
   },
   calloutTwo:
     "So, how might we enable Air Canada contact centre teams to independently investigate customer issues from identification to operational action?",
+  constraints: {
+    eyebrow: "Constraints",
+    heading:
+      "Business wanted to ship fast and engineering wasn't ready to build new components or patterns.",
+    paragraphs: [
+      "Two constraints shaped the initial phase. RozieAI needed to demonstrate value to Air Canada ahead of a contract renewal, and a working release (not a wireframe) was what would reinforce that trust. At the same time, engineering had only days, not weeks, to build. There wasn't room to design something new from ground-up for this product, so the product owner made the call: reuse the patterns and components already built for another RozieAI product, rather than design something new here.",
+      "I didn't have room to design the ideal solution; the decision was made for the sake of shipping. What I could still control was how we'd know if that decision was wrong. Instead of just shipping and moving on, we set up weekly calls with Air Canada teams, where they'd share their screen and walk through how they were actually using the product to analyze issues. That gave us a plan: ship fast now, and use direct observation, not just what users said but what they actually did, to find out where the reused patterns broke.",
+    ],
+  },
 };
