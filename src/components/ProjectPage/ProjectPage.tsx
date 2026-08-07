@@ -5,6 +5,7 @@ import { ProjectHeader } from "@/components/ProjectHeader/ProjectHeader";
 import { ProjectSection } from "@/components/ProjectSection/ProjectSection";
 import { ProjectSidebar } from "@/components/ProjectSidebar/ProjectSidebar";
 import { RichText } from "@/components/RichText/RichText";
+import { ViewportEdgeBlur } from "@/components/ViewportEdgeBlur/ViewportEdgeBlur";
 import type { ProjectPageData } from "@/data/projects/types";
 import "./ProjectPage.css";
 
@@ -15,6 +16,7 @@ type ProjectPageProps = {
 export function ProjectPage({ project }: ProjectPageProps) {
   return (
     <div className="project-page">
+      <ViewportEdgeBlur />
       <ProjectSidebar items={project.nav} />
       <main className="project-body">
         <div className="project-intro">
