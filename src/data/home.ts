@@ -8,6 +8,7 @@ export type ListItemData = {
   meta?: string;
   icon?: IconName;
   href?: string;
+  description?: string;
 };
 
 export type ContentSectionData = {
@@ -121,19 +122,36 @@ export const aboutSections: ContentSectionData[] = [
         id: "knool",
         title: "Product Intern,",
         meta: "Knool",
-        href: "#",
+        description:
+          "Currently on the AI workspace team, leading feature improvements to increase usage metrics. Doing bit of design, strategic work, & product analytics - start-up life :)",
       },
       {
         id: "rozieai",
         title: "Product Designer,",
         meta: "RozieAI",
-        href: "#",
+        description:
+          "Led end-to-end design for a couple of internal tools like conversation insights and experience studio for clients like Air Canada.",
+      },
+      {
+        id: "rozieai-intern",
+        title: "Product Design Intern,",
+        meta: "RozieAI",
+        description:
+          "Partnered with Design Lead to maintain and scale the organization’s design system, improving component re-usability, styleguide, and design-to-dev handoff efficiency.",
       },
       {
         id: "brane",
         title: "Software Engineer,",
         meta: "Brane Enterprises",
-        href: "#",
+        description:
+          "Learned Flutter, software testing, and state management by building and shipping three core features and fixing 20+ bugs.",
+      },
+      {
+        id: "stanford",
+        title: "Innovation Fellow,",
+        meta: "Stanford d.school",
+        description:
+          "Announced as innovation fellow by the UIF community at Stanford d.school, also where I was trained in design thinking.",
       },
     ],
   },
@@ -144,12 +162,12 @@ export const aboutSections: ContentSectionData[] = [
       {
         id: "ms-hcde",
         title: "M.S. Human Centered Design & Engineering",
-        href: "#",
+        description: "Mastering my skills in systems thinking and design.",
       },
       {
         id: "beng-cse",
         title: "B.Eng. Computer Science & Engineering",
-        href: "#",
+        description: "Gained skills in developing software systems.",
       },
     ],
   },

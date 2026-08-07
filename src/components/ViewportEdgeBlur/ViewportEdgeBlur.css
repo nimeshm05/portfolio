@@ -1,5 +1,5 @@
 .viewport-edge-blur {
-  --viewport-edge-blur-size: 120px;
+  --viewport-edge-blur-size: 152px;
   pointer-events: none;
   position: fixed;
   inset: 0;

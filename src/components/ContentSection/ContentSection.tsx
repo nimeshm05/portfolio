@@ -50,7 +50,11 @@ export function ContentSection({
               icon={item.icon}
               href={item.href}
               compactGap={section.compactGap}
-            />
+            >
+              {item.description ? (
+                <p className="list-item-description">{item.description}</p>
+              ) : null}
+            </ListItem>
           ))}
         </div>
       </section>

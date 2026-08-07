@@ -72,6 +72,13 @@
   padding: var(--space-12) var(--inset-x) var(--space-20);
 }
 
+.list-item-description {
+  color: var(--color-text-body);
+  font-size: var(--text-body-size);
+  font-weight: var(--text-body-weight);
+  line-height: var(--text-body-line-height);
+}
+
 .list-item-media {
   width: 100%;
   overflow: hidden;

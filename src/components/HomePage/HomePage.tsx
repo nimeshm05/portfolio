@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { ContentSection } from "@/components/ContentSection/ContentSection";
 import { Header } from "@/components/Header/Header";
 import { SegmentedControl } from "@/components/SegmentedControl/SegmentedControl";
+import { ViewportEdgeBlur } from "@/components/ViewportEdgeBlur/ViewportEdgeBlur";
 import {
   aboutSections,
   homeTabs,
@@ -24,6 +25,7 @@ export function HomePage() {
 
   return (
     <div className="home-page">
+      <ViewportEdgeBlur />
       <main className="home-body">
         <div className="home-intro">
           <Header
