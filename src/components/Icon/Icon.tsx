@@ -6,16 +6,19 @@ import {
   ChevronLeft,
   ChevronRight,
   CodeXml,
+  Coffee,
   Database,
   Footprints,
   Globe,
   Lightbulb,
   MessageCircleMore,
   Music2,
+  SendToBack,
   Target,
   Trophy,
   UserStar,
   Users,
+  Workflow,
 } from "lucide-react";
 import "./Icon.css";
 
@@ -35,7 +38,10 @@ export type IconName =
   | "target"
   | "user-star"
   | "lightbulb"
-  | "trophy";
+  | "trophy"
+  | "send-to-back"
+  | "coffee"
+  | "workflow";
 
 const icons: Record<IconName, LucideIcon> = {
   "message-circle-more": MessageCircleMore,
@@ -54,6 +60,9 @@ const icons: Record<IconName, LucideIcon> = {
   "user-star": UserStar,
   lightbulb: Lightbulb,
   trophy: Trophy,
+  "send-to-back": SendToBack,
+  coffee: Coffee,
+  workflow: Workflow,
 };
 
 type IconProps = {

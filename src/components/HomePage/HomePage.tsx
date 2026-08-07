@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
+import { ConnectPrompt } from "@/components/ConnectPrompt/ConnectPrompt";
 import { ContentSection } from "@/components/ContentSection/ContentSection";
 import { Header } from "@/components/Header/Header";
 import type { ChevronOrientation } from "@/components/ListItem/ListItem";
@@ -67,6 +68,9 @@ export function HomePage() {
             </TabContentMotionProvider>
           </motion.div>
         </AnimatePresence>
+        <div className="home-connect">
+          <ConnectPrompt />
+        </div>
       </main>
     </div>
   );

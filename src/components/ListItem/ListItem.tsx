@@ -6,6 +6,7 @@ import { Icon, type IconName } from "@/components/Icon/Icon";
 import { MorphingChevron } from "@/components/MorphingChevron/MorphingChevron";
 import {
   tabContentBlurVariants,
+  tabContentOpacityVariants,
   tabContentTransition,
   useTabContentMotion,
 } from "@/motion/tabContent";
@@ -75,7 +76,7 @@ export function ListItem({
       <motion.span
         className="list-item-icon"
         aria-hidden="true"
-        variants={tabContentBlurVariants}
+        variants={tabContentOpacityVariants}
         transition={tabContentTransition}
       >
         <Icon name={icon} />

@@ -37,10 +37,19 @@ export const profile = {
     {
       id: "linkedin",
       label: "LinkedIn",
-      href: "https://www.linkedin.com/in/nimesh-mohanakrishnan",
+      href: "https://www.linkedin.com/in/nimeshm-work/",
       iconSrc: "/assets/icons/linkedin.svg",
     },
   ],
+} as const;
+
+export const connect = {
+  phoneDisplay: "+1 (253) 408-1856",
+  phoneHref: "tel:+12534081856",
+  email: "nimeshm.work@gmail.com",
+  emailHref: "mailto:nimeshm.work@gmail.com",
+  linkedInHref: "https://www.linkedin.com/in/nimeshm-work/",
+  githubHref: "https://github.com/nimeshm05",
 } as const;
 
 export const workSections: ContentSectionData[] = [

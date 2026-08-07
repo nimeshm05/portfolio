@@ -8,6 +8,12 @@ export const tabContentBlurVariants = {
   exit: { opacity: 0, filter: "blur(8px)" },
 };
 
+export const tabContentOpacityVariants = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
+};
+
 export const tabContentTransition = {
   duration: 0.1,
   ease: "easeInOut" as const,
