@@ -58,5 +58,6 @@ export type ProjectPageData = {
     heading: string;
     paragraphs: string[];
     items: ExpandableItemContent[];
+    closingParagraphs: string[];
   };
 };

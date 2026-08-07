@@ -127,17 +127,20 @@ export function ProjectPage({ project }: ProjectPageProps) {
                   <>
                     {item.content ? <RichText content={item.content} /> : null}
                     {item.imageSrc ? (
-                      <div className="list-item-media">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={item.imageSrc}
-                          alt={item.imageAlt ?? ""}
-                        />
-                      </div>
+                      <ProjectBanner
+                        src={item.imageSrc}
+                        alt={item.imageAlt ?? ""}
+                        backgroundSrc={project.bannerBackgroundSrc}
+                      />
                     ) : null}
                   </>
                 ) : null}
               </ListItem>
+            ))}
+          </div>
+          <div className="project-section-body">
+            {project.earlyDesigns.closingParagraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
         </ProjectSection>

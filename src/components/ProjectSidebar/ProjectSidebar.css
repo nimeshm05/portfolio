@@ -51,6 +51,10 @@
   width: 100%;
 }
 
+.project-sidebar-link.is-active {
+  color: var(--color-text-primary);
+}
+
 .project-sidebar-back:hover,
 .project-sidebar-link:hover {
   color: var(--color-text-primary);

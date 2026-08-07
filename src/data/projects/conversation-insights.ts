@@ -186,17 +186,47 @@ export const conversationInsights: ProjectPageData = {
         id: "visualisation-for-insights",
         title: "Visualisation for Insights",
         icon: "users",
+        content: {
+          type: "paragraphs",
+          paragraphs: [
+            'Charts anchored the middle because identifying patterns (spikes in topic frequency, shifts in sentiment) was how teams moved from "something might be wrong" to "here\'s what needs attention." I prioritized the visualizations that mapped to the highest-ranked metrics from stakeholder conversations, since those were the signals teams already knew to look for.',
+          ],
+        },
+        imageSrc: asset("initial-solution/Iteration 1 - Top View.png"),
+        imageAlt:
+          "Early design showing visualization charts for conversation insights",
       },
       {
         id: "data-table-operational-metadata",
         title: "Data Table Operational Metadata",
         icon: "database",
+        content: {
+          type: "paragraphs",
+          paragraphs: [
+            "The data table followed because tracing operational impact always came last. Once teams identified an issue, they needed to connect it to specific queues, routing profiles, or agents. Placing the table below the charts preserved that natural hand-off from insight to investigation.",
+          ],
+        },
+        imageSrc: asset("initial-solution/Iteration 1 - Bottom View.png"),
+        imageAlt:
+          "Early design showing the operational metadata data table below charts",
       },
       {
         id: "column-and-date-filters",
         title: "Column and Date Filters",
         icon: "bug",
+        content: {
+          type: "paragraphs",
+          paragraphs: [
+            "Filters came first because scoping a time window was always the entry point to any investigation. Without it, teams couldn't frame what they were looking at. I also made date and column filters apply to both the charts and the data table simultaneously, so teams could scope their analysis once and have both information layers update together. Splitting filter state across the two would have forced teams to re-scope twice, partially recreating the fragmentation the product was designed to eliminate.",
+          ],
+        },
+        imageSrc: asset("initial-solution/Iteration 1 - Filters.png"),
+        imageAlt:
+          "Early design showing shared column and date filters for charts and table",
       },
+    ],
+    closingParagraphs: [
+      "The deeper constraint I was designing against: AI-derived signals and operational metadata had previously lived in separate places, forcing teams to piece together a picture across reports and systems. Combining both layers in a single scrollable view was the core structural decision, not a layout preference, but a direct response to where the workflow broke down.",
     ],
   },
 };
