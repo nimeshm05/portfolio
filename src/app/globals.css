@@ -5,7 +5,6 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-feature-settings: normal;
 }
 
 html {
@@ -33,6 +32,8 @@ body {
   background: var(--color-bg-page);
   font-family: var(--font-family-sans);
   letter-spacing: var(--letter-spacing-body);
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

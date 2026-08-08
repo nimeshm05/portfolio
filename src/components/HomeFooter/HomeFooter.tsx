@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useInView, useReducedMotion } from "motion/react";
 import "./HomeFooter.css";
 
@@ -49,15 +49,46 @@ function buildLines() {
 
 const FOOTER_LINES = buildLines();
 
+const MAX_LETTER_DELAY = Math.max(
+  ...FOOTER_LINES.flatMap((line) =>
+    line.chars.filter((item) => !item.isSpace).map((item) => item.delay),
+  ),
+);
+
+const TOTAL_ANIMATION_MS = (MAX_LETTER_DELAY + LETTER_DURATION) * 1000;
+
+type AnimationPhase = "waiting" | "playing" | "done";
+
 export function HomeFooter() {
   const footerRef = useRef<HTMLElement>(null);
+  const [animationPhase, setAnimationPhase] = useState<AnimationPhase>("waiting");
   const prefersReducedMotion = useReducedMotion();
   const inView = useInView(footerRef, {
     once: true,
     amount: 0.4,
   });
 
+  useEffect(() => {
+    if (inView && animationPhase === "waiting") {
+      setAnimationPhase("playing");
+    }
+  }, [inView, animationPhase]);
+
+  useEffect(() => {
+    if (animationPhase !== "playing") {
+      return;
+    }
+
+    const timer = window.setTimeout(() => {
+      setAnimationPhase("done");
+    }, TOTAL_ANIMATION_MS);
+
+    return () => window.clearTimeout(timer);
+  }, [animationPhase]);
+
   const reduceMotion = Boolean(prefersReducedMotion);
+  const revealed =
+    reduceMotion || animationPhase === "playing" || animationPhase === "done";
 
   return (
     <footer
@@ -81,18 +112,14 @@ export function HomeFooter() {
                 <motion.span
                   key={item.key}
                   className="home-footer-letter"
-                  initial={
-                    reduceMotion
-                      ? { clipPath: "inset(0 0% 0 0)" }
-                      : { clipPath: "inset(0 100% 0 0)" }
-                  }
+                  initial={false}
                   animate={
-                    reduceMotion || inView
+                    revealed
                       ? { clipPath: "inset(0 0% 0 0)" }
                       : { clipPath: "inset(0 100% 0 0)" }
                   }
                   transition={
-                    reduceMotion || !inView
+                    reduceMotion || animationPhase !== "playing"
                       ? { duration: 0 }
                       : {
                           duration: LETTER_DURATION,

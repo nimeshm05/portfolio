@@ -192,7 +192,7 @@ export function ConnectPrompt() {
     case "phone":
       content = (
         <>
-          <PromptText>Here&apos;s my number. Text me.</PromptText>
+          <PromptText>Here&apos;s my number and email.</PromptText>
           <Options
             items={[
               {
@@ -202,6 +202,10 @@ export function ConnectPrompt() {
                     {connect.phoneDisplay}
                   </PromptLink>
                 ),
+              },
+              {
+                key: "email",
+                node: <PromptLink href={connect.emailHref}>Email</PromptLink>,
               },
             ]}
           />

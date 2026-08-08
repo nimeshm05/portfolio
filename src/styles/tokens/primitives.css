@@ -54,13 +54,13 @@
   --line-height-body: 1.6;
 
   /* Font weights */
-  --font-weight-regular: 450;
+  --font-weight-regular: 440;
   --font-weight-medium: 500;
-  --font-weight-semibold: 600;
+  --font-weight-semibold: 640;
   --font-weight-bold: 700;
 
   /* Letter spacing */
-  --letter-spacing-tight: -0.04em;
+  --letter-spacing-tight: -0.03em;
 
   /* Opacity */
   --opacity-muted: 0.7;
