@@ -10,7 +10,7 @@
   --color-text-label: var(--color-neutral-400);
   --color-text-muted: var(--color-neutral-350);
   --color-accent: var(--color-blue-600);
-  --color-footer: var(--color-blue-600);
+  --color-footer: var(--color-pink-600);
 
   /* Borders */
   --color-border: var(--color-neutral-200);
@@ -20,7 +20,7 @@
 
   /* Shared layout */
   --font-family-sans: var(--font-inter), "Segoe UI", sans-serif;
-  --font-family-hand: var(--font-delius), cursive;
+  --font-family-hand: var(--font-playwrite-ca-guides), var(--font-patrick-hand), cursive;
   --letter-spacing-body: var(--letter-spacing-tight);
   --inset-x: var(--space-12);
   --content-width: var(--layout-content-width);

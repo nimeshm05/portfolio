@@ -14,7 +14,7 @@
 .project-sidebar-link {
   display: flex;
   align-items: flex-start;
-  gap: var(--space-8);
+  gap: var(--space-4);
   width: 100%;
   padding: var(--space-8) var(--inset-x);
   color: var(--color-text-label);

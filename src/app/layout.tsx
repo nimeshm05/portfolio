@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
-import { Delius, Inter } from "next/font/google";
+import { Delius, Inter, Patrick_Hand, Playwrite_CA_Guides } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -14,6 +14,17 @@ const delius = Delius({
   weight: "400",
 });
 
+const patrickHand = Patrick_Hand({
+  variable: "--font-patrick-hand",
+  subsets: ["latin"],
+  weight: "400",
+});
+
+const playwriteCAguides = Playwrite_CA_Guides({
+  variable: "--font-playwrite-ca-guides",
+  weight: "400",
+});
+
 export const metadata: Metadata = {
   title: "Nimesh Mohanakrishnan",
   description:
@@ -22,7 +33,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${inter.variable} ${delius.variable}`}>
+    <html lang="en" className={`${inter.variable} ${delius.variable} ${patrickHand.variable} ${playwriteCAguides.variable}`}>
       <body>
         {children}
         <Analytics />

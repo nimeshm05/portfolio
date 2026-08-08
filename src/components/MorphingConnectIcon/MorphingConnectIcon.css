@@ -5,3 +5,7 @@
   height: var(--size-icon);
   color: currentColor;
 }
+
+.morphing-connect-icon:hover {
+  color: var(--color-text-primary);
+}

@@ -9,6 +9,7 @@
   --color-neutral-500: oklch(55.55% 0 0);
   --color-neutral-600: oklch(43.86% 0 0);
   --color-blue-600: oklch(62% 0.19 260);
+  --color-pink-600: oklch(59% 0.22 1);
 
   /* Spacing */
   --space-2: 2px;

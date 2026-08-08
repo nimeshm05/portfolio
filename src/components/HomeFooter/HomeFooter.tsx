@@ -5,13 +5,13 @@ import { motion, useInView, useReducedMotion } from "motion/react";
 import "./HomeFooter.css";
 
 const LINES = [
-  "Crafted with precision and care by Nimesh.",
-  "Thanks to cursor agents, figma, and my brain.",
+  "Crafted with precision and care by nimesh.",
+  "Thanks to cursor agents, figma mcp, and to a few neurons in my brain.",
 ] as const;
 
 const FULL_CREDIT = LINES.join(" ");
 
-const LETTER_DURATION = 0.08;
+const LETTER_DURATION = 0.05;
 const LETTER_GAP = 0.012;
 const LINE_GAP = 0.08;
 
