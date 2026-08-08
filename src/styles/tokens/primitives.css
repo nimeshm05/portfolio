@@ -6,6 +6,7 @@
   --color-neutral-200: oklch(92.19% 0 0);
   --color-neutral-350: oklch(79.52% 0 0);
   --color-neutral-400: oklch(71.55% 0 0);
+  --color-neutral-450: oklch(63.55% 0 0);
   --color-neutral-500: oklch(55.55% 0 0);
   --color-neutral-600: oklch(43.86% 0 0);
   --color-blue-600: oklch(62% 0.19 260);
@@ -59,7 +60,7 @@
   --font-weight-bold: 700;
 
   /* Letter spacing */
-  --letter-spacing-tight: -0.02em;
+  --letter-spacing-tight: -0.04em;
 
   /* Opacity */
   --opacity-muted: 0.7;
@@ -90,7 +91,7 @@
     var(--shadow-tab-elevation);
 
   /* Layout */
-  --layout-content-width: 42rem;
+  --layout-content-width: 40rem;
   --layout-prose-width: 30rem;
   --layout-bio-width: 34rem;
   --breakpoint-sidebar: 1100px;
