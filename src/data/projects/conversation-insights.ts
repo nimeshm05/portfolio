@@ -11,7 +11,7 @@ export const conversationInsights: ProjectPageData = {
   bannerSrc: asset("conversation-insights-banner.mp4"),
   bannerAlt: "Conversation Insights dashboard preview",
   bannerType: "video",
-  bannerBackgroundSrc: asset("background-1.png"),
+  bannerBackgroundSrc: asset("background.png"),
   nav: [
     { id: "overview", label: "Overview", href: "#overview" },
     { id: "problem", label: "Problem", href: "#problem" },

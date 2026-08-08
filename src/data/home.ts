@@ -23,9 +23,9 @@ export const profile = {
   avatarSrc: "/assets/profile-4.jpg",
   avatarAlt: "Portrait of Nimesh Mohanakrishnan",
   bioByTab: {
-    work: "Product designer based in Seattle, currently earning my master's in HCDE at the University of Washington.",
+    work: "Product designer in Seattle, pursuing my master’s in HCDE at the University of Washington.",
     about:
-      "Product designer based in Seattle, currently earning my master's in HCDE at the University of Washington.",
+      "Product designer in Seattle, pursuing my master’s in HCDE at the University of Washington.",
   },
   socialLinks: [
     {

@@ -44,14 +44,11 @@
   color: inherit;
 }
 
-.project-sidebar-link .project-sidebar-icon {
-  opacity: 0;
-}
-
 .project-sidebar-nav {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  padding-left: var(--inset-x);
   width: 100%;
 }
 

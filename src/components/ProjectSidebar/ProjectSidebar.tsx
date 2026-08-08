@@ -11,14 +11,7 @@ type ProjectSidebarProps = {
 };
 
 function NavItemContent({ label }: { label: string }) {
-  return (
-    <>
-      <span className="project-sidebar-icon" aria-hidden="true">
-        <Icon name="chevron-right" size={16} />
-      </span>
-      <span>/ {label}</span>
-    </>
-  );
+  return <span>/ {label}</span>;
 }
 
 export function ProjectSidebar({ items }: ProjectSidebarProps) {
