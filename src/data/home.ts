@@ -15,6 +15,7 @@ export type ContentSectionData = {
   id: string;
   label: string;
   items: ListItemData[];
+  supportsCardView?: boolean;
 };
 
 export const profile = {
@@ -55,6 +56,7 @@ export const workSections: ContentSectionData[] = [
   {
     id: "industry-projects",
     label: "Industry Projects",
+    supportsCardView: true,
     items: [
       {
         id: "conversation-insights",
@@ -73,6 +75,7 @@ export const workSections: ContentSectionData[] = [
   {
     id: "personal-projects",
     label: "Personal Projects",
+    supportsCardView: true,
     items: [
       {
         id: "digital-footprints",

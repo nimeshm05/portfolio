@@ -6,6 +6,7 @@ import {
   type ChevronOrientation,
 } from "@/components/ListItem/ListItem";
 import type { ContentSectionData } from "@/data/home";
+import type { WorkViewMode } from "@/components/ViewSwitcher/ViewSwitcher";
 import {
   tabContentBlurVariants,
   tabContentTransition,
@@ -17,14 +18,18 @@ type ContentSectionProps = {
   section: ContentSectionData;
   showDivider?: boolean;
   chevronOrientation?: ChevronOrientation;
+  viewMode?: WorkViewMode;
 };
 
 export function ContentSection({
   section,
   showDivider = false,
   chevronOrientation,
+  viewMode = "list",
 }: ContentSectionProps) {
   const blurOnTabChange = useTabContentMotion();
+  const showCardPlaceholder =
+    viewMode === "card" && section.supportsCardView === true;
 
   return (
     <>
@@ -47,20 +52,24 @@ export function ContentSection({
           )}
         </div>
         <div className="content-section-list">
-          {section.items.map((item) => (
-            <ListItem
-              key={item.id}
-              title={item.title}
-              meta={item.meta}
-              icon={item.icon}
-              href={item.href}
-              chevronOrientation={chevronOrientation}
-            >
-              {item.description ? (
-                <p className="list-item-description">{item.description}</p>
-              ) : null}
-            </ListItem>
-          ))}
+          {showCardPlaceholder ? (
+            <p className="content-section-placeholder">Coming soon</p>
+          ) : (
+            section.items.map((item) => (
+              <ListItem
+                key={item.id}
+                title={item.title}
+                meta={item.meta}
+                icon={item.icon}
+                href={item.href}
+                chevronOrientation={chevronOrientation}
+              >
+                {item.description ? (
+                  <p className="list-item-description">{item.description}</p>
+                ) : null}
+              </ListItem>
+            ))
+          )}
         </div>
       </section>
     </>

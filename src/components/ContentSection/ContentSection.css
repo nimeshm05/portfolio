@@ -27,6 +27,16 @@
   width: 100%;
 }
 
+.content-section-placeholder {
+  width: 100%;
+  margin: 0;
+  padding: var(--space-16) var(--inset-x);
+  color: var(--color-text-subtle);
+  font-size: var(--text-body-size);
+  font-weight: var(--text-body-weight);
+  line-height: var(--text-body-line-height);
+}
+
 .content-section-divider {
   align-self: stretch;
   height: 0;

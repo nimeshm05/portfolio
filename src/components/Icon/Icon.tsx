@@ -10,7 +10,9 @@ import {
   Database,
   Footprints,
   Globe,
+  LayoutGrid,
   Lightbulb,
+  List,
   MessageCircleMore,
   Music2,
   NotebookPen,
@@ -45,7 +47,9 @@ export type IconName =
   | "coffee"
   | "workflow"
   | "settings"
-  | "notebook-pen";
+  | "notebook-pen"
+  | "list"
+  | "layout-grid";
 
 const icons: Record<IconName, LucideIcon> = {
   "message-circle-more": MessageCircleMore,
@@ -69,6 +73,8 @@ const icons: Record<IconName, LucideIcon> = {
   workflow: Workflow,
   settings: Settings,
   "notebook-pen": NotebookPen,
+  list: List,
+  "layout-grid": LayoutGrid,
 };
 
 type IconProps = {

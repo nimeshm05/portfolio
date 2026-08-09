@@ -2,7 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 10px;
+  gap: var(--space-12);
   width: 100%;
   color: var(--color-text-label);
   font-size: var(--text-list-size);
@@ -15,7 +15,6 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 10px;
 }
 
 .connect-prompt-text {

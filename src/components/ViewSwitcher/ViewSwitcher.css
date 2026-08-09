@@ -1,0 +1,45 @@
+.view-switcher {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-shrink: 0;
+  padding: var(--space-4);
+  background: var(--color-bg-muted);
+  border-radius: var(--radius-md);
+}
+
+.view-switcher-pill {
+  position: absolute;
+  top: var(--space-4);
+  bottom: var(--space-4);
+  z-index: 0;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-page);
+  box-shadow: var(--shadow-tab);
+  pointer-events: none;
+}
+
+.view-switcher-option {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8) var(--space-12);
+  border-radius: var(--radius-sm);
+  background: transparent;
+}
+
+.view-switcher-option .view-switcher-icon {
+  width: var(--font-size-15);
+  height: var(--font-size-15);
+  color: var(--color-text-subtle);
+  opacity: var(--opacity-subtle);
+}
+
+.view-switcher-option:hover .view-switcher-icon,
+.view-switcher-option.is-active .view-switcher-icon {
+  color: var(--color-text-primary);
+  opacity: 1;
+}
