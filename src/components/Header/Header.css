@@ -49,7 +49,7 @@
 .site-header-bio {
   max-width: var(--max-width-bio);
   color: var(--color-text-label);
-  font-size: var(--text-display-size);
+  font-size: var(--text-subtitle-display-size);
   font-weight: var(--text-subtitle-display-weight);
   line-height: var(--text-display-line-height);
   letter-spacing: var(--letter-spacing-tight);
