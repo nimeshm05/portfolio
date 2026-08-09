@@ -39,6 +39,7 @@ export function HomePage() {
             avatarSrc={profile.avatarSrc}
             avatarAlt={profile.avatarAlt}
           />
+          <div className="home-connect-nav-container">
           <div className="home-connect">
             <ConnectPrompt />
           </div>
@@ -48,6 +49,7 @@ export function HomePage() {
               activeTab={activeTab}
               onChange={setActiveTab}
             />
+          </div>
           </div>
         </div>
         <AnimatePresence mode="wait">
