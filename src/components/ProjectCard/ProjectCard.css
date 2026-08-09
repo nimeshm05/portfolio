@@ -64,4 +64,9 @@
   font-weight: var(--text-body-weight);
   line-height: var(--text-body-line-height-fixed);
   letter-spacing: var(--letter-spacing-body);
+  transition: color var(--transition-fast);
+}
+
+.project-card:hover .project-card-description {
+  color: var(--color-text-primary);
 }
