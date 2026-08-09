@@ -80,6 +80,7 @@
   --size-border-callout: 4px;
   --size-sidebar-width: 180px;
   --size-banner-height: 660px;
+  --size-card-banner-height: 365px;
 
   /* Shadows */
   --shadow-tab-ring-color: lab(67.37% 0 -0.01 / 0.09);

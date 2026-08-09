@@ -8,6 +8,10 @@ export const conversationInsights: ProjectPageData = {
   title: "Conversation Insights",
   subtitle:
     "An analytics platform built to overcome manual workflow problem to enable faster operational decision making.",
+  projectType: "Product Design - Internal Tool",
+  timeline: "Q4 2024 - Q2 2025",
+  cardDescription:
+    "A self-serve analytics platform that enabled Air Canada's contact centre teams (customer) to analyze customer conversations directly.",
   bannerSrc: asset("conversation-insights-preview.mp4"),
   bannerAlt: "Conversation Insights dashboard preview",
   bannerType: "video",

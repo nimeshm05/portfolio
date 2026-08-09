@@ -5,7 +5,9 @@ const asset = (path: string) => `/assets/projects/kar-no-key/${path}`;
 export const karNoKey: ProjectPageData = {
   slug: "kar-no-key",
   title: "kar-no-key",
-  subtitle: "Personal music project.",
+  subtitle: "A full-stack multiplayer type racer game built with Supabase and Next.JS using cursor agents.",
+  projectType: "Music",
+  timeline: "2025",
   bannerSrc: asset("kar-no-key-preview.mp4"),
   bannerAlt: "kar-no-key project preview",
   bannerType: "video",

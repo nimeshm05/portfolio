@@ -2,7 +2,7 @@ import { architectureAgent } from "./architecture-agent";
 import { conversationInsights } from "./conversation-insights";
 import { gzLang } from "./gz-lang";
 import { karNoKey } from "./kar-no-key";
-import type { ProjectPageData } from "./types";
+import type { ProjectCardData, ProjectPageData } from "./types";
 
 const projects: Record<string, ProjectPageData> = {
   [conversationInsights.slug]: conversationInsights,
@@ -19,4 +19,30 @@ export function getProjectSlugs(): string[] {
   return Object.keys(projects);
 }
 
-export type { ProjectPageData, ExpandableItemContent, RichTextBlock } from "./types";
+export function getProjectCard(slug: string): ProjectCardData | undefined {
+  const project = projects[slug];
+
+  if (!project) {
+    return undefined;
+  }
+
+  return {
+    slug: project.slug,
+    href: `/work/${project.slug}`,
+    title: project.title,
+    projectType: project.projectType,
+    timeline: project.timeline,
+    description: project.cardDescription ?? project.subtitle,
+    bannerSrc: project.bannerSrc,
+    bannerAlt: project.bannerAlt,
+    bannerType: project.bannerType,
+    bannerBackgroundSrc: project.bannerBackgroundSrc,
+  };
+}
+
+export type {
+  ProjectCardData,
+  ProjectPageData,
+  ExpandableItemContent,
+  RichTextBlock,
+} from "./types";

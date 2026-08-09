@@ -7,6 +7,7 @@ type ProjectBannerProps = {
   type?: "image" | "video";
   backgroundSrc?: string;
   showBackground?: boolean;
+  variant?: "page" | "card";
   /** When true, banner height follows the media instead of the fixed banner height. */
   hugContent?: boolean;
 };
@@ -17,15 +18,21 @@ export function ProjectBanner({
   type = "image",
   backgroundSrc,
   showBackground = true,
+  variant = "page",
   hugContent = false,
 }: ProjectBannerProps) {
+  const isCard = variant === "card";
+  const shouldShowBackground = isCard ? false : showBackground;
+
   return (
     <div
-      className={`project-banner${hugContent ? " project-banner--hug" : ""}${
-        showBackground ? "" : " project-banner--no-background"
+      className={`project-banner${
+        isCard ? " project-banner--card" : ""
+      }${hugContent ? " project-banner--hug" : ""}${
+        shouldShowBackground ? "" : " project-banner--no-background"
       }`}
       style={
-        showBackground && backgroundSrc
+        shouldShowBackground && backgroundSrc
           ? ({ "--project-banner-bg": `url(${backgroundSrc})` } as CSSProperties)
           : undefined
       }

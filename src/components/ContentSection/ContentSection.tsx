@@ -5,7 +5,9 @@ import {
   ListItem,
   type ChevronOrientation,
 } from "@/components/ListItem/ListItem";
+import { ProjectCard } from "@/components/ProjectCard/ProjectCard";
 import type { ContentSectionData } from "@/data/home";
+import { getProjectCard } from "@/data/projects";
 import type { WorkViewMode } from "@/components/ViewSwitcher/ViewSwitcher";
 import {
   tabContentBlurVariants,
@@ -28,8 +30,13 @@ export function ContentSection({
   viewMode = "list",
 }: ContentSectionProps) {
   const blurOnTabChange = useTabContentMotion();
-  const showCardPlaceholder =
+  const showCardView =
     viewMode === "card" && section.supportsCardView === true;
+  const cardProjects = showCardView
+    ? section.items
+        .map((item) => getProjectCard(item.id))
+        .filter((project) => project != null)
+    : [];
 
   return (
     <>
@@ -51,9 +58,15 @@ export function ContentSection({
             </h2>
           )}
         </div>
-        <div className="content-section-list">
-          {showCardPlaceholder ? (
-            <p className="content-section-placeholder">Coming soon</p>
+        <div
+          className={
+            showCardView ? "content-section-cards" : "content-section-list"
+          }
+        >
+          {showCardView ? (
+            cardProjects.map((project) => (
+              <ProjectCard key={project.slug} project={project} />
+            ))
           ) : (
             section.items.map((item) => (
               <ListItem

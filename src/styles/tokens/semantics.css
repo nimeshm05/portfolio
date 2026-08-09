@@ -16,6 +16,8 @@
   --color-border: var(--color-neutral-200);
   --color-border-muted: var(--color-neutral-100);
   --border-width: var(--size-hairline);
+  --border-card-width: 0.8px;
+  --border-card: var(--border-card-width) solid var(--color-border);
   --callout-border-width: var(--size-border-callout);
 
   /* Shared layout */
@@ -34,6 +36,11 @@
   --radius-sm: var(--radius-4);
   --radius-md: var(--radius-6);
   --radius-lg: var(--radius-8);
+
+  /* Shadows */
+  --shadow-card:
+    0px 3px 6px -2px lch(0% 0 0 / 0.02),
+    0px 1px 1px lch(0% 0 0 / 0.04);
 
   /* Typography: display (name, bio) */
   --text-display-size: var(--font-size-24);

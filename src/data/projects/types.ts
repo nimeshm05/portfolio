@@ -19,10 +19,26 @@ export type ExpandableItemContent = {
   imageAlt?: string;
 };
 
+export type ProjectCardData = {
+  slug: string;
+  href: string;
+  title: string;
+  projectType: string;
+  timeline: string;
+  description: string;
+  bannerSrc: string;
+  bannerAlt: string;
+  bannerType?: "image" | "video";
+  bannerBackgroundSrc?: string;
+};
+
 export type ProjectPageData = {
   slug: string;
   title: string;
   subtitle: string;
+  projectType: string;
+  timeline: string;
+  cardDescription?: string;
   bannerSrc: string;
   bannerAlt: string;
   bannerType?: "image" | "video";

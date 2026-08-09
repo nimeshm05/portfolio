@@ -27,14 +27,12 @@
   width: 100%;
 }
 
-.content-section-placeholder {
+.content-section-cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-40);
   width: 100%;
-  margin: 0;
-  padding: var(--space-16) var(--inset-x);
-  color: var(--color-text-subtle);
-  font-size: var(--text-body-size);
-  font-weight: var(--text-body-weight);
-  line-height: var(--text-body-line-height);
+  
 }
 
 .content-section-divider {
