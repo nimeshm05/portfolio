@@ -172,7 +172,13 @@ export function ListItem({
   }
 
   return (
-    <a className={className} href={href}>
+    <a
+      className={className}
+      href={href}
+      {...(href.startsWith("http")
+        ? { target: "_blank", rel: "noopener noreferrer" }
+        : {})}
+    >
       {content}
     </a>
   );

@@ -23,6 +23,8 @@ const patrickHand = Patrick_Hand({
 const playwriteCAguides = Playwrite_CA_Guides({
   variable: "--font-playwrite-ca-guides",
   weight: "400",
+  adjustFontFallback: false,
+  fallback: ["Patrick Hand", "cursive"],
 });
 
 export const metadata: Metadata = {

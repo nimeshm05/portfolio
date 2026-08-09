@@ -58,12 +58,6 @@ export const workSections: ContentSectionData[] = [
     label: "Industry Projects",
     items: [
       {
-        id: "discovery-responses",
-        title: "Discovery Responses",
-        icon: "message-circle-more",
-        href: "/work/discovery-responses",
-      },
-      {
         id: "conversation-insights",
         title: "Conversation Insights",
         icon: "chart-pie",
@@ -107,16 +101,10 @@ export const workSections: ContentSectionData[] = [
     compactGap: true,
     items: [
       {
-        id: "writing-kar-no-key",
-        title: "kar-no-key",
-        icon: "music-2",
-        href: "#",
-      },
-      {
-        id: "writing-gz-lang",
-        title: "gz-lang",
-        icon: "code-xml",
-        href: "#",
+        id: "designing-beyond-the-interface",
+        title: "Designing beyond the interface",
+        icon: "notebook-pen",
+        href: "https://nimeshmohanakrishnan.medium.com/designing-beyond-the-interface-what-contact-centers-taught-me-about-systems-thinking-ac164a68cc36",
       },
     ],
   },

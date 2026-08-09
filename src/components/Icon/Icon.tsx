@@ -13,6 +13,7 @@ import {
   Lightbulb,
   MessageCircleMore,
   Music2,
+  NotebookPen,
   SendToBack,
   Settings,
   Target,
@@ -43,7 +44,8 @@ export type IconName =
   | "send-to-back"
   | "coffee"
   | "workflow"
-  | "settings";
+  | "settings"
+  | "notebook-pen";
 
 const icons: Record<IconName, LucideIcon> = {
   "message-circle-more": MessageCircleMore,
@@ -66,6 +68,7 @@ const icons: Record<IconName, LucideIcon> = {
   coffee: Coffee,
   workflow: Workflow,
   settings: Settings,
+  "notebook-pen": NotebookPen,
 };
 
 type IconProps = {
