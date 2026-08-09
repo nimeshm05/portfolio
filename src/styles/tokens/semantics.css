@@ -39,6 +39,7 @@
   --text-display-size: var(--font-size-24);
   --text-display-line-height: var(--line-height-32);
   --text-display-weight: var(--font-weight-semibold);
+  --text-subtitle-display-weight: var(--font-weight-regular);
 
   /* Typography: title (project header) */
   --text-title-size: var(--font-size-32);
