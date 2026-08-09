@@ -12,10 +12,6 @@
   text-align: left;
 }
 
-.list-item--compact {
-  gap: var(--space-8);
-}
-
 .list-item--expandable {
   border-radius: var(--radius-sm);
   background: var(--color-bg-page);

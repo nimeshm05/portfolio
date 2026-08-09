@@ -15,7 +15,6 @@ export type ContentSectionData = {
   id: string;
   label: string;
   items: ListItemData[];
-  compactGap?: boolean;
 };
 
 export const profile = {
@@ -98,11 +97,10 @@ export const workSections: ContentSectionData[] = [
   {
     id: "writing",
     label: "Writing",
-    compactGap: true,
     items: [
       {
         id: "designing-beyond-the-interface",
-        title: "Designing beyond the interface",
+        title: "Designing Beyond the Interface",
         icon: "notebook-pen",
         href: "https://nimeshmohanakrishnan.medium.com/designing-beyond-the-interface-what-contact-centers-taught-me-about-systems-thinking-ac164a68cc36",
       },
@@ -171,7 +169,6 @@ export const aboutSections: ContentSectionData[] = [
   {
     id: "my-journey",
     label: "My Journey",
-    compactGap: true,
     items: [
       {
         id: "as-a-child",

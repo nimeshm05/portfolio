@@ -54,7 +54,6 @@ export function ContentSection({
               meta={item.meta}
               icon={item.icon}
               href={item.href}
-              compactGap={section.compactGap}
               chevronOrientation={chevronOrientation}
             >
               {item.description ? (

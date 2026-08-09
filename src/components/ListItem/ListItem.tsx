@@ -19,7 +19,6 @@ type ListItemProps = {
   meta?: string;
   icon?: IconName;
   href?: string;
-  compactGap?: boolean;
   children?: ReactNode;
   defaultOpen?: boolean;
   chevronOrientation?: ChevronOrientation;
@@ -55,7 +54,6 @@ export function ListItem({
   meta,
   icon,
   href = "#",
-  compactGap = false,
   children,
   defaultOpen = false,
   chevronOrientation,
@@ -67,7 +65,7 @@ export function ListItem({
   const hasContent = Boolean(children);
   const closedOrientation =
     chevronOrientation ?? (isExpandable ? "down" : "right");
-  const className = `list-item${compactGap ? " list-item--compact" : ""}${
+  const className = `list-item${
     isExpandable ? " list-item--expandable" : ""
   }${isExpandable && isOpen ? " is-open" : ""}`;
 
