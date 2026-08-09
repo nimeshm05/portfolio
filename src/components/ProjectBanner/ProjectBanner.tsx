@@ -6,6 +6,7 @@ type ProjectBannerProps = {
   alt: string;
   type?: "image" | "video";
   backgroundSrc?: string;
+  showBackground?: boolean;
   /** When true, banner height follows the media instead of the fixed banner height. */
   hugContent?: boolean;
 };
@@ -15,13 +16,16 @@ export function ProjectBanner({
   alt,
   type = "image",
   backgroundSrc,
+  showBackground = true,
   hugContent = false,
 }: ProjectBannerProps) {
   return (
     <div
-      className={`project-banner${hugContent ? " project-banner--hug" : ""}`}
+      className={`project-banner${hugContent ? " project-banner--hug" : ""}${
+        showBackground ? "" : " project-banner--no-background"
+      }`}
       style={
-        backgroundSrc
+        showBackground && backgroundSrc
           ? ({ "--project-banner-bg": `url(${backgroundSrc})` } as CSSProperties)
           : undefined
       }

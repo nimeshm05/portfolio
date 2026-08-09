@@ -35,7 +35,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${inter.variable} ${delius.variable} ${patrickHand.variable} ${playwriteCAguides.variable}`}>
+    <html
+      lang="en"
+      data-scroll-behavior="smooth"
+      className={`${inter.variable} ${delius.variable} ${patrickHand.variable} ${playwriteCAguides.variable}`}
+    >
       <body>
         {children}
         <Analytics />

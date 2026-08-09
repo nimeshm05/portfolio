@@ -27,40 +27,40 @@ export type ProjectPageData = {
   bannerAlt: string;
   bannerType?: "image" | "video";
   bannerBackgroundSrc?: string;
-  nav: ProjectNavItem[];
-  overview: {
+  nav?: ProjectNavItem[];
+  overview?: {
     eyebrow: string;
     heading: string;
     items: ExpandableItemContent[];
   };
-  problem: {
+  problem?: {
     eyebrow: string;
     heading: string;
     paragraphs: string[];
     imageSrc?: string;
     imageAlt?: string;
   };
-  calloutOne: string;
-  discovery: {
+  calloutOne?: string;
+  discovery?: {
     eyebrow: string;
     heading: string;
     paragraphs: string[];
     items: ExpandableItemContent[];
   };
-  calloutTwo: string;
-  constraints: {
+  calloutTwo?: string;
+  constraints?: {
     eyebrow: string;
     heading: string;
     paragraphs: string[];
   };
-  earlyDesigns: {
+  earlyDesigns?: {
     eyebrow: string;
     heading: string;
     paragraphs: string[];
     items: ExpandableItemContent[];
     closingParagraphs: string[];
   };
-  learnings: {
+  learnings?: {
     eyebrow: string;
     heading: string;
     paragraphs: string[];

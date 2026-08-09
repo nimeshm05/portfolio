@@ -8,7 +8,7 @@ export const conversationInsights: ProjectPageData = {
   title: "Conversation Insights",
   subtitle:
     "An analytics platform built to overcome manual workflow problem to enable faster operational decision making.",
-  bannerSrc: asset("conversation-insights-banner.mp4"),
+  bannerSrc: asset("conversation-insights-preview.mp4"),
   bannerAlt: "Conversation Insights dashboard preview",
   bannerType: "video",
   bannerBackgroundSrc: asset("background.png"),
