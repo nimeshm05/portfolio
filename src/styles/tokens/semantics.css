@@ -11,23 +11,74 @@
   --color-text-muted: var(--color-neutral-350);
   --color-accent: var(--color-blue-600);
   --color-footer: var(--color-pink-600);
+  --color-icon-coffee: var(--color-coffee-500);
 
   /* Borders */
   --color-border: var(--color-neutral-200);
   --color-border-muted: var(--color-neutral-100);
   --border-width: var(--size-hairline);
-  --border-card-width: 0.8px;
+  --border-card-width: var(--size-border-card);
   --border-card: var(--border-card-width) solid var(--color-border);
   --callout-border-width: var(--size-border-callout);
+
+  /* Spacing roles */
+  --gap-2xs: var(--space-2);
+  --gap-xs: var(--space-4);
+  --gap-connect: var(--space-6);
+  --gap-sm: var(--space-8);
+  --gap-md: var(--space-12);
+  --gap-lg: var(--space-16);
+  --gap-xl: var(--space-20);
+  --gap-2xl: var(--space-32);
+  --gap-3xl: var(--space-40);
+  --gap-intro: var(--space-60);
+  --gap-page: var(--space-120);
+  --gap-section: var(--space-40);
+  --padding-page: var(--space-120);
+  --inset-x: var(--space-12);
+  --padding-page-inline: var(--inset-x);
+  --padding-card-block: var(--space-12);
+  --padding-card-inline: var(--space-12);
+  --offset-banner-inline: var(--space-120);
+  --offset-banner-bleed: var(--space-160);
+  --offset-sidebar-top: var(--gap-page);
+  --offset-sidebar-left: var(--gap-2xl);
+  --scroll-margin-section: var(--gap-page);
+  --padding-list-indent: var(--space-24);
+  --opacity-control-inactive: var(--opacity-subtle);
+  --opacity-icon-muted: var(--opacity-muted);
+
+  /* Size roles */
+  --icon-size: var(--size-icon);
+  --icon-size-sm: var(--size-icon-sm);
+  --icon-size-coffee: var(--size-icon-coffee);
+  --icon-size-nav: var(--font-size-15);
+  --avatar-size: var(--size-avatar);
+  --social-link-size: var(--size-social);
+  --tab-container-width: var(--size-tab-container);
+  --sidebar-width: var(--size-sidebar-width);
+  --banner-height: var(--size-banner-height);
+  --card-banner-height: var(--size-card-banner-height);
+  --viewport-edge-blur-size: var(--size-viewport-edge-blur);
+
+  /* Blur roles */
+  --blur-layer-1: var(--blur-1);
+  --blur-layer-2: var(--blur-2);
+  --blur-layer-3: var(--blur-4);
+  --blur-layer-4: var(--blur-8);
+  --blur-layer-5: var(--blur-16);
+  --blur-layer-6: var(--blur-24);
 
   /* Shared layout */
   --font-family-sans: var(--font-inter), "Segoe UI", sans-serif;
   --font-family-hand: var(--font-playwrite-ca-guides), var(--font-patrick-hand), cursive;
   --letter-spacing-body: var(--letter-spacing-tight);
-  --inset-x: var(--space-12);
+  --letter-spacing-display: var(--letter-spacing-tight);
   --content-width: var(--layout-content-width);
   --max-width-prose: var(--layout-prose-width);
   --max-width-bio: var(--layout-bio-width);
+  --layout-breakpoint-footer-sm: var(--breakpoint-footer-sm);
+  --layout-breakpoint-sidebar: var(--breakpoint-sidebar);
 
   /* Motion */
   --transition-fast: var(--duration-fast) var(--ease-default);
@@ -38,9 +89,10 @@
   --radius-lg: var(--radius-8);
 
   /* Shadows */
-  --shadow-card:
-    0px 3px 6px -2px lch(0% 0 0 / 0.02),
-    0px 1px 1px lch(0% 0 0 / 0.04);
+  --shadow-card: var(--shadow-elevation);
+  --shadow-tab:
+    0 0 0 var(--size-hairline) var(--shadow-tab-ring-color),
+    var(--shadow-elevation);
 
   /* Typography: display (name, bio) */
   --text-display-size: var(--font-size-24);
@@ -66,7 +118,7 @@
 
   /* Typography: callout (reuses heading size/line-height) */
   --text-callout-size: var(--text-heading-size);
-  --text-callout-line-height: var(--text-heading-line-height);
+  --text-callout-line-height: var(--text-callout-line-height);
   --text-callout-weight: var(--font-weight-semibold);
 
   /* Typography: label (section label / eyebrow) */
@@ -82,6 +134,7 @@
   /* Typography: body */
   --text-body-size: var(--font-size-16);
   --text-body-line-height: var(--line-height-body);
+  --text-body-line-height-fixed: var(--line-height-24);
   --text-body-weight: var(--font-weight-regular);
   --text-body-paragraph-gap: 1lh;
 
@@ -94,4 +147,14 @@
   --text-sidebar-size: var(--font-size-14);
   --text-sidebar-line-height: normal;
   --text-sidebar-weight: var(--font-weight-medium);
+
+  /* Typography: footer */
+  --text-footer-size: var(--font-size-footer);
+  --text-footer-size-sm: var(--font-size-footer-sm);
+  --text-footer-weight: var(--font-weight-medium);
+  --text-footer-letter-spacing: var(--letter-spacing-footer);
+  --text-footer-line-gap: 0.15em;
+
+  /* Typography: weight roles */
+  --weight-semibold: var(--font-weight-semibold);
 }

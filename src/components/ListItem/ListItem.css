@@ -5,9 +5,9 @@
 .list-item {
   display: flex;
   align-items: center;
-  gap: var(--space-12);
+  gap: var(--gap-md);
   width: 100%;
-  padding: var(--space-16) var(--inset-x);
+  padding: var(--gap-lg) var(--inset-x);
   border-radius: var(--radius-md);
   text-align: left;
 }
@@ -23,8 +23,8 @@
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  width: var(--size-icon);
-  height: var(--size-icon);
+  width: var(--icon-size);
+  height: var(--icon-size);
   overflow: hidden;
 }
 
@@ -63,9 +63,9 @@
 .list-item-panel {
   display: flex;
   flex-direction: column;
-  gap: var(--space-40);
+  gap: var(--gap-section);
   width: 100%;
-  padding: var(--space-12) var(--inset-x) var(--space-20);
+  padding: var(--gap-md) var(--inset-x) var(--gap-xl);
 }
 
 .list-item-description {

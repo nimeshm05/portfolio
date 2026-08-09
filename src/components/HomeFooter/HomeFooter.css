@@ -8,15 +8,15 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.15em;
+  gap: var(--text-footer-line-gap);
   margin: 0;
   max-width: 100%;
   color: var(--color-footer);
   font-family: var(--font-family-hand);
-  font-size: 1.5rem;
-  font-weight: 500;
+  font-size: var(--text-footer-size);
+  font-weight: var(--text-footer-weight);
   line-height: auto;
-  letter-spacing: 0.01em;
+  letter-spacing: var(--text-footer-letter-spacing);
 }
 
 .home-footer-line {
@@ -33,8 +33,8 @@
   will-change: clip-path;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 40rem) {
   .home-footer-credit {
-    font-size: 1.375rem;
+    font-size: var(--text-footer-size-sm);
   }
 }

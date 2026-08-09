@@ -30,7 +30,7 @@
 .content-section-cards {
   display: flex;
   flex-direction: column;
-  gap: var(--space-40);
+  gap: var(--gap-section);
   width: 100%;
   
 }

@@ -2,16 +2,16 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--space-40);
+  gap: var(--gap-section);
   width: 100%;
-  scroll-margin-top: var(--space-120);
+  scroll-margin-top: var(--scroll-margin-section);
 }
 
 .project-section-heading {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--space-8);
+  gap: var(--gap-sm);
   width: 100%;
   padding-inline: var(--inset-x);
 }

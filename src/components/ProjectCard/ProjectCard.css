@@ -1,9 +1,9 @@
 .project-card {
   display: flex;
   flex-direction: column;
-  gap: var(--space-12);
+  gap: var(--gap-md);
   width: 100%;
-  padding-block: var(--space-12) var(--space-12);
+  padding-block: var(--padding-card-block);
   padding-inline: 0;
   border: var(--border-card);
   border-radius: var(--radius-sm);
@@ -15,9 +15,9 @@
 .project-card-header {
   display: flex;
   align-items: center;
-  gap: var(--space-12);
+  gap: var(--gap-md);
   width: 100%;
-  padding-inline: var(--space-12);
+  padding-inline: var(--padding-card-inline);
 }
 
 .project-card-title {
@@ -25,8 +25,8 @@
   min-width: 0;
   color: var(--color-text-primary);
   font-size: var(--text-body-size);
-  font-weight: var(--font-weight-semibold);
-  line-height: var(--line-height-24);
+  font-weight: var(--weight-semibold);
+  line-height: var(--text-body-line-height-fixed);
   letter-spacing: var(--letter-spacing-body);
 }
 
@@ -43,16 +43,16 @@
 .project-card-footer {
   display: flex;
   flex-direction: column;
-  gap: var(--space-8);
+  gap: var(--gap-sm);
   width: 100%;
-  padding-inline: var(--space-12);
+  padding-inline: var(--padding-card-inline);
 }
 
 .project-card-timeline {
   margin: 0;
   color: var(--color-text-muted);
   font-size: var(--text-body-size);
-  font-weight: var(--font-weight-semibold);
+  font-weight: var(--weight-semibold);
   line-height: normal;
   letter-spacing: var(--letter-spacing-body);
 }
@@ -62,6 +62,6 @@
   color: var(--color-text-label);
   font-size: var(--text-body-size);
   font-weight: var(--text-body-weight);
-  line-height: var(--line-height-24);
+  line-height: var(--text-body-line-height-fixed);
   letter-spacing: var(--letter-spacing-body);
 }

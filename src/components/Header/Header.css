@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--space-32);
+  gap: var(--gap-2xl);
   width: 100%;
 }
 
@@ -10,15 +10,15 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--space-48);
+  gap: var(--gap-3xl);
   width: 100%;
   padding-inline: var(--inset-x);
 }
 
 .site-header-avatar {
   position: relative;
-  width: var(--size-avatar);
-  height: var(--size-avatar);
+  width: var(--avatar-size);
+  height: var(--avatar-size);
   flex-shrink: 0;
   overflow: hidden;
   border: var(--border-width) solid var(--color-border-muted);
@@ -35,7 +35,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--space-12);
+  gap: var(--gap-md);
   width: 100%;
 }
 
@@ -52,5 +52,5 @@
   font-size: var(--text-subtitle-display-size);
   font-weight: var(--text-subtitle-display-weight);
   line-height: var(--text-display-line-height);
-  letter-spacing: var(--letter-spacing-tight);
+  letter-spacing: var(--letter-spacing-display);
 }

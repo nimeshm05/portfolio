@@ -4,10 +4,10 @@
   align-items: center;
   justify-content: center;
   align-self: center;
-  width: calc(100% + 2 * var(--space-160));
-  height: var(--size-banner-height);
-  margin-inline: calc(-1 * var(--space-120));
-  padding: var(--space-40);
+  width: calc(100% + 2 * var(--offset-banner-bleed));
+  height: var(--banner-height);
+  margin-inline: calc(-1 * var(--offset-banner-inline));
+  padding: var(--gap-3xl);
   background-color: var(--color-bg-muted);
   background-image: var(--project-banner-bg);
   background-position: center;
@@ -36,7 +36,6 @@
   flex: 1 0 0;
   width: 100%;
   min-height: 0;
-  
 }
 
 .project-banner-media img,
@@ -68,7 +67,7 @@
 .project-banner--card {
   align-self: stretch;
   width: 100%;
-  height: var(--size-card-banner-height);
+  height: var(--card-banner-height);
   margin-inline: 0;
   padding: 0;
   border: 0;

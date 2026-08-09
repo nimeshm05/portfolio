@@ -12,7 +12,7 @@
 
 .rich-text ol {
   margin-top: var(--text-body-paragraph-gap);
-  padding-left: var(--space-24);
+  padding-left: var(--padding-list-indent);
 }
 
 .rich-text li + li {

@@ -1,7 +1,7 @@
 .social-links {
   display: flex;
   align-items: center;
-  gap: var(--space-8);
+  gap: var(--gap-sm);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -12,8 +12,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: var(--size-social);
-  height: var(--size-social);
+  width: var(--social-link-size);
+  height: var(--social-link-size);
   overflow: hidden;
   border: var(--border-width) solid var(--color-border-muted);
   border-radius: var(--radius-full);
@@ -21,10 +21,10 @@
 }
 
 .social-link-icon {
-  width: var(--size-icon);
-  height: var(--size-icon);
+  width: var(--icon-size);
+  height: var(--icon-size);
   filter: grayscale(1);
-  opacity: var(--opacity-muted);
+  opacity: var(--opacity-icon-muted);
   transition:
     filter var(--transition-fast),
     opacity var(--transition-fast);
