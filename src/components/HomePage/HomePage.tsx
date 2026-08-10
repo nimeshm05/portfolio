@@ -29,10 +29,11 @@ import "./HomePage.css";
 
 export function HomePage() {
   const [activeTab, setActiveTab] = useState<HomeTab>("work");
-  const [workViewMode, setWorkViewMode] = useState<WorkViewMode>("list");
+  const [workViewMode, setWorkViewMode] = useState<WorkViewMode>("card");
   const sections = activeTab === "work" ? workSections : aboutSections;
   const chevronOrientation: ChevronOrientation =
     activeTab === "about" ? "down" : "right";
+  const navPadded = activeTab === "about" || workViewMode === "list";
 
   return (
     <div className="home-page">
@@ -48,7 +49,9 @@ export function HomePage() {
         </Header>
         <div className="home-lower">
           <div className="home-main">
-            <div className="home-nav">
+            <div
+              className={`home-nav${navPadded ? " home-nav--padded" : ""}`}
+            >
               <div className="segmented-control-container">
                 <SegmentedControl
                   tabs={homeTabs}

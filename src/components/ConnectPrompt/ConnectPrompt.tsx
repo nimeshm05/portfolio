@@ -150,6 +150,10 @@ export function ConnectPrompt() {
                 ),
               },
               {
+                key: "x",
+                node: <PromptLink href={connect.xHref}>X</PromptLink>,
+              },
+              {
                 key: "email",
                 node: <PromptLink href={connect.emailHref}>Email</PromptLink>,
               },
@@ -215,7 +219,10 @@ export function ConnectPrompt() {
   }
 
   return (
-    <div className="connect-prompt" aria-live="polite">
+    <div
+      className={`connect-prompt${isInvite ? "" : " connect-prompt--follow-up"}`}
+      aria-live="polite"
+    >
       <button
         type="button"
         className={`connect-prompt-reset${isInvite ? " is-invite" : ""}`}

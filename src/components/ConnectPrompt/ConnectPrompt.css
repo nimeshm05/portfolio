@@ -21,6 +21,12 @@
   color: var(--color-text-label);
 }
 
+.connect-prompt--follow-up .connect-prompt-text,
+.connect-prompt--follow-up .icon.connect-prompt-coffee,
+.connect-prompt--follow-up .connect-prompt-reset {
+  color: var(--color-connect-prompt-follow-up);
+}
+
 .connect-prompt-options {
   display: inline-flex;
   flex-wrap: wrap;

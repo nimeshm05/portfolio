@@ -50,6 +50,7 @@ export const connect = {
   emailHref: "mailto:nimeshm.work@gmail.com",
   linkedInHref: "https://www.linkedin.com/in/nimeshm-work/",
   githubHref: "https://github.com/nimeshm05",
+  xHref: "https://x.com/hoveroverhere",
 } as const;
 
 export const workSections: ContentSectionData[] = [

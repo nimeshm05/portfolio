@@ -9,6 +9,7 @@
   --color-text-subtle: var(--color-neutral-500);
   --color-text-label: var(--color-neutral-400);
   --color-text-muted: var(--color-neutral-350);
+  --color-connect-prompt-follow-up: oklch(0.59 0.22 18);
   --color-accent: var(--color-blue-600);
   --color-footer: var(--color-pink-600);
   --color-icon-coffee: var(--color-coffee-500);

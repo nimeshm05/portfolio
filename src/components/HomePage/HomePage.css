@@ -39,6 +39,11 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  padding-inline: 0;
+  transition: padding-inline 0.2s ease-in-out;
+}
+
+.home-nav--padded {
   padding-inline: var(--inset-x);
 }
 
