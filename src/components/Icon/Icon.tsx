@@ -7,6 +7,7 @@ import {
   ChevronRight,
   CodeXml,
   Coffee,
+  Columns4,
   Database,
   Footprints,
   Globe,
@@ -16,8 +17,12 @@ import {
   MessageCircleMore,
   Music2,
   NotebookPen,
+  PanelsTopLeft,
   SendToBack,
   Settings,
+  SlidersHorizontal,
+  Summary,
+  Table,
   Target,
   Trophy,
   UserStar,
@@ -49,7 +54,12 @@ export type IconName =
   | "settings"
   | "notebook-pen"
   | "list"
-  | "layout-grid";
+  | "layout-grid"
+  | "summary"
+  | "panels-top-left"
+  | "table"
+  | "columns-4"
+  | "sliders-horizontal";
 
 const icons: Record<IconName, LucideIcon> = {
   "message-circle-more": MessageCircleMore,
@@ -75,6 +85,11 @@ const icons: Record<IconName, LucideIcon> = {
   "notebook-pen": NotebookPen,
   list: List,
   "layout-grid": LayoutGrid,
+  summary: Summary,
+  "panels-top-left": PanelsTopLeft,
+  table: Table,
+  "columns-4": Columns4,
+  "sliders-horizontal": SlidersHorizontal,
 };
 
 type IconProps = {

@@ -6,12 +6,61 @@ import { ProjectSection } from "@/components/ProjectSection/ProjectSection";
 import { ProjectSidebar } from "@/components/ProjectSidebar/ProjectSidebar";
 import { RichText } from "@/components/RichText/RichText";
 import { ViewportEdgeBlur } from "@/components/ViewportEdgeBlur/ViewportEdgeBlur";
-import type { ProjectPageData } from "@/data/projects/types";
+import type {
+  ExpandableItemContent,
+  ProjectMedia,
+  ProjectPageData,
+} from "@/data/projects/types";
 import "./ProjectPage.css";
 
 type ProjectPageProps = {
   project: ProjectPageData;
 };
+
+function getItemMedia(item: ExpandableItemContent): ProjectMedia[] {
+  if (item.media?.length) {
+    return item.media;
+  }
+
+  if (item.imageSrc) {
+    return [{ src: item.imageSrc, alt: item.imageAlt ?? "" }];
+  }
+
+  return [];
+}
+
+function ExpandableItemMedia({
+  item,
+  backgroundSrc,
+}: {
+  item: ExpandableItemContent;
+  backgroundSrc?: string;
+}) {
+  const media = getItemMedia(item);
+
+  if (!media.length) {
+    return null;
+  }
+
+  return (
+    <>
+      {media.map((entry) => (
+        <ProjectBanner
+          key={entry.src}
+          src={entry.src}
+          alt={entry.alt}
+          type={entry.type}
+          backgroundSrc={backgroundSrc}
+          hugContent
+        />
+      ))}
+    </>
+  );
+}
+
+function hasExpandableItemBody(item: ExpandableItemContent) {
+  return Boolean(item.content || getItemMedia(item).length);
+}
 
 export function ProjectPage({ project }: ProjectPageProps) {
   return (
@@ -178,19 +227,77 @@ export function ProjectPage({ project }: ProjectPageProps) {
             <div className="project-section-list">
               {project.learnings.items.map((item) => (
                 <ListItem key={item.id} title={item.title} icon={item.icon}>
-                  {item.content || item.imageSrc ? (
+                  {hasExpandableItemBody(item) ? (
                     <>
                       {item.content ? (
                         <RichText content={item.content} />
                       ) : null}
-                      {item.imageSrc ? (
-                        <ProjectBanner
-                          src={item.imageSrc}
-                          alt={item.imageAlt ?? ""}
-                          backgroundSrc={project.bannerBackgroundSrc}
-                          hugContent
-                        />
+                      <ExpandableItemMedia
+                        item={item}
+                        backgroundSrc={project.bannerBackgroundSrc}
+                      />
+                    </>
+                  ) : null}
+                </ListItem>
+              ))}
+            </div>
+          </ProjectSection>
+        ) : null}
+
+        {project.solutions ? (
+          <ProjectSection
+            id="solutions"
+            eyebrow={project.solutions.eyebrow}
+            heading={project.solutions.heading}
+          >
+            <div className="project-section-body">
+              {project.solutions.paragraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+            <div className="project-section-list">
+              {project.solutions.items.map((item) => (
+                <ListItem key={item.id} title={item.title} icon={item.icon}>
+                  {hasExpandableItemBody(item) ? (
+                    <>
+                      {item.content ? (
+                        <RichText content={item.content} />
                       ) : null}
+                      <ExpandableItemMedia
+                        item={item}
+                        backgroundSrc={project.bannerBackgroundSrc}
+                      />
+                    </>
+                  ) : null}
+                </ListItem>
+              ))}
+            </div>
+          </ProjectSection>
+        ) : null}
+
+        {project.outcome ? (
+          <ProjectSection
+            id="outcome"
+            eyebrow={project.outcome.eyebrow}
+            heading={project.outcome.heading}
+          >
+            <div className="project-section-body">
+              {project.outcome.paragraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+            <div className="project-section-list">
+              {project.outcome.items.map((item) => (
+                <ListItem key={item.id} title={item.title} icon={item.icon}>
+                  {hasExpandableItemBody(item) ? (
+                    <>
+                      {item.content ? (
+                        <RichText content={item.content} />
+                      ) : null}
+                      <ExpandableItemMedia
+                        item={item}
+                        backgroundSrc={project.bannerBackgroundSrc}
+                      />
                     </>
                   ) : null}
                 </ListItem>

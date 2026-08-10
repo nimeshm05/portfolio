@@ -23,8 +23,8 @@ export const conversationInsights: ProjectPageData = {
     { id: "constraints", label: "Constraints", href: "#constraints" },
     { id: "early-designs", label: "Early Designs", href: "#early-designs" },
     { id: "learnings", label: "Learnings", href: "#learnings" },
-    { id: "solutions", label: "Solutions" },
-    { id: "outcome", label: "Outcome" },
+    { id: "solutions", label: "Solutions", href: "#solutions" },
+    { id: "outcome", label: "Outcome", href: "#outcome" },
     { id: "reflection", label: "Reflection" },
   ],
   // overview: {
@@ -285,6 +285,129 @@ export const conversationInsights: ProjectPageData = {
           type: "paragraphs",
           paragraphs: [
             "Another gap that surfaced during feedback calls was that teams relied on operational metrics, like call volume and resolution rate, to decide whether an issue needed attention in the first place. This wasn't something I'd cut for time; it was something my discovery interviews hadn't surfaced. My original interviews focused on how teams moved through an investigation once they'd identified an issue worth digging into. What I hadn't fully asked was: how do you decide something is worth investigating at all? That earlier decision point turned out to depend heavily on these operational numbers, and it was a blind spot in my initial research scope rather than a deliberate tradeoff.",
+          ],
+        },
+      },
+    ],
+  },
+  solutions: {
+    eyebrow: "Solution",
+    heading: "Introducing a Dashboard with Complementary Modes:",
+    paragraphs: [
+      "Over a couple of development sprints, I iteratively refined the product experience based on the observations made in the user test sessions.",
+      "The workflow I'd mapped in discovery, Scope, Identify, Understand, Trace, had a natural seam in the middle. Scope and Identify were about noticing something worth attention. Understand and Trace were about digging into why. Keeping both halves on one continuously scrolling page, as the first version did, meant teams were always scrolling past one half to get to the other. I considered keeping a single view and instead reordering sections based on usage frequency, but that only shifted where the scrolling happened, it didn't remove it. Splitting the page into two modes was the only change that matched the seam I'd actually found in the workflow.",
+    ],
+    items: [
+      {
+        id: "overview",
+        title: "Overview",
+        icon: "summary",
+        content: {
+          type: "paragraphs",
+          paragraphs: [
+            "I introduced Overview as the signal detection layer, surfacing key metrics and insights in a highly scannable format so teams could identify where attention was needed before moving into deeper investigation.",
+            "This is also where I addressed the operational metrics gap surfaced during testing. Total Calls, Repeat Call Rate, Issue Resolution Rate, and Average Handle Time now sit at the top of Overview, answering the question my original discovery interviews hadn't asked: how do teams decide something is worth investigating in the first place, before they've identified a specific issue to trace.",
+          ],
+        },
+        media: [
+          {
+            src: asset("final-solution/top-view.png"),
+            alt: "Overview mode with operational metrics and insight cards",
+          },
+        ],
+      },
+      {
+        id: "insight-cards",
+        title: "Insight Cards",
+        icon: "panels-top-left",
+        content: {
+          type: "paragraphs",
+          paragraphs: [
+            'To answer "what are the biggest issues right now," I moved away from the trend-line chart and introduced insight cards. My first instinct was a single reusable card template, ranked by count, since that\'s the simpler system to design and maintain. But teams weren\'t comparing issues against each other on a shared scale, they were asking distinct questions of each one: how many calls, is this new, is this getting worse. Forcing those into one template would\'ve meant burying the specific answer each card needed to give under a generic layout. So each card\'s structure follows the comparison it\'s meant to answer, rather than a single format applied uniformly.',
+          ],
+        },
+        media: [
+          {
+            src: asset("final-solution/summary.png"),
+            alt: "Insight cards showing distinct comparisons for each issue type",
+          },
+        ],
+      },
+      {
+        id: "table-view",
+        title: "Table View",
+        icon: "table",
+        content: {
+          type: "paragraphs",
+          paragraphs: [
+            "The Table View allows users to understand and trace individual call records, exposing call-level summaries and 60+ operational attributes so teams could trace patterns back to specific calls, queues, and routing paths.",
+            "At this density, a new friction point surfaced during testing: attributes users needed were often buried around the 40th column, requiring long horizontal scrolling and waiting for columns to load before they were even visible. With 60+ attributes and no way to prioritize, the table was asking every user to work through the same fixed layout regardless of what they were actually investigating.",
+          ],
+        },
+        media: [
+          {
+            src: asset("final-solution/table-view.png"),
+            alt: "Table view showing conversation records with operational attributes",
+          },
+          {
+            src: asset("final-solution/bottom-views.png"),
+            alt: "Table view illustrating horizontal scroll friction with many columns",
+          },
+        ],
+      },
+      {
+        id: "manage-columns",
+        title: "Manage Columns",
+        icon: "columns-4",
+        content: {
+          type: "paragraphs",
+          paragraphs: [
+            "I introduced Manage Columns to let users control which columns appeared in their table view. I considered reordering the default column set based on aggregate usage data instead, but that would've optimized for the average investigation, not the one in front of a specific user, and different queues and roles cared about different attributes. Giving users direct control removed the scroll-and-wait friction without assuming one fixed priority order could work for everyone.",
+          ],
+        },
+        media: [
+          {
+            src: asset("final-solution/manage-columns.png"),
+            alt: "Manage Columns panel for customizing visible table attributes",
+          },
+        ],
+      },
+      {
+        id: "new-filter-pattern",
+        title: "New Filter Pattern",
+        icon: "sliders-horizontal",
+        content: {
+          type: "paragraphs",
+          paragraphs: [
+            "Teams rarely investigated using a single condition. Most investigations relied on layered filters across topics, sentiment, and operational metadata, and the chip-based pattern reused from the earlier product buckled under that load, each chip only showed a count, so five or six applied filters meant opening each one individually just to find the one you wanted to check.",
+            "I considered keeping the chip pattern and just improving its density (smaller chips, more per row), but that treated the symptom, not the cause: the pattern was built for a handful of simple filters, not layered, multi-condition queries. I designed a query-based filtering system instead, which supported complex conditions without the interface competing with the charts and table for visual space. Filters and date ranges remained shared across both views, so teams could continue an investigation without rebuilding context when they switched modes.",
+          ],
+        },
+        media: [
+          {
+            src: asset("final-solution/filter.mp4"),
+            alt: "Filter pattern interaction in the table view",
+            type: "video",
+          },
+        ],
+      },
+    ],
+  },
+  outcome: {
+    eyebrow: "Outcomes",
+    heading: "Beyond design...",
+    paragraphs: [
+      "After shipping all the changes, we noticed significant usage within the product and the product stickiness grew as part of our users everyday workflow. Here's a few outcomes from this project.",
+    ],
+    items: [
+      {
+        id: "business-tie-in",
+        title: "Business tie-in",
+        icon: "users",
+        content: {
+          type: "paragraphs",
+          paragraphs: [
+            "Sustained internal use and external interest supported a renewed client contract and generated new feature requests (under NDA), reinforcing the platform's long-term value beyond the initial engagement.",
           ],
         },
       },

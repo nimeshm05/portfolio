@@ -10,13 +10,20 @@ export type RichTextBlock =
   | { type: "paragraphs"; paragraphs: string[] }
   | { type: "paragraphs-with-list"; intro: string[]; items: string[]; outro?: string[] };
 
+export type ProjectMedia = {
+  src: string;
+  alt: string;
+  type?: "image" | "video";
+};
+
 export type ExpandableItemContent = {
   id: string;
   title: string;
-  icon: IconName;
+  icon?: IconName;
   content?: RichTextBlock;
   imageSrc?: string;
   imageAlt?: string;
+  media?: ProjectMedia[];
 };
 
 export type ProjectCardData = {
@@ -77,6 +84,18 @@ export type ProjectPageData = {
     closingParagraphs: string[];
   };
   learnings?: {
+    eyebrow: string;
+    heading: string;
+    paragraphs: string[];
+    items: ExpandableItemContent[];
+  };
+  solutions?: {
+    eyebrow: string;
+    heading: string;
+    paragraphs: string[];
+    items: ExpandableItemContent[];
+  };
+  outcome?: {
     eyebrow: string;
     heading: string;
     paragraphs: string[];
