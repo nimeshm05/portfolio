@@ -25,7 +25,7 @@ export const profile = {
   bioByTab: {
     work: "Product designer in Seattle, pursuing my master’s in HCDE at the University of Washington. I enjoy thinking in systems and using code as a tool for design. Previously, I worked on internal tools at RozieAI.",
     about:
-      "Product designer in Seattle, pursuing my master’s in HCDE at the University of Washington.",
+      "Product designer in Seattle, pursuing my master’s in HCDE at the University of Washington. I enjoy thinking in systems and using code as a tool for design. Previously, I worked on internal tools at RozieAI.",
   },
   socialLinks: [
     {
