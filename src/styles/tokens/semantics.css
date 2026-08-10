@@ -34,7 +34,7 @@
   --gap-3xl: var(--space-40);
   --gap-intro: var(--space-120);
   --gap-page: var(--space-120);
-  --gap-section: var(--space-32);
+  --gap-section: var(--space-40);
   --padding-page: var(--space-120);
   --inset-x: var(--space-12);
   --padding-page-inline: var(--inset-x);

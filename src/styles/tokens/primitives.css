@@ -105,7 +105,7 @@
     0 0.0625rem 0.0625rem lab(0% 0 0 / 0.04);
 
   /* Layout */
-  --layout-content-width: 40rem;
+  --layout-content-width: 42rem;
   --layout-prose-width: 30rem;
   --layout-bio-width: 36rem;
   --breakpoint-sidebar: 68.75rem;
