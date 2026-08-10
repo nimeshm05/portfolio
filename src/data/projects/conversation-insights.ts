@@ -176,7 +176,7 @@ export const conversationInsights: ProjectPageData = {
     ],
   },
   calloutTwo:
-    "So, how might we enable Air Canada contact centre teams to independently investigate customer issues from identification to operational action?",
+    "So, how might we enable Air Canada contact centre managers to independently investigate customer issues from identification to operational action?",
   constraints: {
     eyebrow: "Constraints",
     heading:
