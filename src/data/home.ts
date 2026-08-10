@@ -100,6 +100,7 @@ export const workSections: ContentSectionData[] = [
   {
     id: "writing",
     label: "Writing",
+    supportsCardView: true,
     items: [
       {
         id: "designing-beyond-the-interface",

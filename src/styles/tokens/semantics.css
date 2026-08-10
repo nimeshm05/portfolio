@@ -156,5 +156,6 @@
   --text-footer-line-gap: 0.15em;
 
   /* Typography: weight roles */
+  --weight-medium: var(--font-weight-medium);
   --weight-semibold: var(--font-weight-semibold);
 }

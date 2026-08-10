@@ -7,8 +7,16 @@ type ProjectCardProps = {
 };
 
 export function ProjectCard({ project }: ProjectCardProps) {
+  const isExternal = project.href.startsWith("http");
+
   return (
-    <a className="project-card" href={project.href}>
+    <a
+      className="project-card"
+      href={project.href}
+      {...(isExternal
+        ? { target: "_blank", rel: "noopener noreferrer" }
+        : {})}
+    >
       <div className="project-card-header">
         <span className="project-card-title">{project.title}</span>
         <span className="project-card-type">{project.projectType}</span>

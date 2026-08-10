@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useState, type ReactNode } from "react";
+import { useEffect, useId, useState, type ReactNode } from "react";
 import { motion } from "motion/react";
 import { Icon, type IconName } from "@/components/Icon/Icon";
 import { MorphingChevron } from "@/components/MorphingChevron/MorphingChevron";
@@ -49,6 +49,17 @@ function getExpandableChevronRotate(
   return orientation === "right" ? -90 : 0;
 }
 
+function getTabEntranceRotate(
+  isExpandable: boolean,
+  targetRotate: number,
+) {
+  if (isExpandable) {
+    return targetRotate === 0 ? -90 : 0;
+  }
+
+  return targetRotate === 90 ? 0 : 90;
+}
+
 export function ListItem({
   title,
   meta,
@@ -68,6 +79,34 @@ export function ListItem({
   const className = `list-item${
     isExpandable ? " list-item--expandable" : ""
   }${isExpandable && isOpen ? " is-open" : ""}`;
+
+  const chevronRotate = isExpandable
+    ? getExpandableChevronRotate(closedOrientation, isOpen)
+    : getLinkChevronRotate(closedOrientation);
+
+  /**
+   * Drive entrance spin via state + effect instead of Motion `initial`.
+   * Parent AnimatePresence/`initial={false}` can suppress child mount
+   * animations, which broke About→Work link chevrons.
+   */
+  const [chevronAngle, setChevronAngle] = useState(() =>
+    blurOnTabChange
+      ? getTabEntranceRotate(isExpandable, chevronRotate)
+      : chevronRotate,
+  );
+
+  useEffect(() => {
+    if (!blurOnTabChange) {
+      setChevronAngle(chevronRotate);
+      return;
+    }
+
+    const frameId = requestAnimationFrame(() => {
+      setChevronAngle(chevronRotate);
+    });
+
+    return () => cancelAnimationFrame(frameId);
+  }, [blurOnTabChange, chevronRotate]);
 
   const iconNode = icon ? (
     blurOnTabChange ? (
@@ -102,30 +141,12 @@ export function ListItem({
     </span>
   );
 
-  const chevronRotate = isExpandable
-    ? getExpandableChevronRotate(closedOrientation, isOpen)
-    : getLinkChevronRotate(closedOrientation);
-
-  const chevronInitialRotate = blurOnTabChange
-    ? isExpandable
-      ? chevronRotate === 0
-        ? -90
-        : 0
-      : chevronRotate === 90
-        ? 0
-        : 90
-    : false;
-
   const chevronNode = (
     <motion.span
       className="list-item-chevron"
       aria-hidden="true"
-      initial={
-        chevronInitialRotate === false
-          ? false
-          : { rotate: chevronInitialRotate }
-      }
-      animate={{ rotate: chevronRotate }}
+      initial={false}
+      animate={{ rotate: chevronAngle }}
       transition={CHEVRON_TRANSITION}
     >
       {isExpandable ? (
