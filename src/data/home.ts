@@ -140,7 +140,7 @@ export const aboutSections: ContentSectionData[] = [
       },
       {
         id: "brane",
-        title: "Software Engineer,",
+        title: "Software Engineer Intern,",
         meta: "Brane Enterprises",
         description:
           "Learned Flutter, software testing, and state management by building and shipping three core features and fixing 20+ bugs.",
@@ -160,13 +160,15 @@ export const aboutSections: ContentSectionData[] = [
     items: [
       {
         id: "ms-hcde",
-        title: "M.S. Human Centered Design & Engineering",
-        description: "Mastering my skills in systems thinking and design.",
+        title: "M.S. Human Centered Design & Engineering, ",
+        meta: "Udub",
+        description: "Mastering my skills in systems thinking and design at the University of Washington.",
       },
       {
         id: "beng-cse",
-        title: "B.Eng. Computer Science & Engineering",
-        description: "Gained skills in developing software systems.",
+        title: "B.Eng. Computer Science & Engineering, ",
+        meta: "VTU",
+        description: "Gained skills in developing software systems at the Visvesvaraya Technological University.",
       },
     ],
   },
