@@ -31,9 +31,9 @@
   --gap-xl: var(--space-20);
   --gap-2xl: var(--space-32);
   --gap-3xl: var(--space-40);
-  --gap-intro: var(--space-60);
+  --gap-intro: var(--space-120);
   --gap-page: var(--space-120);
-  --gap-section: var(--space-40);
+  --gap-section: var(--space-32);
   --padding-page: var(--space-120);
   --inset-x: var(--space-12);
   --padding-page-inline: var(--inset-x);
@@ -116,9 +116,9 @@
   --text-heading-line-height: var(--line-height-tight);
   --text-heading-weight: var(--font-weight-bold);
 
-  /* Typography: callout (reuses heading size/line-height) */
+  /* Typography: callout (reuses heading size) */
   --text-callout-size: var(--text-heading-size);
-  --text-callout-line-height: var(--text-callout-line-height);
+  --text-callout-line-height: var(--line-height-body);
   --text-callout-weight: var(--font-weight-semibold);
 
   /* Typography: label (section label / eyebrow) */

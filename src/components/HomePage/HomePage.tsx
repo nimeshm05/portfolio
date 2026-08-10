@@ -38,69 +38,68 @@ export function HomePage() {
     <div className="home-page">
       <ViewportEdgeBlur />
       <main className="home-body">
-        <div className="home-intro">
-          <Header
-            name={profile.name}
-            bio={profile.bioByTab[activeTab]}
-            avatarSrc={profile.avatarSrc}
-            avatarAlt={profile.avatarAlt}
-          />
-          <div className="home-connect-nav-container">
-          <div className="home-connect">
-            <ConnectPrompt />
-          </div>
-          <div className="home-nav">
-            <div className="segmented-control-container">
-            <SegmentedControl
-              tabs={homeTabs}
-              activeTab={activeTab}
-              onChange={setActiveTab}
-            />
+        <Header
+          name={profile.name}
+          bio={profile.bioByTab[activeTab]}
+          avatarSrc={profile.avatarSrc}
+          avatarAlt={profile.avatarAlt}
+        >
+          <ConnectPrompt />
+        </Header>
+        <div className="home-lower">
+          <div className="home-main">
+            <div className="home-nav">
+              <div className="segmented-control-container">
+                <SegmentedControl
+                  tabs={homeTabs}
+                  activeTab={activeTab}
+                  onChange={setActiveTab}
+                />
+              </div>
+              <AnimatePresence>
+                {activeTab === "work" ? (
+                  <motion.div
+                    key="view-switcher"
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                    variants={tabContentBlurVariants}
+                    transition={tabContentTransition}
+                  >
+                    <ViewSwitcher
+                      activeView={workViewMode}
+                      onChange={setWorkViewMode}
+                    />
+                  </motion.div>
+                ) : null}
+              </AnimatePresence>
             </div>
-            <AnimatePresence>
-              {activeTab === "work" ? (
-                <motion.div
-                  key="view-switcher"
-                  initial="initial"
-                  animate="animate"
-                  exit="exit"
-                  variants={tabContentBlurVariants}
-                  transition={tabContentTransition}
-                >
-                  <ViewSwitcher
-                    activeView={workViewMode}
-                    onChange={setWorkViewMode}
-                  />
-                </motion.div>
-              ) : null}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeTab}
+                className="home-content"
+                role="tabpanel"
+                initial={false}
+                animate="animate"
+                exit="exit"
+                transition={tabContentTransition}
+              >
+                <TabContentMotionProvider value={true}>
+                  {sections.map((section, index) => (
+                    <ContentSection
+                      key={section.id}
+                      section={section}
+                      showDivider={index > 0}
+                      chevronOrientation={chevronOrientation}
+                      viewMode={activeTab === "work" ? workViewMode : undefined}
+                    />
+                  ))}
+                </TabContentMotionProvider>
+              </motion.div>
             </AnimatePresence>
           </div>
-          </div>
+          <HomeFooter />
         </div>
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeTab}
-            className="home-content"
-            role="tabpanel"
-            initial={false}
-            animate="animate"
-            exit="exit"
-            transition={tabContentTransition}
-          >
-            <TabContentMotionProvider value={true}>
-              {sections.map((section, index) => (
-                <ContentSection
-                  key={section.id}
-                  section={section}
-                  showDivider={index > 0}
-                  chevronOrientation={chevronOrientation}
-                  viewMode={activeTab === "work" ? workViewMode : undefined}
-                />
-              ))}
-            </TabContentMotionProvider>
-          </motion.div>
-        </AnimatePresence>
-        <HomeFooter />
       </main>
     </div>
   );

@@ -36,11 +36,9 @@ export function ProjectPage({ project }: ProjectPageProps) {
             eyebrow={project.overview.eyebrow}
             heading={project.overview.heading}
           >
-            <div className="project-section-list">
-              {project.overview.items.map((item) => (
-                <ListItem key={item.id} title={item.title} icon={item.icon}>
-                  {item.content ? <RichText content={item.content} /> : null}
-                </ListItem>
+            <div className="project-section-body">
+              {project.overview.paragraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
           </ProjectSection>

@@ -47,7 +47,7 @@ export type ProjectPageData = {
   overview?: {
     eyebrow: string;
     heading: string;
-    items: ExpandableItemContent[];
+    paragraphs: string[];
   };
   problem?: {
     eyebrow: string;

@@ -4,6 +4,7 @@ import { useEffect, useId, useState, type ReactNode } from "react";
 import { motion } from "motion/react";
 import { Icon, type IconName } from "@/components/Icon/Icon";
 import { MorphingChevron } from "@/components/MorphingChevron/MorphingChevron";
+import { MorphingArrowUpRight } from "@/components/MorphingArrowUpRight/MorphingArrowUpRight";
 import {
   tabContentBlurVariants,
   tabContentOpacityVariants,
@@ -70,10 +71,12 @@ export function ListItem({
   chevronOrientation,
 }: ListItemProps) {
   const [isOpen, setIsOpen] = useState(defaultOpen);
+  const [isHovered, setIsHovered] = useState(false);
   const panelId = useId();
   const blurOnTabChange = useTabContentMotion();
   const isExpandable = children != null;
   const hasContent = Boolean(children);
+  const isExternalLink = Boolean(href?.startsWith("http"));
   const closedOrientation =
     chevronOrientation ?? (isExpandable ? "down" : "right");
   const className = `list-item${
@@ -150,11 +153,13 @@ export function ListItem({
       className="list-item-chevron"
       aria-hidden="true"
       initial={false}
-      animate={{ rotate: chevronAngle }}
+      animate={{ rotate: isExternalLink ? 0 : chevronAngle }}
       transition={CHEVRON_TRANSITION}
     >
       {isExpandable ? (
         <MorphingChevron isOpen={isOpen} />
+      ) : isExternalLink ? (
+        <MorphingArrowUpRight showArrow={isHovered} />
       ) : (
         <Icon name="chevron-right" />
       )}
@@ -198,7 +203,9 @@ export function ListItem({
     <a
       className={className}
       href={href}
-      {...(href.startsWith("http")
+      onPointerEnter={() => setIsHovered(true)}
+      onPointerLeave={() => setIsHovered(false)}
+      {...(isExternalLink
         ? { target: "_blank", rel: "noopener noreferrer" }
         : {})}
     >

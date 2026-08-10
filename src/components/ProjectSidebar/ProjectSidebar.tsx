@@ -14,9 +14,32 @@ function NavItemContent({ label }: { label: string }) {
   return <span>/ {label}</span>;
 }
 
+function getSectionElements(ids: string[]) {
+  return ids
+    .map((id) => document.getElementById(id))
+    .filter((el): el is HTMLElement => el != null)
+    .sort((a, b) => a.offsetTop - b.offsetTop);
+}
+
+function getActiveSectionId(elements: HTMLElement[]) {
+  if (elements.length === 0) {
+    return "";
+  }
+
+  const marker = window.scrollY + window.innerHeight * 0.2;
+  let activeId = elements[0].id;
+
+  for (const element of elements) {
+    if (element.offsetTop <= marker) {
+      activeId = element.id;
+    }
+  }
+
+  return activeId;
+}
+
 export function ProjectSidebar({ items }: ProjectSidebarProps) {
-  const sectionIds = items.filter((item) => item.href).map((item) => item.id);
-  const [activeId, setActiveId] = useState(sectionIds[0] ?? "");
+  const [activeId, setActiveId] = useState("");
 
   useEffect(() => {
     const ids = items.filter((item) => item.href).map((item) => item.id);
@@ -25,9 +48,19 @@ export function ProjectSidebar({ items }: ProjectSidebarProps) {
       return;
     }
 
-    const elements = ids
-      .map((id) => document.getElementById(id))
-      .filter((el): el is HTMLElement => el != null);
+    const syncActiveSection = () => {
+      const elements = getSectionElements(ids);
+
+      if (elements.length === 0) {
+        return;
+      }
+
+      setActiveId(getActiveSectionId(elements));
+    };
+
+    syncActiveSection();
+
+    const elements = getSectionElements(ids);
 
     if (elements.length === 0) {
       return;
@@ -43,7 +76,10 @@ export function ProjectSidebar({ items }: ProjectSidebarProps) {
 
         if (visible[0]?.target.id) {
           setActiveId(visible[0].target.id);
+          return;
         }
+
+        syncActiveSection();
       },
       {
         rootMargin: "-20% 0px -55% 0px",
@@ -55,7 +91,12 @@ export function ProjectSidebar({ items }: ProjectSidebarProps) {
       observer.observe(element);
     }
 
-    return () => observer.disconnect();
+    window.addEventListener("scroll", syncActiveSection, { passive: true });
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", syncActiveSection);
+    };
   }, [items]);
 
   return (

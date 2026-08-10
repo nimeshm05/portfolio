@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import Image from "next/image";
 import "./Header.css";
 
@@ -6,9 +7,16 @@ type HeaderProps = {
   bio: string;
   avatarSrc: string;
   avatarAlt: string;
+  children?: ReactNode;
 };
 
-export function Header({ name, bio, avatarSrc, avatarAlt }: HeaderProps) {
+export function Header({
+  name,
+  bio,
+  avatarSrc,
+  avatarAlt,
+  children,
+}: HeaderProps) {
   return (
     <header className="site-header">
       <div className="site-header-profile">
@@ -22,9 +30,12 @@ export function Header({ name, bio, avatarSrc, avatarAlt }: HeaderProps) {
             priority
           />
         </div>
-        <div className="site-header-info">
-          <h1 className="site-header-name">{name}</h1>
-          <p className="site-header-bio">{bio}</p>
+        <div className="site-header-details">
+          <div className="site-header-info">
+            <h1 className="site-header-name">{name}</h1>
+            <p className="site-header-bio">{bio}</p>
+          </div>
+          {children}
         </div>
       </div>
     </header>

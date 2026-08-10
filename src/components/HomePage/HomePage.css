@@ -11,18 +11,26 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--gap-page);
+  gap: var(--gap-intro);
   width: 100%;
   min-height: 100%;
   max-width: var(--content-width);
   padding: var(--padding-page) var(--inset-x);
 }
 
-.home-intro {
+.home-lower {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--gap-intro);
+  gap: var(--gap-page);
+  width: 100%;
+}
+
+.home-main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--gap-2xl);
   width: 100%;
 }
 
@@ -35,19 +43,6 @@
 }
 
 .home-content {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--gap-xl);
-  width: 100%;
-}
-
-.home-connect {
-  width: 100%;
-  padding-inline: var(--inset-x);
-}
-
-.home-connect-nav-container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;

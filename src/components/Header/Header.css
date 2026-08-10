@@ -39,6 +39,14 @@
   width: 100%;
 }
 
+.site-header-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--gap-section);
+  width: 100%;
+}
+
 .site-header-name {
   color: var(--color-text-primary);
   font-size: var(--text-display-size);

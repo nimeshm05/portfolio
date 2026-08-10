@@ -1,0 +1,7 @@
+.morphing-arrow-up-right {
+  display: block;
+  flex-shrink: 0;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  color: var(--color-text-label);
+}
