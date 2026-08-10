@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Callout } from "@/components/Callout/Callout";
 import { ListItem } from "@/components/ListItem/ListItem";
 import { ProjectBanner } from "@/components/ProjectBanner/ProjectBanner";
@@ -51,7 +52,6 @@ function ExpandableItemMedia({
           alt={entry.alt}
           type={entry.type}
           backgroundSrc={backgroundSrc}
-          hugContent
         />
       ))}
     </>
@@ -69,7 +69,11 @@ export function ProjectPage({ project }: ProjectPageProps) {
       <ProjectSidebar items={project.nav ?? []} />
       <main className="project-body">
         <div className="project-intro">
-          <ProjectHeader title={project.title} subtitle={project.subtitle} />
+          <ProjectHeader
+            title={project.title}
+            subtitle={project.subtitle}
+            showMobileBack
+          />
           <ProjectBanner
             src={project.bannerSrc}
             alt={project.bannerAlt}
@@ -134,22 +138,15 @@ export function ProjectPage({ project }: ProjectPageProps) {
             <div className="project-section-list">
               {project.discovery.items.map((item) => (
                 <ListItem key={item.id} title={item.title} icon={item.icon}>
-                  {item.content || item.imageSrc ? (
+                  {hasExpandableItemBody(item) ? (
                     <>
                       {item.content ? (
                         <RichText content={item.content} />
                       ) : null}
-                      {item.imageSrc ? (
-                        <div className="list-item-media">
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
-                            src={item.imageSrc}
-                            alt={item.imageAlt ?? ""}
-                            loading="lazy"
-                            decoding="async"
-                          />
-                        </div>
-                      ) : null}
+                      <ExpandableItemMedia
+                        item={item}
+                        backgroundSrc={project.bannerBackgroundSrc}
+                      />
                     </>
                   ) : null}
                 </ListItem>
@@ -188,18 +185,15 @@ export function ProjectPage({ project }: ProjectPageProps) {
             <div className="project-section-list">
               {project.earlyDesigns.items.map((item) => (
                 <ListItem key={item.id} title={item.title} icon={item.icon}>
-                  {item.content || item.imageSrc ? (
+                  {hasExpandableItemBody(item) ? (
                     <>
                       {item.content ? (
                         <RichText content={item.content} />
                       ) : null}
-                      {item.imageSrc ? (
-                        <ProjectBanner
-                          src={item.imageSrc}
-                          alt={item.imageAlt ?? ""}
-                          backgroundSrc={project.bannerBackgroundSrc}
-                        />
-                      ) : null}
+                      <ExpandableItemMedia
+                        item={item}
+                        backgroundSrc={project.bannerBackgroundSrc}
+                      />
                     </>
                   ) : null}
                 </ListItem>

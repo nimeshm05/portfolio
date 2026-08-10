@@ -1,0 +1,27 @@
+/* Compact: tablet + mobile (sidebar hidden)
+   Note: use literal breakpoint values in @media — CSS variables are invalid in queries. */
+@media (max-width: 68.6875rem) {
+  :root {
+    --padding-page: var(--space-48);
+    --gap-intro: var(--space-80);
+    --gap-page: var(--space-80);
+    --scroll-margin-section: var(--space-80);
+    --offset-banner-inline: 0;
+    --offset-banner-bleed: 0;
+    --banner-height: 22rem;
+    --card-banner-height: 18rem;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 39.9375rem) {
+  :root {
+    --padding-page: var(--space-32);
+    --gap-intro: var(--space-48);
+    --gap-page: var(--space-48);
+    --scroll-margin-section: var(--space-48);
+    --banner-height: 18rem;
+    --card-banner-height: 14rem;
+    --inset-x: var(--space-16);
+  }
+}

@@ -70,3 +70,10 @@
 .project-card:hover .project-card-description {
   color: var(--color-text-primary);
 }
+
+@media (max-width: 68.6875rem) {
+  .project-card-type {
+    min-width: 0;
+    white-space: normal;
+  }
+}

@@ -43,3 +43,9 @@
   color: var(--color-text-primary);
   opacity: 1;
 }
+
+@media (max-width: 68.6875rem) {
+  .segmented-control {
+    width: 100%;
+  }
+}

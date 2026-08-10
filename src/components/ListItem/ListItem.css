@@ -7,6 +7,7 @@
   align-items: center;
   gap: var(--gap-md);
   width: 100%;
+  min-height: 2.75rem;
   padding: var(--gap-lg) var(--inset-x);
   border-radius: var(--radius-md);
   text-align: left;
@@ -65,7 +66,15 @@
   flex-direction: column;
   gap: var(--gap-section);
   width: 100%;
+  min-width: 0;
+  max-width: 100%;
   padding: var(--gap-md) var(--inset-x) var(--gap-xl);
+}
+
+@media (max-width: 68.6875rem) {
+  .list-item-panel {
+    overflow-x: clip;
+  }
 }
 
 .list-item-description {
@@ -77,11 +86,14 @@
 
 .list-item-media {
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   overflow: hidden;
   border-radius: var(--radius-sm);
 }
 
 .list-item-media img {
   width: 100%;
+  max-width: 100%;
   height: auto;
 }

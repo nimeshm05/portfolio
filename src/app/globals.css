@@ -1,5 +1,6 @@
 @import "../styles/tokens/primitives.css";
 @import "../styles/tokens/semantics.css";
+@import "../styles/tokens/responsive.css";
 
 * {
   box-sizing: border-box;
@@ -52,6 +53,11 @@ button {
 }
 
 img {
+  display: block;
+  max-width: 100%;
+}
+
+video {
   display: block;
   max-width: 100%;
 }

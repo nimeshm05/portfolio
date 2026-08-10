@@ -4,9 +4,11 @@
   align-items: center;
   justify-content: center;
   align-self: center;
-  width: calc(100% + 2 * var(--offset-banner-bleed));
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
   height: var(--banner-height);
-  margin-inline: calc(-1 * var(--offset-banner-inline));
+  margin-inline: 0;
   padding: var(--gap-3xl);
   background-color: var(--color-bg-muted);
   background-image: var(--project-banner-bg);
@@ -16,6 +18,15 @@
   border: var(--border-width) solid var(--color-border);
   border-radius: var(--radius-sm);
   overflow: hidden;
+}
+
+/* Hero / full-width page banners only — not inline case-study media */
+@media (min-width: 68.75rem) {
+  .project-banner:not(.project-banner--card):not(.project-banner--hug) {
+    width: calc(100% + 2 * var(--offset-banner-bleed));
+    max-width: calc(100% + 2 * var(--offset-banner-bleed));
+    margin-inline: calc(-1 * var(--offset-banner-inline));
+  }
 }
 
 .project-banner--no-background {
@@ -36,6 +47,7 @@
   flex: 1 0 0;
   width: 100%;
   min-height: 0;
+  min-width: 0;
 }
 
 .project-banner-media img,
@@ -61,11 +73,17 @@
 }
 
 .project-banner--hug {
+  align-self: stretch;
+  width: 100%;
+  max-width: 100%;
   height: auto;
+  margin-inline: 0;
+  overflow: visible;
 }
 
 .project-banner--hug .project-banner-media {
   flex: none;
+  width: 100%;
   height: auto;
 }
 
@@ -81,6 +99,7 @@
 .project-banner--card {
   align-self: stretch;
   width: 100%;
+  max-width: 100%;
   height: var(--card-banner-height);
   margin-inline: 0;
   padding: 0;

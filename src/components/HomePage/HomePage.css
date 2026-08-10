@@ -58,3 +58,10 @@
 .segmented-control-container {
   width: 100%;
 }
+
+@media (max-width: 68.6875rem) {
+  .home-nav {
+    flex-wrap: wrap;
+    gap: var(--gap-md);
+  }
+}
