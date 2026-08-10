@@ -39,7 +39,20 @@
 }
 
 .project-banner-media img,
+.project-banner-media video,
+.project-banner-media .project-banner-video-wrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.project-banner-media img,
 .project-banner-media video {
+  object-fit: contain;
+}
+
+.project-banner-media .project-banner-video-wrap video {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -57,7 +70,8 @@
 }
 
 .project-banner--hug .project-banner-media img,
-.project-banner--hug .project-banner-media video {
+.project-banner--hug .project-banner-media video,
+.project-banner--hug .project-banner-media .project-banner-video-wrap {
   position: static;
   display: block;
   width: 100%;
@@ -84,6 +98,7 @@
 }
 
 .project-banner--card .project-banner-media img,
-.project-banner--card .project-banner-media video {
+.project-banner--card .project-banner-media video,
+.project-banner--card .project-banner-media .project-banner-video-wrap video {
   object-fit: cover;
 }

@@ -61,6 +61,8 @@ export function ProjectPage({ project }: ProjectPageProps) {
                 <img
                   src={project.problem.imageSrc}
                   alt={project.problem.imageAlt ?? ""}
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             ) : null}
@@ -94,6 +96,8 @@ export function ProjectPage({ project }: ProjectPageProps) {
                           <img
                             src={item.imageSrc}
                             alt={item.imageAlt ?? ""}
+                            loading="lazy"
+                            decoding="async"
                           />
                         </div>
                       ) : null}

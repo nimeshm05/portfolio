@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useId, useState, type ReactNode } from "react";
 import { motion } from "motion/react";
 import { Icon, type IconName } from "@/components/Icon/Icon";
@@ -77,6 +78,7 @@ export function ListItem({
   const isExpandable = children != null;
   const hasContent = Boolean(children);
   const isExternalLink = Boolean(href?.startsWith("http"));
+  const isInternalLink = !isExpandable && !isExternalLink && href.startsWith("/");
   const closedOrientation =
     chevronOrientation ?? (isExpandable ? "down" : "right");
   const className = `list-item${
@@ -196,6 +198,14 @@ export function ListItem({
           </div>
         ) : null}
       </div>
+    );
+  }
+
+  if (isInternalLink) {
+    return (
+      <Link className={className} href={href}>
+        {content}
+      </Link>
     );
   }
 

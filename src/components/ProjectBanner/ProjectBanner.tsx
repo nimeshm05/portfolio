@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import { LazyBannerVideo } from "./LazyBannerVideo";
 import "./ProjectBanner.css";
 
 type ProjectBannerProps = {
@@ -23,6 +24,8 @@ export function ProjectBanner({
 }: ProjectBannerProps) {
   const isCard = variant === "card";
   const shouldShowBackground = isCard ? false : showBackground;
+  const isHeroMedia = variant === "page" && !hugContent;
+  const imageLoading = isHeroMedia ? "eager" : "lazy";
 
   return (
     <div
@@ -39,17 +42,10 @@ export function ProjectBanner({
     >
       <div className="project-banner-media">
         {type === "video" ? (
-          <video
-            src={src}
-            aria-label={alt}
-            autoPlay
-            loop
-            muted
-            playsInline
-          />
+          <LazyBannerVideo src={src} alt={alt} eager={isHeroMedia} />
         ) : (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={src} alt={alt} />
+          <img src={src} alt={alt} loading={imageLoading} decoding="async" />
         )}
       </div>
     </div>

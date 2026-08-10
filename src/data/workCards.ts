@@ -1,4 +1,4 @@
-import { getProjectCard } from "@/data/projects";
+import { getProjectCard } from "@/data/projectCards";
 import type { ProjectCardData } from "@/data/projects/types";
 import { getWritingCard } from "@/data/writings";
 

@@ -1,103 +1,34 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 import Link from "next/link";
 import { Icon } from "@/components/Icon/Icon";
 import type { ProjectNavItem } from "@/data/projects/types";
+import { useProjectScrollSpy } from "@/motion/projectScrollSpy";
 import "./ProjectSidebar.css";
 
 type ProjectSidebarProps = {
   items: ProjectNavItem[];
+  scrollSpyEnabled?: boolean;
 };
 
 function NavItemContent({ label }: { label: string }) {
   return <span>/ {label}</span>;
 }
 
-function getSectionElements(ids: string[]) {
-  return ids
-    .map((id) => document.getElementById(id))
-    .filter((el): el is HTMLElement => el != null)
-    .sort((a, b) => a.offsetTop - b.offsetTop);
-}
+export function ProjectSidebar({
+  items,
+  scrollSpyEnabled = true,
+}: ProjectSidebarProps) {
+  const sectionIds = useMemo(
+    () => items.filter((item) => item.href).map((item) => item.id),
+    [items],
+  );
 
-function getActiveSectionId(elements: HTMLElement[]) {
-  if (elements.length === 0) {
-    return "";
-  }
-
-  const marker = window.scrollY + window.innerHeight * 0.2;
-  let activeId = elements[0].id;
-
-  for (const element of elements) {
-    if (element.offsetTop <= marker) {
-      activeId = element.id;
-    }
-  }
-
-  return activeId;
-}
-
-export function ProjectSidebar({ items }: ProjectSidebarProps) {
-  const [activeId, setActiveId] = useState("");
-
-  useEffect(() => {
-    const ids = items.filter((item) => item.href).map((item) => item.id);
-
-    if (ids.length === 0) {
-      return;
-    }
-
-    const syncActiveSection = () => {
-      const elements = getSectionElements(ids);
-
-      if (elements.length === 0) {
-        return;
-      }
-
-      setActiveId(getActiveSectionId(elements));
-    };
-
-    syncActiveSection();
-
-    const elements = getSectionElements(ids);
-
-    if (elements.length === 0) {
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort(
-            (a, b) => a.boundingClientRect.top - b.boundingClientRect.top,
-          );
-
-        if (visible[0]?.target.id) {
-          setActiveId(visible[0].target.id);
-          return;
-        }
-
-        syncActiveSection();
-      },
-      {
-        rootMargin: "-20% 0px -55% 0px",
-        threshold: [0, 0.1, 0.25],
-      },
-    );
-
-    for (const element of elements) {
-      observer.observe(element);
-    }
-
-    window.addEventListener("scroll", syncActiveSection, { passive: true });
-
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("scroll", syncActiveSection);
-    };
-  }, [items]);
+  const activeId = useProjectScrollSpy({
+    sectionIds,
+    enabled: scrollSpyEnabled,
+  });
 
   return (
     <aside className="project-sidebar" aria-label="Project navigation">

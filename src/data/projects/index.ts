@@ -1,3 +1,4 @@
+import { getProjectCard as getProjectCardFromRegistry } from "@/data/projectCards";
 import { architectureAgent } from "./architecture-agent";
 import { conversationInsights } from "./conversation-insights";
 import { gzLang } from "./gz-lang";
@@ -20,26 +21,8 @@ export function getProjectSlugs(): string[] {
 }
 
 export function getProjectCard(slug: string): ProjectCardData | undefined {
-  const project = projects[slug];
-
-  if (!project) {
-    return undefined;
-  }
-
-  return {
-    slug: project.slug,
-    href: `/work/${project.slug}`,
-    title: project.title,
-    projectType: project.projectType,
-    timeline: project.timeline,
-    description: project.cardDescription ?? project.subtitle,
-    bannerSrc: project.bannerSrc,
-    bannerAlt: project.bannerAlt,
-    bannerType: project.bannerType,
-    bannerBackgroundSrc: project.bannerBackgroundSrc,
-  };
+  return getProjectCardFromRegistry(slug);
 }
-
 export type {
   ProjectCardData,
   ProjectPageData,

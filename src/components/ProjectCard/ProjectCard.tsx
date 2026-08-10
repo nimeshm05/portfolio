@@ -1,4 +1,5 @@
 import { ProjectBanner } from "@/components/ProjectBanner/ProjectBanner";
+import Link from "next/link";
 import type { ProjectCardData } from "@/data/projects";
 import "./ProjectCard.css";
 
@@ -9,14 +10,8 @@ type ProjectCardProps = {
 export function ProjectCard({ project }: ProjectCardProps) {
   const isExternal = project.href.startsWith("http");
 
-  return (
-    <a
-      className="project-card"
-      href={project.href}
-      {...(isExternal
-        ? { target: "_blank", rel: "noopener noreferrer" }
-        : {})}
-    >
+  const content = (
+    <>
       <div className="project-card-header">
         <span className="project-card-title">{project.title}</span>
         <span className="project-card-type">{project.projectType}</span>
@@ -31,6 +26,25 @@ export function ProjectCard({ project }: ProjectCardProps) {
         <p className="project-card-timeline">{project.timeline}</p>
         <p className="project-card-description">{project.description}</p>
       </div>
-    </a>
+    </>
+  );
+
+  if (isExternal) {
+    return (
+      <a
+        className="project-card"
+        href={project.href}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <Link className="project-card" href={project.href}>
+      {content}
+    </Link>
   );
 }
