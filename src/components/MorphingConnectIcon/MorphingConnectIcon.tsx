@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import "./MorphingConnectIcon.css";
 
 const TRANSITION = {
-  duration: 0.35,
+  duration: 0.2,
   ease: "easeInOut" as const,
 };
 

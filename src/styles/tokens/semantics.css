@@ -96,10 +96,10 @@
 
   /* Typography: display (name, bio) */
   --text-display-size: var(--font-size-24);
-  --text-display-line-height: var(--line-height-32);
+  --text-display-line-height: var(--line-height-28);
   --text-display-weight: var(--font-weight-semibold);
   --text-subtitle-display-weight: var(--font-weight-regular);
-  --text-subtitle-display-size: var(--font-size-22);
+  --text-subtitle-display-size: var(--font-size-18);
 
   /* Typography: title (project header) */
   --text-title-size: var(--font-size-32);
