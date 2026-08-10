@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import {
   ListItem,
@@ -37,31 +36,12 @@ export function ContentSection({
 }: ContentSectionProps) {
   const blurOnTabChange = useTabContentMotion();
   const reduceMotion = useReducedMotion() ?? false;
-  const isInitialMount = useRef(true);
   const supportsCardView = section.supportsCardView === true;
   const showCardView = viewMode === "card" && supportsCardView;
   const workViewTransition = getWorkViewTransition(reduceMotion);
   const workViewItemVariants = getWorkViewItemVariants(reduceMotion);
   const workViewCardContainerVariants =
     getWorkViewCardContainerVariants(reduceMotion);
-  /**
-   * Avoid `initial={false}` on this wrapper — Motion treats that as
-   * suppressing child mount animations (including ListItem chevron spin).
-   * On tab mount, start fully visible; on list↔card, enter from hidden.
-   */
-  const workViewVisible = reduceMotion
-    ? { opacity: 1 }
-    : { opacity: 1, filter: "blur(0px)" };
-  const workViewHidden = reduceMotion
-    ? { opacity: 0 }
-    : { opacity: 0, filter: "blur(8px)" };
-  const workViewEnterInitial = isInitialMount.current
-    ? workViewVisible
-    : workViewHidden;
-
-  useEffect(() => {
-    isInitialMount.current = false;
-  }, []);
   const cardProjects = showCardView
     ? section.items
         .map((item) => getWorkCard(item.id))
@@ -95,9 +75,9 @@ export function ContentSection({
                 className="content-section-label"
                 id={section.id}
                 variants={workViewItemVariants}
-                initial={workViewEnterInitial}
-                animate={workViewVisible}
-                exit={workViewHidden}
+                initial="initial"
+                animate="animate"
+                exit="exit"
                 transition={workViewTransition}
               >
                 {section.label}
@@ -119,18 +99,15 @@ export function ContentSection({
           )}
         </div>
         {supportsCardView ? (
-          <AnimatePresence mode="popLayout">
+          <AnimatePresence mode="popLayout" initial={false}>
             {showCardView ? (
               <motion.div
                 key="card"
                 className="content-section-cards"
                 variants={workViewCardContainerVariants}
-                initial={
-                  isInitialMount.current ? workViewVisible : "initial"
-                }
+                initial="initial"
                 animate="animate"
                 exit="exit"
-                transition={workViewTransition}
               >
                 {cardProjects.map((project) => (
                   <motion.div
@@ -146,9 +123,10 @@ export function ContentSection({
               <motion.div
                 key="list"
                 className="content-section-list"
-                initial={workViewEnterInitial}
-                animate={workViewVisible}
-                exit={workViewHidden}
+                variants={workViewItemVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
                 transition={workViewTransition}
               >
                 {listContent}

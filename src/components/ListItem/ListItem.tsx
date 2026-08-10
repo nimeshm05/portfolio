@@ -114,6 +114,8 @@ export function ListItem({
         className="list-item-icon"
         aria-hidden="true"
         variants={tabContentOpacityVariants}
+        initial="initial"
+        animate="animate"
         transition={tabContentTransition}
       >
         <Icon name={icon} />
@@ -129,6 +131,8 @@ export function ListItem({
     <motion.span
       className="list-item-title"
       variants={tabContentBlurVariants}
+      initial="initial"
+      animate="animate"
       transition={tabContentTransition}
     >
       {title}
