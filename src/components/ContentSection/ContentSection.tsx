@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import {
   ListItem,
@@ -36,12 +37,29 @@ export function ContentSection({
 }: ContentSectionProps) {
   const blurOnTabChange = useTabContentMotion();
   const reduceMotion = useReducedMotion() ?? false;
+  const isInitialMount = useRef(true);
   const supportsCardView = section.supportsCardView === true;
   const showCardView = viewMode === "card" && supportsCardView;
   const workViewTransition = getWorkViewTransition(reduceMotion);
   const workViewItemVariants = getWorkViewItemVariants(reduceMotion);
   const workViewCardContainerVariants =
     getWorkViewCardContainerVariants(reduceMotion);
+  /**
+   * On tab mount, start the list wrapper fully visible so blur/opacity are
+   * not applied to chevrons. ListItem titles/icons still run their own enter.
+   * On list↔card, enter from the hidden work-view state as before.
+   */
+  const workViewVisible = reduceMotion
+    ? { opacity: 1 }
+    : { opacity: 1, filter: "blur(0px)" };
+  const listEnterInitial = isInitialMount.current
+    ? workViewVisible
+    : "initial";
+
+  useEffect(() => {
+    isInitialMount.current = false;
+  }, []);
+
   const cardProjects = showCardView
     ? section.items
         .map((item) => getWorkCard(item.id))
@@ -69,7 +87,7 @@ export function ContentSection({
       <section className="content-section" aria-labelledby={section.id}>
         <div className="content-section-label-wrap">
           {supportsCardView ? (
-            <AnimatePresence mode="popLayout" initial={false}>
+            <AnimatePresence mode="popLayout">
               <motion.h2
                 key={viewMode}
                 className="content-section-label"
@@ -88,6 +106,8 @@ export function ContentSection({
               className="content-section-label"
               id={section.id}
               variants={tabContentBlurVariants}
+              initial="initial"
+              animate="animate"
               transition={tabContentTransition}
             >
               {section.label}
@@ -99,13 +119,13 @@ export function ContentSection({
           )}
         </div>
         {supportsCardView ? (
-          <AnimatePresence mode="popLayout" initial={false}>
+          <AnimatePresence mode="popLayout">
             {showCardView ? (
               <motion.div
                 key="card"
                 className="content-section-cards"
                 variants={workViewCardContainerVariants}
-                initial="initial"
+                initial={isInitialMount.current ? false : "initial"}
                 animate="animate"
                 exit="exit"
               >
@@ -124,7 +144,7 @@ export function ContentSection({
                 key="list"
                 className="content-section-list"
                 variants={workViewItemVariants}
-                initial="initial"
+                initial={listEnterInitial}
                 animate="animate"
                 exit="exit"
                 transition={workViewTransition}

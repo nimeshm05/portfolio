@@ -15,7 +15,7 @@ export const tabContentOpacityVariants = {
 };
 
 export const tabContentTransition = {
-  duration: 0.1,
+  duration: 0.2,
   ease: "easeInOut" as const,
 };
 

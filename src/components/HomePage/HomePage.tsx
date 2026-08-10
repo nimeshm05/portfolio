@@ -82,7 +82,7 @@ export function HomePage() {
             key={activeTab}
             className="home-content"
             role="tabpanel"
-            initial="initial"
+            initial={false}
             animate="animate"
             exit="exit"
             transition={tabContentTransition}
