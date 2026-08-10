@@ -18,7 +18,7 @@
 }
 
 .connect-prompt-text {
-  color: var(--color-text-muted);
+  color: var(--color-text-label);
 }
 
 .connect-prompt-options {

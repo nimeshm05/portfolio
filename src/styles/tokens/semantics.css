@@ -141,7 +141,7 @@
   /* Typography: nav */
   --text-nav-size: var(--font-size-15);
   --text-nav-line-height: var(--line-height-15);
-  --text-nav-weight: var(--font-weight-regular);
+  --text-nav-weight: var(--font-weight-medium);
 
   /* Typography: sidebar */
   --text-sidebar-size: var(--font-size-14);
