@@ -21,3 +21,14 @@ export const phoneWordHiddenBelow = {
   opacity: 0,
   filter: "blur(8px)",
 } as const;
+
+export const PHONE_WAVE_EMOJI = "👋";
+
+export const phoneWaveRotate = [0, 18, -8, 18, -4, 12, 0];
+
+export const phoneWaveTransition = {
+  duration: 1,
+  ease: [0.45, 0, 0.55, 1] as [number, number, number, number],
+  times: [0, 0.15, 0.3, 0.5, 0.65, 0.8, 1],
+  repeat: 1,
+};

@@ -1,11 +1,14 @@
 "use client";
 
 import { Fragment, useEffect, useRef, useState, type ReactNode } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion, type Transition } from "motion/react";
 import { Icon } from "@/components/Icon/Icon";
 import { MorphingConnectIcon } from "@/components/MorphingConnectIcon/MorphingConnectIcon";
 import { connect, type HomeTab } from "@/data/home";
 import {
+  PHONE_WAVE_EMOJI,
+  phoneWaveRotate,
+  phoneWaveTransition,
   phoneWordEnter,
   phoneWordHiddenBelow,
   phoneWordStaggerSeconds,
@@ -21,7 +24,7 @@ type ConnectStep = "invite" | "prefer" | "social" | "inPerson" | "phone";
 type PhoneLabel = "contact" | "soon";
 
 const PHONE_LABEL_CONTACT = "Here's my number and email.";
-const PHONE_LABEL_SOON = "I'll see you soon my fren :)";
+const PHONE_LABEL_SOON = `I'll see you soon my fren ${PHONE_WAVE_EMOJI}`;
 const PHONE_LABEL_DELAY_MS = 1500;
 
 function PromptText({ children }: { children: ReactNode }) {
@@ -134,38 +137,68 @@ function WordPullText({
         },
       }}
     >
-      {words.map((word, index) => (
-        <motion.span
-          key={`${text}-${index}`}
-          className="connect-prompt-word-mask"
-          initial={false}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 1 }}
-        >
+      {words.map((word, index) => {
+        const isWave = word === PHONE_WAVE_EMOJI;
+        const pullDelay =
+          pulled && animateEntrance ? index * phoneWordStaggerSeconds : 0;
+        const waveDelay =
+          phoneWordTransition.duration + index * phoneWordStaggerSeconds;
+
+        return (
           <motion.span
-            className="connect-prompt-word"
+            key={`${text}-${index}`}
+            className={`connect-prompt-word-mask${isWave ? " connect-prompt-word-mask--wave" : ""}`}
             initial={false}
-            animate={pulled ? phoneWordEnter : phoneWordHiddenBelow}
-            exit={{
-              ...phoneWordHiddenBelow,
-              transition: {
-                ...phoneWordTransition,
-                delay: index * phoneWordStaggerSeconds,
-              },
-            }}
-            transition={{
-              ...phoneWordTransition,
-              delay:
-                pulled && animateEntrance
-                  ? index * phoneWordStaggerSeconds
-                  : 0,
-            }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 1 }}
           >
-            {word}
-            {index < words.length - 1 ? "\u00A0" : null}
+            <motion.span
+              className="connect-prompt-word"
+              initial={false}
+              animate={pulled ? phoneWordEnter : phoneWordHiddenBelow}
+              exit={{
+                ...phoneWordHiddenBelow,
+                transition: {
+                  ...phoneWordTransition,
+                  delay: index * phoneWordStaggerSeconds,
+                },
+              }}
+              transition={{
+                ...phoneWordTransition,
+                delay: pullDelay,
+              }}
+            >
+              {isWave ? (
+                <motion.span
+                  className="connect-prompt-wave"
+                  initial={false}
+                  animate={
+                    pulled && animateEntrance
+                      ? { rotate: [...phoneWaveRotate] }
+                      : { rotate: 0 }
+                  }
+                  transition={
+                    (pulled && animateEntrance
+                      ? {
+                          duration: phoneWaveTransition.duration,
+                          ease: phoneWaveTransition.ease,
+                          times: phoneWaveTransition.times,
+                          repeat: phoneWaveTransition.repeat,
+                          delay: waveDelay,
+                        }
+                      : { duration: 0 }) as Transition
+                  }
+                >
+                  {word}
+                </motion.span>
+              ) : (
+                word
+              )}
+              {index < words.length - 1 ? "\u00A0" : null}
+            </motion.span>
           </motion.span>
-        </motion.span>
-      ))}
+        );
+      })}
     </motion.span>
   );
 }

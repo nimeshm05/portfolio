@@ -130,6 +130,15 @@
   line-height: 1.2;
 }
 
+.connect-prompt-word-mask--wave {
+  overflow: visible;
+}
+
 .connect-prompt-word {
   display: block;
+}
+
+.connect-prompt-wave {
+  display: inline-block;
+  transform-origin: 70% 90%;
 }
