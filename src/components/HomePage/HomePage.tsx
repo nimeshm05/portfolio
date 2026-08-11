@@ -45,7 +45,7 @@ export function HomePage() {
           avatarSrc={profile.avatarSrc}
           avatarAlt={profile.avatarAlt}
         >
-          <ConnectPrompt />
+          <ConnectPrompt activeTab={activeTab} />
         </Header>
         <div className="home-lower">
           <div className="home-main">

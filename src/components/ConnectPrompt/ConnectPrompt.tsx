@@ -1,10 +1,10 @@
 "use client";
 
-import { Fragment, useState, type ReactNode } from "react";
+import { Fragment, useEffect, useRef, useState, type ReactNode } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Icon } from "@/components/Icon/Icon";
 import { MorphingConnectIcon } from "@/components/MorphingConnectIcon/MorphingConnectIcon";
-import { connect } from "@/data/home";
+import { connect, type HomeTab } from "@/data/home";
 import {
   tabContentBlurVariants,
   tabContentTransition,
@@ -74,13 +74,42 @@ function Options({
   );
 }
 
-export function ConnectPrompt() {
+export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
   const [step, setStep] = useState<ConnectStep>("invite");
   const isInvite = step === "invite";
+  const previousTabRef = useRef(activeTab);
 
   const reset = () => {
     setStep("invite");
   };
+
+  useEffect(() => {
+    if (isInvite) {
+      return;
+    }
+
+    const handleScroll = () => {
+      reset();
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [isInvite]);
+
+  useEffect(() => {
+    const previousTab = previousTabRef.current;
+    previousTabRef.current = activeTab;
+
+    if (previousTab === activeTab) {
+      return;
+    }
+
+    if (!isInvite) {
+      reset();
+    }
+  }, [activeTab, isInvite]);
 
   let content: ReactNode;
 
