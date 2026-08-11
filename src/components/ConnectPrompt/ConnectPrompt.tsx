@@ -6,12 +6,24 @@ import { Icon } from "@/components/Icon/Icon";
 import { MorphingConnectIcon } from "@/components/MorphingConnectIcon/MorphingConnectIcon";
 import { connect, type HomeTab } from "@/data/home";
 import {
+  phoneWordEnter,
+  phoneWordHiddenAbove,
+  phoneWordHiddenBelow,
+  phoneWordStaggerSeconds,
+  phoneWordTransition,
+} from "@/motion/connectPrompt";
+import {
   tabContentBlurVariants,
   tabContentTransition,
 } from "@/motion/tabContent";
 import "./ConnectPrompt.css";
 
 type ConnectStep = "invite" | "prefer" | "social" | "inPerson" | "phone";
+type PhoneLabel = "contact" | "soon";
+
+const PHONE_LABEL_CONTACT = "Here's my number and email.";
+const PHONE_LABEL_SOON = "I'll see you soon my fren :)";
+const PHONE_LABEL_DELAY_MS = 1500;
 
 function PromptText({ children }: { children: ReactNode }) {
   return <span className="connect-prompt-text">{children}</span>;
@@ -74,8 +86,129 @@ function Options({
   );
 }
 
+function WordPullText({
+  text,
+  animateEntrance,
+}: {
+  text: string;
+  animateEntrance: boolean;
+}) {
+  const words = text.split(/\s+/);
+  /**
+   * Parent step AnimatePresence can suppress nested mount `initial`→`animate`.
+   * Drive the pull-up from state after paint (same pattern as ListItem chevrons).
+   */
+  const [pulled, setPulled] = useState(!animateEntrance);
+  const exitDuration =
+    phoneWordTransition.duration +
+    phoneWordStaggerSeconds * Math.max(words.length - 1, 0);
+
+  useEffect(() => {
+    if (!animateEntrance) {
+      setPulled(true);
+      return;
+    }
+
+    setPulled(false);
+    let innerFrameId = 0;
+    const outerFrameId = requestAnimationFrame(() => {
+      innerFrameId = requestAnimationFrame(() => {
+        setPulled(true);
+      });
+    });
+    return () => {
+      cancelAnimationFrame(outerFrameId);
+      cancelAnimationFrame(innerFrameId);
+    };
+  }, [text, animateEntrance]);
+
+  return (
+    <motion.span
+      className="connect-prompt-phone-label-motion connect-prompt-phone-label-active connect-prompt-text"
+      initial={false}
+      animate={{ opacity: 1 }}
+      exit={{
+        opacity: 1,
+        transition: {
+          duration: exitDuration,
+          ease: phoneWordTransition.ease,
+        },
+      }}
+    >
+      {words.map((word, index) => (
+        <motion.span
+          key={`${text}-${index}`}
+          className="connect-prompt-word-mask"
+          initial={false}
+          animate={{ opacity: 1 }}
+          exit={{
+            opacity: 0,
+            transition: {
+              ...phoneWordTransition,
+              delay: index * phoneWordStaggerSeconds,
+            },
+          }}
+        >
+          <motion.span
+            className="connect-prompt-word"
+            initial={false}
+            animate={pulled ? phoneWordEnter : phoneWordHiddenBelow}
+            exit={{
+              ...phoneWordHiddenAbove,
+              transition: {
+                ...phoneWordTransition,
+                delay: index * phoneWordStaggerSeconds,
+              },
+            }}
+            transition={{
+              ...phoneWordTransition,
+              delay:
+                pulled && animateEntrance
+                  ? index * phoneWordStaggerSeconds
+                  : 0,
+            }}
+          >
+            {word}
+            {index < words.length - 1 ? "\u00A0" : null}
+          </motion.span>
+        </motion.span>
+      ))}
+    </motion.span>
+  );
+}
+
+function PhoneLabelSlot({ phoneLabel }: { phoneLabel: PhoneLabel }) {
+  const visibleText =
+    phoneLabel === "soon" ? PHONE_LABEL_SOON : PHONE_LABEL_CONTACT;
+
+  return (
+    <span className="connect-prompt-phone-label">
+      <span
+        className="connect-prompt-phone-label-sizer connect-prompt-text"
+        aria-hidden="true"
+      >
+        {PHONE_LABEL_CONTACT}
+      </span>
+      <span
+        className="connect-prompt-phone-label-sizer connect-prompt-text"
+        aria-hidden="true"
+      >
+        {PHONE_LABEL_SOON}
+      </span>
+      <AnimatePresence mode="wait" initial={false}>
+        <WordPullText
+          key={phoneLabel}
+          text={visibleText}
+          animateEntrance={phoneLabel === "soon"}
+        />
+      </AnimatePresence>
+    </span>
+  );
+}
+
 export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
   const [step, setStep] = useState<ConnectStep>("invite");
+  const [phoneLabel, setPhoneLabel] = useState<PhoneLabel>("contact");
   const isInvite = step === "invite";
   const previousTabRef = useRef(activeTab);
 
@@ -110,6 +243,22 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
       reset();
     }
   }, [activeTab, isInvite]);
+
+  useEffect(() => {
+    if (step !== "phone") {
+      setPhoneLabel("contact");
+      return;
+    }
+
+    setPhoneLabel("contact");
+    const timeoutId = window.setTimeout(() => {
+      setPhoneLabel("soon");
+    }, PHONE_LABEL_DELAY_MS);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
+  }, [step]);
 
   let content: ReactNode;
 
@@ -225,7 +374,7 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
     case "phone":
       content = (
         <>
-          <PromptText>Here&apos;s my number and email.</PromptText>
+          <PhoneLabelSlot phoneLabel={phoneLabel} />
           <Options
             items={[
               {

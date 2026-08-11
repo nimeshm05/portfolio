@@ -99,3 +99,37 @@
   height: var(--icon-size-coffee);
   color: var(--color-icon-coffee);
 }
+
+.connect-prompt-phone-label {
+  display: inline-grid;
+  align-items: center;
+}
+
+.connect-prompt-phone-label-sizer {
+  grid-area: 1 / 1;
+  visibility: hidden;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.connect-prompt-phone-label-motion {
+  display: block;
+  grid-area: 1 / 1;
+}
+
+.connect-prompt-phone-label-active {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.connect-prompt-word-mask {
+  display: inline-flex;
+  overflow: hidden;
+  line-height: 1.2;
+}
+
+.connect-prompt-word {
+  display: block;
+}
