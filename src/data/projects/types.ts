@@ -26,6 +26,19 @@ export type ExpandableItemContent = {
   media?: ProjectMedia[];
 };
 
+export type ProjectContentTable = {
+  headers: string[];
+  rows: string[][];
+};
+
+export type ProjectSectionWithMedia = {
+  eyebrow: string;
+  heading: string;
+  paragraphs: string[];
+  imageSrc?: string;
+  imageAlt?: string;
+};
+
 export type ProjectCardData = {
   slug: string;
   href: string;
@@ -56,13 +69,20 @@ export type ProjectPageData = {
     heading: string;
     paragraphs: string[];
   };
-  problem?: {
+  product?: ProjectSectionWithMedia;
+  problem?: ProjectSectionWithMedia & {
+    items?: ExpandableItemContent[];
+  };
+  studyDesign?: ProjectSectionWithMedia & {
+    table?: ProjectContentTable;
+  };
+  findings?: Array<{
+    id: string;
     eyebrow: string;
     heading: string;
     paragraphs: string[];
-    imageSrc?: string;
-    imageAlt?: string;
-  };
+    items: ExpandableItemContent[];
+  }>;
   calloutOne?: string;
   discovery?: {
     eyebrow: string;

@@ -5,6 +5,7 @@ import {
   ChartPie,
   ChevronLeft,
   ChevronRight,
+  ClipboardList,
   CodeXml,
   Coffee,
   Columns4,
@@ -18,9 +19,12 @@ import {
   Music2,
   NotebookPen,
   PanelsTopLeft,
+  Scale,
+  ScanSearch,
   SendToBack,
   Settings,
   SlidersHorizontal,
+  Sparkles,
   Summary,
   Table,
   Target,
@@ -59,7 +63,11 @@ export type IconName =
   | "panels-top-left"
   | "table"
   | "columns-4"
-  | "sliders-horizontal";
+  | "sliders-horizontal"
+  | "scan-search"
+  | "scale"
+  | "clipboard-list"
+  | "sparkles";
 
 const icons: Record<IconName, LucideIcon> = {
   "message-circle-more": MessageCircleMore,
@@ -90,6 +98,10 @@ const icons: Record<IconName, LucideIcon> = {
   table: Table,
   "columns-4": Columns4,
   "sliders-horizontal": SlidersHorizontal,
+  "scan-search": ScanSearch,
+  scale: Scale,
+  "clipboard-list": ClipboardList,
+  sparkles: Sparkles,
 };
 
 type IconProps = {

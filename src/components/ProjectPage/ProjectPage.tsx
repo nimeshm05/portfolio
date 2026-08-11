@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { Callout } from "@/components/Callout/Callout";
+import { ContentTable } from "@/components/ContentTable/ContentTable";
 import { ListItem } from "@/components/ListItem/ListItem";
 import { ProjectBanner } from "@/components/ProjectBanner/ProjectBanner";
 import { ProjectHeader } from "@/components/ProjectHeader/ProjectHeader";
@@ -97,6 +97,31 @@ export function ProjectPage({ project }: ProjectPageProps) {
           </ProjectSection>
         ) : null}
 
+        {project.product ? (
+          <ProjectSection
+            id="architecture-agent"
+            eyebrow={project.product.eyebrow}
+            heading={project.product.heading}
+          >
+            <div className="project-section-body">
+              {project.product.paragraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+            {project.product.imageSrc ? (
+              <div className="project-section-media">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={project.product.imageSrc}
+                  alt={project.product.imageAlt ?? ""}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            ) : null}
+          </ProjectSection>
+        ) : null}
+
         {project.problem ? (
           <ProjectSection
             id="problem"
@@ -108,6 +133,25 @@ export function ProjectPage({ project }: ProjectPageProps) {
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
+            {project.problem.items?.length ? (
+              <div className="project-section-list">
+                {project.problem.items.map((item) => (
+                  <ListItem key={item.id} title={item.title} icon={item.icon}>
+                    {hasExpandableItemBody(item) ? (
+                      <>
+                        {item.content ? (
+                          <RichText content={item.content} />
+                        ) : null}
+                        <ExpandableItemMedia
+                          item={item}
+                          backgroundSrc={project.bannerBackgroundSrc}
+                        />
+                      </>
+                    ) : null}
+                  </ListItem>
+                ))}
+              </div>
+            ) : null}
             {project.problem.imageSrc ? (
               <div className="project-section-media">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -121,6 +165,66 @@ export function ProjectPage({ project }: ProjectPageProps) {
             ) : null}
           </ProjectSection>
         ) : null}
+
+        {project.studyDesign ? (
+          <ProjectSection
+            id="study-design"
+            eyebrow={project.studyDesign.eyebrow}
+            heading={project.studyDesign.heading}
+          >
+            <div className="project-section-body">
+              {project.studyDesign.paragraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+            {project.studyDesign.table ? (
+              <ContentTable table={project.studyDesign.table} />
+            ) : null}
+            {project.studyDesign.imageSrc ? (
+              <div className="project-section-media">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={project.studyDesign.imageSrc}
+                  alt={project.studyDesign.imageAlt ?? ""}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            ) : null}
+          </ProjectSection>
+        ) : null}
+
+        {project.findings?.map((finding) => (
+          <ProjectSection
+            key={finding.id}
+            id={finding.id}
+            eyebrow={finding.eyebrow}
+            heading={finding.heading}
+          >
+            <div className="project-section-body">
+              {finding.paragraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+            <div className="project-section-list">
+              {finding.items.map((item) => (
+                <ListItem key={item.id} title={item.title} icon={item.icon}>
+                  {hasExpandableItemBody(item) ? (
+                    <>
+                      {item.content ? (
+                        <RichText content={item.content} />
+                      ) : null}
+                      <ExpandableItemMedia
+                        item={item}
+                        backgroundSrc={project.bannerBackgroundSrc}
+                      />
+                    </>
+                  ) : null}
+                </ListItem>
+              ))}
+            </div>
+          </ProjectSection>
+        ))}
 
         {project.calloutOne ? <Callout>{project.calloutOne}</Callout> : null}
 
