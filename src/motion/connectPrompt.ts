@@ -12,14 +12,12 @@ export const phoneWordEnter = {
   filter: "blur(0px)",
 } as const;
 
+/**
+ * Enter starts here; contact-line exit returns here —
+ * the reverse of the soon-line pull-up (y / opacity / blur).
+ */
 export const phoneWordHiddenBelow = {
   y: "1.15em",
-  opacity: 0,
-  filter: "blur(8px)",
-} as const;
-
-export const phoneWordHiddenAbove = {
-  y: "-1.15em",
   opacity: 0,
   filter: "blur(8px)",
 } as const;

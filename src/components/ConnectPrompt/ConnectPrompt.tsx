@@ -7,7 +7,6 @@ import { MorphingConnectIcon } from "@/components/MorphingConnectIcon/MorphingCo
 import { connect, type HomeTab } from "@/data/home";
 import {
   phoneWordEnter,
-  phoneWordHiddenAbove,
   phoneWordHiddenBelow,
   phoneWordStaggerSeconds,
   phoneWordTransition,
@@ -141,20 +140,14 @@ function WordPullText({
           className="connect-prompt-word-mask"
           initial={false}
           animate={{ opacity: 1 }}
-          exit={{
-            opacity: 0,
-            transition: {
-              ...phoneWordTransition,
-              delay: index * phoneWordStaggerSeconds,
-            },
-          }}
+          exit={{ opacity: 1 }}
         >
           <motion.span
             className="connect-prompt-word"
             initial={false}
             animate={pulled ? phoneWordEnter : phoneWordHiddenBelow}
             exit={{
-              ...phoneWordHiddenAbove,
+              ...phoneWordHiddenBelow,
               transition: {
                 ...phoneWordTransition,
                 delay: index * phoneWordStaggerSeconds,
