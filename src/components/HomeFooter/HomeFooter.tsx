@@ -115,8 +115,8 @@ export function HomeFooter() {
                   initial={false}
                   animate={
                     revealed
-                      ? { clipPath: "inset(0 0% 0 0)" }
-                      : { clipPath: "inset(0 100% 0 0)" }
+                      ? { clipPath: "inset(-0.2em 0% -0.25em 0)" }
+                      : { clipPath: "inset(-0.2em 100% -0.25em 0)" }
                   }
                   transition={
                     reduceMotion || animationPhase !== "playing"

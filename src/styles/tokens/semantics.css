@@ -9,9 +9,9 @@
   --color-text-subtle: var(--color-neutral-500);
   --color-text-label: var(--color-neutral-400);
   --color-text-muted: var(--color-neutral-350);
-  --color-connect-prompt-follow-up: oklch(0.59 0.22 18);
+  --color-connect-prompt-follow-up: var(--color-lime-400);
   --color-accent: var(--color-blue-600);
-  --color-footer: var(--color-pink-600);
+  --color-footer: var(--color-lime-400);
   --color-icon-coffee: var(--color-coffee-500);
 
   /* Borders */
@@ -72,7 +72,7 @@
 
   /* Shared layout */
   --font-family-sans: var(--font-inter), "Segoe UI", sans-serif;
-  --font-family-hand: var(--font-playwrite-ca-guides), var(--font-patrick-hand), cursive;
+  --font-family-hand: var(--font-caveat), cursive;
   --letter-spacing-body: var(--letter-spacing-tight);
   --letter-spacing-display: var(--letter-spacing-tight);
   --content-width: var(--layout-content-width);

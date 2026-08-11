@@ -15,7 +15,7 @@
   font-family: var(--font-family-hand);
   font-size: var(--text-footer-size);
   font-weight: var(--text-footer-weight);
-  line-height: auto;
+  line-height: 1.25;
   letter-spacing: var(--text-footer-letter-spacing);
 }
 
@@ -30,6 +30,9 @@
 }
 
 .home-footer-letter {
+  /* Caveat strokes overhang the advance width; pad the clip box so ink isn't sheared. */
+  padding-inline: 0.12em;
+  margin-inline: -0.12em;
   will-change: clip-path;
 }
 

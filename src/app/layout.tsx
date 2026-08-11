@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
-import { Delius, Inter, Patrick_Hand, Playwrite_CA_Guides } from "next/font/google";
+import { Caveat, Delius, Inter } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -14,17 +14,10 @@ const delius = Delius({
   weight: "400",
 });
 
-const patrickHand = Patrick_Hand({
-  variable: "--font-patrick-hand",
+const caveat = Caveat({
+  variable: "--font-caveat",
   subsets: ["latin"],
-  weight: "400",
-});
-
-const playwriteCAguides = Playwrite_CA_Guides({
-  variable: "--font-playwrite-ca-guides",
-  weight: "400",
-  adjustFontFallback: false,
-  fallback: ["Patrick Hand", "cursive"],
+  weight: "500",
 });
 
 export const metadata: Metadata = {
@@ -38,7 +31,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${inter.variable} ${delius.variable} ${patrickHand.variable} ${playwriteCAguides.variable}`}
+      className={`${inter.variable} ${delius.variable} ${caveat.variable}`}
     >
       <body>
         {children}
