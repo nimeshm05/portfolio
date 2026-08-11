@@ -71,6 +71,10 @@
   color: var(--color-text-primary);
 }
 
+.project-card:hover {
+  background-color: var(--color-card-hover);
+}
+
 @media (max-width: 68.6875rem) {
   .project-card-type {
     min-width: 0;

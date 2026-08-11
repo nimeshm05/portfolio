@@ -2,6 +2,7 @@
   /* Colors (lab) */
   --color-white: lab(100% 0 0);
   --color-black: lab(0% 0 0);
+  --color-neutral-50: lab(99.02% 0 0);
   --color-neutral-100: lab(97.02% 0 0);
   --color-neutral-200: lab(92.19% 0 0);
   --color-neutral-350: lab(79.52% 0 0);

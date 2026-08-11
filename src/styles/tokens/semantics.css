@@ -2,6 +2,7 @@
   /* Surfaces */
   --color-bg-page: var(--color-white);
   --color-bg-muted: var(--color-neutral-100);
+  --color-card-hover: var(--color-neutral-50);
 
   /* Text */
   --color-text-primary: var(--color-black);
