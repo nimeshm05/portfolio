@@ -149,9 +149,6 @@ export const conversationInsights: ProjectPageData = {
             "Operations data from the AWS Connect call system, including routing profiles, queues, and agent-level attributes, provided context on who & how those conversations were handled.",
           ],
         },
-        imageSrc: asset("data.svg"),
-        imageAlt:
-          "Diagram comparing AI-derived signals with AWS Connect operational metadata",
       },
       {
         id: "how-teams-analyze",
