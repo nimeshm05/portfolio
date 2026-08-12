@@ -23,6 +23,7 @@ type ListItemProps = {
   href?: string;
   children?: ReactNode;
   defaultOpen?: boolean;
+  alwaysExpanded?: boolean;
   chevronOrientation?: ChevronOrientation;
 };
 
@@ -69,21 +70,26 @@ export function ListItem({
   href = "#",
   children,
   defaultOpen = false,
+  alwaysExpanded = false,
   chevronOrientation,
 }: ListItemProps) {
-  const [isOpen, setIsOpen] = useState(defaultOpen);
+  const [isOpen, setIsOpen] = useState(defaultOpen || alwaysExpanded);
   const [isHovered, setIsHovered] = useState(false);
   const panelId = useId();
   const blurOnTabChange = useTabContentMotion();
-  const isExpandable = children != null;
-  const hasContent = Boolean(children);
+  const hasContent = children != null;
+  const isStaticExpanded = hasContent && alwaysExpanded;
+  const isExpandable = hasContent && !alwaysExpanded;
   const isExternalLink = Boolean(href?.startsWith("http"));
-  const isInternalLink = !isExpandable && !isExternalLink && href.startsWith("/");
+  const isInternalLink =
+    !isExpandable && !isStaticExpanded && !isExternalLink && href.startsWith("/");
   const closedOrientation =
     chevronOrientation ?? (isExpandable ? "down" : "right");
   const className = `list-item${
-    isExpandable ? " list-item--expandable" : ""
-  }${isExpandable && isOpen ? " is-open" : ""}`;
+    isExpandable || isStaticExpanded ? " list-item--expandable" : ""
+  }${isStaticExpanded ? " list-item--static" : ""}${
+    (isExpandable && isOpen) || isStaticExpanded ? " is-open" : ""
+  }`;
 
   const chevronRotate = isExpandable
     ? getExpandableChevronRotate(closedOrientation, isOpen)
@@ -150,7 +156,7 @@ export function ListItem({
     </span>
   );
 
-  const chevronNode = (
+  const chevronNode = isStaticExpanded ? null : (
     <motion.span
       className="list-item-chevron"
       aria-hidden="true"
@@ -175,6 +181,17 @@ export function ListItem({
       {chevronNode}
     </>
   );
+
+  if (isStaticExpanded) {
+    return (
+      <div className="list-item-shell is-open">
+        <div className={className}>{content}</div>
+        <div className="list-item-panel" id={panelId}>
+          {children}
+        </div>
+      </div>
+    );
+  }
 
   if (isExpandable) {
     return (

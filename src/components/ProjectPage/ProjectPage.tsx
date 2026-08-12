@@ -1,5 +1,6 @@
 import { Callout } from "@/components/Callout/Callout";
 import { ContentTable } from "@/components/ContentTable/ContentTable";
+import { InvestigationSteps } from "@/components/conversation-insights/InvestigationSteps/InvestigationSteps";
 import { ListItem } from "@/components/ListItem/ListItem";
 import { ProjectBanner } from "@/components/ProjectBanner/ProjectBanner";
 import { ProjectHeader } from "@/components/ProjectHeader/ProjectHeader";
@@ -58,8 +59,29 @@ function ExpandableItemMedia({
   );
 }
 
+function ExpandableItemBody({
+  item,
+  backgroundSrc,
+}: {
+  item: ExpandableItemContent;
+  backgroundSrc?: string;
+}) {
+  return (
+    <>
+      {item.content ? <RichText content={item.content} /> : null}
+      {item.steps?.length ? (
+        <InvestigationSteps steps={item.steps} />
+      ) : (
+        <ExpandableItemMedia item={item} backgroundSrc={backgroundSrc} />
+      )}
+    </>
+  );
+}
+
 function hasExpandableItemBody(item: ExpandableItemContent) {
-  return Boolean(item.content || getItemMedia(item).length);
+  return Boolean(
+    item.content || item.steps?.length || getItemMedia(item).length,
+  );
 }
 
 export function ProjectPage({ project }: ProjectPageProps) {
@@ -138,15 +160,10 @@ export function ProjectPage({ project }: ProjectPageProps) {
                 {project.problem.items.map((item) => (
                   <ListItem key={item.id} title={item.title} icon={item.icon}>
                     {hasExpandableItemBody(item) ? (
-                      <>
-                        {item.content ? (
-                          <RichText content={item.content} />
-                        ) : null}
-                        <ExpandableItemMedia
-                          item={item}
-                          backgroundSrc={project.bannerBackgroundSrc}
-                        />
-                      </>
+                      <ExpandableItemBody
+                        item={item}
+                        backgroundSrc={project.bannerBackgroundSrc}
+                      />
                     ) : null}
                   </ListItem>
                 ))}
@@ -210,15 +227,10 @@ export function ProjectPage({ project }: ProjectPageProps) {
               {finding.items.map((item) => (
                 <ListItem key={item.id} title={item.title} icon={item.icon}>
                   {hasExpandableItemBody(item) ? (
-                    <>
-                      {item.content ? (
-                        <RichText content={item.content} />
-                      ) : null}
-                      <ExpandableItemMedia
-                        item={item}
-                        backgroundSrc={project.bannerBackgroundSrc}
-                      />
-                    </>
+                    <ExpandableItemBody
+                      item={item}
+                      backgroundSrc={project.bannerBackgroundSrc}
+                    />
                   ) : null}
                 </ListItem>
               ))}
@@ -241,17 +253,16 @@ export function ProjectPage({ project }: ProjectPageProps) {
             </div>
             <div className="project-section-list">
               {project.discovery.items.map((item) => (
-                <ListItem key={item.id} title={item.title} icon={item.icon}>
+                <ListItem
+                  key={item.id}
+                  title={item.title}
+                  icon={item.icon}
+                >
                   {hasExpandableItemBody(item) ? (
-                    <>
-                      {item.content ? (
-                        <RichText content={item.content} />
-                      ) : null}
-                      <ExpandableItemMedia
-                        item={item}
-                        backgroundSrc={project.bannerBackgroundSrc}
-                      />
-                    </>
+                    <ExpandableItemBody
+                      item={item}
+                      backgroundSrc={project.bannerBackgroundSrc}
+                    />
                   ) : null}
                 </ListItem>
               ))}
@@ -288,17 +299,16 @@ export function ProjectPage({ project }: ProjectPageProps) {
             </div>
             <div className="project-section-list">
               {project.earlyDesigns.items.map((item) => (
-                <ListItem key={item.id} title={item.title} icon={item.icon}>
+                <ListItem
+                  key={item.id}
+                  title={item.title}
+                  icon={item.icon}
+                >
                   {hasExpandableItemBody(item) ? (
-                    <>
-                      {item.content ? (
-                        <RichText content={item.content} />
-                      ) : null}
-                      <ExpandableItemMedia
-                        item={item}
-                        backgroundSrc={project.bannerBackgroundSrc}
-                      />
-                    </>
+                    <ExpandableItemBody
+                      item={item}
+                      backgroundSrc={project.bannerBackgroundSrc}
+                    />
                   ) : null}
                 </ListItem>
               ))}
@@ -326,15 +336,10 @@ export function ProjectPage({ project }: ProjectPageProps) {
               {project.learnings.items.map((item) => (
                 <ListItem key={item.id} title={item.title} icon={item.icon}>
                   {hasExpandableItemBody(item) ? (
-                    <>
-                      {item.content ? (
-                        <RichText content={item.content} />
-                      ) : null}
-                      <ExpandableItemMedia
-                        item={item}
-                        backgroundSrc={project.bannerBackgroundSrc}
-                      />
-                    </>
+                    <ExpandableItemBody
+                      item={item}
+                      backgroundSrc={project.bannerBackgroundSrc}
+                    />
                   ) : null}
                 </ListItem>
               ))}
@@ -355,17 +360,16 @@ export function ProjectPage({ project }: ProjectPageProps) {
             </div>
             <div className="project-section-list">
               {project.solutions.items.map((item) => (
-                <ListItem key={item.id} title={item.title} icon={item.icon}>
+                <ListItem
+                  key={item.id}
+                  title={item.title}
+                  icon={item.icon}
+                >
                   {hasExpandableItemBody(item) ? (
-                    <>
-                      {item.content ? (
-                        <RichText content={item.content} />
-                      ) : null}
-                      <ExpandableItemMedia
-                        item={item}
-                        backgroundSrc={project.bannerBackgroundSrc}
-                      />
-                    </>
+                    <ExpandableItemBody
+                      item={item}
+                      backgroundSrc={project.bannerBackgroundSrc}
+                    />
                   ) : null}
                 </ListItem>
               ))}
@@ -388,15 +392,10 @@ export function ProjectPage({ project }: ProjectPageProps) {
               {project.outcome.items.map((item) => (
                 <ListItem key={item.id} title={item.title} icon={item.icon}>
                   {hasExpandableItemBody(item) ? (
-                    <>
-                      {item.content ? (
-                        <RichText content={item.content} />
-                      ) : null}
-                      <ExpandableItemMedia
-                        item={item}
-                        backgroundSrc={project.bannerBackgroundSrc}
-                      />
-                    </>
+                    <ExpandableItemBody
+                      item={item}
+                      backgroundSrc={project.bannerBackgroundSrc}
+                    />
                   ) : null}
                 </ListItem>
               ))}

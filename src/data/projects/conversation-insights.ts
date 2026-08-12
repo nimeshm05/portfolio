@@ -142,7 +142,7 @@ export const conversationInsights: ProjectPageData = {
         content: {
           type: "paragraphs-with-list",
           intro: [
-            "By surfacing with the data scientist, I learned the taxonomy of data that was shared with the teams:",
+            "By surfacing with data scientists, I learned that there's two layers to the taxonomy of data that was shared with the teams:",
           ],
           items: [
             "AI-derived signals such as primary topics, root causes, and sentiment helped summarize what customers were experiencing.",
@@ -164,9 +164,35 @@ export const conversationInsights: ProjectPageData = {
             "The teams consistently followed this investigation workflow:",
           ],
         },
-        imageSrc: asset("workflow.svg"),
-        imageAlt:
-          "Flowchart of the contact centre investigation workflow from insight to operational action",
+        steps: [
+          {
+            id: "scope",
+            title: "Scope",
+            description: "Define a time window to frame the analysis.",
+            icon: "clock",
+          },
+          {
+            id: "identify-issues",
+            title: "Identify Issues",
+            description:
+              "Detect unusual patterns and emerging customer concerns.",
+            icon: "search",
+          },
+          {
+            id: "understand-causes",
+            title: "Understand Causes",
+            description:
+              "Use summaries and transcripts to understand what customers are experiencing.",
+            icon: "file-text",
+          },
+          {
+            id: "trace-operational-impact",
+            title: "Trace Operational Impact",
+            description:
+              "Identify where the issue is occurring using call records and operational data.",
+            icon: "git-branch",
+          },
+        ],
       },
       {
         id: "insights",

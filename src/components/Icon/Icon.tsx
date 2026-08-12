@@ -4,13 +4,17 @@ import {
   Bug,
   ChartPie,
   ChevronLeft,
+  ChevronsDown,
   ChevronRight,
   ClipboardList,
+  Clock,
   CodeXml,
   Coffee,
   Columns4,
   Database,
+  FileText,
   Footprints,
+  GitBranch,
   Globe,
   LayoutGrid,
   Lightbulb,
@@ -21,6 +25,7 @@ import {
   PanelsTopLeft,
   Scale,
   ScanSearch,
+  Search,
   SendToBack,
   Settings,
   SlidersHorizontal,
@@ -43,6 +48,7 @@ export type IconName =
   | "code-xml"
   | "footprints"
   | "chevron-left"
+  | "chevrons-down"
   | "users"
   | "bug"
   | "database"
@@ -67,7 +73,11 @@ export type IconName =
   | "scan-search"
   | "scale"
   | "clipboard-list"
-  | "sparkles";
+  | "sparkles"
+  | "clock"
+  | "search"
+  | "file-text"
+  | "git-branch";
 
 const icons: Record<IconName, LucideIcon> = {
   "message-circle-more": MessageCircleMore,
@@ -77,6 +87,7 @@ const icons: Record<IconName, LucideIcon> = {
   "code-xml": CodeXml,
   footprints: Footprints,
   "chevron-left": ChevronLeft,
+  "chevrons-down": ChevronsDown,
   users: Users,
   bug: Bug,
   database: Database,
@@ -102,6 +113,10 @@ const icons: Record<IconName, LucideIcon> = {
   scale: Scale,
   "clipboard-list": ClipboardList,
   sparkles: Sparkles,
+  clock: Clock,
+  search: Search,
+  "file-text": FileText,
+  "git-branch": GitBranch,
 };
 
 type IconProps = {

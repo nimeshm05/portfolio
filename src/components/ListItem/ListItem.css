@@ -18,6 +18,14 @@
   background: var(--color-bg-page);
 }
 
+.list-item--static {
+  cursor: default;
+}
+
+.list-item--static:hover {
+  background-color: var(--color-bg-page);
+}
+
 .list-item-icon,
 .list-item-chevron {
   display: flex;
