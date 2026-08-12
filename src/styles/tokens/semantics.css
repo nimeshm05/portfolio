@@ -6,7 +6,7 @@
 
   /* Text */
   --color-text-primary: var(--color-black);
-  --color-text-body: var(--color-neutral-450);
+  --color-text-body: var(--color-neutral-500);
   --color-text-subtle: var(--color-neutral-500);
   --color-text-label: var(--color-neutral-400);
   --color-text-muted: var(--color-neutral-350);

@@ -9,7 +9,7 @@ export const architectureAgentCard: ProjectCardData = {
   projectType: "Usability Testing",
   timeline: "Jan 2026 - Mar 2026",
   description:
-    "Leading usability testing for a pre-launch AI product, uncovering 29 key issues that shaped product prioritization and improved workflow clarity.",
+    "Making AI recommendations easier to understand and act on - a usability test for the Architecture Agent.",
   bannerSrc: asset("actual-ai-preview.mp4"),
   bannerAlt: "Architecture Agent product preview",
   bannerType: "video",

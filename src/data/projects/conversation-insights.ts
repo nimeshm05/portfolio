@@ -7,11 +7,11 @@ export const conversationInsights: ProjectPageData = {
   slug: "conversation-insights",
   title: "Conversation Insights",
   subtitle:
-    "An analytics platform built to overcome manual workflow problem to enable faster operational decision making.",
+    "Eliminating manual insight reporting in contact centers with self-serve analytics platform to enable faster operational decision making.",
   projectType: "Product Design - Internal Tool",
   timeline: "Q4 2024 - Q2 2025",
   cardDescription:
-    "A self-serve analytics platform that enabled Air Canada's contact centre teams (customer) to analyze customer conversations directly.",
+    "Eliminating manual insight reporting in contact centers with self-serve analytics platform to enable faster operational decision making.",
   bannerSrc: asset("conversation-insights-preview.mp4"),
   bannerAlt: "Conversation Insights dashboard preview",
   bannerType: "video",
@@ -95,23 +95,23 @@ export const conversationInsights: ProjectPageData = {
     eyebrow: "Overview",
     heading: "Analytics Platform for Air Canada's Contact Centre Managers",
     paragraphs: [
-      "Conversation Insights is an enterprise analytics platform developed by RozieAI for Air Canada's contact centre managers (users). The platform uses AI to analyze hundreds of thousands of customer conversations, surfacing trends and operational signals that help teams understand customer issues at scale. Although initially built to meet Air Canada's operational needs, the product was designed as a scalable solution for future enterprise customers.",
+      "Conversation Insights is an enterprise analytics platform developed by RozieAI for Air Canada's contact centre managers (users). The platform uses AI to analyze hundreds of thousands of customer conversations, surfacing trends and operational signals that help managers understand their customer issues at scale. Although initially built to meet Air Canada's operational needs, the product was designed as a scalable solution for future enterprise customers.",
     ],
   },
   problem: {
     eyebrow: "Problem",
     heading:
-      "Customer issue investigation was fragmented across reports, systems, and people, which slowed operational decisions.",
+      "Air Canada contact centre managers had access to AI-generated insights, but not a way to investigate them independently",
     paragraphs: [
-      "Before Conversation Insights platform existed, AI-generated insights were delivered through weekly reports prepared by RozieAI product owners. These reports helped users identify emerging issues, but understanding where and why those issues were occurring required investigation across multiple sources.",
-      "Users often moved between reports, AWS Connect portal, and follow-up discussions with RozieAI stakeholders to connect insights with operational data. This fragmented workflow slowed their operational decision-making.",
+      "Before Conversation Insights, AI-generated insights were delivered through weekly reports prepared by RozieAI product owners. While these reports helped Air Canada teams identify emerging issues, they provided limited context for understanding where those issues were occurring or what was driving them.",
+      "Investigating an issue meant moving between reports, AWS Connect, and follow-up discussions with RozieAI stakeholders to piece together the operational context. Users therefore depended on a fragmented, people-dependent workflow to move from identifying an issue to understanding it, slowing how quickly they could make operational decisions.",
     ],
     imageSrc: asset("problem.svg"),
     imageAlt:
       "Diagram showing fragmented investigation across Outlook, Teams, Excel, Word, and AWS Connect",
   },
   calloutOne:
-    "The opportunity was to transform customer issue investigation into a self-serve workflow, enabling contact centre teams to independently understand and act on customer issues.",
+    "The opportunity was to transform customer issue investigation into a self-serve workflow to enable contact centre managers to independently understand and act on customer issues so that they can make faster operational decisions.",
   discovery: {
     eyebrow: "Discovery & Insights",
     heading:
@@ -183,7 +183,7 @@ export const conversationInsights: ProjectPageData = {
       "Business wanted to ship fast and engineering wasn't ready to build new components or patterns.",
     paragraphs: [
       "RozieAI needed to demonstrate value to Air Canada ahead of a contract renewal, while engineering had only days to build a working release. There wasn't enough time to design the product from scratch, so we reused patterns and components from another RozieAI product.",
-      "I couldn't control the decision to reuse those patterns, but I could control how we validated them. We shipped quickly and set up weekly sessions with Air Canada teams to observe how they actually used the product, using those sessions to identify where the reused patterns fell short.",
+      "I couldn't change that constraint, but I could control how we validated the experience. We shipped quickly, then ran weekly sessions with Air Canada teams to observe the product in use and identify where the inherited patterns created friction.",
     ],
   },
   earlyDesigns: {

@@ -10,7 +10,7 @@ export const conversationInsightsCard: ProjectCardData = {
   projectType: "Product Design - Internal Tool",
   timeline: "Q4 2024 - Q2 2025",
   description:
-    "A self-serve analytics platform that enabled Air Canada's contact centre teams (customer) to analyze customer conversations directly.",
+    "Eliminating manual insight reporting in contact centers with self-serve analytics platform to enable faster operational decision making.",
   bannerSrc: asset("conversation-insights-preview.mp4"),
   bannerAlt: "Conversation Insights dashboard preview",
   bannerType: "video",

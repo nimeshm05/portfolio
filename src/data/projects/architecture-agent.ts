@@ -6,7 +6,7 @@ export const architectureAgent: ProjectPageData = {
   slug: "architecture-agent",
   title: "Architecture Agent",
   subtitle:
-    "Leading usability testing for a pre-launch AI product, uncovering 29 key issues that shaped product prioritization and improved workflow clarity.",
+    "Making AI recommendations easier to understand and act on - a usability test for the Architecture Agent.",
   projectType: "Usability Testing",
   timeline: "Jan 2026 - Mar 2026",
   bannerSrc: asset("actual-ai-preview.mp4"),
