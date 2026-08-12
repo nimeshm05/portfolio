@@ -237,6 +237,7 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
   const [phoneLabel, setPhoneLabel] = useState<PhoneLabel>("contact");
   const isInvite = step === "invite";
   const previousTabRef = useRef(activeTab);
+  const rootRef = useRef<HTMLDivElement>(null);
 
   const reset = () => {
     setStep("invite");
@@ -247,14 +248,21 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
       return;
     }
 
-    const handleScroll = () => {
-      reset();
-    };
+    const node = rootRef.current;
+    if (!node) {
+      return;
+    }
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry?.isIntersecting) {
+          reset();
+        }
+      },
+      { threshold: 0 },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
   }, [isInvite]);
 
   useEffect(() => {
@@ -424,6 +432,7 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
 
   return (
     <div
+      ref={rootRef}
       className={`connect-prompt${isInvite ? "" : " connect-prompt--follow-up"}`}
       aria-live="polite"
     >

@@ -13,6 +13,7 @@
   --color-connect-prompt-follow-up: var(--color-lime-400);
   --color-accent: var(--color-blue-600);
   --color-footer: var(--color-lime-400);
+  --color-callout: var(--color-lime-400);
   --color-icon-coffee: var(--color-coffee-500);
 
   /* Borders */

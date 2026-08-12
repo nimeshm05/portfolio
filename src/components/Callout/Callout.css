@@ -4,13 +4,13 @@
   justify-content: start;
   width: 100%;
   padding: 0 var(--inset-x);
-  border-left: var(--callout-border-width) solid var(--color-text-muted);
+  border-left: var(--callout-border-width) solid var(--color-callout);
 }
 
 .callout-text {
   flex: 1 0 0;
   min-width: 0;
-  color: var(--color-text-muted);
+  color: var(--color-callout);
   font-size: var(--text-callout-size);
   font-weight: var(--text-callout-weight);
   line-height: var(--text-callout-line-height);

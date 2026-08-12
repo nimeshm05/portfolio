@@ -23,9 +23,9 @@ export const profile = {
   avatarSrc: "/assets/profile-4.jpg",
   avatarAlt: "Portrait of Nimesh Mohanakrishnan",
   bioByTab: {
-    work: "Product designer in Seattle, pursuing my master’s in HCDE at the University of Washington. I enjoy thinking in systems and using code as a tool for design. Previously, I worked on internal tools at RozieAI.",
+    work: "Product designer in Seattle, pursuing my master’s in HCDE at the University of Washington. I'm good at interaction design, systems thinking, and using code as a tool for design. Previously, I worked on internal tools at RozieAI.",
     about:
-      "Product designer in Seattle, pursuing my master’s in HCDE at the University of Washington. I enjoy thinking in systems and using code as a tool for design. Previously, I worked on internal tools at RozieAI.",
+      "Product designer in Seattle, pursuing my master’s in HCDE at the University of Washington. I'm good at interaction design, systems thinking, and using code as a tool for design. Previously, I worked on internal tools at RozieAI.",
   },
   socialLinks: [
     {
@@ -163,7 +163,7 @@ export const aboutSections: ContentSectionData[] = [
         id: "ms-hcde",
         title: "M.S. Human Centered Design & Engineering, ",
         meta: "Udub",
-        description: "Mastering my skills in systems thinking and design at the University of Washington.",
+        description: "Mastering my skills in systems thinking, prototyping, and interactiondesign at the University of Washington.",
       },
       {
         id: "beng-cse",
