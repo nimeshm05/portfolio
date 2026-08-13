@@ -12,6 +12,7 @@
   --color-neutral-450: oklch(0.6858 0 0);
   --color-neutral-500: oklch(0.6168 0 0);
   --color-neutral-600: oklch(0.516 0 0);
+  --color-neutral-700: oklch(0.4152 0 0);
   --color-blue-500: oklch(0.62 0.19 260);
   --color-pink-600: oklch(0.6567 0.1473 8.22);
   --color-lime-400: oklch(0.77 0.2 131);
@@ -68,7 +69,7 @@
   --font-weight-bold: 700;
 
   /* Letter spacing */
-  --letter-spacing-tight: -0.03em;
+  --letter-spacing-tight: -0.02em;
   --letter-spacing-footer: 0.01em;
 
   /* Opacity */

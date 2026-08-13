@@ -7,7 +7,7 @@
 
   /* Text */
   --color-text-primary: var(--color-black);
-  --color-text-body: var(--color-neutral-600);
+  --color-text-body: var(--color-neutral-700);
   --color-text-subtle: var(--color-neutral-500);
   --color-text-label: var(--color-neutral-400);
   --color-text-muted: var(--color-neutral-350);
@@ -77,6 +77,7 @@
 
   /* Shared layout */
   --font-family-sans: var(--font-inter), "Segoe UI", sans-serif;
+  --font-family-serif: var(--font-instrument-serif), Georgia, serif;
   --font-family-hand: var(--font-caveat), cursive;
   --letter-spacing-body: var(--letter-spacing-tight);
   --letter-spacing-display: var(--letter-spacing-tight);
@@ -123,6 +124,7 @@
   --text-heading-weight: var(--font-weight-bold);
 
   /* Typography: callout (reuses heading size) */
+  --text-callout-family: var(--font-inter);
   --text-callout-size: var(--text-heading-size);
   --text-callout-line-height: var(--line-height-body);
   --text-callout-weight: var(--font-weight-semibold);
