@@ -1,20 +1,20 @@
 :root {
-  /* Colors (lab) */
-  --color-white: lab(100% 0 0);
-  --color-black: lab(0% 0 0);
-  --color-neutral-50: lab(99.02% 0 0);
-  --color-neutral-100: lab(97.02% 0 0);
-  --color-neutral-150: lab(94.6% 0 0);
-  --color-neutral-200: lab(92.19% 0 0);
-  --color-neutral-350: lab(79.52% 0 0);
-  --color-neutral-400: lab(71.55% 0 0);
-  --color-neutral-450: lab(63.55% 0 0);
-  --color-neutral-500: lab(55.55% 0 0);
-  --color-neutral-600: lab(43.86% 0 0);
-  --color-blue-600: lab(58.5% 8.5 -48);
-  --color-pink-600: lab(58% 48 8);
+  /* Colors (oklch) */
+  --color-white: oklch(1 0 0);
+  --color-black: oklch(0 0 0);
+  --color-neutral-50: oklch(0.9916 0 0);
+  --color-neutral-100: oklch(0.9743 0 0);
+  --color-neutral-150: oklch(0.9534 0 0);
+  --color-neutral-200: oklch(0.9327 0 0);
+  --color-neutral-350: oklch(0.8234 0 0);
+  --color-neutral-400: oklch(0.7547 0 0);
+  --color-neutral-450: oklch(0.6858 0 0);
+  --color-neutral-500: oklch(0.6168 0 0);
+  --color-neutral-600: oklch(0.516 0 0);
+  --color-blue-500: oklch(0.62 0.19 260);
+  --color-pink-600: oklch(0.6567 0.1473 8.22);
   --color-lime-400: oklch(0.77 0.2 131);
-  --color-coffee-500: lab(49% 3 7);
+  --color-coffee-500: oklch(0.5615 0.021 60.52);
 
   /* Spacing */
   --space-2: 0.125rem;
@@ -61,7 +61,7 @@
   --line-height-body: 1.6;
 
   /* Font weights */
-  --font-weight-regular: 440;
+  --font-weight-regular: 420;
   --font-weight-medium: 500;
   --font-weight-semibold: 660;
   --font-weight-bold: 700;
@@ -102,7 +102,7 @@
   --blur-24: 1.5rem;
 
   /* Shadows */
-  --shadow-tab-ring-color: lab(67.37% 0 -0.01 / 0.09);
+  --shadow-tab-ring-color: oklch(0.7187 0 0 / 0.09);
   --shadow-elevation:
     0 0.375rem 1.125rem lch(0% 0 0 / 0.015),
     0 0.1875rem 0.5625rem lch(0% 0 0 / 0.03),
