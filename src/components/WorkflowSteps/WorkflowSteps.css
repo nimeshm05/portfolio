@@ -38,7 +38,7 @@
   display: flex;
   flex: 1 0 0;
   flex-direction: column;
-  gap: var(--gap-2xs);
+  gap: var(--gap-xs);
   min-width: 0;
 }
 

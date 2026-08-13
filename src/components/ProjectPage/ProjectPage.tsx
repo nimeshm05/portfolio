@@ -310,6 +310,7 @@ export function ProjectPage({ project }: ProjectPageProps) {
                   key={item.id}
                   title={item.title}
                   icon={item.icon}
+                  defaultOpen
                 >
                   {hasExpandableItemBody(item) ? (
                     <ExpandableItemBody
@@ -371,6 +372,7 @@ export function ProjectPage({ project }: ProjectPageProps) {
                   key={item.id}
                   title={item.title}
                   icon={item.icon}
+                  defaultOpen
                 >
                   {hasExpandableItemBody(item) ? (
                     <ExpandableItemBody
