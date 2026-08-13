@@ -2,6 +2,7 @@
   /* Colors (oklch) */
   --color-white: oklch(1 0 0);
   --color-black: oklch(0 0 0);
+  --color-slate-50: oklch(98.212% 0.00011 271.152);
   --color-neutral-50: oklch(0.9916 0 0);
   --color-neutral-100: oklch(0.9743 0 0);
   --color-neutral-150: oklch(0.9534 0 0);

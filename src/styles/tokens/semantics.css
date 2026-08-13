@@ -1,6 +1,7 @@
 :root {
   /* Surfaces */
   --color-bg-page: var(--color-white);
+  --color-bg-surface: var(--color-white);
   --color-bg-muted: var(--color-neutral-100);
   --color-card-hover: var(--color-neutral-50);
 
@@ -42,6 +43,8 @@
   --padding-page-inline: var(--inset-x);
   --padding-card-block: var(--space-12);
   --padding-card-inline: var(--space-12);
+  --padding-inset-panel: var(--space-20);
+  --padding-inset-list-inline: var(--space-48);
   --offset-banner-inline: var(--space-120);
   --offset-banner-bleed: var(--space-160);
   --offset-sidebar-top: var(--gap-page);

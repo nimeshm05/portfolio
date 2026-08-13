@@ -15,7 +15,7 @@
   bottom: var(--gap-xs);
   z-index: 0;
   border-radius: var(--radius-sm);
-  background: var(--color-bg-page);
+  background: var(--color-bg-surface);
   box-shadow: var(--shadow-tab);
   pointer-events: none;
 }

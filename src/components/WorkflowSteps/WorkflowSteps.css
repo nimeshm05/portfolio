@@ -1,0 +1,57 @@
+.workflow-steps {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  list-style: none;
+  background: var(--color-bg-muted);
+  border: var(--border-card);
+  border-radius: var(--radius-sm);
+}
+
+.workflow-step {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gap-md);
+  width: 100%;
+  padding: var(--padding-inset-panel);
+}
+
+.workflow-step + .workflow-step {
+  border-top: var(--border-card);
+}
+
+.workflow-step-icon {
+  display: flex;
+  flex-shrink: 0;
+  align-items: flex-start;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  overflow: hidden;
+}
+
+.workflow-step-icon .icon {
+  color: var(--color-text-primary);
+}
+
+.workflow-step-copy {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  gap: var(--gap-2xs);
+  min-width: 0;
+}
+
+.workflow-step-title {
+  color: var(--color-text-primary);
+  font-size: var(--text-body-size);
+  font-weight: var(--weight-semibold);
+  line-height: normal;
+}
+
+.workflow-step-description {
+  color: var(--color-text-subtle);
+  font-size: var(--text-body-size);
+  font-weight: var(--text-body-weight);
+  line-height: var(--text-body-line-height);
+}

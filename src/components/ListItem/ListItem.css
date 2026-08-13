@@ -15,7 +15,7 @@
 
 .list-item--expandable {
   border-radius: var(--radius-sm);
-  background: var(--color-bg-page);
+  background: var(--color-bg-surface);
 }
 
 .list-item--static {
@@ -23,7 +23,7 @@
 }
 
 .list-item--static:hover {
-  background-color: var(--color-bg-page);
+  background-color: var(--color-bg-surface);
 }
 
 .list-item-icon,

@@ -18,6 +18,23 @@ export type ProjectMedia = {
   hugContent?: boolean;
 };
 
+export type SourceCard = {
+  title: string;
+  logoSrc: string;
+  logoAlt: string;
+  items: string[];
+};
+
+export type WorkflowStep = {
+  icon: IconName;
+  title: string;
+  description: string;
+};
+
+export type ExpandableVisual =
+  | { type: "source-cards"; cards: SourceCard[] }
+  | { type: "workflow-steps"; steps: WorkflowStep[] };
+
 export type ExpandableItemContent = {
   id: string;
   title: string;
@@ -26,6 +43,7 @@ export type ExpandableItemContent = {
   imageSrc?: string;
   imageAlt?: string;
   media?: ProjectMedia[];
+  visual?: ExpandableVisual;
 };
 
 export type ProjectContentTable = {

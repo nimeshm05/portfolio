@@ -27,70 +27,6 @@ export const conversationInsights: ProjectPageData = {
     { id: "outcome", label: "Outcome", href: "#outcome" },
     { id: "reflection", label: "Reflection" },
   ],
-  // overview: {
-  //   eyebrow: "Overview",
-  //   heading: "For those skimming quickly, here’s what you need to know...",
-  //   items: [
-  //     {
-  //       id: "context",
-  //       title: "Context",
-  //       icon: "globe",
-  //       content: {
-  //         type: "paragraphs",
-  //         paragraphs: [
-  //           "Conversation Insights is an enterprise analytics platform developed by RozieAI for Air Canada's contact centre teams. The platform uses AI to analyze hundreds of thousands of customer conversations, surfacing trends and operational signals that help teams understand customer issues at scale. Although initially built to meet Air Canada's operational needs, the product was designed as a scalable solution for future enterprise customers.",
-  //         ],
-  //       },
-  //     },
-  //     {
-  //       id: "problem",
-  //       title: "Problem",
-  //       icon: "target",
-  //       content: {
-  //         type: "paragraphs",
-  //         paragraphs: [
-  //           "Before Conversation Insights, these insights were delivered through manually prepared weekly reports created by RozieAI's product team. This made it difficult for Air Canada's contact centre teams to independently investigate emerging issues, understand their operational impact, and take timely action.",
-  //         ],
-  //       },
-  //     },
-  //     {
-  //       id: "my-role",
-  //       title: "My Role",
-  //       icon: "user-star",
-  //       content: {
-  //         type: "paragraphs-with-list",
-  //         intro: ["I led the design for dashboard experience which included:"],
-  //         items: [
-  //           "Conducted user conversations with Air Canada's contact centre teams to understand workflows, pain points, and opportunities.",
-  //           "Created high-fidelity mockups and prototypes in Figma to communicate and validate design solutions.",
-  //           "Collaborated with engineering teams to ensure designs were technically feasible and aligned with product constraints.",
-  //         ],
-  //       },
-  //     },
-  //     {
-  //       id: "solution",
-  //       title: "Solution",
-  //       icon: "lightbulb",
-  //       content: {
-  //         type: "paragraphs",
-  //         paragraphs: [
-  //           "I designed a dashboard that combined AI-generated conversation insights with operational metrics, enabling teams to discover trends, investigate root causes, and move from insight to action within a single experience.",
-  //         ],
-  //       },
-  //     },
-  //     {
-  //       id: "outcome",
-  //       title: "Outcome",
-  //       icon: "trophy",
-  //       content: {
-  //         type: "paragraphs",
-  //         paragraphs: [
-  //           "Conversation Insights replaced a manual reporting workflow with a self-serve analytics platform, empowering Air Canada's contact centre teams to access insights on demand while laying the foundation for a product that could scale to future enterprise customers.",
-  //         ],
-  //       },
-  //     },
-  //   ],
-  // },
   overview: {
     eyebrow: "Overview",
     heading: "Analytics Platform for Air Canada's Contact Centre Managers",
@@ -117,7 +53,7 @@ export const conversationInsights: ProjectPageData = {
     heading:
       "Understanding the system - users, data, & how teams analyzed customer issues.",
     paragraphs: [
-      "I first aligned with RozieAI product owners, data scientists, and Air Canada stakeholders to understand how insights were generated, delivered, and used. This helped me avoid simply recreating static reports and instead design a self-serve experience that supported the underlying investigation workflow.",
+      "I first aligned with RozieAI product owners, data scientists, and Air Canada stakeholders to understand how insights were generated, delivered, and investigated. This showed me that the existing reports surfaced issues but didn't support the investigation that followed, so I focused the product on the underlying workflow rather than recreating the reports.",
     ],
     items: [
       {
@@ -125,28 +61,49 @@ export const conversationInsights: ProjectPageData = {
         title: "Who are the users?",
         icon: "users",
         content: {
-          type: "paragraphs-with-list",
-          intro: [
-            "The users were mainly Air Canada's contact centre managers who were mainly interested in the following",
-          ],
-          items: [
-            "Identify emerging issues (insights) to determine where attention was needed.",
-            "Use those insights to trace them back to specific calls to understand contact centre operations data.",
+          type: "paragraphs",
+          paragraphs: [
+            "Users are Air Canada's contact centre managers who used insights to identify emerging customer issues, then traced those issues to specific calls and operational patterns to understand where they were occurring.",
           ],
         },
       },
       {
         id: "what-type-of-data",
-        title: "What type of data was being shared?",
+        title: "What data did they use?",
         icon: "database",
         content: {
-          type: "paragraphs-with-list",
-          intro: [
-            "By surfacing with data scientists, I learned that there's two layers to the taxonomy of data that was shared with the teams:",
+          type: "paragraphs",
+          paragraphs: [
+            "By surfacing with data scientists, I found that teams combined two complementary types of data:",
           ],
-          items: [
-            "AI-derived signals such as primary topics, root causes, and sentiment helped summarize what customers were experiencing.",
-            "Operations data from the AWS Connect call system, including routing profiles, queues, and agent-level attributes, provided context on who & how those conversations were handled.",
+        },
+        visual: {
+          type: "source-cards",
+          cards: [
+            {
+              title: "RozieAI Insights",
+              logoSrc: asset("rozieai-logo.png"),
+              logoAlt: "RozieAI logo",
+              items: [
+                "Primary Topics",
+                "Customer Intents",
+                "Root Causes",
+                "Sentiment Analysis",
+                "Journey Moments",
+              ],
+            },
+            {
+              title: "Operational Metadata",
+              logoSrc: asset("aws-connect.svg"),
+              logoAlt: "Amazon Connect logo",
+              items: [
+                "Interaction Duration",
+                "Routing Profile",
+                "Agent Username",
+                "Queue Name",
+                "60+ Attributes",
+              ],
+            },
           ],
         },
       },
@@ -161,14 +118,34 @@ export const conversationInsights: ProjectPageData = {
             "The teams consistently followed this investigation workflow:",
           ],
         },
-        media: [
-          {
-            src: asset("workflow.svg"),
-            alt: "Investigation workflow: Scope, Identify Issues, Understand Causes, Trace Operational Impact",
-            showBackground: false,
-            hugContent: true,
-          },
-        ],
+        visual: {
+          type: "workflow-steps",
+          steps: [
+            {
+              icon: "clock",
+              title: "Scope",
+              description: "Define a time window to frame the analysis.",
+            },
+            {
+              icon: "search",
+              title: "Identify Issues",
+              description:
+                "Detect unusual patterns and emerging customer concerns.",
+            },
+            {
+              icon: "file-text",
+              title: "Understand Causes",
+              description:
+                "Use summaries and transcripts to understand what customers are experiencing.",
+            },
+            {
+              icon: "git-branch",
+              title: "Trace Operational Impact",
+              description:
+                "Identify where the issue is occurring using call records and operational data.",
+            },
+          ],
+        },
       },
       {
         id: "insights",
@@ -330,7 +307,7 @@ export const conversationInsights: ProjectPageData = {
         },
         media: [
           {
-            src: asset("final-solution/summary.png"),
+            src: asset("final-solution/bottom-views.png"),
             alt: "Insight cards showing distinct comparisons for each issue type",
           },
         ],
@@ -352,7 +329,7 @@ export const conversationInsights: ProjectPageData = {
             alt: "Table view showing conversation records with operational attributes",
           },
           {
-            src: asset("final-solution/bottom-views.png"),
+            src: asset("final-solution/summary.png"),
             alt: "Table view illustrating horizontal scroll friction with many columns",
           },
         ],

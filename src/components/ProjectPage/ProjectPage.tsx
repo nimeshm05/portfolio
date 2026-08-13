@@ -6,9 +6,12 @@ import { ProjectHeader } from "@/components/ProjectHeader/ProjectHeader";
 import { ProjectSection } from "@/components/ProjectSection/ProjectSection";
 import { ProjectSidebar } from "@/components/ProjectSidebar/ProjectSidebar";
 import { RichText } from "@/components/RichText/RichText";
+import { SourceCards } from "@/components/SourceCards/SourceCards";
 import { ViewportEdgeBlur } from "@/components/ViewportEdgeBlur/ViewportEdgeBlur";
+import { WorkflowSteps } from "@/components/WorkflowSteps/WorkflowSteps";
 import type {
   ExpandableItemContent,
+  ExpandableVisual,
   ProjectMedia,
   ProjectPageData,
 } from "@/data/projects/types";
@@ -60,6 +63,14 @@ function ExpandableItemMedia({
   );
 }
 
+function ExpandableItemVisual({ visual }: { visual: ExpandableVisual }) {
+  if (visual.type === "source-cards") {
+    return <SourceCards cards={visual.cards} />;
+  }
+
+  return <WorkflowSteps steps={visual.steps} />;
+}
+
 function ExpandableItemBody({
   item,
   backgroundSrc,
@@ -70,13 +81,14 @@ function ExpandableItemBody({
   return (
     <>
       {item.content ? <RichText content={item.content} /> : null}
+      {item.visual ? <ExpandableItemVisual visual={item.visual} /> : null}
       <ExpandableItemMedia item={item} backgroundSrc={backgroundSrc} />
     </>
   );
 }
 
 function hasExpandableItemBody(item: ExpandableItemContent) {
-  return Boolean(item.content || getItemMedia(item).length);
+  return Boolean(item.content || item.visual || getItemMedia(item).length);
 }
 
 export function ProjectPage({ project }: ProjectPageProps) {

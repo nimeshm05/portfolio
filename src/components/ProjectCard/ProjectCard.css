@@ -7,7 +7,7 @@
   padding-inline: 0;
   border: var(--border-card);
   border-radius: var(--radius-sm);
-  background: var(--color-bg-page);
+  background: var(--color-bg-surface);
   text-decoration: none;
   box-shadow: var(--shadow-card);
 }
