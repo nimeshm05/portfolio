@@ -14,6 +14,8 @@ export type ProjectMedia = {
   src: string;
   alt: string;
   type?: "image" | "video";
+  showBackground?: boolean;
+  hugContent?: boolean;
 };
 
 export type ExpandableItemContent = {
@@ -24,12 +26,6 @@ export type ExpandableItemContent = {
   imageSrc?: string;
   imageAlt?: string;
   media?: ProjectMedia[];
-  steps?: Array<{
-    id: string;
-    title: string;
-    description: string;
-    icon: IconName;
-  }>;
 };
 
 export type ProjectContentTable = {

@@ -161,33 +161,12 @@ export const conversationInsights: ProjectPageData = {
             "The teams consistently followed this investigation workflow:",
           ],
         },
-        steps: [
+        media: [
           {
-            id: "scope",
-            title: "Scope",
-            description: "Define a time window to frame the analysis.",
-            icon: "clock",
-          },
-          {
-            id: "identify-issues",
-            title: "Identify Issues",
-            description:
-              "Detect unusual patterns and emerging customer concerns.",
-            icon: "search",
-          },
-          {
-            id: "understand-causes",
-            title: "Understand Causes",
-            description:
-              "Use summaries and transcripts to understand what customers are experiencing.",
-            icon: "file-text",
-          },
-          {
-            id: "trace-operational-impact",
-            title: "Trace Operational Impact",
-            description:
-              "Identify where the issue is occurring using call records and operational data.",
-            icon: "git-branch",
+            src: asset("workflow.svg"),
+            alt: "Investigation workflow: Scope, Identify Issues, Understand Causes, Trace Operational Impact",
+            showBackground: false,
+            hugContent: true,
           },
         ],
       },

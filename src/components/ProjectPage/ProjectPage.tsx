@@ -1,6 +1,5 @@
 import { Callout } from "@/components/Callout/Callout";
 import { ContentTable } from "@/components/ContentTable/ContentTable";
-import { InvestigationSteps } from "@/components/conversation-insights/InvestigationSteps/InvestigationSteps";
 import { ListItem } from "@/components/ListItem/ListItem";
 import { ProjectBanner } from "@/components/ProjectBanner/ProjectBanner";
 import { ProjectHeader } from "@/components/ProjectHeader/ProjectHeader";
@@ -53,6 +52,8 @@ function ExpandableItemMedia({
           alt={entry.alt}
           type={entry.type}
           backgroundSrc={backgroundSrc}
+          showBackground={entry.showBackground}
+          hugContent={entry.hugContent}
         />
       ))}
     </>
@@ -69,19 +70,13 @@ function ExpandableItemBody({
   return (
     <>
       {item.content ? <RichText content={item.content} /> : null}
-      {item.steps?.length ? (
-        <InvestigationSteps steps={item.steps} />
-      ) : (
-        <ExpandableItemMedia item={item} backgroundSrc={backgroundSrc} />
-      )}
+      <ExpandableItemMedia item={item} backgroundSrc={backgroundSrc} />
     </>
   );
 }
 
 function hasExpandableItemBody(item: ExpandableItemContent) {
-  return Boolean(
-    item.content || item.steps?.length || getItemMedia(item).length,
-  );
+  return Boolean(item.content || getItemMedia(item).length);
 }
 
 export function ProjectPage({ project }: ProjectPageProps) {
