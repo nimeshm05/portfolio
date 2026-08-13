@@ -6,6 +6,14 @@
   min-width: 0;
 }
 
+.source-card-container {
+  display: flex;
+  flex-direction: column;
+  padding: var(--padding-card-block);
+  background-color: var(--color-bg-muted);
+  border-radius: var(--radius-xl);
+}
+
 .source-card {
   display: flex;
   flex-direction: column;
@@ -14,6 +22,9 @@
   background: var(--color-bg-muted);
   border: var(--border-card);
   border-radius: var(--radius-sm);
+  background-color: var(--color-white);
+  box-shadow: var(--shadow-card);
+  border-radius: var(--radius-lg);
 }
 
 .source-card-header {

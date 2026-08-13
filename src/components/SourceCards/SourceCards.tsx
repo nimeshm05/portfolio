@@ -9,7 +9,8 @@ export function SourceCards({ cards }: SourceCardsProps) {
   return (
     <div className="source-cards">
       {cards.map((card) => (
-        <article key={card.title} className="source-card">
+       <div key={card.title} className="source-card-container">
+        <article className="source-card">
           <header className="source-card-header">
             <span className="source-card-logo">
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -23,6 +24,7 @@ export function SourceCards({ cards }: SourceCardsProps) {
             ))}
           </ul>
         </article>
+        </div>
       ))}
     </div>
   );

@@ -6,7 +6,9 @@
   list-style: none;
   background: var(--color-bg-muted);
   border: var(--border-card);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-xl);
+  padding: var(--padding-card-block);
+  gap: var(--gap-md);
 }
 
 .workflow-step {
@@ -15,10 +17,10 @@
   gap: var(--gap-md);
   width: 100%;
   padding: var(--padding-inset-panel);
-}
-
-.workflow-step + .workflow-step {
-  border-top: var(--border-card);
+  background-color: var(--color-white);
+  box-shadow: var(--shadow-card);
+  border-radius: var(--radius-lg);
+  border: var(--border-card);
 }
 
 .workflow-step-icon {

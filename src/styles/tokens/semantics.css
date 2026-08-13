@@ -11,10 +11,10 @@
   --color-text-subtle: var(--color-neutral-500);
   --color-text-label: var(--color-neutral-400);
   --color-text-muted: var(--color-neutral-350);
-  --color-connect-prompt-follow-up: var(--color-blue-500);
-  --color-accent: var(--color-blue-500);
-  --color-footer: var(--color-blue-500);
-  --color-callout: var(--color-blue-500);
+  --color-connect-prompt-follow-up: var(--color-lime-400);
+  --color-accent: var(--color-lime-400);
+  --color-footer: var(--color-lime-400);
+  --color-callout: var(--color-lime-400);
   --color-icon-coffee: var(--color-coffee-500);
 
   /* Borders */
@@ -94,6 +94,7 @@
   --radius-sm: var(--radius-4);
   --radius-md: var(--radius-6);
   --radius-lg: var(--radius-8);
+  --radius-xl: var(--radius-12);
 
   /* Shadows */
   --shadow-card: var(--shadow-elevation);

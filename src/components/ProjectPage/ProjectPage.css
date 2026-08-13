@@ -53,13 +53,18 @@
   width: 100%;
   max-width: 100%;
   min-width: 0;
+  padding: var(--padding-card-block);
+  background-color: var(--color-bg-muted);
+  border-radius: var(--radius-xl);
 }
 
 .project-section-media img {
   width: 100%;
   max-width: 100%;
   height: auto;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  border: var(--border-card);
 }
 
 .project-section-list {
