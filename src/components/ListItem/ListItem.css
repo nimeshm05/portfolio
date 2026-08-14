@@ -46,7 +46,7 @@
 .list-item-title {
   flex: 1 0 0;
   min-width: 0;
-  color: var(--color-text-subtle);
+  color: var(--color-text-body);
   font-size: var(--text-list-size);
   font-weight: var(--text-list-weight);
   line-height: var(--text-list-line-height);
