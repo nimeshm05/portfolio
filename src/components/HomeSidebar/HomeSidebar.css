@@ -4,7 +4,7 @@
   left: var(--offset-sidebar-left);
   z-index: 2;
   display: none;
-  width: var(--sidebar-width);
+  width: var(--sidebar-width) !important;
   transform: translateY(-50%);
 }
 
