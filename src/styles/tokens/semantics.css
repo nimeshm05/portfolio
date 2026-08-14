@@ -14,7 +14,7 @@
   --color-connect-prompt-follow-up: var(--color-lime-400);
   --color-accent: var(--color-lime-400);
   --color-footer: var(--color-lime-400);
-  --color-callout: var(--color-lime-400);
+  --color-callout: var(--color-neutral-200);
   --color-icon-coffee: var(--color-coffee-500);
   --color-workflow-accent: var(--color-green-500);
   --color-workflow-chip-bg: var(--color-agent-chip-bg);
@@ -43,6 +43,7 @@
   --gap-section: var(--space-40);
   --padding-page: var(--space-120);
   --inset-x: var(--space-12);
+  --padding-callout-quote: var(--space-20);
   --padding-page-inline: var(--inset-x);
   --padding-card-block: var(--space-12);
   --padding-card-inline: var(--space-12);
@@ -83,7 +84,7 @@
 
   /* Shared layout */
   --font-family-sans: var(--font-inter), "Segoe UI", sans-serif;
-  --font-family-serif: var(--font-instrument-serif), Georgia, serif;
+  --font-family-serif: serif;
   --font-family-hand: var(--font-caveat), cursive;
   --letter-spacing-body: var(--letter-spacing-tight);
   --letter-spacing-display: var(--letter-spacing-tight);
@@ -131,10 +132,10 @@
   --text-heading-weight: var(--font-weight-bold);
 
   /* Typography: callout (reuses heading size) */
-  --text-callout-family: var(--font-inter);
-  --text-callout-size: var(--text-heading-size);
+  --text-callout-family: var(--font-family-serif);
+  --text-callout-size: var(--font-size-26);
   --text-callout-line-height: var(--line-height-body);
-  --text-callout-weight: var(--font-weight-semibold);
+  --text-callout-weight: var(--font-weight-medium);
 
   /* Typography: label (section label / eyebrow) */
   --text-label-size: var(--font-size-16);

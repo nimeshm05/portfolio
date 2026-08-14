@@ -1,25 +1,12 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
-import { Caveat, Delius, Instrument_Serif, Inter } from "next/font/google";
+import { Caveat, Inter } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   axes: ["opsz"],
-});
-
-const instrumentSerif = Instrument_Serif({
-  variable: "--font-instrument-serif",
-  subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
-});
-
-const delius = Delius({
-  variable: "--font-delius",
-  subsets: ["latin"],
-  weight: "400",
 });
 
 const caveat = Caveat({
@@ -39,7 +26,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${inter.variable} ${instrumentSerif.variable} ${delius.variable} ${caveat.variable}`}
+      className={`${inter.variable} ${caveat.variable}`}
     >
       <body>
         {children}

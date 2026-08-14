@@ -3,17 +3,24 @@
   align-items: start;
   justify-content: start;
   width: 100%;
-  padding: 0 var(--inset-x);
+  padding: 0 var(--padding-callout-quote);
   border-left: var(--callout-border-width) solid var(--color-callout);
 }
 
 .callout-text {
+  position: relative;
   flex: 1 0 0;
   min-width: 0;
-  color: var(--color-callout);
   font-family: var(--text-callout-family);
   font-size: var(--text-callout-size);
   font-weight: var(--text-callout-weight);
   line-height: var(--text-callout-line-height);
   text-align: start;
+  font-style: italic;
+}
+
+.callout-quote {
+  position: absolute;
+  font-family: Georgia;
+  right: 100%;
 }

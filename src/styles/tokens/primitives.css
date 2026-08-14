@@ -53,6 +53,7 @@
   --font-size-18: 1.125rem;
   --font-size-22: 1.375rem;
   --font-size-24: 1.5rem;
+  --font-size-26: 1.625rem;
   --font-size-32: 2rem;
   --font-size-footer: 2.5rem;
   --font-size-footer-sm: 2rem;
@@ -61,7 +62,7 @@
   --line-height-15: 0.9375rem;
   --line-height-16: 1rem;
   --line-height-24: 1.5rem;
-  --line-height-28: 1.75rem;
+  --line-height-28: 1.625rem;
   --line-height-32: 2rem;
   --line-height-tight: 1.4;
   --line-height-body: 1.62;
