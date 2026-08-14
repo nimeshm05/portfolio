@@ -4,7 +4,7 @@
   justify-content: start;
   width: 100%;
   padding: 0 var(--padding-callout-quote);
-  border-left: var(--callout-border-width) solid var(--color-callout);
+  border-left: var(--callout-border-width) solid var(--color-callout-border);
 }
 
 .callout--quoted {
@@ -24,6 +24,7 @@
   line-height: var(--text-callout-line-height);
   text-align: start;
   font-style: italic;
+  color: var(--color-callout-text);
 }
 
 .callout--quoted .callout-text {

@@ -14,7 +14,8 @@
   --color-connect-prompt-follow-up: var(--color-lime-400);
   --color-accent: var(--color-lime-400);
   --color-footer: var(--color-lime-400);
-  --color-callout: var(--color-neutral-200);
+  --color-callout-text: var(--color-black);
+  --color-callout-border: var(--color-neutral-200);
   --color-icon-coffee: var(--color-coffee-500);
   --color-workflow-accent: var(--color-green-500);
   --color-workflow-chip-bg: var(--color-agent-chip-bg);
