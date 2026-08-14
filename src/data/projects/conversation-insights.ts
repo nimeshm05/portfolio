@@ -25,7 +25,7 @@ export const conversationInsights: ProjectPageData = {
     { id: "learnings", label: "Learnings", href: "#learnings" },
     { id: "solutions", label: "Solutions", href: "#solutions" },
     { id: "outcome", label: "Outcome", href: "#outcome" },
-    { id: "reflection", label: "Reflection" },
+    { id: "reflection", label: "Reflection", href: "#reflection" },
   ],
   overview: {
     eyebrow: "Overview",
@@ -384,6 +384,46 @@ export const conversationInsights: ProjectPageData = {
           type: "paragraphs",
           paragraphs: [
             "Sustained internal use and external interest supported a renewed client contract and generated new feature requests (under NDA), reinforcing the platform's long-term value beyond the initial engagement.",
+          ],
+        },
+      },
+    ],
+  },
+  reflection: {
+    eyebrow: "Reflection",
+    heading: "How this project changed the way I design",
+    paragraphs: [],
+    items: [
+      {
+        id: "mindset-utility-over-polish",
+        title: "Mindset: Utility over polish",
+        icon: "brain",
+        content: {
+          type: "paragraphs",
+          paragraphs: [
+            'Designing for power users changed how I think about “better” design. Conversation Insights served only 20–25 users, but they were power users who cared less about delight and more about having the right information and affordances to do their jobs. Throughout the project, I often saw opportunities to make the interface dramatically more polished, but I learned that improving the interface isn\'t automatically improving the product. In this context, the best design was often the one that gave users exactly what they needed, without adding anything they didn\'t.',
+          ],
+        },
+      },
+      {
+        id: "tradeoffs-designing-with-speed",
+        title: "Tradeoffs: Designing with speed",
+        icon: "gauge",
+        content: {
+          type: "paragraphs",
+          paragraphs: [
+            "I learned to design with business momentum, not against it. Conversation Insights had to move quickly, and development had already started before I could fully shape the experience. That was uncomfortable at first, but I learned that a rigid design process isn't always the right response to a fast-moving business. My role was to keep the product moving while creating enough space to observe, reason, and improve the experience as we went. Speed didn't mean abandoning design; it meant being more deliberate about where design effort mattered most.",
+          ],
+        },
+      },
+      {
+        id: "collaboration-engineering-in-the-loop",
+        title: "Collaboration: Engineering as part of design loop",
+        icon: "handshake",
+        content: {
+          type: "paragraphs",
+          paragraphs: [
+            "I learned to bring engineering into the design loop early. The insight cards were a custom interaction, and I knew they would require engineering work beyond the existing component system. By keeping engineering involved early and sharing the direction before the design was finalized, I could surface technical constraints sooner and give the team time to plan for what needed to be built. The result was less handoff and more shared ownership of the experience.",
           ],
         },
       },

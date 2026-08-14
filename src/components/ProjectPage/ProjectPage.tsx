@@ -437,6 +437,34 @@ export function ProjectPage({ project }: ProjectPageProps) {
             </div>
           </ProjectSection>
         ) : null}
+
+        {project.reflection ? (
+          <ProjectSection
+            id="reflection"
+            eyebrow={project.reflection.eyebrow}
+            heading={project.reflection.heading}
+          >
+            {project.reflection.paragraphs.length ? (
+              <div className="project-section-body">
+                {project.reflection.paragraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+            ) : null}
+            <div className="project-section-list">
+              {project.reflection.items.map((item) => (
+                <ListItem key={item.id} title={item.title} icon={item.icon} defaultOpen>
+                  {hasExpandableItemBody(item) ? (
+                    <ExpandableItemBody
+                      item={item}
+                      backgroundSrc={project.bannerBackgroundSrc}
+                    />
+                  ) : null}
+                </ListItem>
+              ))}
+            </div>
+          </ProjectSection>
+        ) : null}
       </main>
     </div>
   );

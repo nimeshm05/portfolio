@@ -1,6 +1,7 @@
 import type { LucideIcon } from "lucide-react";
 import {
   Bot,
+  Brain,
   Bug,
   ChartPie,
   ChevronLeft,
@@ -14,8 +15,10 @@ import {
   Database,
   FileText,
   Footprints,
+  Gauge,
   GitBranch,
   Globe,
+  Handshake,
   LayoutGrid,
   Lightbulb,
   List,
@@ -77,7 +80,10 @@ export type IconName =
   | "clock"
   | "search"
   | "file-text"
-  | "git-branch";
+  | "git-branch"
+  | "brain"
+  | "gauge"
+  | "handshake";
 
 const icons: Record<IconName, LucideIcon> = {
   "message-circle-more": MessageCircleMore,
@@ -117,6 +123,9 @@ const icons: Record<IconName, LucideIcon> = {
   search: Search,
   "file-text": FileText,
   "git-branch": GitBranch,
+  brain: Brain,
+  gauge: Gauge,
+  handshake: Handshake,
 };
 
 type IconProps = {
