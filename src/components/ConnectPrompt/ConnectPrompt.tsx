@@ -2,11 +2,13 @@
 
 import { Fragment, useEffect, useRef, useState, type ReactNode } from "react";
 import { AnimatePresence, motion, type Transition } from "motion/react";
+import { ConnectExcitement, type ExcitementExitMode } from "@/components/ConnectExcitement/ConnectExcitement";
 import { Icon } from "@/components/Icon/Icon";
 import { MorphingConnectIcon } from "@/components/MorphingConnectIcon/MorphingConnectIcon";
 import { connect, type HomeTab } from "@/data/home";
 import {
   PHONE_WAVE_EMOJI,
+  excitementSmokeTransition,
   phoneWaveRotate,
   phoneWaveTransition,
   phoneWordEnter,
@@ -34,12 +36,28 @@ function PromptText({ children }: { children: ReactNode }) {
 function PromptAction({
   children,
   onClick,
+  onMouseEnter,
+  onMouseLeave,
+  onFocus,
+  onBlur,
 }: {
   children: ReactNode;
   onClick: () => void;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
+  onFocus?: () => void;
+  onBlur?: () => void;
 }) {
   return (
-    <button type="button" className="connect-prompt-action" onClick={onClick}>
+    <button
+      type="button"
+      className="connect-prompt-action"
+      onClick={onClick}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      onFocus={onFocus}
+      onBlur={onBlur}
+    >
       {children}
     </button>
   );
@@ -235,13 +253,33 @@ function PhoneLabelSlot({ phoneLabel }: { phoneLabel: PhoneLabel }) {
 export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
   const [step, setStep] = useState<ConnectStep>("invite");
   const [phoneLabel, setPhoneLabel] = useState<PhoneLabel>("contact");
+  const [yesHovered, setYesHovered] = useState(false);
+  const [burstExitMode, setBurstExitMode] =
+    useState<ExcitementExitMode>("reverse");
   const isInvite = step === "invite";
   const previousTabRef = useRef(activeTab);
   const rootRef = useRef<HTMLDivElement>(null);
+  const smokingRef = useRef(false);
+  const smokeTimeoutRef = useRef(0);
 
   const reset = () => {
+    smokingRef.current = false;
+    setYesHovered(false);
+    setBurstExitMode("reverse");
     setStep("invite");
   };
+
+  useEffect(() => {
+    return () => {
+      window.clearTimeout(smokeTimeoutRef.current);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (burstExitMode === "smoke" && yesHovered) {
+      setYesHovered(false);
+    }
+  }, [burstExitMode, yesHovered]);
 
   useEffect(() => {
     if (isInvite) {
@@ -300,13 +338,72 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
     case "invite":
       content = (
         <>
-          <PromptText>Wanna Connect?</PromptText>
+          <span
+            className={`connect-prompt-invite-label${yesHovered || burstExitMode === "smoke" ? " is-excited" : ""}`}
+          >
+            <AnimatePresence>
+              {yesHovered ? (
+                <ConnectExcitement
+                  key="excitement"
+                  exitMode={burstExitMode}
+                />
+              ) : null}
+            </AnimatePresence>
+            <PromptText>Wanna Connect?</PromptText>
+          </span>
           <Options
             items={[
               {
                 key: "yes",
                 node: (
-                  <PromptAction onClick={() => setStep("prefer")}>
+                  <PromptAction
+                    onMouseEnter={() => {
+                      if (
+                        smokingRef.current ||
+                        !window.matchMedia("(hover: hover)").matches
+                      ) {
+                        return;
+                      }
+                      setBurstExitMode("reverse");
+                      setYesHovered(true);
+                    }}
+                    onMouseLeave={() => {
+                      if (smokingRef.current) {
+                        return;
+                      }
+                      setBurstExitMode("reverse");
+                      setYesHovered(false);
+                    }}
+                    onFocus={() => {
+                      if (smokingRef.current) {
+                        return;
+                      }
+                      setBurstExitMode("reverse");
+                      setYesHovered(true);
+                    }}
+                    onBlur={() => {
+                      if (smokingRef.current) {
+                        return;
+                      }
+                      setBurstExitMode("reverse");
+                      setYesHovered(false);
+                    }}
+                    onClick={() => {
+                      if (yesHovered) {
+                        smokingRef.current = true;
+                        setBurstExitMode("smoke");
+                        window.clearTimeout(smokeTimeoutRef.current);
+                        smokeTimeoutRef.current = window.setTimeout(() => {
+                          smokingRef.current = false;
+                          setBurstExitMode("reverse");
+                          setStep("prefer");
+                        }, excitementSmokeTransition.duration * 1000);
+                        return;
+                      }
+
+                      setStep("prefer");
+                    }}
+                  >
                     Yes
                   </PromptAction>
                 ),

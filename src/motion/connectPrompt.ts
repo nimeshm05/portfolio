@@ -32,3 +32,28 @@ export const phoneWaveTransition = {
   times: [0, 0.15, 0.3, 0.5, 0.65, 0.8, 1],
   repeat: 1,
 };
+
+export const excitementLegStaggerSeconds = 0.03;
+
+export const excitementDrawEase = [0.22, 1, 0.36, 1] as const;
+
+export const excitementLegTransition = {
+  duration: 0.2,
+  ease: excitementDrawEase,
+};
+
+export const excitementYayDrawTransition = {
+  duration: 0.28,
+  ease: excitementDrawEase,
+};
+
+export const excitementYayFillTransition = {
+  duration: 0.12,
+  delay: 0.12,
+  ease: "easeOut" as const,
+};
+
+export const excitementSmokeTransition = {
+  duration: 0.16,
+  ease: "easeInOut" as const,
+};

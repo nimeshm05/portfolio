@@ -102,6 +102,9 @@
   --size-architecture-workflow-height: 18.5625rem;
   --size-sidebar-trigger: 12.5rem;
   --size-sidebar-enter-offset: 2.5rem;
+  --size-connect-excitement-width: 5.625rem;
+  --size-connect-excitement-height: 3.75rem;
+  --scale-110: 1.1;
 
   /* Blur */
   --blur-1: 0.0625rem;

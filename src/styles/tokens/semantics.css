@@ -41,7 +41,7 @@
   --gap-3xl: var(--space-40);
   --gap-intro: var(--space-120);
   --gap-page: var(--space-120);
-  --gap-section: var(--space-40);
+  --gap-section: var(--space-60);
   --padding-page: var(--space-120);
   --inset-x: var(--space-12);
   --padding-callout-quote: var(--space-20);
@@ -80,6 +80,9 @@
   --card-banner-height: var(--size-card-banner-height);
   --viewport-edge-blur-size: var(--size-viewport-edge-blur);
   --architecture-workflow-height: var(--size-architecture-workflow-height);
+  --connect-excitement-width: var(--size-connect-excitement-width);
+  --connect-excitement-height: var(--size-connect-excitement-height);
+  --connect-excitement-word-scale: var(--scale-110);
 
   /* Blur roles */
   --blur-layer-1: var(--blur-1);

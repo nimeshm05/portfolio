@@ -15,10 +15,22 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  overflow: visible;
+}
+
+.connect-prompt-invite-label {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.connect-prompt-invite-label.is-excited .connect-prompt-text {
+  color: var(--color-accent);
 }
 
 .connect-prompt-text {
   color: var(--color-text-label);
+  transition: color var(--transition-fast);
 }
 
 .connect-prompt--follow-up .connect-prompt-text,
