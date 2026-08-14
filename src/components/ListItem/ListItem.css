@@ -72,7 +72,7 @@
 .list-item-panel {
   display: flex;
   flex-direction: column;
-  gap: var(--gap-section);
+  gap: var(--gap-list-item);
   width: 100%;
   min-width: 0;
   max-width: 100%;

@@ -59,6 +59,6 @@
   color: var(--color-text-subtle);
   font-size: var(--text-subtitle-display-size);
   font-weight: var(--text-subtitle-display-weight);
-  line-height: var(--text-display-line-height);
+  line-height: var(--line-height-body);
   letter-spacing: var(--letter-spacing-display);
 }

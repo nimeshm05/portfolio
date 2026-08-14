@@ -9,6 +9,7 @@
 
 .rich-text p + p {
   margin-top: var(--text-body-paragraph-gap);
+  margin-bottom: var(--text-body-paragraph-gap);
 }
 
 .rich-text ol {

@@ -289,6 +289,7 @@ export function ProjectPage({ project }: ProjectPageProps) {
                   key={item.id}
                   title={item.title}
                   icon={item.icon}
+                  defaultOpen
                 >
                   {hasExpandableItemBody(item) ? (
                     <ExpandableItemBody
@@ -424,7 +425,7 @@ export function ProjectPage({ project }: ProjectPageProps) {
             </div>
             <div className="project-section-list">
               {project.outcome.items.map((item) => (
-                <ListItem key={item.id} title={item.title} icon={item.icon}>
+                <ListItem key={item.id} title={item.title} icon={item.icon} defaultOpen>
                   {hasExpandableItemBody(item) ? (
                     <ExpandableItemBody
                       item={item}
