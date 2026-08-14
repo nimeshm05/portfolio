@@ -16,6 +16,9 @@
   --color-footer: var(--color-lime-400);
   --color-callout: var(--color-lime-400);
   --color-icon-coffee: var(--color-coffee-500);
+  --color-workflow-accent: var(--color-green-500);
+  --color-workflow-chip-bg: var(--color-agent-chip-bg);
+  --color-workflow-chip-text: var(--color-agent-chip-text);
 
   /* Borders */
   --color-border: var(--color-neutral-200);
@@ -66,6 +69,7 @@
   --banner-height: var(--size-banner-height);
   --card-banner-height: var(--size-card-banner-height);
   --viewport-edge-blur-size: var(--size-viewport-edge-blur);
+  --architecture-workflow-height: var(--size-architecture-workflow-height);
 
   /* Blur roles */
   --blur-layer-1: var(--blur-1);

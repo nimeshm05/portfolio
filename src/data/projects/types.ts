@@ -31,6 +31,18 @@ export type WorkflowStep = {
   description: string;
 };
 
+export type ArchitectureWorkflowStep = {
+  id: string;
+  label: string;
+  icon: IconName;
+  heading: string;
+  tools?: string[];
+};
+
+export type ArchitectureWorkflowData = {
+  steps: ArchitectureWorkflowStep[];
+};
+
 export type ExpandableVisual =
   | { type: "source-cards"; cards: SourceCard[] }
   | { type: "workflow-steps"; steps: WorkflowStep[] };
@@ -57,6 +69,7 @@ export type ProjectSectionWithMedia = {
   paragraphs: string[];
   imageSrc?: string;
   imageAlt?: string;
+  workflow?: ArchitectureWorkflowData;
 };
 
 export type ProjectCardData = {

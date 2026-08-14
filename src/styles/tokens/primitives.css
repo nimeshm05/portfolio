@@ -17,6 +17,9 @@
   --color-pink-600: oklch(0.6567 0.1473 8.22);
   --color-lime-400: oklch(0.77 0.2 131);
   --color-coffee-500: oklch(0.5615 0.021 60.52);
+  --color-green-500: #34c759;
+  --color-agent-chip-bg: #19321f;
+  --color-agent-chip-text: #5eff00;
 
   /* Spacing */
   --space-2: 0.125rem;
@@ -95,6 +98,7 @@
   --size-banner-height: 40rem;
   --size-card-banner-height: 26rem;
   --size-viewport-edge-blur: 6rem;
+  --size-architecture-workflow-height: 18.5625rem;
 
   /* Blur */
   --blur-1: 0.0625rem;

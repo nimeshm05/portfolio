@@ -1,3 +1,4 @@
+import { ArchitectureWorkflow } from "@/components/ArchitectureWorkflow/ArchitectureWorkflow";
 import { Callout } from "@/components/Callout/Callout";
 import { ContentTable } from "@/components/ContentTable/ContentTable";
 import { ListItem } from "@/components/ListItem/ListItem";
@@ -137,7 +138,11 @@ export function ProjectPage({ project }: ProjectPageProps) {
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
-            {project.product.imageSrc ? (
+            {project.product.workflow ? (
+              <div className="project-section-media">
+                <ArchitectureWorkflow steps={project.product.workflow.steps} />
+              </div>
+            ) : project.product.imageSrc ? (
               <div className="project-section-media">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
