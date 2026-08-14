@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type RefObject } from "react";
+import { useEffect, useState } from "react";
 
 const DEFAULT_THRESHOLD_PX = 200;
 
@@ -9,8 +9,18 @@ type UseHomeSidebarVisibilityOptions = {
   enabled?: boolean;
 };
 
+function isContentInSidebarVicinity(
+  target: HTMLElement,
+  thresholdPx: number,
+): boolean {
+  const rect = target.getBoundingClientRect();
+  const inViewport = rect.bottom > 0 && rect.top < window.innerHeight;
+
+  return inViewport && rect.top <= thresholdPx;
+}
+
 export function useHomeSidebarVisibility(
-  targetRef: RefObject<HTMLElement | null>,
+  target: HTMLElement | null,
   {
     thresholdPx = DEFAULT_THRESHOLD_PX,
     enabled = true,
@@ -19,21 +29,15 @@ export function useHomeSidebarVisibility(
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    if (!enabled) {
+    if (!enabled || !target?.isConnected) {
       setVisible(false);
-      return;
-    }
-
-    const target = targetRef.current;
-
-    if (!target) {
       return;
     }
 
     let frameId = 0;
 
     const syncVisibility = () => {
-      const nextVisible = target.getBoundingClientRect().top <= thresholdPx;
+      const nextVisible = isContentInSidebarVicinity(target, thresholdPx);
 
       setVisible((current) => (current === nextVisible ? current : nextVisible));
     };
@@ -49,6 +53,9 @@ export function useHomeSidebarVisibility(
       });
     };
 
+    const observer = new IntersectionObserver(scheduleSync);
+
+    observer.observe(target);
     syncVisibility();
 
     window.addEventListener("scroll", scheduleSync, { passive: true });
@@ -58,10 +65,11 @@ export function useHomeSidebarVisibility(
       if (frameId !== 0) {
         window.cancelAnimationFrame(frameId);
       }
+      observer.disconnect();
       window.removeEventListener("scroll", scheduleSync);
       window.removeEventListener("resize", scheduleSync);
     };
-  }, [enabled, targetRef, thresholdPx]);
+  }, [enabled, target, thresholdPx]);
 
   return visible;
 }

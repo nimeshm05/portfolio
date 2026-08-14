@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { ConnectPrompt } from "@/components/ConnectPrompt/ConnectPrompt";
 import { ContentSection } from "@/components/ContentSection/ContentSection";
@@ -30,7 +30,7 @@ import {
 import "./HomePage.css";
 
 export function HomePage() {
-  const contentRef = useRef<HTMLDivElement>(null);
+  const [contentEl, setContentEl] = useState<HTMLDivElement | null>(null);
   const [activeTab, setActiveTab] = useState<HomeTab>("work");
   const [workViewMode, setWorkViewMode] = useState<WorkViewMode>("card");
   const sections = activeTab === "work" ? workSections : aboutSections;
@@ -38,7 +38,7 @@ export function HomePage() {
     activeTab === "about" ? "down" : "right";
   const navPadded = activeTab === "about" || workViewMode === "list";
   const homeSidebarEnabled = activeTab === "work" && workViewMode === "card";
-  const homeSidebarVisible = useHomeSidebarVisibility(contentRef, {
+  const homeSidebarVisible = useHomeSidebarVisibility(contentEl, {
     enabled: homeSidebarEnabled,
   });
 
@@ -91,7 +91,7 @@ export function HomePage() {
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeTab}
-                ref={contentRef}
+                ref={setContentEl}
                 className="home-content"
                 role="tabpanel"
                 initial={false}
