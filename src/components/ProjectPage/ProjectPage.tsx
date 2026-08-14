@@ -79,9 +79,24 @@ function ExpandableItemBody({
   item: ExpandableItemContent;
   backgroundSrc?: string;
 }) {
+  const hasCopy = Boolean(item.content || item.quotes?.length);
+
   return (
     <>
-      {item.content ? <RichText content={item.content} /> : null}
+      {hasCopy ? (
+        <div className="expandable-item-copy">
+          {item.content ? <RichText content={item.content} /> : null}
+          {item.quotes?.map((quote) => (
+            <Callout
+              key={quote.text}
+              attribution={quote.attribution}
+              source={quote.source}
+            >
+              {quote.text}
+            </Callout>
+          ))}
+        </div>
+      ) : null}
       {item.visual ? <ExpandableItemVisual visual={item.visual} /> : null}
       <ExpandableItemMedia item={item} backgroundSrc={backgroundSrc} />
     </>
@@ -89,7 +104,12 @@ function ExpandableItemBody({
 }
 
 function hasExpandableItemBody(item: ExpandableItemContent) {
-  return Boolean(item.content || item.visual || getItemMedia(item).length);
+  return Boolean(
+    item.content ||
+      item.quotes?.length ||
+      item.visual ||
+      getItemMedia(item).length,
+  );
 }
 
 export function ProjectPage({ project }: ProjectPageProps) {

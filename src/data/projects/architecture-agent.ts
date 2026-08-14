@@ -157,12 +157,17 @@ export const architectureAgent: ProjectPageData = {
               "5 of 5 participants assumed accepting the ADR completed the task.",
               "Task completion time ranged from 3:18 to 12:08, depending on how quickly participants discovered the unsynchronized Context Files.",
             ],
-            outro: [
-              "Quotes:",
-              '"I feel like I\'ve completed the test." — Participant 3',
-              '"I would expect some sort of either a notification or some sort of progress indicator... to indicate the state of it." — Participant 2',
-            ],
           },
+          quotes: [
+            {
+              text: "I feel like I've completed the test.",
+              attribution: "Participant 3",
+            },
+            {
+              text: "I would expect some sort of either a notification or some sort of progress indicator... to indicate the state of it.",
+              attribution: "Participant 2",
+            },
+          ],
         },
         {
           id: "finding-1-design-recommendation",
@@ -213,12 +218,17 @@ export const architectureAgent: ProjectPageData = {
               "2 of 5 participants explicitly identified terminology as an overall usability issue during the post-test debrief.",
               "Ease ratings ranged from 2–5/5. The participants giving the lowest rating (2–3/5) specifically attributed it to terminology.",
             ],
-            outro: [
-              "Quotes:",
-              `"Took a bit to make the link between 'Decision' and recommendations." — P4`,
-              '"Like, tools that, as you first open up a new page, they can walk you through how to use the experience." — P2',
-            ],
           },
+          quotes: [
+            {
+              text: "Took a bit to make the link between 'Decision' and recommendations.",
+              attribution: "Participant 4",
+            },
+            {
+              text: "Like, tools that, as you first open up a new page, they can walk you through how to use the experience.",
+              attribution: "Participant 2",
+            },
+          ],
         },
         {
           id: "finding-2-design-recommendation",

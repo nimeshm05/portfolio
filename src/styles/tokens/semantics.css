@@ -44,6 +44,12 @@
   --padding-page: var(--space-120);
   --inset-x: var(--space-12);
   --padding-callout-quote: var(--space-20);
+  --gap-callout-cite: var(--text-body-paragraph-gap);
+  --gap-callout-copy: var(--space-24);
+  --callout-attribution-rule-width: var(--space-24);
+  --color-callout-attribution: var(--color-text-primary);
+  --color-callout-attribution-source: var(--color-text-subtle);
+  --color-callout-attribution-rule: var(--color-border);
   --padding-page-inline: var(--inset-x);
   --padding-card-block: var(--space-12);
   --padding-card-inline: var(--space-12);
@@ -136,6 +142,9 @@
   --text-callout-size: var(--font-size-26);
   --text-callout-line-height: var(--line-height-body);
   --text-callout-weight: var(--font-weight-medium);
+  --text-callout-attribution-family: var(--font-family-sans);
+  --text-callout-attribution-size: var(--text-body-size);
+  --text-callout-attribution-weight: var(--font-weight-semibold);
 
   /* Typography: label (section label / eyebrow) */
   --text-label-size: var(--font-size-16);
@@ -153,6 +162,7 @@
   --text-body-line-height-fixed: var(--line-height-24);
   --text-body-weight: var(--font-weight-regular);
   --text-body-paragraph-gap: 1lh;
+  --text-list-item-gap: 0.5lh;
 
   /* Typography: nav */
   --text-nav-size: var(--font-size-15);

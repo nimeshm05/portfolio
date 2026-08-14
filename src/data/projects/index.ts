@@ -28,4 +28,5 @@ export type {
   ProjectPageData,
   ExpandableItemContent,
   RichTextBlock,
+  CalloutQuote,
 } from "./types";

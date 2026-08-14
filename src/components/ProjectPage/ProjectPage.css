@@ -73,3 +73,11 @@
   align-items: flex-start;
   width: 100%;
 }
+
+.expandable-item-copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-callout-copy);
+  width: 100%;
+  min-width: 0;
+}

@@ -7,6 +7,13 @@
   border-left: var(--callout-border-width) solid var(--color-callout);
 }
 
+.callout--quoted {
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--gap-callout-cite);
+  margin: 0;
+}
+
 .callout-text {
   position: relative;
   flex: 1 0 0;
@@ -19,8 +26,39 @@
   font-style: italic;
 }
 
+.callout--quoted .callout-text {
+  flex: none;
+}
+
 .callout-quote {
   position: absolute;
   font-family: Georgia;
   right: 100%;
+}
+
+.callout-attribution {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--gap-sm);
+  font-family: var(--text-callout-attribution-family);
+  font-size: var(--text-callout-attribution-size);
+}
+
+.callout-attribution-rule {
+  flex-shrink: 0;
+  width: var(--callout-attribution-rule-width);
+  height: var(--border-width);
+  background: var(--color-callout-attribution-rule);
+}
+
+.callout-attribution-name {
+  color: var(--color-callout-attribution);
+  font-style: normal;
+  font-weight: var(--text-callout-attribution-weight);
+}
+
+.callout-attribution-source {
+  color: var(--color-callout-attribution-source);
+  font-weight: var(--text-body-weight);
 }

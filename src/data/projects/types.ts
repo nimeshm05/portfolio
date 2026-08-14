@@ -47,11 +47,18 @@ export type ExpandableVisual =
   | { type: "source-cards"; cards: SourceCard[] }
   | { type: "workflow-steps"; steps: WorkflowStep[] };
 
+export type CalloutQuote = {
+  text: string;
+  attribution: string;
+  source?: string;
+};
+
 export type ExpandableItemContent = {
   id: string;
   title: string;
   icon?: IconName;
   content?: RichTextBlock;
+  quotes?: CalloutQuote[];
   imageSrc?: string;
   imageAlt?: string;
   media?: ProjectMedia[];
