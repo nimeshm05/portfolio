@@ -99,6 +99,8 @@
   --size-card-banner-height: 26rem;
   --size-viewport-edge-blur: 6rem;
   --size-architecture-workflow-height: 18.5625rem;
+  --size-sidebar-trigger: 12.5rem;
+  --size-sidebar-enter-offset: 2.5rem;
 
   /* Blur */
   --blur-1: 0.0625rem;

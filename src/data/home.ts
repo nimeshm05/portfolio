@@ -23,9 +23,9 @@ export const profile = {
   avatarSrc: "/assets/profile-4.jpg",
   avatarAlt: "Portrait of Nimesh Mohanakrishnan",
   bioByTab: {
-    work: "Product designer in Seattle, pursuing my master’s in HCDE at the University of Washington. Previously, I worked on internal tools at RozieAI.",
+    work: "Product designer in Seattle, pursuing my master’s in HCDE at the University of Washington. I'm good at interaction design and prototyping end-to-end product experiences. Previously, I designed AI experiences for legal professionals at Knool and before that I worked on internal tools at RozieAI.",
     about:
-      "Product designer in Seattle, pursuing my master’s in HCDE at the University of Washington. Previously, I worked on internal tools at RozieAI.",
+      "Product designer in Seattle, pursuing my master’s in HCDE at the University of Washington. I'm good at interaction design and prototyping end-to-end product experiences.  Previously, I designed AI experiences for legal professionals at Knool and before that I worked on internal tools at RozieAI.",
   },
   socialLinks: [
     {
@@ -177,11 +177,6 @@ export const aboutSections: ContentSectionData[] = [
     id: "my-journey",
     label: "My Journey",
     items: [
-      {
-        id: "as-a-child",
-        title: "As a child...",
-        href: "#",
-      },
       {
         id: "where-it-started",
         title: "Where it all started...",

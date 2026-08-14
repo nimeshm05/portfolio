@@ -1,14 +1,15 @@
-.project-sidebar {
+.home-sidebar {
   position: fixed;
-  top: var(--offset-sidebar-top);
+  top: 50%;
   left: var(--offset-sidebar-left);
   z-index: 2;
   display: none;
   width: var(--sidebar-width);
+  transform: translateY(-50%);
 }
 
 @media (min-width: 68.75rem) {
-  .project-sidebar {
-    display: block;
+  .home-sidebar {
+    display: flex;
   }
 }

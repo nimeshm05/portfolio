@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { ConnectPrompt } from "@/components/ConnectPrompt/ConnectPrompt";
 import { ContentSection } from "@/components/ContentSection/ContentSection";
 import { Header } from "@/components/Header/Header";
 import { HomeFooter } from "@/components/HomeFooter/HomeFooter";
+import { HomeSidebar } from "@/components/HomeSidebar/HomeSidebar";
 import type { ChevronOrientation } from "@/components/ListItem/ListItem";
 import { SegmentedControl } from "@/components/SegmentedControl/SegmentedControl";
 import {
@@ -20,6 +21,7 @@ import {
   workSections,
   type HomeTab,
 } from "@/data/home";
+import { useHomeSidebarVisibility } from "@/motion/homeSidebarVisibility";
 import {
   TabContentMotionProvider,
   tabContentBlurVariants,
@@ -28,16 +30,25 @@ import {
 import "./HomePage.css";
 
 export function HomePage() {
+  const contentRef = useRef<HTMLDivElement>(null);
   const [activeTab, setActiveTab] = useState<HomeTab>("work");
   const [workViewMode, setWorkViewMode] = useState<WorkViewMode>("card");
   const sections = activeTab === "work" ? workSections : aboutSections;
   const chevronOrientation: ChevronOrientation =
     activeTab === "about" ? "down" : "right";
   const navPadded = activeTab === "about" || workViewMode === "list";
+  const homeSidebarEnabled = activeTab === "work" && workViewMode === "card";
+  const homeSidebarVisible = useHomeSidebarVisibility(contentRef, {
+    enabled: homeSidebarEnabled,
+  });
 
   return (
     <div className="home-page">
       <ViewportEdgeBlur />
+      <HomeSidebar
+        visible={homeSidebarEnabled && homeSidebarVisible}
+        sections={workSections}
+      />
       <main className="home-body">
         <Header
           name={profile.name}
@@ -80,6 +91,7 @@ export function HomePage() {
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeTab}
+                ref={contentRef}
                 className="home-content"
                 role="tabpanel"
                 initial={false}

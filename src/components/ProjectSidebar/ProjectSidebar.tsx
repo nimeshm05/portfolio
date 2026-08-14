@@ -1,8 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import Link from "next/link";
-import { Icon } from "@/components/Icon/Icon";
+import { SidebarNav } from "@/components/SidebarNav/SidebarNav";
 import type { ProjectNavItem } from "@/data/projects/types";
 import { useProjectScrollSpy } from "@/motion/projectScrollSpy";
 import "./ProjectSidebar.css";
@@ -11,10 +10,6 @@ type ProjectSidebarProps = {
   items: ProjectNavItem[];
   scrollSpyEnabled?: boolean;
 };
-
-function NavItemContent({ label }: { label: string }) {
-  return <span>/ {label}</span>;
-}
 
 export function ProjectSidebar({
   items,
@@ -30,35 +25,24 @@ export function ProjectSidebar({
     enabled: scrollSpyEnabled,
   });
 
+  const navItems = useMemo(
+    () =>
+      items.map((item) => ({
+        id: item.id,
+        label: item.label,
+        href: item.href,
+      })),
+    [items],
+  );
+
   return (
     <aside className="project-sidebar" aria-label="Project navigation">
-      <Link className="project-sidebar-back" href="/">
-        <span className="project-sidebar-icon" aria-hidden="true">
-          <Icon name="chevron-left" size={16} />
-        </span>
-        <span>Back</span>
-      </Link>
-      <nav className="project-sidebar-nav">
-        {items.map((item) => {
-          const isActive = item.id === activeId;
-          const className = [
-            "project-sidebar-link",
-            isActive ? "is-active" : "",
-          ]
-            .filter(Boolean)
-            .join(" ");
-
-          return item.href ? (
-            <a key={item.id} className={className} href={item.href}>
-              <NavItemContent label={item.label} />
-            </a>
-          ) : (
-            <span key={item.id} className={className}>
-              <NavItemContent label={item.label} />
-            </span>
-          );
-        })}
-      </nav>
+      <SidebarNav
+        items={navItems}
+        activeId={activeId}
+        showBack
+        animate
+      />
     </aside>
   );
 }

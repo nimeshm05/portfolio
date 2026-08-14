@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 
-export const PROJECT_SCROLL_SPY_CENTER_RATIO = 0.8;
+/** Distance from the viewport top at which a section becomes active. */
+export const PROJECT_SCROLL_SPY_OFFSET_PX = 200;
 
 export function getSectionElements(ids: string[]): HTMLElement[] {
   return ids
@@ -18,51 +19,17 @@ export function getSectionElements(ids: string[]): HTMLElement[] {
 
 export function getActiveSectionId(
   elements: HTMLElement[],
-  centerRatio = PROJECT_SCROLL_SPY_CENTER_RATIO,
+  offsetPx = PROJECT_SCROLL_SPY_OFFSET_PX,
 ): string {
   if (elements.length === 0) {
     return "";
   }
 
-  const viewportCenter = window.scrollY + window.innerHeight * centerRatio;
+  let activeId = elements[0].id;
 
-  const sections = elements.map((element) => {
-    const rect = element.getBoundingClientRect();
-    const top = rect.top + window.scrollY;
-    return {
-      id: element.id,
-      top,
-      bottom: top + rect.height,
-      center: top + rect.height / 2,
-    };
-  });
-
-  const first = sections[0];
-  const last = sections[sections.length - 1];
-
-  if (viewportCenter < first.top) {
-    return first.id;
-  }
-
-  if (viewportCenter >= last.bottom) {
-    return last.id;
-  }
-
-  for (const section of sections) {
-    if (section.top <= viewportCenter && viewportCenter < section.bottom) {
-      return section.id;
-    }
-  }
-
-  // Viewport center is in a gap between sections — highlight the nearest section.
-  let activeId = first.id;
-  let nearestDistance = Infinity;
-
-  for (const section of sections) {
-    const distance = Math.abs(section.center - viewportCenter);
-    if (distance < nearestDistance) {
-      nearestDistance = distance;
-      activeId = section.id;
+  for (const element of elements) {
+    if (element.getBoundingClientRect().top <= offsetPx) {
+      activeId = element.id;
     }
   }
 
@@ -72,29 +39,34 @@ export function getActiveSectionId(
 type UseProjectScrollSpyOptions = {
   sectionIds: string[];
   enabled?: boolean;
+  offsetPx?: number;
 };
 
 export function useProjectScrollSpy({
   sectionIds,
   enabled = true,
+  offsetPx = PROJECT_SCROLL_SPY_OFFSET_PX,
 }: UseProjectScrollSpyOptions): string {
   const [activeId, setActiveId] = useState("");
+  const sectionIdsKey = sectionIds.join(",");
 
   useEffect(() => {
-    if (!enabled || sectionIds.length === 0) {
+    const ids = sectionIdsKey ? sectionIdsKey.split(",") : [];
+
+    if (!enabled || ids.length === 0) {
       return;
     }
 
     let frameId = 0;
 
     const syncActiveSection = () => {
-      const elements = getSectionElements(sectionIds);
+      const elements = getSectionElements(ids);
 
       if (elements.length === 0) {
         return;
       }
 
-      const nextActiveId = getActiveSectionId(elements);
+      const nextActiveId = getActiveSectionId(elements, offsetPx);
 
       setActiveId((current) =>
         current === nextActiveId ? current : nextActiveId,
@@ -124,7 +96,7 @@ export function useProjectScrollSpy({
       window.removeEventListener("scroll", scheduleSync);
       window.removeEventListener("resize", scheduleSync);
     };
-  }, [sectionIds, enabled]);
+  }, [enabled, offsetPx, sectionIdsKey]);
 
   return activeId;
 }
