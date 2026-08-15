@@ -1,5 +1,6 @@
 import type { LucideIcon } from "lucide-react";
 import {
+  Activity,
   Bot,
   Brain,
   Bug,
@@ -37,6 +38,7 @@ import {
   Table,
   Target,
   Trophy,
+  Type,
   UserStar,
   Users,
   Workflow,
@@ -83,7 +85,9 @@ export type IconName =
   | "git-branch"
   | "brain"
   | "gauge"
-  | "handshake";
+  | "handshake"
+  | "activity"
+  | "type";
 
 const icons: Record<IconName, LucideIcon> = {
   "message-circle-more": MessageCircleMore,
@@ -126,6 +130,8 @@ const icons: Record<IconName, LucideIcon> = {
   brain: Brain,
   gauge: Gauge,
   handshake: Handshake,
+  activity: Activity,
+  type: Type,
 };
 
 type IconProps = {

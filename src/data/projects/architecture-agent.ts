@@ -23,6 +23,7 @@ export const architectureAgent: ProjectPageData = {
     { id: "study-design", label: "Study Design", href: "#study-design" },
     { id: "finding-1", label: "Finding 1", href: "#finding-1" },
     { id: "finding-2", label: "Finding 2", href: "#finding-2" },
+    { id: "reflection", label: "Reflections", href: "#reflection" },
   ],
   overview: {
     eyebrow: "Overview",
@@ -286,4 +287,33 @@ export const architectureAgent: ProjectPageData = {
       ],
     },
   ],
+  reflection: {
+    eyebrow: "Reflections",
+    paragraphs: [],
+    items: [
+      {
+        id: "ai-products-communicate-state",
+        title: "AI products need to communicate state, not just output.",
+        icon: "activity",
+        content: {
+          type: "paragraphs",
+          paragraphs: [
+            "Working on an AI product made me realize that good AI UX isn't only about explaining the model's output. Users also need to understand what the system is doing between actions. In the Architecture Agent, the recommendation itself was understandable enough; what became confusing was what happened after accepting it. That made system state feel like a much more important part of AI interaction design than I had previously considered.",
+          ],
+        },
+      },
+      {
+        id: "task-phrasing-matters",
+        title: "Task phrasing matters more than I initially realized",
+        icon: "type",
+        content: {
+          type: "paragraphs",
+          paragraphs: [
+            "Our original Task 2 asked participants to find “architectural recommendations you care about.” After P1 and P2 struggled with the task, we realized the phrasing itself was ambiguous and changed it to “find specific architectural recommendations.” The next three participants completed the task successfully.",
+            "This reinforced the value of pilot testing the study design itself. Small wording choices can influence what participants understand—and ultimately, what you're measuring.",
+          ],
+        },
+      },
+    ],
+  },
 };

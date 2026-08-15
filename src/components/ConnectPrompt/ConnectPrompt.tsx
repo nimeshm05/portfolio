@@ -463,6 +463,10 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
                 node: <PromptLink href={connect.xHref}>X</PromptLink>,
               },
               {
+                key: "medium",
+                node: <PromptLink href={connect.mediumHref}>Medium</PromptLink>,
+              },
+              {
                 key: "email",
                 node: <PromptLink href={connect.emailHref}>Email</PromptLink>,
               },

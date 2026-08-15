@@ -57,6 +57,7 @@ export const connect = {
   linkedInHref: "https://www.linkedin.com/in/nimeshm-work/",
   githubHref: "https://github.com/nimeshm05",
   xHref: "https://x.com/hoveroverhere",
+  mediumHref: "https://nimeshmohanakrishnan.medium.com/"
 } as const;
 
 export const workSections: ContentSectionData[] = [

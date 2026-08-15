@@ -164,7 +164,7 @@ export type ProjectPageData = {
   };
   reflection?: {
     eyebrow: string;
-    heading: string;
+    heading?: string;
     paragraphs: string[];
     items: ExpandableItemContent[];
   };
