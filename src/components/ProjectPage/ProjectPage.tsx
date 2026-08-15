@@ -255,6 +255,16 @@ export function ProjectPage({ project }: ProjectPageProps) {
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
+            {finding.media?.map((entry) => (
+              <ProjectBanner
+                key={entry.src}
+                src={entry.src}
+                alt={entry.alt}
+                type={entry.type}
+                showBackground={entry.showBackground ?? false}
+                hugContent={entry.hugContent}
+              />
+            ))}
             <div className="project-section-list">
               {finding.items.map((item) => (
                 <ListItem key={item.id} title={item.title} icon={item.icon} defaultOpen={true}>

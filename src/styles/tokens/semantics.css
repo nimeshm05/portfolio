@@ -24,6 +24,8 @@
   /* Borders */
   --color-border: var(--color-neutral-200);
   --color-border-muted: var(--color-neutral-100);
+  --color-table-heading-border: var(--color-neutral-200);
+  --color-table-row-border: var(--color-neutral-150);
   --border-width: var(--size-hairline);
   --border-card-width: var(--size-border-card);
   --border-card: var(--border-card-width) solid var(--color-border);

@@ -108,8 +108,9 @@ export const architectureAgent: ProjectPageData = {
     heading:
       "Five 60-minute sessions, one shared test repo, and a research team that rotated roles every time.",
     paragraphs: [
-      "Throughout each session, we collected qualitative observations alongside quantitative metrics including task completion time, interaction counts, ease-of-use ratings, and participant confidence.",
-      "As part of the research team, I rotated between moderator, note-taker, and timekeeper across sessions and independently moderated one complete usability session.",
+      "We conducted five 60-minute moderated usability sessions using the same test organization and sample repository.",
+      "Across sessions, our research team rotated between moderator, note-taker, and timekeeper. I independently moderated one complete session, while also contributing observations and synthesis across the study.",
+      "We collected both behavioral and attitudinal data:"
     ],
     table: {
       headers: ["Participants", "Format", "Data Collected"],
@@ -129,7 +130,7 @@ export const architectureAgent: ProjectPageData = {
           "Think-aloud protocol",
           "Interaction counts",
         ],
-        ["—", "Shared test org + sample repo", "Post-task debrief"],
+        ["-", "Shared test org + sample repo", "Post-task debrief"],
       ],
     },
     imageSrc: asset("group-pic.png"),
@@ -144,6 +145,14 @@ export const architectureAgent: ProjectPageData = {
       paragraphs: [
         "Every participant successfully located and accepted an Architecture Decision Record. However, accepting the recommendation created a second required step: synchronizing Context Files. Because this status appeared at the bottom of the page, participants interpreted the confirmation message as the end of the workflow and missed the remaining action entirely. Rather than failing to perform an interaction, participants failed to understand the system's current state.",
         "This finding directly answered the first research question. Participants could discover recommendations and act on them, but they could not reliably complete the workflow because the interface failed to communicate that another action was still required. The usability issue wasn't interaction — it was workflow visibility.",
+      ],
+      media: [
+        {
+          src: asset("finding-1.mp4"),
+          alt: "Architecture Agent workflow showing Context File synchronization after accepting an ADR",
+          type: "video",
+          showBackground: false,
+        },
       ],
       items: [
         {
@@ -213,6 +222,13 @@ export const architectureAgent: ProjectPageData = {
       paragraphs: [
         "Before participants could evaluate Architecture Decision Records, they first had to understand how the Architecture Agent itself worked. Across sessions, participants spent considerable time exploring the interface, asking clarifying questions, and trying to infer relationships between Repositories, Categories, Decisions, Context Files, and pull requests. Rather than learning through the interface itself, participants relied on the moderator's explanations to understand the workflow.",
         "This wasn't simply unfamiliarity with a new product. The Architecture Agent introduces concepts—such as ADRs and Context Files—that are unique to Actual AI and have no established mental model for most developers. Without guidance, participants entered the tasks with an incomplete understanding of how the system was organized. That increased cognitive load before meaningful work could begin.",
+      ],
+      media: [
+        {
+          src: asset("annotated.jpg"),
+          alt: "Annotated Architecture Agent interface showing where developers struggled to form a mental model",
+          showBackground: true,
+        },
       ],
       items: [
         {

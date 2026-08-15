@@ -15,17 +15,28 @@
 
 .content-table th,
 .content-table td {
-  padding: var(--gap-lg) var(--gap-md);
-  border: var(--border-width) solid var(--color-border);
+  padding: var(--gap-lg) var(--gap-2xl) var(--gap-lg) 0;
+  border: 0;
   text-align: left;
   vertical-align: top;
+}
+
+.content-table th:last-child,
+.content-table td:last-child {
+  padding-right: 0;
+}
+
+.content-table tbody tr:last-child td {
+  border-bottom: 0;
 }
 
 .content-table th {
   color: var(--color-text-primary);
   font-size: var(--text-body-size);
-  font-weight: var(--weight-semibold);
+  font-weight: var(--text-body-emphasis-weight);
   line-height: var(--text-body-line-height-fixed);
+  border-top: var(--border-width) solid var(--color-table-heading-border);
+  border-bottom: var(--border-width) solid var(--color-table-heading-border);
 }
 
 .content-table td {
@@ -33,4 +44,5 @@
   font-size: var(--text-body-size);
   font-weight: var(--text-body-weight);
   line-height: var(--text-body-line-height-fixed);
+  border-bottom: var(--border-width) solid var(--color-table-row-border);
 }

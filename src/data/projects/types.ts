@@ -121,6 +121,7 @@ export type ProjectPageData = {
     eyebrow: string;
     heading: string;
     paragraphs: string[];
+    media?: ProjectMedia[];
     items: ExpandableItemContent[];
   }>;
   calloutOne?: string;
