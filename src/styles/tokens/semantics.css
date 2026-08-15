@@ -136,7 +136,7 @@
   /* Typography: subtitle */
   --text-subtitle-size: var(--font-size-18);
   --text-subtitle-line-height: var(--line-height-28);
-  --text-subtitle-weight: var(--font-weight-medium);
+  --text-subtitle-weight: var(--font-weight-regular);
 
   /* Typography: heading (section title) */
   --text-heading-size: var(--font-size-22);
