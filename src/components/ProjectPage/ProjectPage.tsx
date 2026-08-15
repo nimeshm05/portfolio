@@ -190,7 +190,7 @@ export function ProjectPage({ project }: ProjectPageProps) {
             {project.problem.items?.length ? (
               <div className="project-section-list">
                 {project.problem.items.map((item) => (
-                  <ListItem key={item.id} title={item.title} icon={item.icon}>
+                  <ListItem key={item.id} title={item.title} icon={item.icon} defaultOpen={true}>
                     {hasExpandableItemBody(item) ? (
                       <ExpandableItemBody
                         item={item}
@@ -257,7 +257,7 @@ export function ProjectPage({ project }: ProjectPageProps) {
             </div>
             <div className="project-section-list">
               {finding.items.map((item) => (
-                <ListItem key={item.id} title={item.title} icon={item.icon}>
+                <ListItem key={item.id} title={item.title} icon={item.icon} defaultOpen={true}>
                   {hasExpandableItemBody(item) ? (
                     <ExpandableItemBody
                       item={item}
