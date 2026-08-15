@@ -85,6 +85,14 @@
   }
 }
 
+.list-item-copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-callout-copy);
+  width: 100%;
+  min-width: 0;
+}
+
 .list-item-description {
   color: var(--color-text-body);
   font-size: var(--text-body-size);

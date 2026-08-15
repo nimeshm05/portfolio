@@ -194,6 +194,14 @@ export const architectureAgent: ProjectPageData = {
               "Following the study, Actual AI removed the manual Context File synchronization step from the workflow. After developers accept an ADR, Context Files are now generated automatically in the background, allowing users to review the resulting pull request directly in their codebase before merging. By eliminating an entire step, the updated workflow reduces the ambiguity observed during testing and makes architectural decisions feel complete once accepted.",
             ],
           },
+          media: [
+            {
+              src: asset("production-1.mp4"),
+              alt: "Production Architecture Agent workflow after accepting an ADR, with Context Files generated automatically",
+              type: "video",
+              showBackground: false,
+            },
+          ],
         },
       ],
     },

@@ -2,12 +2,14 @@
 
 import { useEffect, useRef } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { Callout } from "@/components/Callout/Callout";
 import {
   ListItem,
   type ChevronOrientation,
 } from "@/components/ListItem/ListItem";
 import { ProjectCard } from "@/components/ProjectCard/ProjectCard";
-import type { ContentSectionData } from "@/data/home";
+import { RichText } from "@/components/RichText/RichText";
+import type { ContentSectionData, ListItemBlock, ListItemData } from "@/data/home";
 import { getWorkCard } from "@/data/workCards";
 import type { WorkViewMode } from "@/components/ViewSwitcher/ViewSwitcher";
 import {
@@ -21,6 +23,63 @@ import {
   getWorkViewTransition,
 } from "@/motion/workView";
 import "./ContentSection.css";
+
+type GroupedListItemCopy =
+  | { type: "paragraphs"; paragraphs: string[] }
+  | { type: "callout"; text: string };
+
+function groupListItemBlocks(blocks: ListItemBlock[]): GroupedListItemCopy[] {
+  const groups: GroupedListItemCopy[] = [];
+
+  for (const block of blocks) {
+    if (block.type === "callout") {
+      groups.push({ type: "callout", text: block.text });
+      continue;
+    }
+
+    const last = groups.at(-1);
+    if (last?.type === "paragraphs") {
+      last.paragraphs.push(block.text);
+    } else {
+      groups.push({ type: "paragraphs", paragraphs: [block.text] });
+    }
+  }
+
+  return groups;
+}
+
+function ListItemCopy({ item }: { item: ListItemData }) {
+  if (item.blocks?.length) {
+    return (
+      <div className="list-item-copy">
+        {groupListItemBlocks(item.blocks).map((group) =>
+          group.type === "callout" ? (
+            <Callout key={`callout-${group.text}`}>{group.text}</Callout>
+          ) : (
+            <RichText
+              key={`copy-${group.paragraphs[0]}`}
+              content={{ type: "paragraphs", paragraphs: group.paragraphs }}
+            />
+          ),
+        )}
+      </div>
+    );
+  }
+
+  if (item.paragraphs?.length) {
+    return (
+      <RichText
+        content={{ type: "paragraphs", paragraphs: item.paragraphs }}
+      />
+    );
+  }
+
+  if (item.description) {
+    return <p className="list-item-description">{item.description}</p>;
+  }
+
+  return null;
+}
 
 type ContentSectionProps = {
   section: ContentSectionData;
@@ -75,8 +134,8 @@ export function ContentSection({
       href={item.href}
       chevronOrientation={chevronOrientation}
     >
-      {item.description ? (
-        <p className="list-item-description">{item.description}</p>
+      {item.blocks?.length || item.paragraphs?.length || item.description ? (
+        <ListItemCopy item={item} />
       ) : null}
     </ListItem>
   ));

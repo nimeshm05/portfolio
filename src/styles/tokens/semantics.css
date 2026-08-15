@@ -167,6 +167,7 @@
   --text-body-line-height: var(--line-height-body);
   --text-body-line-height-fixed: var(--line-height-24);
   --text-body-weight: var(--font-weight-regular);
+  --text-body-emphasis-weight: var(--font-weight-semibold);
   --text-body-paragraph-gap: 1lh;
   --text-list-item-gap: 0.5lh;
 

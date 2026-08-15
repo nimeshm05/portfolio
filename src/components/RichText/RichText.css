@@ -7,6 +7,14 @@
   margin-bottom: var(--text-list-item-gap);
 }
 
+.rich-text strong {
+  font-weight: var(--text-body-emphasis-weight);
+}
+
+.rich-text em {
+  font-style: italic;
+}
+
 .rich-text p + p {
   margin-top: var(--text-body-paragraph-gap);
   margin-bottom: var(--text-body-paragraph-gap);
