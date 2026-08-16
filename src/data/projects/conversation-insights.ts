@@ -27,6 +27,14 @@ export const conversationInsights: ProjectPageData = {
     { id: "outcome", label: "Outcome", href: "#outcome" },
     { id: "reflection", label: "Reflection", href: "#reflection" },
   ],
+  meta: {
+    items: [
+      { label: "Company", value: "RozieAI Labs" },
+      { label: "Client", value: "Air Canada" },
+      { label: "Timeline", value: "Q3 2024 - Q3 2025" },
+      { label: "Role", value: "Product Designer" },
+    ],
+  },
   overview: {
     eyebrow: "Overview",
     heading: "Analytics Platform for Air Canada's Contact Centre Managers",

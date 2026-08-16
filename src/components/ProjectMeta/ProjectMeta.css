@@ -1,0 +1,32 @@
+.project-meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--gap-md);
+  row-gap: var(--gap-callout-copy);
+  width: 100%;
+  margin-top: var(--gap-3xl);
+  padding-inline: var(--inset-x);
+}
+
+.project-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-xs);
+  min-width: 0;
+}
+
+.project-meta-label {
+  color: var(--color-text-label);
+  font-size: var(--text-label-size);
+  font-weight: var(--text-body-weight);
+  line-height: var(--text-label-line-height);
+}
+
+.project-meta-value {
+  margin: 0;
+  color: var(--color-text-primary);
+  font-size: var(--text-body-size);
+  font-weight: var(--text-label-weight);
+  line-height: var(--text-body-line-height-fixed);
+  white-space: normal;
+}

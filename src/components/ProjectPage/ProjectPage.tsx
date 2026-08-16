@@ -5,6 +5,7 @@ import { ListItem } from "@/components/ListItem/ListItem";
 import { PageEnter, PageEnterItems } from "@/components/PageEnter/PageEnter";
 import { ProjectBanner } from "@/components/ProjectBanner/ProjectBanner";
 import { ProjectHeader } from "@/components/ProjectHeader/ProjectHeader";
+import { ProjectMeta } from "@/components/ProjectMeta/ProjectMeta";
 import { ProjectSection } from "@/components/ProjectSection/ProjectSection";
 import { ProjectSidebar } from "@/components/ProjectSidebar/ProjectSidebar";
 import { RichText } from "@/components/RichText/RichText";
@@ -133,6 +134,9 @@ export function ProjectPage({ project }: ProjectPageProps) {
             backgroundSrc={project.bannerBackgroundSrc}
             showBackground={project.bannerType !== "video"}
           />
+          {project.meta?.items?.length ? (
+            <ProjectMeta items={project.meta.items} />
+          ) : null}
         </div>
 
         {project.overview ? (

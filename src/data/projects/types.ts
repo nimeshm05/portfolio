@@ -79,6 +79,11 @@ export type ProjectSectionWithMedia = {
   workflow?: ArchitectureWorkflowData;
 };
 
+export type ProjectMetaItem = {
+  label: string;
+  value: string;
+};
+
 export type ProjectCardData = {
   slug: string;
   href: string;
@@ -104,6 +109,9 @@ export type ProjectPageData = {
   bannerType?: "image" | "video";
   bannerBackgroundSrc?: string;
   nav?: ProjectNavItem[];
+  meta?: {
+    items: ProjectMetaItem[];
+  };
   overview?: {
     eyebrow: string;
     heading: string;

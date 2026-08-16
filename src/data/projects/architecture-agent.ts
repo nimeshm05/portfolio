@@ -25,6 +25,14 @@ export const architectureAgent: ProjectPageData = {
     { id: "finding-2", label: "Finding 2", href: "#finding-2" },
     { id: "reflection", label: "Reflections", href: "#reflection" },
   ],
+  meta: {
+    items: [
+      { label: "Client", value: "Actual AI" },
+      { label: "Timeline", value: "January 2026 - March 2026" },
+      { label: "Team", value: "JP Nguyen, Sara Chong, Elnaz Melli, Nimesh Mohanakrishnan" },
+      { label: "Role", value: "Design Researcher" },
+    ],
+  },
   overview: {
     eyebrow: "Overview",
     heading: "Making AI’s actions visible and understandable",
