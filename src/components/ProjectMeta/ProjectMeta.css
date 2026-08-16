@@ -26,7 +26,7 @@
   margin: 0;
   color: var(--color-text-primary);
   font-size: var(--text-body-size);
-  font-weight: var(--text-label-weight);
+  font-weight: var(--text-body-weight);
   line-height: var(--text-body-line-height-fixed);
   white-space: normal;
 }
