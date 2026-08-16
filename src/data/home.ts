@@ -86,12 +86,12 @@ export const workSections: ContentSectionData[] = [
     label: "Personal Projects",
     supportsCardView: true,
     items: [
-      {
-        id: "digital-footprints",
-        title: "Digital Footprints",
-        icon: "footprints",
-        href: "/work/digital-footprints",
-      },
+      // {
+      //   id: "digital-footprints",
+      //   title: "Digital Footprints",
+      //   icon: "footprints",
+      //   href: "/work/digital-footprints",
+      // },
       {
         id: "kar-no-key",
         title: "kar-no-key",
