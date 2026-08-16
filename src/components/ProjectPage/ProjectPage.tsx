@@ -2,6 +2,7 @@ import { ArchitectureWorkflow } from "@/components/ArchitectureWorkflow/Architec
 import { Callout } from "@/components/Callout/Callout";
 import { ContentTable } from "@/components/ContentTable/ContentTable";
 import { ListItem } from "@/components/ListItem/ListItem";
+import { PageEnter, PageEnterItems } from "@/components/PageEnter/PageEnter";
 import { ProjectBanner } from "@/components/ProjectBanner/ProjectBanner";
 import { ProjectHeader } from "@/components/ProjectHeader/ProjectHeader";
 import { ProjectSection } from "@/components/ProjectSection/ProjectSection";
@@ -117,7 +118,8 @@ export function ProjectPage({ project }: ProjectPageProps) {
     <div className="project-page">
       <ViewportEdgeBlur />
       <ProjectSidebar items={project.nav ?? []} />
-      <main className="project-body">
+      <PageEnter as="main" className="project-body">
+        <PageEnterItems>
         <div className="project-intro">
           <ProjectHeader
             title={project.title}
@@ -475,7 +477,8 @@ export function ProjectPage({ project }: ProjectPageProps) {
             </div>
           </ProjectSection>
         ) : null}
-      </main>
+        </PageEnterItems>
+      </PageEnter>
     </div>
   );
 }

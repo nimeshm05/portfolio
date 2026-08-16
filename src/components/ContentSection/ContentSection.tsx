@@ -178,7 +178,7 @@ export function ContentSection({
           )}
         </div>
         {supportsCardView ? (
-          <AnimatePresence mode="popLayout">
+          <AnimatePresence mode="wait">
             {showCardView ? (
               <motion.div
                 key="card"

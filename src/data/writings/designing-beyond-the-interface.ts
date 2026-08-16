@@ -6,7 +6,7 @@ export const designingBeyondTheInterface: ProjectCardData = {
   slug: "designing-beyond-the-interface",
   href: "https://nimeshmohanakrishnan.medium.com/designing-beyond-the-interface-what-contact-centers-taught-me-about-systems-thinking-ac164a68cc36",
   title: "Designing Beyond the Interface",
-  projectType: "Writing",
+  projectType: "HCDE 501 Class Paper",
   timeline: "Medium",
   description:
     "What contact centers taught me about systems thinking.",
