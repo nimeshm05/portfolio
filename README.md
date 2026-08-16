@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Personal portfolio
 
-## Getting Started
+Personal site for myself. It is built with Next.js 16 (App Router), React 19, and Motion 13. Styling is plain CSS files plus a primitive → semantic token layer — no Tailwind.
 
-First, run the development server:
+The home page has Work and About tabs, list or card views for projects, and case-study pages at `/work/[slug]`. Copy and project data live in `src/data`; motion timings live in `src/motion`.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Components
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **ArchitectureWorkflow** — Auto-rotating step diagram for the Architecture Agent product section.
+- **Callout** — Serif pull-quote with a hanging quotation mark and optional attribution.
+- **ConnectExcitement** — Inline SVG “yay” drawing that plays on Yes hover/click in Connect.
+- **ConnectPrompt** — Multi-step contact flow (call, email, social) in the home header.
+- **ContentSection** — Home section: label plus list items or project cards.
+- **ContentTable** — Hairline study-design table used on project pages.
+- **Header** — Profile avatar, name, bio, and Connect slot.
+- **HomeFooter** — Full-width closing credit that types in as it enters view.
+- **HomePage** — Home shell: header, Work/About tabs, sections, footer, sidebar.
+- **HomeSidebar** — Scroll-aware in-page nav for Work card view.
+- **Icon** — Shared Lucide icon set for list items, nav, and controls.
+- **ListItem** — Row that links, expands, or stays open; used for work, about, and case-study lists.
+- **MorphingArrowUpRight** — Chevron that becomes an external-link arrow on hover.
+- **MorphingChevron** — Expand/collapse chevron that morphs between down and up.
+- **MorphingConnectIcon** — Connect control icon that morphs between states.
+- **PageEnter** — Page-load stagger: 40px rise, blur, and fade for home and project blocks.
+- **ProjectBanner** — Case-study and card media (image or lazy video) with optional background.
+- **LazyBannerVideo** — Defers banner video until near the viewport.
+- **ProjectCard** — Work-tab card: title, type, banner, timeline, and description.
+- **ProjectHeader** — Case-study title, subtitle, and mobile Back link.
+- **ProjectPage** — Case-study layout: sidebar, intro, and all project sections.
+- **ProjectSection** — Named case-study block with eyebrow, heading, and body.
+- **ProjectSidebar** — Sticky case-study nav with Back and section anchors.
+- **RichText** — Paragraphs with `**bold`** emphasis.
+- **SegmentedControl** — Work / About tab switcher.
+- **SidebarNav** — Shared sidebar list (home sections or project anchors, optional Back).
+- **SocialLinks** — GitHub / LinkedIn (and related) icon links.
+- **SourceCards** — Compact source/reference cards inside expandable case-study items.
+- **ViewSwitcher** — List vs card toggle for the Work tab.
+- **ViewportEdgeBlur** — Soft blur at the top and bottom of the viewport.
+- **WorkflowSteps** — Numbered or labeled process steps in case studies.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
