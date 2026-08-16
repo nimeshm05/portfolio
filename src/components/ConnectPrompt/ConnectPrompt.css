@@ -69,6 +69,11 @@
   text-decoration: none;
 }
 
+.connect-prompt-action:active {
+  scale: 0.98;
+  transition: scale var(--transition-fast);
+}
+
 .connect-prompt-separator {
   color: var(--color-text-muted);
 }

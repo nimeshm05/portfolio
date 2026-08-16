@@ -80,6 +80,11 @@
   background-color: var(--color-card-hover);
 }
 
+.project-card:active {
+  scale: 0.99;
+  transition: scale var(--transition-fast);
+}
+
 @media (max-width: 68.6875rem) {
   .project-card-type {
     min-width: 0;

@@ -61,3 +61,13 @@
   will-change: transform, opacity;
   width: 100%;
 }
+
+.sidebar-nav-back:active {
+  scale: 0.98;
+  transition: scale var(--transition-fast);
+}
+
+.sidebar-nav-link:active {
+  scale: 0.98;
+  transition: scale var(--transition-fast);
+}
