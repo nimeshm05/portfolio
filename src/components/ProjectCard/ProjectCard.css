@@ -55,6 +55,7 @@
   font-weight: var(--weight-medium);
   line-height: normal;
   letter-spacing: var(--letter-spacing-body);
+  transition: color var(--transition-fast);
 }
 
 .project-card-description {
@@ -69,6 +70,10 @@
 
 .project-card:hover .project-card-description {
   color: var(--color-text-primary);
+}
+
+.project-card:hover .project-card-timeline {
+  color: var(--color-accent);
 }
 
 .project-card:hover {
