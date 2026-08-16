@@ -4,6 +4,7 @@ type CalloutProps = {
   children: string;
   attribution?: string;
   source?: string;
+  designPrinciple?: string;
 };
 
 function CalloutText({ children }: { children: string }) {
@@ -15,16 +16,33 @@ function CalloutText({ children }: { children: string }) {
   );
 }
 
-export function Callout({ children, attribution, source }: CalloutProps) {
+export function Callout({
+  children,
+  attribution,
+  source,
+  designPrinciple,
+}: CalloutProps) {
   const text = <CalloutText>{children}</CalloutText>;
+
+  if (designPrinciple) {
+    return (
+      <div className="callout-with-principle">
+        <aside className="callout">{text}</aside>
+        <p className="callout-design-principle">
+          <span className="callout-design-principle-label">Design Principle:</span>{" "}
+          {designPrinciple}
+        </p>
+      </div>
+    );
+  }
 
   if (!attribution) {
     return <aside className="callout">{text}</aside>;
   }
 
   return (
-    <blockquote className="callout callout--quoted">
-      {text}
+    <div className="callout-with-attribution">
+      <blockquote className="callout callout--quoted">{text}</blockquote>
       <footer className="callout-attribution">
         <span className="callout-attribution-rule" aria-hidden="true" />
         <cite className="callout-attribution-name">{attribution}</cite>
@@ -32,6 +50,6 @@ export function Callout({ children, attribution, source }: CalloutProps) {
           <span className="callout-attribution-source">, {source}</span>
         ) : null}
       </footer>
-    </blockquote>
+    </div>
   );
 }

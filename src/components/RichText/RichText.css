@@ -7,6 +7,10 @@
   margin-bottom: var(--text-list-item-gap);
 }
 
+.rich-text li {
+  padding-inline-start: var(--gap-sm);
+}
+
 .rich-text strong {
   font-weight: var(--text-body-emphasis-weight);
 }

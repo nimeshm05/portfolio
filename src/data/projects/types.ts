@@ -49,8 +49,9 @@ export type ExpandableVisual =
 
 export type CalloutQuote = {
   text: string;
-  attribution: string;
+  attribution?: string;
   source?: string;
+  designPrinciple?: string;
 };
 
 export type ExpandableItemContent = {

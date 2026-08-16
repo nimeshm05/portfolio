@@ -93,6 +93,7 @@ function ExpandableItemBody({
               key={quote.text}
               attribution={quote.attribution}
               source={quote.source}
+              designPrinciple={quote.designPrinciple}
             >
               {quote.text}
             </Callout>

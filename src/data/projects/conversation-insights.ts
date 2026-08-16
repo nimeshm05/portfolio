@@ -159,6 +159,18 @@ export const conversationInsights: ProjectPageData = {
         id: "insights",
         title: "Insights",
         icon: "bug",
+        quotes: [
+          {
+            text: "The investigation workflow revealed that insights were not endpoints, but starting points for understanding and resolving customer issues.",
+            designPrinciple:
+              "Support investigation flow, not just consumption.",
+          },
+          {
+            text: "Teams used call insights to identify issues, then combined it with operational metadata to understand causes, trace impact, and take action.",
+            designPrinciple:
+              "Keep both information layers within the same workflow.",
+          },
+        ],
       },
     ],
   },

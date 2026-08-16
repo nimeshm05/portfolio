@@ -48,9 +48,9 @@
   --gap-section: var(--space-60);
   --padding-page: var(--space-120);
   --inset-x: var(--space-12);
-  --padding-callout-quote: var(--space-20);
+  --padding-callout-quote: var(--space-32);
   --gap-callout-cite: var(--text-body-paragraph-gap);
-  --gap-callout-copy: var(--space-24);
+  --gap-callout-copy: var(--space-40);
   --callout-attribution-rule-width: var(--space-24);
   --color-callout-attribution: var(--color-text-primary);
   --color-callout-attribution-source: var(--color-text-subtle);
