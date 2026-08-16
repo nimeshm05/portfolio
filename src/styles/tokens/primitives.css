@@ -2,19 +2,15 @@
   /* Colors (oklch) */
   --color-white: oklch(1 0 0);
   --color-black: oklch(0 0 0);
-  --color-slate-50: oklch(98.212% 0.00011 271.152);
   --color-neutral-50: oklch(0.9916 0 0);
   --color-neutral-100: oklch(0.9743 0 0);
   --color-neutral-150: oklch(0.9534 0 0);
   --color-neutral-200: oklch(0.9327 0 0);
   --color-neutral-350: oklch(0.8234 0 0);
   --color-neutral-400: oklch(0.7547 0 0);
-  --color-neutral-450: oklch(0.6858 0 0);
   --color-neutral-500: oklch(0.6168 0 0);
   --color-neutral-600: oklch(0.516 0 0);
   --color-neutral-700: oklch(0.4152 0 0);
-  --color-blue-500: oklch(0.62 0.19 260);
-  --color-pink-600: oklch(0.6567 0.1473 8.22);
   --color-lime-400: oklch(0.77 0.2 131);
   --color-coffee-500: oklch(0.45 0.06 56);
   --color-green-500: #34c759;
@@ -78,7 +74,6 @@
   --letter-spacing-footer: 0.01em;
 
   /* Opacity */
-  --opacity-muted: 0.7;
   --opacity-subtle: 0.8;
 
   /* Motion */
@@ -91,7 +86,6 @@
   --size-icon: 1.25rem;
   --size-icon-sm: 1rem;
   --size-icon-coffee: 1.15rem;
-  --size-social: 2.5rem;
   --size-avatar: 4rem;
   --size-tab-container: 12rem;
   --size-hairline: 0.0625rem;
@@ -102,8 +96,6 @@
   --size-card-banner-height: 26rem;
   --size-viewport-edge-blur: 6rem;
   --size-architecture-workflow-height: 18.5625rem;
-  --size-sidebar-trigger: 12.5rem;
-  --size-sidebar-enter-offset: 2.5rem;
   --size-connect-excitement-width: 5.625rem;
   --size-connect-excitement-height: 3.75rem;
   --scale-110: 1.1;
@@ -137,6 +129,4 @@
   --layout-content-width: 42rem;
   --layout-prose-width: 30rem;
   --layout-bio-width: 36rem;
-  --breakpoint-sidebar: 68.75rem;
-  --breakpoint-footer-sm: 40rem;
 }

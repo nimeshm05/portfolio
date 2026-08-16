@@ -34,20 +34,6 @@ export const profile = {
     about:
       "Product designer in Seattle, pursuing my master’s in HCDE at the University of Washington. I'm good at interaction design and prototyping end-to-end product experiences.  Previously, I designed AI experiences for legal professionals at Knool and before that I worked on internal tools at RozieAI.",
   },
-  socialLinks: [
-    {
-      id: "github",
-      label: "GitHub",
-      href: "https://github.com/nimeshm05",
-      iconSrc: "/assets/icons/github.svg",
-    },
-    {
-      id: "linkedin",
-      label: "LinkedIn",
-      href: "https://www.linkedin.com/in/nimeshm-work/",
-      iconSrc: "/assets/icons/linkedin.svg",
-    },
-  ],
 } as const;
 
 export const connect = {

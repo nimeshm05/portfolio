@@ -64,12 +64,9 @@
   --offset-banner-bleed: var(--space-160);
   --offset-sidebar-top: var(--gap-page);
   --offset-sidebar-left: var(--gap-xl);
-  --offset-sidebar-trigger: var(--size-sidebar-trigger);
-  --sidebar-enter-offset: var(--size-sidebar-enter-offset);
   --scroll-margin-section: var(--gap-page);
   --padding-list-indent: var(--space-24);
   --opacity-control-inactive: var(--opacity-subtle);
-  --opacity-icon-muted: var(--opacity-muted);
 
   /* Size roles */
   --icon-size: var(--size-icon);
@@ -77,7 +74,6 @@
   --icon-size-coffee: var(--size-icon-coffee);
   --icon-size-nav: var(--font-size-15);
   --avatar-size: var(--size-avatar);
-  --social-link-size: var(--size-social);
   --tab-container-width: var(--size-tab-container);
   --sidebar-width: var(--size-sidebar-width);
   --banner-height: var(--size-banner-height);
@@ -105,8 +101,6 @@
   --content-width: var(--layout-content-width);
   --max-width-prose: var(--layout-prose-width);
   --max-width-bio: var(--layout-bio-width);
-  --layout-breakpoint-footer-sm: var(--breakpoint-footer-sm);
-  --layout-breakpoint-sidebar: var(--breakpoint-sidebar);
 
   /* Motion */
   --transition-fast: var(--duration-fast) var(--ease-default);

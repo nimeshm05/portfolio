@@ -32,7 +32,6 @@ The home page has Work and About tabs, list or card views for projects, and case
 - **RichText** — Paragraphs with `**bold`** emphasis.
 - **SegmentedControl** — Work / About tab switcher.
 - **SidebarNav** — Shared sidebar list (home sections or project anchors, optional Back).
-- **SocialLinks** — GitHub / LinkedIn (and related) icon links.
 - **SourceCards** — Compact source/reference cards inside expandable case-study items.
 - **ViewSwitcher** — List vs card toggle for the Work tab.
 - **ViewportEdgeBlur** — Soft blur at the top and bottom of the viewport.

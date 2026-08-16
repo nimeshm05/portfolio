@@ -6,24 +6,19 @@ import {
   Bug,
   ChartPie,
   ChevronLeft,
-  ChevronsDown,
   ChevronRight,
   ClipboardList,
   Clock,
   CodeXml,
-  Coffee,
   Columns4,
   Database,
   FileText,
-  Footprints,
   Gauge,
   GitBranch,
-  Globe,
   Handshake,
   LayoutGrid,
   Lightbulb,
   List,
-  MessageCircleMore,
   Music2,
   NotebookPen,
   PanelsTopLeft,
@@ -36,35 +31,24 @@ import {
   Sparkles,
   Summary,
   Table,
-  Target,
-  Trophy,
   Type,
-  UserStar,
   Users,
   Workflow,
 } from "lucide-react";
 import "./Icon.css";
 
 export type IconName =
-  | "message-circle-more"
   | "bot"
   | "music-2"
   | "chart-pie"
   | "code-xml"
-  | "footprints"
   | "chevron-left"
-  | "chevrons-down"
   | "users"
   | "bug"
   | "database"
   | "chevron-right"
-  | "globe"
-  | "target"
-  | "user-star"
   | "lightbulb"
-  | "trophy"
   | "send-to-back"
-  | "coffee"
   | "workflow"
   | "settings"
   | "notebook-pen"
@@ -90,25 +74,17 @@ export type IconName =
   | "type";
 
 const icons: Record<IconName, LucideIcon> = {
-  "message-circle-more": MessageCircleMore,
   bot: Bot,
   "music-2": Music2,
   "chart-pie": ChartPie,
   "code-xml": CodeXml,
-  footprints: Footprints,
   "chevron-left": ChevronLeft,
-  "chevrons-down": ChevronsDown,
   users: Users,
   bug: Bug,
   database: Database,
   "chevron-right": ChevronRight,
-  globe: Globe,
-  target: Target,
-  "user-star": UserStar,
   lightbulb: Lightbulb,
-  trophy: Trophy,
   "send-to-back": SendToBack,
-  coffee: Coffee,
   workflow: Workflow,
   settings: Settings,
   "notebook-pen": NotebookPen,

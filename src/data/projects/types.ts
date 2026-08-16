@@ -104,7 +104,6 @@ export type ProjectPageData = {
   subtitle: string;
   projectType: string;
   timeline: string;
-  cardDescription?: string;
   bannerSrc: string;
   bannerAlt: string;
   bannerType?: "image" | "video";

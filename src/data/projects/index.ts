@@ -23,10 +23,4 @@ export function getProjectSlugs(): string[] {
 export function getProjectCard(slug: string): ProjectCardData | undefined {
   return getProjectCardFromRegistry(slug);
 }
-export type {
-  ProjectCardData,
-  ProjectPageData,
-  ExpandableItemContent,
-  RichTextBlock,
-  CalloutQuote,
-} from "./types";
+export type { ProjectCardData } from "./types";
