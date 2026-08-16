@@ -16,7 +16,7 @@
   --color-blue-500: oklch(0.62 0.19 260);
   --color-pink-600: oklch(0.6567 0.1473 8.22);
   --color-lime-400: oklch(0.77 0.2 131);
-  --color-coffee-500: oklch(0.5615 0.021 60.52);
+  --color-coffee-500: oklch(0.45 0.06 56);
   --color-green-500: #34c759;
   --color-agent-chip-bg: #19321f;
   --color-agent-chip-text: #5eff00;
@@ -90,7 +90,7 @@
   /* Sizes */
   --size-icon: 1.25rem;
   --size-icon-sm: 1rem;
-  --size-icon-coffee: 1.125rem;
+  --size-icon-coffee: 1.15rem;
   --size-social: 2.5rem;
   --size-avatar: 4rem;
   --size-tab-container: 12rem;

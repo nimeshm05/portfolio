@@ -3,7 +3,7 @@
 import { Fragment, useEffect, useRef, useState, type ReactNode } from "react";
 import { AnimatePresence, motion, type Transition } from "motion/react";
 import { ConnectExcitement, type ExcitementExitMode } from "@/components/ConnectExcitement/ConnectExcitement";
-import { Icon } from "@/components/Icon/Icon";
+import { AnimatedCoffeeIcon } from "@/components/AnimatedCoffeeIcon/AnimatedCoffeeIcon";
 import { MorphingConnectIcon } from "@/components/MorphingConnectIcon/MorphingConnectIcon";
 import { connect, type HomeTab } from "@/data/home";
 import {
@@ -480,7 +480,7 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
         <>
           <span className="connect-prompt-coffee-phrase">
             <PromptText>Cup of</PromptText>
-            <Icon name="coffee" className="connect-prompt-coffee" size={18} />
+            <AnimatedCoffeeIcon className="connect-prompt-coffee" size={18} />
             <PromptText>sometime in Seattle?</PromptText>
           </span>
           <Options

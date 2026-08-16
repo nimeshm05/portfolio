@@ -35,13 +35,13 @@ export const sidebarEnterContainerVariants: Variants = {
   initial: {},
   animate: {
     transition: {
-      delayChildren: 0.05,
-      staggerChildren: 0.065,
+      delayChildren: 0.04,
+      staggerChildren: 0.02,
     },
   },
   exit: {
     transition: {
-      staggerChildren: 0.045,
+      staggerChildren: 0.02,
       staggerDirection: -1,
     },
   },

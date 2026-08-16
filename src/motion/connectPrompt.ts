@@ -57,3 +57,20 @@ export const excitementSmokeTransition = {
   duration: 0.16,
   ease: "easeInOut" as const,
 };
+
+export const coffeeSteamVariants = {
+  normal: {
+    y: 0,
+    opacity: 1,
+  },
+  animate: (custom: number) => ({
+    y: -3,
+    opacity: [0, 1, 0],
+    transition: {
+      repeat: Number.POSITIVE_INFINITY,
+      duration: 1.5,
+      ease: "easeInOut" as const,
+      delay: 0.2 * custom,
+    },
+  }),
+} as const;

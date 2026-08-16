@@ -34,7 +34,6 @@
 }
 
 .connect-prompt--follow-up .connect-prompt-text,
-.connect-prompt--follow-up .icon.connect-prompt-coffee,
 .connect-prompt--follow-up .connect-prompt-reset {
   color: var(--color-connect-prompt-follow-up);
 }
@@ -110,7 +109,7 @@
   gap: var(--gap-connect);
 }
 
-.icon.connect-prompt-coffee {
+.connect-prompt-coffee {
   flex-shrink: 0;
   width: var(--icon-size-coffee);
   height: var(--icon-size-coffee);
