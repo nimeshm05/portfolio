@@ -9,6 +9,7 @@
 
 .callout--quoted {
   margin: 0;
+  min-width: 0;
 }
 
 .callout-with-attribution {
@@ -53,10 +54,6 @@
   text-align: start;
   font-style: italic;
   color: var(--color-callout-text);
-}
-
-.callout--quoted .callout-text {
-  flex: none;
 }
 
 .callout-quote {
