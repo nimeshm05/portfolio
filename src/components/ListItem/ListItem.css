@@ -93,8 +93,23 @@
   min-width: 0;
 }
 
+.list-item-entry {
+  display: flex;
+  flex-direction: column;
+  gap: var(--text-list-item-gap);
+  width: 100%;
+  min-width: 0;
+}
+
 .list-item-description {
   color: var(--color-text-body);
+  font-size: var(--text-body-size);
+  font-weight: var(--text-body-weight);
+  line-height: var(--text-body-line-height);
+}
+
+.list-item-dates {
+  color: var(--color-text-label);
   font-size: var(--text-body-size);
   font-weight: var(--text-body-weight);
   line-height: var(--text-body-line-height);

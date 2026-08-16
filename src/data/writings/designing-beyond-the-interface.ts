@@ -14,3 +14,16 @@ export const designingBeyondTheInterface: ProjectCardData = {
   bannerAlt: "Designing Beyond the Interface article preview",
   bannerType: "video",
 };
+
+export const noteToMyself: ProjectCardData = {
+  slug: "note-to-myself",
+  href: "https://nimeshmohanakrishnan.medium.com/a-note-to-myself-339b3e6b02c9",
+  title: "A Note to Myself",
+  projectType: "Medium",
+  timeline: "Medium",
+  description:
+    "A note to myself about my journey so far.",
+  bannerSrc: asset("note-self.mp4"),
+  bannerAlt: "A Note to Myself article preview",
+  bannerType: "video",
+};

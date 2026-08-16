@@ -48,6 +48,10 @@ function groupListItemBlocks(blocks: ListItemBlock[]): GroupedListItemCopy[] {
   return groups;
 }
 
+function ListItemDates({ dates }: { dates: string }) {
+  return <p className="list-item-dates">{dates}</p>;
+}
+
 function ListItemCopy({ item }: { item: ListItemData }) {
   if (item.blocks?.length) {
     return (
@@ -62,20 +66,31 @@ function ListItemCopy({ item }: { item: ListItemData }) {
             />
           ),
         )}
+        {item.dates ? <ListItemDates dates={item.dates} /> : null}
       </div>
     );
   }
 
   if (item.paragraphs?.length) {
     return (
-      <RichText
-        content={{ type: "paragraphs", paragraphs: item.paragraphs }}
-      />
+      <>
+        <RichText
+          content={{ type: "paragraphs", paragraphs: item.paragraphs }}
+        />
+        {item.dates ? <ListItemDates dates={item.dates} /> : null}
+      </>
     );
   }
 
-  if (item.description) {
-    return <p className="list-item-description">{item.description}</p>;
+  if (item.description || item.dates) {
+    return (
+      <div className="list-item-entry">
+        {item.description ? (
+          <p className="list-item-description">{item.description}</p>
+        ) : null}
+        {item.dates ? <ListItemDates dates={item.dates} /> : null}
+      </div>
+    );
   }
 
   return null;
@@ -134,7 +149,10 @@ export function ContentSection({
       href={item.href}
       chevronOrientation={chevronOrientation}
     >
-      {item.blocks?.length || item.paragraphs?.length || item.description ? (
+      {item.blocks?.length ||
+      item.paragraphs?.length ||
+      item.description ||
+      item.dates ? (
         <ListItemCopy item={item} />
       ) : null}
     </ListItem>

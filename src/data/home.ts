@@ -13,6 +13,7 @@ export type ListItemData = {
   icon?: IconName;
   href?: string;
   description?: string;
+  dates?: string;
   paragraphs?: string[];
   blocks?: ListItemBlock[];
 };
@@ -116,6 +117,12 @@ export const workSections: ContentSectionData[] = [
         icon: "notebook-pen",
         href: "https://nimeshmohanakrishnan.medium.com/designing-beyond-the-interface-what-contact-centers-taught-me-about-systems-thinking-ac164a68cc36",
       },
+      {
+        id: "note-to-myself",
+        title: "A Note to Myself",
+        icon: "notebook-pen",
+        href: "https://nimeshmohanakrishnan.medium.com/a-note-to-myself-339b3e6b02c9",
+      }
     ],
   },
 ];
@@ -131,6 +138,7 @@ export const aboutSections: ContentSectionData[] = [
         meta: "Knool",
         description:
           "Currently on the AI workspace team, leading feature improvements to increase usage metrics. Doing bit of design, strategic work, & product analytics - start-up life :)",
+        dates: "June 2026 – August 2026",
       },
       {
         id: "rozieai",
@@ -138,6 +146,7 @@ export const aboutSections: ContentSectionData[] = [
         meta: "RozieAI",
         description:
           "Led end-to-end design for a couple of internal tools like conversation insights and experience studio, which was used by clients like Air Canada.",
+        dates: "August 2023 – August 2025",
       },
       {
         id: "rozieai-intern",
@@ -145,6 +154,7 @@ export const aboutSections: ContentSectionData[] = [
         meta: "RozieAI",
         description:
           "Partnered with Design Lead to maintain and scale the organization’s design system, improving component re-usability, styleguide, and design-to-dev handoff efficiency.",
+        dates: "March 2023 – July 2023",
       },
       {
         id: "brane",
@@ -152,6 +162,7 @@ export const aboutSections: ContentSectionData[] = [
         meta: "Brane Enterprises",
         description:
           "Learned Flutter, software testing, and state management by building and shipping three core features and fixing 20+ bugs.",
+        dates: "June 2021 – November 2021",
       },
       {
         id: "stanford",
@@ -159,6 +170,7 @@ export const aboutSections: ContentSectionData[] = [
         meta: "Stanford d.school",
         description:
           "Announced as innovation fellow by the UIF community at Stanford d.school, also where I was trained in design thinking.",
+        dates: "2019",
       },
     ],
   },
@@ -171,12 +183,14 @@ export const aboutSections: ContentSectionData[] = [
         title: "M.S. Human Centered Design & Engineering, ",
         meta: "Udub",
         description: "Mastering my skills in systems thinking, prototyping, and interaction design at the University of Washington.",
+        dates: "September 2025 – July 2027 (Expected)",
       },
       {
         id: "beng-cse",
         title: "B.Eng. Computer Science & Engineering, ",
         meta: "VTU",
         description: "Gained skills in developing software systems at the Visvesvaraya Technological University.",
+        dates: "August 2018 – July 2022",
       },
     ],
   },

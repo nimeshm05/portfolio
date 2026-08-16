@@ -83,7 +83,9 @@
 
   /* Motion */
   --duration-fast: 160ms;
+  --duration-page: 620ms;
   --ease-default: ease;
+  --ease-out-soft: cubic-bezier(0.32, 0.72, 0, 1);
 
   /* Sizes */
   --size-icon: 1.25rem;
@@ -105,6 +107,16 @@
   --size-connect-excitement-width: 5.625rem;
   --size-connect-excitement-height: 3.75rem;
   --scale-110: 1.1;
+
+  /*
+   * Mask geometry: an oversized gradient mask, two viewports of travel plus a
+   * feather. Total is 200% + feather, and the stops are 100/total and
+   * (100 + feather)/total, so the opaque band is exactly one viewport wide.
+   * Feather here is 50%.
+   */
+  --mask-oversize: 250%;
+  --mask-stop-opaque: 40%;
+  --mask-stop-feather: 60%;
 
   /* Blur */
   --blur-1: 0.0625rem;
