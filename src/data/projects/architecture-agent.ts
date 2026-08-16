@@ -289,6 +289,7 @@ export const architectureAgent: ProjectPageData = {
   ],
   reflection: {
     eyebrow: "Reflections",
+    heading: "What I learned from this project",
     paragraphs: [],
     items: [
       {

@@ -63,7 +63,7 @@
   --offset-banner-inline: var(--space-120);
   --offset-banner-bleed: var(--space-160);
   --offset-sidebar-top: var(--gap-page);
-  --offset-sidebar-left: var(--gap-2xl);
+  --offset-sidebar-left: var(--gap-xl);
   --offset-sidebar-trigger: var(--size-sidebar-trigger);
   --sidebar-enter-offset: var(--size-sidebar-enter-offset);
   --scroll-margin-section: var(--gap-page);
