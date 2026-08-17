@@ -158,3 +158,8 @@
   display: inline-block;
   transform-origin: 70% 90%;
 }
+
+.connect-prompt-reset:active {
+  scale: 0.98;
+  transition: scale var(--transition-fast);
+}
