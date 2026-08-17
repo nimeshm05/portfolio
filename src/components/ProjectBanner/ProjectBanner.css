@@ -10,8 +10,11 @@
   height: var(--banner-height);
   margin-inline: 0;
   padding: var(--gap-3xl);
-  background-color: var(--color-bg-muted);
-  background-image: var(--project-banner-bg);
+  background:
+  radial-gradient(circle at 50% -10%, #7b95de 0%, transparent 55%),
+  radial-gradient(circle at 15% 25%, #708cc9 0%, transparent 45%),
+  radial-gradient(circle at 80% 20%, #65708e 0%, transparent 45%),
+  #111a4b;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
