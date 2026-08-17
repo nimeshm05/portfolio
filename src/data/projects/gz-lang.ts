@@ -11,4 +11,12 @@ export const gzLang: ProjectPageData = {
   bannerSrc: asset("gz-lang-preview.mp4"),
   bannerAlt: "gz-lang project preview",
   bannerType: "video",
+  meta: {
+    items: [
+      { label: "Project Type", value: "Exploratory Project - Transpiler" },
+      { label: "Intent", value: "Learning & Building with AI Agents" },
+      { label: "Timeline", value: "2026, 2 weeks" },
+      { label: "Role", value: "Design + Development" },
+    ],
+  },
 };
