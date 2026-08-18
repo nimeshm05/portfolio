@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useId, useState, type ReactNode } from "react";
 import { motion } from "motion/react";
+import { AnimatedIcon } from "@/components/AnimatedIcon/AnimatedIcon";
 import { Icon, type IconName } from "@/components/Icon/Icon";
 import { MorphingChevron } from "@/components/MorphingChevron/MorphingChevron";
 import { MorphingArrowUpRight } from "@/components/MorphingArrowUpRight/MorphingArrowUpRight";
@@ -25,6 +26,7 @@ type ListItemProps = {
   defaultOpen?: boolean;
   alwaysExpanded?: boolean;
   chevronOrientation?: ChevronOrientation;
+  animateIconOnHover?: boolean;
 };
 
 const CHEVRON_TRANSITION = {
@@ -72,6 +74,7 @@ export function ListItem({
   defaultOpen = false,
   alwaysExpanded = false,
   chevronOrientation,
+  animateIconOnHover = false,
 }: ListItemProps) {
   const [isOpen, setIsOpen] = useState(defaultOpen || alwaysExpanded);
   const [isHovered, setIsHovered] = useState(false);
@@ -119,7 +122,20 @@ export function ListItem({
     return () => cancelAnimationFrame(frameId);
   }, [blurOnTabChange, chevronRotate]);
 
-  const iconNode = icon ? (
+  const rowHoverHandlers = {
+    onPointerEnter: () => setIsHovered(true),
+    onPointerLeave: () => setIsHovered(false),
+  };
+
+  const iconContent =
+    icon &&
+    (animateIconOnHover ? (
+      <AnimatedIcon name={icon} isActive={isHovered} />
+    ) : (
+      <Icon name={icon} />
+    ));
+
+  const iconNode = iconContent ? (
     blurOnTabChange ? (
       <motion.span
         className="list-item-icon"
@@ -129,11 +145,11 @@ export function ListItem({
         animate="animate"
         transition={tabContentTransition}
       >
-        <Icon name={icon} />
+        {iconContent}
       </motion.span>
     ) : (
       <span className="list-item-icon" aria-hidden="true">
-        <Icon name={icon} />
+        {iconContent}
       </span>
     )
   ) : null;
@@ -206,6 +222,7 @@ export function ListItem({
               setIsOpen((open) => !open);
             }
           }}
+          {...rowHoverHandlers}
         >
           {content}
         </button>
@@ -220,7 +237,7 @@ export function ListItem({
 
   if (isInternalLink) {
     return (
-      <Link className={className} href={href}>
+      <Link className={className} href={href} {...rowHoverHandlers}>
         {content}
       </Link>
     );
@@ -230,8 +247,7 @@ export function ListItem({
     <a
       className={className}
       href={href}
-      onPointerEnter={() => setIsHovered(true)}
-      onPointerLeave={() => setIsHovered(false)}
+      {...rowHoverHandlers}
       {...(isExternalLink
         ? { target: "_blank", rel: "noopener noreferrer" }
         : {})}

@@ -148,6 +148,7 @@ export function ContentSection({
       icon={item.icon}
       href={item.href}
       chevronOrientation={chevronOrientation}
+      animateIconOnHover={viewMode === "list"}
     >
       {item.blocks?.length ||
       item.paragraphs?.length ||
