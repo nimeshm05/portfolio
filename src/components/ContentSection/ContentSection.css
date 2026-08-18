@@ -41,5 +41,5 @@
   height: 0;
   margin-inline: var(--inset-x);
   border: 0;
-  border-top: var(--border-width) solid var(--color-bg-muted);
+  border-top: var(--border-width) solid var(--color-divider);
 }
