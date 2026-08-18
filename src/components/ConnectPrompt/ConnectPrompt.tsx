@@ -349,7 +349,7 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
                 />
               ) : null}
             </AnimatePresence>
-            <PromptText>Wanna Connect?</PromptText>
+            <PromptText>Wanna connect?</PromptText>
           </span>
           <Options
             items={[
