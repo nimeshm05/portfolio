@@ -41,7 +41,6 @@ export function HomePage() {
   const sections = activeTab === "work" ? workSections : aboutSections;
   const chevronOrientation: ChevronOrientation =
     activeTab === "about" ? "down" : "right";
-  const navPadded = activeTab === "about" || workViewMode === "list";
   const homeSidebarEnabled = activeTab === "work" && workViewMode === "card";
   const homeSidebarVisible = useHomeSidebarVisibility(contentEl, {
     enabled: homeSidebarEnabled,
@@ -68,9 +67,7 @@ export function HomePage() {
         <PageEnterGroup className="home-lower">
           <PageEnterGroup className="home-main">
             <PageEnterItem>
-              <div
-                className={`home-nav${navPadded ? " home-nav--padded" : ""}`}
-              >
+              <div className="home-nav">
                 <div className="segmented-control-container">
                   <SegmentedControl
                     tabs={homeTabs}
