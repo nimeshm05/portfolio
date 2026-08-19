@@ -52,6 +52,7 @@ export type CalloutQuote = {
   attribution?: string;
   source?: string;
   designPrinciple?: string;
+  variant?: "quote" | "body";
 };
 
 export type ExpandableItemContent = {

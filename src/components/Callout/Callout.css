@@ -88,3 +88,12 @@
   color: var(--color-callout-attribution-source);
   font-weight: var(--text-body-weight);
 }
+
+.callout--body .callout-text {
+  font-family: var(--font-family-sans);
+  font-size: var(--text-body-size);
+  font-weight: var(--text-body-weight);
+  line-height: var(--text-body-line-height);
+  font-style: normal;
+  color: var(--color-accent);
+}

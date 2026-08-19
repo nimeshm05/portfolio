@@ -94,6 +94,7 @@ function ExpandableItemBody({
               attribution={quote.attribution}
               source={quote.source}
               designPrinciple={quote.designPrinciple}
+              variant={quote.variant}
             >
               {quote.text}
             </Callout>
