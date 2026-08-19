@@ -10,7 +10,7 @@ export const designingBeyondTheInterface: ProjectCardData = {
   timeline: "Medium",
   description:
     "What contact centers taught me about systems thinking.",
-  bannerSrc: asset("medium-article-systems-thinking-preview.mp4"),
+  bannerSrc: asset("contact-centres.mp4"),
   bannerAlt: "Designing Beyond the Interface article preview",
   bannerType: "video",
 };
