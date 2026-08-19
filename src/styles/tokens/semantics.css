@@ -49,7 +49,7 @@
   --gap-section: var(--space-60);
   --padding-page: var(--space-120);
   --inset-x: var(--space-12);
-  --padding-callout-quote: var(--space-32);
+  --padding-callout-quote: var(--space-28);
   --gap-callout-cite: var(--text-body-paragraph-gap);
   --gap-callout-copy: var(--space-40);
   --callout-attribution-rule-width: var(--space-24);
