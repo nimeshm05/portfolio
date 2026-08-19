@@ -94,7 +94,7 @@
   --blur-layer-6: var(--blur-24);
 
   /* Shared layout */
-  --font-family-sans: var(--font-inter), "Segoe UI", sans-serif;
+  --font-family-sans: -apple-system, BlinkMacSystemFont, var(--font-inter), "Segoe UI", sans-serif;
   --font-family-serif: serif;
   --font-family-hand: var(--font-caveat), cursive;
   --letter-spacing-body: var(--letter-spacing-tight);
