@@ -4,7 +4,7 @@ import { Fragment, useEffect, useRef, useState, type ReactNode } from "react";
 import { AnimatePresence, motion, type Transition } from "motion/react";
 import { ConnectExcitement, type ExcitementExitMode } from "@/components/ConnectExcitement/ConnectExcitement";
 import { AnimatedCoffeeIcon } from "@/components/AnimatedCoffeeIcon/AnimatedCoffeeIcon";
-import { MorphingConnectIcon } from "@/components/MorphingConnectIcon/MorphingConnectIcon";
+import { MorphingArrowRight } from "@/components/MorphingArrowRight/MorphingArrowRight";
 import { connect, type HomeTab } from "@/data/home";
 import {
   PHONE_WAVE_EMOJI,
@@ -546,9 +546,7 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
         aria-label={isInvite ? undefined : "Start over"}
         tabIndex={isInvite ? -1 : undefined}
       >
-        <MorphingConnectIcon
-          variant={isInvite ? "workflow" : "send-to-back"}
-        />
+        <MorphingArrowRight variant={isInvite ? "right" : "left"} />
       </button>
       <AnimatePresence mode="wait">
         <motion.div

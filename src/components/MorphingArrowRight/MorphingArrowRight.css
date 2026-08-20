@@ -1,0 +1,11 @@
+.morphing-arrow-right {
+  display: block;
+  flex-shrink: 0;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  color: currentColor;
+}
+
+.morphing-arrow-right:hover {
+  color: var(--color-text-primary);
+}

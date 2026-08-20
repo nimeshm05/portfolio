@@ -190,7 +190,7 @@
   --text-profile-cue-size: var(--font-size-32);
   --text-profile-cue-size-sm: var(--font-size-22);
   --text-profile-cue-weight: var(--font-weight-bold);
-  --color-profile-cue: var(--color-neutral-200);
+  --color-profile-cue: var(--color-text-muted);
   --color-profile-cue-hover: var(--color-accent);
   --stroke-profile-cue: var(--size-profile-cue-stroke);
   --profile-cue-block-size: var(--size-profile-cue-block);
