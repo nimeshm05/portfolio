@@ -26,6 +26,7 @@ import {
   workSections,
   type HomeTab,
 } from "@/data/home";
+import { useHomeSectionSnap } from "@/motion/homeSectionSnap";
 import { useHomeSidebarVisibility } from "@/motion/homeSidebarVisibility";
 import {
   TabContentMotionProvider,
@@ -35,6 +36,7 @@ import {
 import "./HomePage.css";
 
 export function HomePage() {
+  const [pageEl, setPageEl] = useState<HTMLDivElement | null>(null);
   const [contentEl, setContentEl] = useState<HTMLDivElement | null>(null);
   const [activeTab, setActiveTab] = useState<HomeTab>("work");
   const [workViewMode, setWorkViewMode] = useState<WorkViewMode>("card");
@@ -45,9 +47,10 @@ export function HomePage() {
   const homeSidebarVisible = useHomeSidebarVisibility(contentEl, {
     enabled: homeSidebarEnabled,
   });
+  useHomeSectionSnap(pageEl);
 
   return (
-    <div className="home-page">
+    <div className="home-page" ref={setPageEl}>
       <ViewportEdgeBlur />
       <HomeSidebar
         visible={homeSidebarEnabled && homeSidebarVisible}

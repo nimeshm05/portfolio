@@ -65,6 +65,7 @@
   --offset-banner-bleed: var(--space-160);
   --offset-sidebar-top: var(--gap-page);
   --offset-sidebar-left: var(--gap-xl);
+  --offset-home-main-top: var(--space-104);
   --scroll-margin-section: var(--gap-page);
   --padding-list-indent: var(--space-24);
   --opacity-control-inactive: var(--opacity-subtle);

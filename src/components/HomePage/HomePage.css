@@ -1,3 +1,31 @@
+html:has(.home-page) {
+  overflow-x: clip;
+  overflow-y: auto;
+  scroll-behavior: auto;
+  scroll-snap-type: y mandatory;
+}
+
+html:has(.home-page.home-page--free-scroll) {
+  scroll-snap-type: none;
+}
+
+html:has(.home-page.home-page--free-scroll) .site-header-profile,
+html:has(.home-page.home-page--free-scroll) .home-lower {
+  scroll-snap-align: none;
+  scroll-snap-stop: normal;
+}
+
+html:has(.home-page) body {
+  overflow-x: clip;
+  overflow-y: visible;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:has(.home-page) {
+    scroll-snap-type: none;
+  }
+}
+
 .home-page {
   display: flex;
   flex: 1;
@@ -15,7 +43,7 @@
   width: 100%;
   min-height: 100%;
   max-width: var(--content-width);
-  padding: var(--padding-page) var(--inset-x);
+  padding: 0 var(--inset-x) var(--padding-page);
 }
 
 .home-lower {
@@ -24,6 +52,8 @@
   align-items: flex-start;
   gap: var(--gap-page);
   width: 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 .home-main {
@@ -32,6 +62,7 @@
   align-items: flex-start;
   gap: var(--gap-2xl);
   width: 100%;
+  padding-top: var(--offset-home-main-top);
 }
 
 .home-nav {
