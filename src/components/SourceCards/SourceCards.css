@@ -12,6 +12,7 @@
   padding: var(--padding-card-block);
   background-color: var(--color-bg-muted);
   border-radius: var(--radius-xl);
+  border: var(--border-card);
 }
 
 .source-card {
