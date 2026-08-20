@@ -86,7 +86,11 @@ type ProfileScrollCuesProps = {
   onSelect: (tab: HomeTab) => void;
 };
 
-type ArrowGeometry = typeof WORK_ARROW;
+type ArrowGeometry = {
+  viewBox: string;
+  shaft: string;
+  head: string;
+};
 
 type CueArrowProps = {
   geometry: ArrowGeometry;
