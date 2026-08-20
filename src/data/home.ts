@@ -47,6 +47,10 @@ export const connect = {
   mediumHref: "https://nimeshmohanakrishnan.medium.com/"
 } as const;
 
+export const resume = {
+  href: "#",
+} as const;
+
 export const workSections: ContentSectionData[] = [
   {
     id: "industry-projects",

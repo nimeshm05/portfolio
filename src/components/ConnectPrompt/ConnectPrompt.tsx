@@ -349,7 +349,7 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
                 />
               ) : null}
             </AnimatePresence>
-            <PromptText>Wanna connect?</PromptText>
+            <PromptText>Connect?</PromptText>
           </span>
           <Options
             items={[
@@ -404,7 +404,7 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
                       setStep("prefer");
                     }}
                   >
-                    Yes
+                    Sure
                   </PromptAction>
                 ),
               },

@@ -1,0 +1,65 @@
+.resume-prompt {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+  color: var(--color-text-label);
+  font-size: var(--text-list-size);
+  font-weight: var(--text-list-weight);
+  line-height: var(--text-list-line-height);
+  text-align: center;
+}
+
+.resume-prompt-icon {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  color: var(--color-text-label);
+  pointer-events: none;
+}
+
+.resume-prompt-icon .morphing-arrow-right {
+  width: 100%;
+  height: 100%;
+}
+
+.resume-prompt-text {
+  color: var(--color-text-label);
+}
+
+.resume-prompt-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--gap-xs) var(--gap-md);
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-text-muted);
+  font: inherit;
+  line-height: inherit;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.resume-prompt-content {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-sm);
+}
+
+.resume-prompt-action:hover,
+.resume-prompt-action:focus-visible {
+  background: transparent;
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
+.resume-prompt-action:active {
+  scale: 0.98;
+  transition: scale var(--transition-fast);
+}

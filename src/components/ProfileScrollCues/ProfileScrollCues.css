@@ -38,6 +38,10 @@
   color: var(--color-profile-cue-hover);
 }
 
+.profile-scroll-cue:active {
+  scale: 0.98;
+}
+
 .profile-scroll-cues.is-hidden .profile-scroll-cue {
   pointer-events: none;
 }

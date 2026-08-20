@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ConnectPrompt } from "@/components/ConnectPrompt/ConnectPrompt";
+import { ResumePrompt } from "@/components/ResumePrompt/ResumePrompt";
 import { ContentSection } from "@/components/ContentSection/ContentSection";
 import { Header } from "@/components/Header/Header";
 import { HomeFooter } from "@/components/HomeFooter/HomeFooter";
@@ -73,9 +74,12 @@ export function HomePage() {
             bio={profile.bioByTab[activeTab]}
             avatarSrc={profile.avatarSrc}
             avatarAlt={profile.avatarAlt}
-            bottom={<ProfileScrollCues onSelect={handleCueSelect} />}
+            // bottom={<ProfileScrollCues onSelect={handleCueSelect} />}
           >
-            <ConnectPrompt activeTab={activeTab} />
+            <div className="home-prompts">
+              <ConnectPrompt activeTab={activeTab} />
+              {/* <ResumePrompt /> */}
+            </div>
           </Header>
         </PageEnterItem>
         <PageEnterGroup className="home-lower">
