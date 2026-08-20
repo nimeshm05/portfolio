@@ -5,6 +5,7 @@ import { AnimatePresence, motion, type Transition } from "motion/react";
 import { ConnectExcitement, type ExcitementExitMode } from "@/components/ConnectExcitement/ConnectExcitement";
 import { AnimatedCoffeeIcon } from "@/components/AnimatedCoffeeIcon/AnimatedCoffeeIcon";
 import { MorphingArrowRight } from "@/components/MorphingArrowRight/MorphingArrowRight";
+import { MorphingConnectIcon } from "@/components/MorphingConnectIcon/MorphingConnectIcon";
 import { connect, type HomeTab } from "@/data/home";
 import {
   PHONE_WAVE_EMOJI,
@@ -349,7 +350,7 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
                 />
               ) : null}
             </AnimatePresence>
-            <PromptText>Connect?</PromptText>
+            <PromptText>Wanna connect?</PromptText>
           </span>
           <Options
             items={[
@@ -547,6 +548,9 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
         tabIndex={isInvite ? -1 : undefined}
       >
         <MorphingArrowRight variant={isInvite ? "right" : "left"} />
+        {/* <MorphingConnectIcon
+          variant={isInvite ? "workflow" : "send-to-back"}
+        /> */}
       </button>
       <AnimatePresence mode="wait">
         <motion.div

@@ -27,3 +27,16 @@ export const noteToMyself: ProjectCardData = {
   bannerAlt: "A Note to Myself article preview",
   bannerType: "video",
 };
+
+export const connectPrompt: ProjectCardData = {
+  slug: "connect-prompt",
+  href: "#",
+  title: "Connect Prompt Component",
+  projectType: "Interaction Design",
+  timeline: "Medium",
+  description:
+    "A note to myself about my journey so far.",
+  bannerSrc: asset("arrow-right-connect.mp4"),
+  bannerAlt: "Connect Prompt Component article preview",
+  bannerType: "video",
+};
