@@ -96,7 +96,9 @@
   --size-sidebar-width: 11.25rem;
   --size-banner-height: 40rem;
   --size-card-banner-height: 26rem;
-  --size-viewport-edge-blur: 6rem;
+  --size-viewport-edge-blur: 5rem;
+  --size-profile-cue-stroke: 0.14rem;
+  --size-profile-cue-block: 5.5rem;
   --size-architecture-workflow-height: 18.5625rem;
   --size-connect-excitement-width: 5.625rem;
   --size-connect-excitement-height: 3.75rem;

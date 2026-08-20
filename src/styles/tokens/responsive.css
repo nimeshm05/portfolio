@@ -10,6 +10,7 @@
     --offset-banner-bleed: 0;
     --banner-height: 22rem;
     --card-banner-height: 18rem;
+    --text-profile-cue-size: var(--text-profile-cue-size-sm);
   }
 }
 

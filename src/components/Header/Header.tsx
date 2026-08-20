@@ -8,6 +8,7 @@ type HeaderProps = {
   avatarSrc: string;
   avatarAlt: string;
   children?: ReactNode;
+  bottom?: ReactNode;
 };
 
 export function Header({
@@ -16,6 +17,7 @@ export function Header({
   avatarSrc,
   avatarAlt,
   children,
+  bottom,
 }: HeaderProps) {
   return (
     <header className="site-header">
@@ -37,6 +39,7 @@ export function Header({
           </div>
           {children}
         </div>
+        {bottom}
       </div>
     </header>
   );

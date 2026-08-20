@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ConnectPrompt } from "@/components/ConnectPrompt/ConnectPrompt";
 import { ContentSection } from "@/components/ContentSection/ContentSection";
 import { Header } from "@/components/Header/Header";
 import { HomeFooter } from "@/components/HomeFooter/HomeFooter";
 import { HomeSidebar } from "@/components/HomeSidebar/HomeSidebar";
+import { ProfileScrollCues } from "@/components/ProfileScrollCues/ProfileScrollCues";
 import {
   PageEnter,
   PageEnterGroup,
@@ -48,6 +49,15 @@ export function HomePage() {
     enabled: homeSidebarEnabled,
   });
   useHomeSectionSnap(pageEl);
+  const reduceMotion = useReducedMotion() ?? false;
+
+  const handleCueSelect = (tab: HomeTab) => {
+    setActiveTab(tab);
+    pageEl?.querySelector(".home-lower")?.scrollIntoView({
+      behavior: reduceMotion ? "auto" : "smooth",
+      block: "start",
+    });
+  };
 
   return (
     <div className="home-page" ref={setPageEl}>
@@ -63,6 +73,7 @@ export function HomePage() {
             bio={profile.bioByTab[activeTab]}
             avatarSrc={profile.avatarSrc}
             avatarAlt={profile.avatarAlt}
+            bottom={<ProfileScrollCues onSelect={handleCueSelect} />}
           >
             <ConnectPrompt activeTab={activeTab} />
           </Header>

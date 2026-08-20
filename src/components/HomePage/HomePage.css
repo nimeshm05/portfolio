@@ -70,7 +70,7 @@ html:has(.home-page) body {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding-inline: var(--inset-x);
+  /* padding-inline: var(--inset-x); */
 }
 
 .home-content {

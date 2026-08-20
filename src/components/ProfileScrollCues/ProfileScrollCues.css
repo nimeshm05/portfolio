@@ -1,0 +1,78 @@
+.profile-scroll-cues {
+  position: fixed;
+  left: 50%;
+  bottom: var(--viewport-edge-blur-size);
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  width: 100%;
+  max-width: var(--content-width);
+  padding-inline: calc(var(--inset-x) * 2);
+  overflow: visible;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.profile-scroll-cues.is-hidden {
+  pointer-events: none;
+}
+
+.profile-scroll-cue {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--gap-profile-cue);
+  padding: 0;
+  overflow: visible;
+  color: var(--color-profile-cue);
+  font-family: var(--font-family-hand);
+  font-size: var(--text-profile-cue-size);
+  font-weight: var(--text-profile-cue-weight);
+  line-height: 1;
+  pointer-events: auto;
+  text-align: left;
+}
+
+.profile-scroll-cue:hover {
+  color: var(--color-profile-cue-hover);
+}
+
+.profile-scroll-cues.is-hidden .profile-scroll-cue {
+  pointer-events: none;
+}
+
+.profile-scroll-cue--about {
+  align-items: flex-start;
+  text-align: right;
+}
+
+.profile-scroll-cue-label {
+  display: block;
+  margin: 0;
+}
+
+.profile-scroll-cue-letter,
+.profile-scroll-cue-space {
+  display: inline-block;
+}
+
+.profile-scroll-cue-letter {
+  padding-inline: 0.12em;
+  margin-inline: -0.12em;
+  will-change: clip-path;
+}
+
+.profile-scroll-cue-arrow {
+  display: block;
+  width: 1.5rem;
+  height: auto;
+  overflow: visible;
+}
+
+.profile-scroll-cue-arrow path {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}

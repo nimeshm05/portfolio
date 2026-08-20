@@ -1,8 +1,8 @@
 "use client";
 
-import { useMemo } from "react";
-import { AnimatePresence } from "motion/react";
-import { SidebarNav } from "@/components/SidebarNav/SidebarNav";
+import { useMemo, type MouseEvent } from "react";
+import { AnimatePresence, useReducedMotion } from "motion/react";
+import { SidebarNav, type SidebarNavItem } from "@/components/SidebarNav/SidebarNav";
 import type { ContentSectionData } from "@/data/home";
 import { useProjectScrollSpy } from "@/motion/projectScrollSpy";
 import "./HomeSidebar.css";
@@ -12,7 +12,33 @@ type HomeSidebarProps = {
   sections: ContentSectionData[];
 };
 
+function scrollToHomeSection(
+  event: MouseEvent<HTMLAnchorElement>,
+  item: SidebarNavItem,
+  reduceMotion: boolean,
+) {
+  const href = item.href;
+
+  if (!href?.startsWith("#")) {
+    return;
+  }
+
+  const target = document.getElementById(href.slice(1));
+
+  if (!target) {
+    return;
+  }
+
+  event.preventDefault();
+  target.scrollIntoView({
+    behavior: reduceMotion ? "auto" : "smooth",
+    block: "start",
+  });
+  history.pushState(null, "", href);
+}
+
 export function HomeSidebar({ visible, sections }: HomeSidebarProps) {
+  const reduceMotion = useReducedMotion() ?? false;
   const sectionIds = useMemo(
     () => sections.map((section) => section.id),
     [sections],
@@ -44,6 +70,9 @@ export function HomeSidebar({ visible, sections }: HomeSidebarProps) {
           activeId={activeId}
           animate
           aria-label="Work sections"
+          onItemClick={(event, item) =>
+            scrollToHomeSection(event, item, reduceMotion)
+          }
         />
       ) : null}
     </AnimatePresence>

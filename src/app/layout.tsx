@@ -13,7 +13,7 @@ const inter = Inter({
 const caveat = Caveat({
   variable: "--font-caveat",
   subsets: ["latin"],
-  weight: "500",
+  weight: ["500", "700"],
 });
 
 export const metadata: Metadata = {

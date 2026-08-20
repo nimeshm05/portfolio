@@ -1,5 +1,6 @@
 "use client";
 
+import type { MouseEvent } from "react";
 import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
 import { Icon } from "@/components/Icon/Icon";
@@ -23,6 +24,10 @@ type SidebarNavProps = {
   className?: string;
   rootElement?: "div" | "aside";
   "aria-label"?: string;
+  onItemClick?: (
+    event: MouseEvent<HTMLAnchorElement>,
+    item: SidebarNavItem,
+  ) => void;
 };
 
 function NavItemContent({ label }: { label: string }) {
@@ -37,6 +42,7 @@ export function SidebarNav({
   className = "",
   rootElement = "div",
   "aria-label": ariaLabel,
+  onItemClick,
 }: SidebarNavProps) {
   const reduceMotion = useReducedMotion() ?? false;
   const containerVariants = getSidebarEnterContainerVariants(reduceMotion);
@@ -59,7 +65,12 @@ export function SidebarNav({
       .join(" ");
 
     return item.href ? (
-      <a key={item.id} className={className} href={item.href}>
+      <a
+        key={item.id}
+        className={className}
+        href={item.href}
+        onClick={(event) => onItemClick?.(event, item)}
+      >
         <NavItemContent label={item.label} />
       </a>
     ) : (
@@ -110,7 +121,11 @@ export function SidebarNav({
               variants={itemVariants}
             >
               {item.href ? (
-                <a className={linkClassName} href={item.href}>
+                <a
+                  className={linkClassName}
+                  href={item.href}
+                  onClick={(event) => onItemClick?.(event, item)}
+                >
                   <NavItemContent label={item.label} />
                 </a>
               ) : (

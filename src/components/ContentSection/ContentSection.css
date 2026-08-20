@@ -19,6 +19,7 @@
   font-weight: var(--text-label-weight);
   line-height: var(--text-label-line-height);
   white-space: nowrap;
+  scroll-margin-top: var(--scroll-margin-section);
 }
 
 .content-section-list {
