@@ -11,8 +11,8 @@
   --color-neutral-500: oklch(0.6168 0 0);
   --color-neutral-600: oklch(0.516 0 0);
   --color-neutral-700: oklch(0.4152 0 0);
-  --color-lime-400: oklch(0.565 0.106 123.8);
-  --color-coffee-500: oklch(0.56 0.15 49);
+  --color-lime-400: oklch(0.627 0.194 149.22);
+  --color-coffee-500: oklch(63.008% 0.17108 48.174);
   --color-green-500: oklch(0.7303 0.194 147.4);
   --color-agent-chip-bg: oklch(0.2905 0.047 150.4);
   --color-agent-chip-text: oklch(0.8792 0.278 139.1);
@@ -129,5 +129,5 @@
   /* Layout */
   --layout-content-width: 42rem;
   --layout-prose-width: 30rem;
-  --layout-bio-width: 33rem;
+  --layout-bio-width: 36rem;
 }

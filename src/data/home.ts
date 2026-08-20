@@ -30,9 +30,9 @@ export const profile = {
   avatarSrc: "/assets/profile.svg",
   avatarAlt: "Portrait of Nimesh Mohanakrishnan",
   bioByTab: {
-    work: "Product designer in Seattle, pursuing my master’s in HCDE at the University of Washington. I'm good at interaction design and prototyping end-to-end product experiences. Previously, I designed AI experiences for legal professionals at Knool and before that I worked on internal tools at RozieAI.",
+    work: "Product designer in Seattle, pursuing my master’s in HCDE at the University of Washington. I specialize in interaction design and prototyping, with experience designing end-to-end product experiences. Previously, I designed AI experiences for legal professionals at Knool and internal tools for contact center teams at RozieAI.",
     about:
-      "Product designer in Seattle, pursuing my master’s in HCDE at the University of Washington. I'm good at interaction design and prototyping end-to-end product experiences.  Previously, I designed AI experiences for legal professionals at Knool and before that I worked on internal tools at RozieAI.",
+      "Product designer in Seattle, pursuing my master’s in HCDE at the University of Washington. I specialize in interaction design and prototyping, with experience designing end-to-end product experiences. Previously, I designed AI experiences for legal professionals at Knool and internal tools for contact center teams at RozieAI.",
   },
 } as const;
 
@@ -198,7 +198,7 @@ export const aboutSections: ContentSectionData[] = [
           "Over time, I realized I wanted to get better at the thinking behind those decisions. I could reason about interfaces and workflows, but I wanted a more structured way to think about the people, activities, and systems surrounding them. I didn't want to think of a user simply as someone interacting with a screen. I wanted to understand what they were doing, who else was involved, what constraints shaped their behavior, and how a product fit into the larger system.",
           "That realization led me to HCDE.",
           "Looking back, my path into design wasn't really a change of direction. It was a gradual move toward asking better questions about the things I was building.",
-          'From **“How do I make this?”** to **“Why should this work this way?”** to **“What problem are we actually solving?”** and, eventually, **“What exists around the problem?”**',
+          'From **“How do I make this?”** to **“Why should this work this way?”** to **“What problem are we actually solving?”** and, eventually, **“What exists around the problem? What should exist? What should be subtracted?”**',
           "Apparently, I just really like asking questions.",
         ],
       },
