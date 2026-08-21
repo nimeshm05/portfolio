@@ -101,9 +101,9 @@ export const workSections: ContentSectionData[] = [
       },
       {
         id: "connect-prompt",
-        title: "Connect Prompt Component",
+        title: "Connect Prompt",
         icon: "notebook-pen",
-        href: "https://nimeshmohanakrishnan.medium.com/a-note-to-myself-339b3e6b02c9",
+        href: "/work/connect-prompt",
       },
     ],
   },
