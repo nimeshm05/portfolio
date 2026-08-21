@@ -1,6 +1,7 @@
 import type { LucideIcon } from "lucide-react";
 import {
   Activity,
+  ArrowDown,
   Bot,
   Brain,
   Bug,
@@ -71,7 +72,8 @@ export type IconName =
   | "gauge"
   | "handshake"
   | "activity"
-  | "type";
+  | "type"
+  | "arrow-down";
 
 const icons: Record<IconName, LucideIcon> = {
   bot: Bot,
@@ -108,6 +110,7 @@ const icons: Record<IconName, LucideIcon> = {
   handshake: Handshake,
   activity: Activity,
   type: Type,
+  "arrow-down": ArrowDown,
 };
 
 type IconProps = {

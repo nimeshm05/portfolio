@@ -4,7 +4,7 @@ import "./Header.css";
 
 type HeaderProps = {
   name: string;
-  bio: string;
+  bio: readonly string[];
   avatarSrc: string;
   avatarAlt: string;
   children?: ReactNode;
@@ -35,7 +35,13 @@ export function Header({
         <div className="site-header-details">
           <div className="site-header-info">
             <h1 className="site-header-name">{name}</h1>
-            <p className="site-header-bio">{bio}</p>
+            <div className="site-header-bio">
+              {bio.map((paragraph) => (
+                <p key={paragraph} className="site-header-bio-paragraph">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
           </div>
           {children}
         </div>

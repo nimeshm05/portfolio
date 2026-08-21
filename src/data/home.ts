@@ -30,9 +30,14 @@ export const profile = {
   avatarSrc: "/assets/profile.svg",
   avatarAlt: "Portrait of Nimesh Mohanakrishnan",
   bioByTab: {
-    work: "Product designer in Seattle, pursuing my master’s in HCDE at the University of Washington. I specialize in interaction design and prototyping, with experience designing end-to-end product experiences. Previously, I designed AI experiences for legal professionals at Knool and internal tools for contact center teams at RozieAI.",
-    about:
-      "Product designer in Seattle, pursuing my master’s in HCDE at the University of Washington. I specialize in interaction design and prototyping, with experience designing end-to-end product experiences. Previously, I designed AI experiences for legal professionals at Knool and internal tools for contact center teams at RozieAI.",
+    work: [
+      "Product designer in Seattle, pursuing my master’s in HCDE at the University of Washington. I specialize in interaction design and prototyping with agentic coding tools, and have experience designing end-to-end product experiences.",
+      "Previously, I designed AI experiences for legal professionals at Knool and internal tools for contact center teams at RozieAI.",
+    ],
+    about: [
+      "Product designer in Seattle, pursuing my master’s in HCDE at the University of Washington. I specialize in interaction design and prototyping with agentic coding tools, and have experience designing end-to-end product experiences.",
+      "Previously, I designed AI experiences for legal professionals at Knool and internal tools for contact center teams at RozieAI.",
+    ],
   },
 } as const;
 

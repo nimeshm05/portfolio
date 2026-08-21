@@ -50,6 +50,7 @@ html:has(.home-page) body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  gap: var(--gap-sm);
   width: 100%;
 }
 

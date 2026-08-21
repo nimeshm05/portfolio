@@ -8,7 +8,6 @@ import { ContentSection } from "@/components/ContentSection/ContentSection";
 import { Header } from "@/components/Header/Header";
 import { HomeFooter } from "@/components/HomeFooter/HomeFooter";
 import { HomeSidebar } from "@/components/HomeSidebar/HomeSidebar";
-import { ProfileScrollCues } from "@/components/ProfileScrollCues/ProfileScrollCues";
 import {
   PageEnter,
   PageEnterGroup,
@@ -20,6 +19,7 @@ import {
   ViewSwitcher,
   type WorkViewMode,
 } from "@/components/ViewSwitcher/ViewSwitcher";
+import { ViewWorkCue } from "@/components/ViewWorkCue/ViewWorkCue";
 import { ViewportEdgeBlur } from "@/components/ViewportEdgeBlur/ViewportEdgeBlur";
 import {
   aboutSections,
@@ -74,11 +74,11 @@ export function HomePage() {
             bio={profile.bioByTab[activeTab]}
             avatarSrc={profile.avatarSrc}
             avatarAlt={profile.avatarAlt}
-            // bottom={<ProfileScrollCues onSelect={handleCueSelect} />}
           >
             <div className="home-prompts">
               <ConnectPrompt activeTab={activeTab} />
               {/* <ResumePrompt /> */}
+              <ViewWorkCue onSelect={() => handleCueSelect("work")} />
             </div>
           </Header>
         </PageEnterItem>
