@@ -48,7 +48,7 @@ export const conversationInsights: ProjectPageData = {
       "Before Conversation Insights, AI-generated insights were delivered through weekly reports prepared by RozieAI product owners. While these reports helped Air Canada teams identify emerging issues, they provided limited context for understanding where those issues were occurring or what was driving them.",
       "Investigating an issue meant moving between reports, AWS Connect, and follow-up discussions with RozieAI stakeholders to piece together the operational context. Users therefore depended on a fragmented, people-dependent workflow to move from identifying an issue to understanding it, slowing how quickly they could make operational decisions.",
     ],
-    imageSrc: asset("problem.svg"),
+    imageSrc: asset("problem.mp4"),
     imageAlt:
       "Diagram showing fragmented investigation across Outlook, Teams, Excel, Word, and AWS Connect",
   },

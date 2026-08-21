@@ -78,6 +78,7 @@ export type ProjectSectionWithMedia = {
   paragraphs: string[];
   imageSrc?: string;
   imageAlt?: string;
+  imageType?: "image" | "video";
   workflow?: ArchitectureWorkflowData;
 };
 

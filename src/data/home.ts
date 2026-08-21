@@ -32,11 +32,11 @@ export const profile = {
   bioByTab: {
     work: [
       "Product designer in Seattle, pursuing my master’s in HCDE at the University of Washington. I specialize in interaction design and prototyping with agentic coding tools, and have experience designing end-to-end product experiences.",
-      "Previously, I designed AI experiences for legal professionals at Knool and internal tools for contact center teams at RozieAI.",
+      "Previously, I designed legal tech products at Knool and internal tools for contact center teams at RozieAI.",
     ],
     about: [
       "Product designer in Seattle, pursuing my master’s in HCDE at the University of Washington. I specialize in interaction design and prototyping with agentic coding tools, and have experience designing end-to-end product experiences.",
-      "Previously, I designed AI experiences for legal professionals at Knool and internal tools for contact center teams at RozieAI.",
+      "Previously, I designed legal tech products at Knool and internal tools for contact center teams at RozieAI.",
     ],
   },
 } as const;
@@ -99,6 +99,12 @@ export const workSections: ContentSectionData[] = [
         icon: "code-xml",
         href: "/work/gz-lang",
       },
+      {
+        id: "connect-prompt",
+        title: "Connect Prompt Component",
+        icon: "notebook-pen",
+        href: "https://nimeshmohanakrishnan.medium.com/a-note-to-myself-339b3e6b02c9",
+      },
     ],
   },
   {
@@ -118,12 +124,6 @@ export const workSections: ContentSectionData[] = [
         icon: "notebook-pen",
         href: "https://nimeshmohanakrishnan.medium.com/a-note-to-myself-339b3e6b02c9",
       },
-      {
-        id: "connect-prompt",
-        title: "Connect Prompt Component",
-        icon: "notebook-pen",
-        href: "https://nimeshmohanakrishnan.medium.com/a-note-to-myself-339b3e6b02c9",
-      }
     ],
   },
 ];

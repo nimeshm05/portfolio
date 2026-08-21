@@ -24,6 +24,58 @@ type ProjectPageProps = {
   project: ProjectPageData;
 };
 
+const VIDEO_EXTENSIONS = new Set(["mp4", "webm", "mov", "ogg", "m4v"]);
+
+function getMediaExtension(src: string): string {
+  const path = src.split("?")[0] ?? src;
+  const segment = path.split("/").pop() ?? "";
+  const dot = segment.lastIndexOf(".");
+  return dot >= 0 ? segment.slice(dot + 1).toLowerCase() : "";
+}
+
+function resolveSectionMediaType(
+  src: string,
+  imageType?: "image" | "video",
+): "image" | "video" {
+  if (imageType) {
+    return imageType;
+  }
+
+  return VIDEO_EXTENSIONS.has(getMediaExtension(src)) ? "video" : "image";
+}
+
+function SectionMedia({
+  src,
+  alt,
+  imageType,
+}: {
+  src: string;
+  alt: string;
+  imageType?: "image" | "video";
+}) {
+  const type = resolveSectionMediaType(src, imageType);
+
+  return (
+    <div className="project-section-media">
+      <div className="project-section-media-frame">
+        {type === "video" ? (
+          <video
+            src={src}
+            aria-label={alt}
+            autoPlay
+            loop
+            muted
+            playsInline
+          />
+        ) : (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={src} alt={alt} loading="lazy" decoding="async" />
+        )}
+      </div>
+    </div>
+  );
+}
+
 function getItemMedia(item: ExpandableItemContent): ProjectMedia[] {
   if (item.media?.length) {
     return item.media;
@@ -172,15 +224,11 @@ export function ProjectPage({ project }: ProjectPageProps) {
                 <ArchitectureWorkflow steps={project.product.workflow.steps} />
               </div>
             ) : project.product.imageSrc ? (
-              <div className="project-section-media">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={project.product.imageSrc}
-                  alt={project.product.imageAlt ?? ""}
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
+              <SectionMedia
+                src={project.product.imageSrc}
+                alt={project.product.imageAlt ?? ""}
+                imageType={project.product.imageType}
+              />
             ) : null}
           </ProjectSection>
         ) : null}
@@ -211,15 +259,11 @@ export function ProjectPage({ project }: ProjectPageProps) {
               </div>
             ) : null}
             {project.problem.imageSrc ? (
-              <div className="project-section-media">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={project.problem.imageSrc}
-                  alt={project.problem.imageAlt ?? ""}
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
+              <SectionMedia
+                src={project.problem.imageSrc}
+                alt={project.problem.imageAlt ?? ""}
+                imageType={project.problem.imageType}
+              />
             ) : null}
           </ProjectSection>
         ) : null}
@@ -239,15 +283,11 @@ export function ProjectPage({ project }: ProjectPageProps) {
               <ContentTable table={project.studyDesign.table} />
             ) : null}
             {project.studyDesign.imageSrc ? (
-              <div className="project-section-media">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={project.studyDesign.imageSrc}
-                  alt={project.studyDesign.imageAlt ?? ""}
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
+              <SectionMedia
+                src={project.studyDesign.imageSrc}
+                alt={project.studyDesign.imageAlt ?? ""}
+                imageType={project.studyDesign.imageType}
+              />
             ) : null}
           </ProjectSection>
         ) : null}

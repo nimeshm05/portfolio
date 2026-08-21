@@ -59,13 +59,38 @@
   border: var(--border-card);
 }
 
-.project-section-media img {
+.project-section-media-frame {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  border-radius: var(--radius-lg);
+  border: var(--border-card);
+  background-color: var(--color-bg-surface);
+  box-shadow: var(--shadow-card);
+  line-height: 0;
+  isolation: isolate;
+  transform: translateZ(0);
+  /* overflow:hidden alone often fails to clip <video> compositor layers */
+  clip-path: inset(0 round var(--radius-lg));
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  mask-image: radial-gradient(white, black);
+}
+
+.project-section-media-frame img,
+.project-section-media-frame video {
+  display: block;
   width: 100%;
   max-width: 100%;
   height: auto;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-card);
-  border: var(--border-card);
+  border-radius: inherit;
+}
+
+.project-section-media-frame video {
+  /* Cover the 1px anti-aliased black fringe browsers leave on rounded videos */
+  transform: scale(1.01);
+  transform-origin: center;
 }
 
 .project-section-list {
