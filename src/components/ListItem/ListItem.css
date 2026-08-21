@@ -69,6 +69,27 @@
   color: var(--color-text-primary);
 }
 
+.list-item-panel-collapse {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--transition-expand);
+}
+
+.list-item-shell.is-open .list-item-panel-collapse {
+  grid-template-rows: 1fr;
+}
+
+.list-item-panel-collapse-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* Once open, stop clipping so nested banners/media keep their full height */
+.list-item-shell.is-open .list-item-panel-collapse-inner {
+  overflow: visible;
+  min-height: min-content;
+}
+
 .list-item-panel {
   display: flex;
   flex-direction: column;
@@ -77,6 +98,26 @@
   min-width: 0;
   max-width: 100%;
   padding: var(--gap-md) var(--inset-x) var(--gap-xl);
+  opacity: 0;
+  transform: translateY(-0.5rem);
+  filter: blur(4px);
+  transition:
+    opacity var(--transition-expand),
+    transform var(--transition-expand),
+    filter var(--transition-expand);
+}
+
+.list-item-shell.is-open .list-item-panel {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .list-item-panel-collapse,
+  .list-item-panel {
+    transition: none;
+  }
 }
 
 @media (max-width: 68.6875rem) {

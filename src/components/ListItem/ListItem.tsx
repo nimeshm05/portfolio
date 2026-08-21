@@ -30,7 +30,7 @@ type ListItemProps = {
 };
 
 const CHEVRON_TRANSITION = {
-  duration: 0.2,
+  duration: 0.5,
   ease: [0.22, 1, 0.36, 1] as const,
 };
 
@@ -226,9 +226,15 @@ export function ListItem({
         >
           {content}
         </button>
-        {hasContent && isOpen ? (
-          <div className="list-item-panel" id={panelId}>
-            {children}
+        {hasContent ? (
+          <div
+            className="list-item-panel-collapse"
+            id={panelId}
+            aria-hidden={!isOpen}
+          >
+            <div className="list-item-panel-collapse-inner">
+              <div className="list-item-panel">{children}</div>
+            </div>
           </div>
         ) : null}
       </div>

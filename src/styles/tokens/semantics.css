@@ -43,7 +43,7 @@
   --gap-2xl: var(--space-32);
   --gap-3xl: var(--space-40);
   --gap-intro: var(--space-60);
-  --gap-page: var(--space-120);
+  --gap-page: var(--space-160);
   --gap-list-item: var(--space-20);
   --gap-project-section: var(--space-20);
   --gap-section: var(--space-60);
@@ -106,6 +106,7 @@
 
   /* Motion */
   --transition-fast: var(--duration-fast) var(--ease-default);
+  --transition-expand: var(--duration-expand) var(--ease-expand);
 
   /* Radius */
   --radius-sm: var(--radius-4);

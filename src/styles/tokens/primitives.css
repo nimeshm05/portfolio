@@ -80,9 +80,11 @@
 
   /* Motion */
   --duration-fast: 160ms;
+  --duration-expand: 500ms;
   --duration-page: 620ms;
   --ease-default: ease;
   --ease-out-soft: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-expand: cubic-bezier(0.22, 1, 0.36, 1);
 
   /* Sizes */
   --size-icon: 1.25rem;

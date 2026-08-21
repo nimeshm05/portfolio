@@ -24,7 +24,7 @@ export function MorphingChevron({ isOpen }: MorphingChevronProps) {
         d={CHEVRON_DOWN}
         initial={false}
         animate={{ d: isOpen ? CHEVRON_UP : CHEVRON_DOWN }}
-        transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         stroke="currentColor"
         strokeWidth={2}
         strokeLinecap="round"
