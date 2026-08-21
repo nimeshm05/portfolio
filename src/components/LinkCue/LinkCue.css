@@ -1,4 +1,4 @@
-.view-work-cue {
+.link-cue {
   display: inline-flex;
   flex-wrap: wrap;
   align-items: center;
@@ -11,25 +11,31 @@
   font-weight: var(--text-list-weight);
   line-height: var(--text-list-line-height);
   text-align: center;
+  text-decoration: none;
   cursor: pointer;
   transition: color var(--transition-fast);
 }
 
-.view-work-cue:hover,
-.view-work-cue:focus-visible {
-  color: var(--color-text-primary);
+.link-cue--accent {
+  color: var(--color-accent);
 }
 
-.view-work-cue:active {
+.link-cue:hover,
+.link-cue:focus-visible {
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
+.link-cue:active {
   scale: 0.98;
   transition: scale var(--transition-fast);
 }
 
-.view-work-cue-label {
+.link-cue-label {
   display: inline-block;
 }
 
-.view-work-cue-icon {
+.link-cue-icon {
   display: flex;
   flex-shrink: 0;
   align-items: center;
@@ -39,7 +45,7 @@
   color: currentColor;
 }
 
-.view-work-cue-icon .icon {
+.link-cue-icon .icon {
   width: 100%;
   height: 100%;
   color: currentColor;

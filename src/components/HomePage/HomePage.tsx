@@ -19,7 +19,7 @@ import {
   ViewSwitcher,
   type WorkViewMode,
 } from "@/components/ViewSwitcher/ViewSwitcher";
-import { ViewWorkCue } from "@/components/ViewWorkCue/ViewWorkCue";
+import { LinkCue } from "@/components/LinkCue/LinkCue";
 import { ViewportEdgeBlur } from "@/components/ViewportEdgeBlur/ViewportEdgeBlur";
 import {
   aboutSections,
@@ -78,7 +78,11 @@ export function HomePage() {
             <div className="home-prompts">
               <ConnectPrompt activeTab={activeTab} />
               {/* <ResumePrompt /> */}
-              <ViewWorkCue onSelect={() => handleCueSelect("work")} />
+              <LinkCue
+                label="View work"
+                icon="arrow-down"
+                onSelect={() => handleCueSelect("work")}
+              />
             </div>
           </Header>
         </PageEnterItem>

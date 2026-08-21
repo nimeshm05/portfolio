@@ -109,6 +109,7 @@ export type ProjectPageData = {
   bannerAlt: string;
   bannerType?: "image" | "video";
   bannerBackgroundSrc?: string;
+  liveHref?: string;
   nav?: ProjectNavItem[];
   meta?: {
     items: ProjectMetaItem[];

@@ -11,6 +11,7 @@ export const gzLang: ProjectPageData = {
   bannerSrc: asset("gz-lang-preview.mp4"),
   bannerAlt: "gz-lang project preview",
   bannerType: "video",
+  liveHref: "https://gz-lang.vercel.app/",
   meta: {
     items: [
       { label: "Project Type", value: "Exploratory Project - Transpiler" },

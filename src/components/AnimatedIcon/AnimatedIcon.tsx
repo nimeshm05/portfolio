@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { useReducedMotion } from "motion/react";
 import { Icon, type IconName } from "@/components/Icon/Icon";
 import { ArrowDownAnimatedIcon } from "./icons/arrow-down";
+import { ArrowRightAnimatedIcon } from "./icons/arrow-right";
 import { BotAnimatedIcon } from "./icons/bot";
 import { ChartPieAnimatedIcon } from "./icons/chart-pie";
 import { CodeXmlAnimatedIcon } from "./icons/code-xml";
@@ -18,6 +19,7 @@ const animatedIcons = {
   "code-xml": CodeXmlAnimatedIcon,
   "notebook-pen": NotebookPenAnimatedIcon,
   "arrow-down": ArrowDownAnimatedIcon,
+  "arrow-right": ArrowRightAnimatedIcon,
 } as const;
 
 type HomeAnimatedIconName = keyof typeof animatedIcons;

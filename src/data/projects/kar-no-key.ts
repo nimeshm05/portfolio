@@ -11,6 +11,7 @@ export const karNoKey: ProjectPageData = {
   bannerSrc: asset("kar-no-key-preview.mp4"),
   bannerAlt: "kar-no-key project preview",
   bannerType: "video",
+  liveHref: "https://kar-no-key.vercel.app/",
   meta: {
     items: [
       { label: "Project Type", value: "Personal Project" },
