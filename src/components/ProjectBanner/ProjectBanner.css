@@ -33,11 +33,9 @@
   transform-origin: center;
 }
 
-/* Hero / full-width page banners only — not inline case-study media.
-   Intro heroes keep the bleed even when hugging (e.g. top video banners). */
+/* Hero / full-width page banners only — not inline case-study media */
 @media (min-width: 68.75rem) {
-  .project-banner:not(.project-banner--card):not(.project-banner--hug),
-  .project-intro .project-banner:not(.project-banner--card) {
+  .project-banner:not(.project-banner--card):not(.project-banner--hug) {
     width: calc(100% + 2 * var(--offset-banner-bleed));
     max-width: calc(100% + 2 * var(--offset-banner-bleed));
     margin-inline: calc(-1 * var(--offset-banner-inline));

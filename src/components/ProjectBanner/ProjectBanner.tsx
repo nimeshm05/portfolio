@@ -24,16 +24,14 @@ export function ProjectBanner({
 }: ProjectBannerProps) {
   const isCard = variant === "card";
   const shouldShowBackground = isCard ? false : showBackground;
-  /** No-background page media should size to the asset so nothing is cropped by the fixed banner frame. */
-  const shouldHug = hugContent || (!isCard && !shouldShowBackground);
-  const isHeroMedia = variant === "page" && !shouldHug;
+  const isHeroMedia = variant === "page" && !hugContent;
   const imageLoading = isHeroMedia ? "eager" : "lazy";
 
   return (
     <div
       className={`project-banner${
         isCard ? " project-banner--card" : ""
-      }${shouldHug ? " project-banner--hug" : ""}${
+      }${hugContent ? " project-banner--hug" : ""}${
         shouldShowBackground ? "" : " project-banner--no-background"
       }`}
       style={
