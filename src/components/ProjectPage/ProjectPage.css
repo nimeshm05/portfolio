@@ -87,6 +87,12 @@
   border-radius: inherit;
 }
 
+.project-section-media-frame video {
+  /* Cover the 1px anti-aliased black fringe browsers leave on rounded videos */
+  transform: scale(1.01);
+  transform-origin: center;
+}
+
 .project-section-list {
   display: flex;
   flex-direction: column;

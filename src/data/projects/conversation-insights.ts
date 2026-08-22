@@ -184,6 +184,9 @@ export const conversationInsights: ProjectPageData = {
       "RozieAI needed to demonstrate value to Air Canada ahead of a contract renewal, while engineering had only days to build a working release. There wasn't enough time to design the product from scratch, so we reused patterns and components from another RozieAI product.",
       "I couldn't change that constraint, but I could control how we validated the experience. We shipped quickly, then ran weekly sessions with Air Canada teams to observe the product in use and identify where the inherited patterns created friction.",
     ],
+    imageSrc: asset("constraints.mp4"),
+    imageAlt: "Inherited product patterns and constraints shaping the Conversation Insights release",
+    imageType: "video",
   },
   earlyDesigns: {
     eyebrow: "Early Designs",

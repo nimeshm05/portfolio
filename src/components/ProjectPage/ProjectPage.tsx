@@ -375,6 +375,13 @@ export function ProjectPage({ project }: ProjectPageProps) {
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
+            {project.constraints.imageSrc ? (
+              <SectionMedia
+                src={project.constraints.imageSrc}
+                alt={project.constraints.imageAlt ?? ""}
+                imageType={project.constraints.imageType}
+              />
+            ) : null}
           </ProjectSection>
         ) : null}
 
