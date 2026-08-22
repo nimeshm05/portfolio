@@ -8,7 +8,7 @@ export const conversationInsightsCard: ProjectCardData = {
   href: "/work/conversation-insights",
   title: "Conversation Insights",
   projectType: "Product Design - Internal Tool",
-  timeline: "Q4 2024 - Q2 2025",
+  timeline: "Q3 2024 - Q2 2025",
   description:
     "Eliminating manual insight reporting in contact centers with self-serve analytics platform to enable faster operational decision making.",
   bannerSrc: asset("conversation-insights-preview.mp4"),

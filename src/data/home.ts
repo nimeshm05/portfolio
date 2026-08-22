@@ -42,7 +42,7 @@ export const profile = {
 } as const;
 
 export const connect = {
-  phoneDisplay: "+1 (253) 408-1856",
+  phoneDisplay: "Phone Number",
   phoneHref: "tel:+12534081856",
   email: "nimeshm.work@gmail.com",
   emailHref: "mailto:nimeshm.work@gmail.com",

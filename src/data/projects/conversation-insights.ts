@@ -9,7 +9,7 @@ export const conversationInsights: ProjectPageData = {
   subtitle:
     "Eliminating manual insight reporting in contact centers with self-serve analytics platform to enable faster operational decision making.",
   projectType: "Product Design - Internal Tool",
-  timeline: "Q4 2024 - Q2 2025",
+  timeline: "Q3 2024 - Q2 2025",
   bannerSrc: asset("conversation-insights-preview.mp4"),
   bannerAlt: "Conversation Insights dashboard preview",
   bannerType: "video",
@@ -29,7 +29,7 @@ export const conversationInsights: ProjectPageData = {
     items: [
       { label: "Company", value: "RozieAI Labs" },
       { label: "Client", value: "Air Canada" },
-      { label: "Timeline", value: "Q3 2024 - Q3 2025" },
+      { label: "Timeline", value: "Q3 2024 - Q2 2025" },
       { label: "Role", value: "Product Designer" },
     ],
   },
