@@ -49,7 +49,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: var(--gap-xs) var(--gap-md);
+  padding-inline: var(--gap-md);
   border: 0;
   border-radius: var(--radius-sm);
   background: transparent;

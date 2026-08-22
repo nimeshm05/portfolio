@@ -3,6 +3,7 @@ import {
   Activity,
   ArrowDown,
   ArrowRight,
+  ArrowUpRight,
   Bot,
   Brain,
   Bug,
@@ -75,7 +76,8 @@ export type IconName =
   | "activity"
   | "type"
   | "arrow-down"
-  | "arrow-right";
+  | "arrow-right"
+  | "arrow-up-right";
 
 const icons: Record<IconName, LucideIcon> = {
   bot: Bot,
@@ -114,6 +116,7 @@ const icons: Record<IconName, LucideIcon> = {
   type: Type,
   "arrow-down": ArrowDown,
   "arrow-right": ArrowRight,
+  "arrow-up-right": ArrowUpRight,
 };
 
 type IconProps = {

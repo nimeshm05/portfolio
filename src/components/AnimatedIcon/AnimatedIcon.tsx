@@ -5,6 +5,7 @@ import { useReducedMotion } from "motion/react";
 import { Icon, type IconName } from "@/components/Icon/Icon";
 import { ArrowDownAnimatedIcon } from "./icons/arrow-down";
 import { ArrowRightAnimatedIcon } from "./icons/arrow-right";
+import { ArrowUpRightAnimatedIcon } from "./icons/arrow-up-right";
 import { BotAnimatedIcon } from "./icons/bot";
 import { ChartPieAnimatedIcon } from "./icons/chart-pie";
 import { CodeXmlAnimatedIcon } from "./icons/code-xml";
@@ -20,6 +21,7 @@ const animatedIcons = {
   "notebook-pen": NotebookPenAnimatedIcon,
   "arrow-down": ArrowDownAnimatedIcon,
   "arrow-right": ArrowRightAnimatedIcon,
+  "arrow-up-right": ArrowUpRightAnimatedIcon,
 } as const;
 
 type HomeAnimatedIconName = keyof typeof animatedIcons;

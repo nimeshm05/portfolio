@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ConnectPrompt } from "@/components/ConnectPrompt/ConnectPrompt";
-import { ResumePrompt } from "@/components/ResumePrompt/ResumePrompt";
 import { ContentSection } from "@/components/ContentSection/ContentSection";
 import { Header } from "@/components/Header/Header";
 import { HomeFooter } from "@/components/HomeFooter/HomeFooter";
@@ -25,6 +24,7 @@ import {
   aboutSections,
   homeTabs,
   profile,
+  resume,
   workSections,
   type HomeTab,
 } from "@/data/home";
@@ -77,7 +77,11 @@ export function HomePage() {
           >
             <div className="home-prompts">
               <ConnectPrompt activeTab={activeTab} />
-              {/* <ResumePrompt /> */}
+              <LinkCue
+                label="View resume"
+                icon="arrow-up-right"
+                href={resume.href}
+              />
               <LinkCue
                 label="View work"
                 icon="arrow-down"

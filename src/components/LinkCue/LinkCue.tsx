@@ -4,7 +4,7 @@ import { useState, type ReactNode } from "react";
 import { AnimatedIcon } from "@/components/AnimatedIcon/AnimatedIcon";
 import "./LinkCue.css";
 
-type LinkCueIcon = "arrow-down" | "arrow-right";
+type LinkCueIcon = "arrow-down" | "arrow-right" | "arrow-up-right";
 
 type LinkCueProps = {
   label: string;
