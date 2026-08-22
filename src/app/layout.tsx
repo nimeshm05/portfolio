@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Caveat, Inter } from "next/font/google";
+import { ThemeToggle } from "@/components/ThemeToggle/ThemeToggle";
+import { ThemeProvider } from "@/theme/ThemeProvider";
+import { themeInitScript } from "@/theme/theme";
 import "./globals.css";
 
 const inter = Inter({
@@ -28,9 +31,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       data-scroll-behavior="smooth"
       className={`${inter.variable} ${caveat.variable}`}
+      suppressHydrationWarning
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body>
-        {children}
+        <ThemeProvider>
+          <ThemeToggle />
+          {children}
+        </ThemeProvider>
         <Analytics />
         <SpeedInsights />
       </body>

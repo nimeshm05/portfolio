@@ -17,7 +17,7 @@
   gap: var(--gap-md);
   width: 100%;
   padding: var(--padding-inset-panel);
-  background-color: var(--color-white);
+  background-color: var(--color-bg-surface);
   box-shadow: var(--shadow-card);
   border-radius: var(--radius-lg);
   border: var(--border-card);

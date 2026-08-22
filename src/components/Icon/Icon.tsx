@@ -14,6 +14,7 @@ import {
   Clock,
   CodeXml,
   Columns4,
+  Contrast,
   Database,
   FileText,
   Gauge,
@@ -77,7 +78,8 @@ export type IconName =
   | "type"
   | "arrow-down"
   | "arrow-right"
-  | "arrow-up-right";
+  | "arrow-up-right"
+  | "contrast";
 
 const icons: Record<IconName, LucideIcon> = {
   bot: Bot,
@@ -117,6 +119,7 @@ const icons: Record<IconName, LucideIcon> = {
   "arrow-down": ArrowDown,
   "arrow-right": ArrowRight,
   "arrow-up-right": ArrowUpRight,
+  contrast: Contrast,
 };
 
 type IconProps = {

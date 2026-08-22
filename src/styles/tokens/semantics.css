@@ -201,3 +201,33 @@
   --weight-medium: var(--font-weight-medium);
   --weight-semibold: var(--font-weight-semibold);
 }
+
+[data-theme="dark"] {
+  /* Surfaces */
+  --color-bg-page: var(--color-neutral-950);
+  --color-bg-surface: var(--color-neutral-800);
+  --color-bg-muted: var(--color-neutral-900);
+  --color-card-hover: var(--color-neutral-950);
+  --color-divider: var(--color-bg-muted);
+
+  /* Text */
+  --color-text-primary: var(--color-white);
+  --color-text-body: var(--color-neutral-400);
+  --color-text-subtle: var(--color-neutral-500);
+  --color-text-label: var(--color-neutral-600);
+  --color-text-muted: var(--color-neutral-600);
+  --color-callout-text: var(--color-white);
+  --color-callout-border: var(--color-neutral-700);
+
+  /* Borders */
+  --color-border: var(--color-neutral-900);
+  --color-border-muted: var(--color-neutral-850);
+  --color-table-heading-border: var(--color-neutral-700);
+  --color-table-row-border: var(--color-neutral-850);
+
+  /* Shadows */
+  --shadow-card: var(--shadow-elevation-dark);
+  --shadow-tab:
+    0 0 0 var(--size-hairline) var(--shadow-tab-ring-color-dark),
+    var(--shadow-elevation-dark);
+}

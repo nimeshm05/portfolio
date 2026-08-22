@@ -1,0 +1,27 @@
+.theme-toggle {
+  position: fixed;
+  top: var(--space-24);
+  right: var(--space-24);
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8);
+  color: var(--color-text-label);
+  transition: color var(--transition-fast);
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+  color: var(--color-text-primary);
+}
+
+.theme-toggle:focus-visible {
+  outline: var(--border-width) solid var(--color-text-subtle);
+  outline-offset: var(--space-4);
+  border-radius: var(--radius-sm);
+}
+
+.theme-toggle-icon {
+  display: block;
+}

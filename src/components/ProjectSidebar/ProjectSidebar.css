@@ -1,6 +1,6 @@
 .project-sidebar {
   position: fixed;
-  top: var(--offset-sidebar-top);
+  top: var(--padding-page);
   left: var(--offset-sidebar-left);
   z-index: 2;
   display: none;

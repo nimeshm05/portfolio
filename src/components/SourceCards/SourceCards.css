@@ -23,7 +23,7 @@
   background: var(--color-bg-muted);
   border: var(--border-card);
   border-radius: var(--radius-sm);
-  background-color: var(--color-white);
+  background-color: var(--color-bg-surface);
   box-shadow: var(--shadow-card);
   border-radius: var(--radius-lg);
 }
