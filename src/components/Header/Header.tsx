@@ -1,5 +1,9 @@
+"use client";
+
 import type { ReactNode } from "react";
 import Image from "next/image";
+import { motion, useReducedMotion } from "motion/react";
+import { getPageEnterItemVariants } from "@/motion/pageEnter";
 import "./Header.css";
 
 type HeaderProps = {
@@ -19,33 +23,42 @@ export function Header({
   children,
   bottom,
 }: HeaderProps) {
+  const reduceMotion = useReducedMotion() ?? false;
+
   return (
     <header className="site-header">
       <div className="site-header-profile">
-        <div className="site-header-avatar">
-          <Image
-            className="site-header-avatar-image"
-            src={avatarSrc}
-            alt={avatarAlt}
-            width={60}
-            height={60}
-            priority
-          />
-        </div>
-        <div className="site-header-details">
-          <div className="site-header-info">
-            <h1 className="site-header-name">{name}</h1>
-            <div className="site-header-bio">
-              {bio.map((paragraph) => (
-                <p key={paragraph} className="site-header-bio-paragraph">
-                  {paragraph}
-                </p>
-              ))}
-            </div>
+        <motion.div
+          className="site-header-profile-content"
+          variants={getPageEnterItemVariants(reduceMotion)}
+          initial="initial"
+          animate="animate"
+        >
+          <div className="site-header-avatar">
+            <Image
+              className="site-header-avatar-image"
+              src={avatarSrc}
+              alt={avatarAlt}
+              width={60}
+              height={60}
+              priority
+            />
           </div>
-          {children}
-        </div>
-        {bottom}
+          <div className="site-header-details">
+            <div className="site-header-info">
+              <h1 className="site-header-name">{name}</h1>
+              <div className="site-header-bio">
+                {bio.map((paragraph) => (
+                  <p key={paragraph} className="site-header-bio-paragraph">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+            </div>
+            {children}
+          </div>
+          {bottom}
+        </motion.div>
       </div>
     </header>
   );

@@ -68,28 +68,26 @@ export function HomePage() {
         sections={workSections}
       />
       <PageEnter as="main" className="home-body">
-        <PageEnterItem>
-          <Header
-            name={profile.name}
-            bio={profile.bioByTab[activeTab]}
-            avatarSrc={profile.avatarSrc}
-            avatarAlt={profile.avatarAlt}
-          >
-            <div className="home-prompts">
-              <ConnectPrompt activeTab={activeTab} />
-              <LinkCue
-                label="View resume"
-                icon="arrow-up-right"
-                href={resume.href}
-              />
-              <LinkCue
-                label="View work"
-                icon="arrow-down"
-                onSelect={() => handleCueSelect("work")}
-              />
-            </div>
-          </Header>
-        </PageEnterItem>
+        <Header
+          name={profile.name}
+          bio={profile.bioByTab[activeTab]}
+          avatarSrc={profile.avatarSrc}
+          avatarAlt={profile.avatarAlt}
+        >
+          <div className="home-prompts">
+            <ConnectPrompt activeTab={activeTab} />
+            <LinkCue
+              label="View resume"
+              icon="arrow-up-right"
+              href={resume.href}
+            />
+            <LinkCue
+              label="View work"
+              icon="arrow-down"
+              onSelect={() => handleCueSelect("work")}
+            />
+          </div>
+        </Header>
         <PageEnterGroup className="home-lower">
           <PageEnterGroup className="home-main">
             <PageEnterItem>

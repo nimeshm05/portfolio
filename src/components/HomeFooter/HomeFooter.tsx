@@ -5,7 +5,7 @@ import { motion, useInView, useReducedMotion } from "motion/react";
 import "./HomeFooter.css";
 
 const LINES = [
-  "Crafted with precision and care by nimesh.",
+  "Crafted with care by nimesh.",
   "Thanks to cursor agents, figma mcp, and to a few neurons in my brain.",
 ] as const;
 
