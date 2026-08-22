@@ -25,10 +25,13 @@ import "./ConnectPrompt.css";
 
 type ConnectStep = "invite" | "prefer" | "social" | "inPerson" | "phone";
 type PhoneLabel = "contact" | "soon";
+type SocialLabel = "handles" | "bye";
 
 const PHONE_LABEL_CONTACT = "Here's my number and email.";
 const PHONE_LABEL_SOON = `I'll see you soon my fren ${PHONE_WAVE_EMOJI}`;
-const PHONE_LABEL_DELAY_MS = 1500;
+const SOCIAL_LABEL_HANDLES = "My handles:";
+const SOCIAL_LABEL_BYE = `See ya ${PHONE_WAVE_EMOJI}`;
+const LABEL_SWAP_DELAY_MS = 1500;
 
 function PromptText({ children }: { children: ReactNode }) {
   return <span className="connect-prompt-text">{children}</span>;
@@ -222,9 +225,18 @@ function WordPullText({
   );
 }
 
-function PhoneLabelSlot({ phoneLabel }: { phoneLabel: PhoneLabel }) {
-  const visibleText =
-    phoneLabel === "soon" ? PHONE_LABEL_SOON : PHONE_LABEL_CONTACT;
+function PullLabelSlot({
+  labelKey,
+  idleText,
+  activeText,
+  isActive,
+}: {
+  labelKey: string;
+  idleText: string;
+  activeText: string;
+  isActive: boolean;
+}) {
+  const visibleText = isActive ? activeText : idleText;
 
   return (
     <span className="connect-prompt-phone-label">
@@ -232,19 +244,19 @@ function PhoneLabelSlot({ phoneLabel }: { phoneLabel: PhoneLabel }) {
         className="connect-prompt-phone-label-sizer connect-prompt-text"
         aria-hidden="true"
       >
-        {PHONE_LABEL_CONTACT}
+        {idleText}
       </span>
       <span
         className="connect-prompt-phone-label-sizer connect-prompt-text"
         aria-hidden="true"
       >
-        {PHONE_LABEL_SOON}
+        {activeText}
       </span>
       <AnimatePresence mode="wait" initial={false}>
         <WordPullText
-          key={phoneLabel}
+          key={labelKey}
           text={visibleText}
-          animateEntrance={phoneLabel === "soon"}
+          animateEntrance={isActive}
         />
       </AnimatePresence>
     </span>
@@ -254,6 +266,7 @@ function PhoneLabelSlot({ phoneLabel }: { phoneLabel: PhoneLabel }) {
 export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
   const [step, setStep] = useState<ConnectStep>("invite");
   const [phoneLabel, setPhoneLabel] = useState<PhoneLabel>("contact");
+  const [socialLabel, setSocialLabel] = useState<SocialLabel>("handles");
   const [yesHovered, setYesHovered] = useState(false);
   const [burstExitMode, setBurstExitMode] =
     useState<ExcitementExitMode>("reverse");
@@ -326,7 +339,23 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
     setPhoneLabel("contact");
     const timeoutId = window.setTimeout(() => {
       setPhoneLabel("soon");
-    }, PHONE_LABEL_DELAY_MS);
+    }, LABEL_SWAP_DELAY_MS);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
+  }, [step]);
+
+  useEffect(() => {
+    if (step !== "social") {
+      setSocialLabel("handles");
+      return;
+    }
+
+    setSocialLabel("handles");
+    const timeoutId = window.setTimeout(() => {
+      setSocialLabel("bye");
+    }, LABEL_SWAP_DELAY_MS);
 
     return () => {
       window.clearTimeout(timeoutId);
@@ -444,7 +473,12 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
     case "social":
       content = (
         <>
-          <PromptText>My handles:</PromptText>
+          <PullLabelSlot
+            labelKey={socialLabel}
+            idleText={SOCIAL_LABEL_HANDLES}
+            activeText={SOCIAL_LABEL_BYE}
+            isActive={socialLabel === "bye"}
+          />
           <Options
             items={[
               {
@@ -510,7 +544,12 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
     case "phone":
       content = (
         <>
-          <PhoneLabelSlot phoneLabel={phoneLabel} />
+          <PullLabelSlot
+            labelKey={phoneLabel}
+            idleText={PHONE_LABEL_CONTACT}
+            activeText={PHONE_LABEL_SOON}
+            isActive={phoneLabel === "soon"}
+          />
           <Options
             items={[
               {
