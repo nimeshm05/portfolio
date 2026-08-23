@@ -5,7 +5,7 @@ const asset = (path: string) => `/assets/projects/gz-lang/${path}`;
 export const gzLangCard: ProjectCardData = {
   slug: "gz-lang",
   href: "/work/gz-lang",
-  title: "gz-lang",
+  title: "GZ-lang",
   projectType: "AI Project",
   timeline: "2025",
   description:

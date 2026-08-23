@@ -4,7 +4,7 @@ const asset = (path: string) => `/assets/projects/gz-lang/${path}`;
 
 export const gzLang: ProjectPageData = {
   slug: "gz-lang",
-  title: "gz-lang",
+  title: "GZ-lang",
   subtitle: "A GenZ programming language that transpiles to JavaScript. no cap. Write JavaScript using Gen Z slang.",
   projectType: "AI Project",
   timeline: "2025",

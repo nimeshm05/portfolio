@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Caveat, Inter } from "next/font/google";
+import { ClickSound } from "@/components/ClickSound/ClickSound";
 import { ThemeToggle } from "@/components/ThemeToggle/ThemeToggle";
 import { ThemeProvider } from "@/theme/ThemeProvider";
 import { themeInitScript } from "@/theme/theme";
@@ -38,6 +39,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       </head>
       <body>
         <ThemeProvider>
+          <ClickSound />
           <ThemeToggle />
           {children}
         </ThemeProvider>

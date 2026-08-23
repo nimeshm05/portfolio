@@ -7,7 +7,7 @@ export const connectPrompt: ProjectPageData = {
   title: "Connect Prompt",
   subtitle:
     "Disecting my thought process for a playful component developed using motion + cursor coding agent, for my portfolio.",
-  projectType: "Personal",
+  projectType: "Interaction Design",
   timeline: "August 2026, 1 week",
   bannerSrc: asset("connect-prompt-preview.mp4"),
   bannerAlt: "Connect Prompt component preview",

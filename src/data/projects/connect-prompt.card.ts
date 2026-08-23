@@ -6,7 +6,7 @@ export const connectPromptCard: ProjectCardData = {
   slug: "connect-prompt",
   href: "/work/connect-prompt",
   title: "Connect Prompt",
-  projectType: "Personal",
+  projectType: "Interaction Design",
   timeline: "August 2026",
   description:
     "Disecting my thought process for a playful component developed using motion + cursor coding agent, for my portfolio.",
