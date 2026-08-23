@@ -6,7 +6,7 @@ import "./HomeFooter.css";
 
 const LINES = [
   "Crafted with care by nimesh.",
-  "Thanks to cursor agents, figma mcp, and to a few neurons in my brain.",
+  "Thanks to cursor agents, figma mcp, and to a few neurons in my brain :)",
 ] as const;
 
 const FULL_CREDIT = LINES.join(" ");

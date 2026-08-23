@@ -1,4 +1,6 @@
-.home-sidebar {
+/* Compound selector beats .sidebar-nav { display: flex } so the nav stays
+   hidden below 1080px regardless of stylesheet order. */
+.sidebar-nav.home-sidebar {
   position: fixed;
   top: 50%;
   left: var(--offset-sidebar-left);
@@ -8,8 +10,8 @@
   transform: translateY(-50%);
 }
 
-@media (min-width: 68.75rem) {
-  .home-sidebar {
+@media (min-width: 67.5rem) {
+  .sidebar-nav.home-sidebar {
     display: flex;
   }
 }

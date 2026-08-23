@@ -87,9 +87,11 @@
   --duration-fast: 160ms;
   --duration-expand: 500ms;
   --duration-page: 620ms;
+  --duration-marquee: 4s;
   --ease-default: ease;
   --ease-out-soft: cubic-bezier(0.32, 0.72, 0, 1);
   --ease-expand: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-linear: linear;
 
   /* Sizes */
   --size-icon: 1.25rem;
@@ -103,6 +105,7 @@
   --size-sidebar-width: 11.25rem;
   --size-banner-height: 40rem;
   --size-card-banner-height: 26rem;
+  --size-card-type-max: 8.75rem;
   --size-viewport-edge-blur: 5rem;
   --size-profile-cue-stroke: 0.14rem;
   --size-profile-cue-block: 5.5rem;

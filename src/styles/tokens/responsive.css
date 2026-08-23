@@ -17,7 +17,7 @@
 /* Small mobile */
 @media (max-width: 39.9375rem) {
   :root {
-    --padding-page: var(--space-32);
+    --padding-page: var(--space-60);
     --gap-intro: var(--space-48);
     --gap-page: var(--space-48);
     --scroll-margin-section: var(--space-48);

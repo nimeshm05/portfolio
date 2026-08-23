@@ -166,3 +166,17 @@
   scale: 0.98;
   transition: scale var(--transition-fast);
 }
+
+@media (max-width: 68.6875rem) {
+  .connect-prompt-step {
+    gap: var(--gap-sm);
+  }
+
+  .connect-prompt-options {
+    gap: var(--gap-sm);
+  }
+
+  .connect-prompt-action {
+    padding-inline: 0;
+  }
+}

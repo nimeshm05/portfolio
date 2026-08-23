@@ -80,6 +80,7 @@
   --sidebar-width: var(--size-sidebar-width);
   --banner-height: var(--size-banner-height);
   --card-banner-height: var(--size-card-banner-height);
+  --card-type-max-width: var(--size-card-type-max);
   --viewport-edge-blur-size: var(--size-viewport-edge-blur);
   --architecture-workflow-height: var(--size-architecture-workflow-height);
   --connect-excitement-width: var(--size-connect-excitement-width);
@@ -107,6 +108,8 @@
   /* Motion */
   --transition-fast: var(--duration-fast) var(--ease-default);
   --transition-expand: var(--duration-expand) var(--ease-expand);
+  --duration-card-type-marquee: var(--duration-marquee);
+  --ease-card-type-marquee: var(--ease-linear);
 
   /* Radius */
   --radius-sm: var(--radius-4);

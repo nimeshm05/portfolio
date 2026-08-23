@@ -141,3 +141,11 @@
 .project-banner--card .project-banner-media .project-banner-video-wrap video {
   object-fit: cover;
 }
+
+@media (max-width: 68.6875rem) {
+  .project-banner:not(.project-banner--card):not(.project-banner--hug):not(
+      .project-banner--no-background
+    ) {
+    padding: var(--gap-lg);
+  }
+}
