@@ -82,6 +82,7 @@
 
   /* Opacity */
   --opacity-subtle: 0.8;
+  --opacity-scrim: 0.1;
 
   /* Motion */
   --duration-fast: 160ms;

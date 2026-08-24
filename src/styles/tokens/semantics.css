@@ -69,6 +69,9 @@
   --scroll-margin-section: var(--gap-page);
   --padding-list-indent: var(--space-24);
   --opacity-control-inactive: var(--opacity-subtle);
+  --opacity-avatar-scrim: var(--opacity-scrim);
+  --blur-avatar-hover: var(--blur-4);
+  --color-avatar-cue: var(--color-white);
 
   /* Size roles */
   --icon-size: var(--size-icon);

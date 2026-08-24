@@ -1,8 +1,9 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
+import { AnimatedIcon } from "@/components/AnimatedIcon/AnimatedIcon";
 import { getPageEnterItemVariants } from "@/motion/pageEnter";
 import "./Header.css";
 
@@ -24,6 +25,7 @@ export function Header({
   bottom,
 }: HeaderProps) {
   const reduceMotion = useReducedMotion() ?? false;
+  const [avatarHovered, setAvatarHovered] = useState(false);
 
   return (
     <header className="site-header">
@@ -34,16 +36,27 @@ export function Header({
           initial="initial"
           animate="animate"
         >
-          <div className="site-header-avatar">
+          <button
+            type="button"
+            className={`site-header-avatar${avatarHovered ? " is-hovered" : ""}`}
+            aria-label={avatarAlt}
+            onPointerEnter={() => setAvatarHovered(true)}
+            onPointerLeave={() => setAvatarHovered(false)}
+            onFocus={() => setAvatarHovered(true)}
+            onBlur={() => setAvatarHovered(false)}
+          >
             <Image
               className="site-header-avatar-image"
               src={avatarSrc}
-              alt={avatarAlt}
+              alt=""
               width={60}
               height={60}
               priority
             />
-          </div>
+            <span className="site-header-avatar-cue" aria-hidden="true">
+              <AnimatedIcon name="expand" isActive={avatarHovered} size={20} />
+            </span>
+          </button>
           <div className="site-header-details">
             <div className="site-header-info">
               <h1 className="site-header-name">{name}</h1>

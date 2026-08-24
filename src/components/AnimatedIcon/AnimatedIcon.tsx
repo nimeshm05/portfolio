@@ -9,6 +9,7 @@ import { ArrowUpRightAnimatedIcon } from "./icons/arrow-up-right";
 import { BotAnimatedIcon } from "./icons/bot";
 import { ChartPieAnimatedIcon } from "./icons/chart-pie";
 import { CodeXmlAnimatedIcon } from "./icons/code-xml";
+import { ExpandAnimatedIcon } from "./icons/expand";
 import { Music2AnimatedIcon } from "./icons/music-2";
 import { NotebookPenAnimatedIcon } from "./icons/notebook-pen";
 import type { AnimatedIconHandle } from "./types";
@@ -22,6 +23,7 @@ const animatedIcons = {
   "arrow-down": ArrowDownAnimatedIcon,
   "arrow-right": ArrowRightAnimatedIcon,
   "arrow-up-right": ArrowUpRightAnimatedIcon,
+  expand: ExpandAnimatedIcon,
 } as const;
 
 type HomeAnimatedIconName = keyof typeof animatedIcons;

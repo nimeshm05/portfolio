@@ -38,6 +38,7 @@ import {
   Type,
   Users,
   Workflow,
+  Expand,
 } from "lucide-react";
 import "./Icon.css";
 
@@ -79,7 +80,8 @@ export type IconName =
   | "arrow-down"
   | "arrow-right"
   | "arrow-up-right"
-  | "contrast";
+  | "contrast"
+  | "expand";
 
 const icons: Record<IconName, LucideIcon> = {
   bot: Bot,
@@ -120,6 +122,7 @@ const icons: Record<IconName, LucideIcon> = {
   "arrow-right": ArrowRight,
   "arrow-up-right": ArrowUpRight,
   contrast: Contrast,
+  expand: Expand,
 };
 
 type IconProps = {
