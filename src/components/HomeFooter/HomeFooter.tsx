@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { motion, useInView, useReducedMotion } from "motion/react";
+import { footerLinks } from "@/data/home";
 import "./HomeFooter.css";
 
 const LINES = [
@@ -96,6 +97,30 @@ export function HomeFooter() {
       className="home-footer"
       aria-label={FULL_CREDIT}
     >
+      <nav className="home-footer-links" aria-label="Social links and resume">
+        {footerLinks.map((link, index) => {
+          const isExternal = link.href.startsWith("http");
+
+          return (
+            <Fragment key={link.id}>
+              {index > 0 ? (
+                <span className="home-footer-link-separator" aria-hidden="true">
+                  /
+                </span>
+              ) : null}
+              <a
+                className="home-footer-link"
+                href={link.href}
+                {...(isExternal
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
+              >
+                {link.label}
+              </a>
+            </Fragment>
+          );
+        })}
+      </nav>
       <p className="home-footer-credit" aria-hidden="true">
         {FOOTER_LINES.map((line) => (
           <span key={line.key} className="home-footer-line">

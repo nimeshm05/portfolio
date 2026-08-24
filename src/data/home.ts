@@ -56,6 +56,15 @@ export const resume = {
   href: "#",
 } as const;
 
+export const footerLinks = [
+  { id: "linkedin", label: "LinkedIn", href: connect.linkedInHref },
+  { id: "github", label: "Github", href: connect.githubHref },
+  { id: "x", label: "X", href: connect.xHref },
+  { id: "medium", label: "Medium", href: connect.mediumHref },
+  { id: "email", label: "Email", href: connect.emailHref },
+  { id: "resume", label: "Resume", href: resume.href },
+] as const;
+
 export const workSections: ContentSectionData[] = [
   {
     id: "industry-projects",
