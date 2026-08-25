@@ -12,6 +12,7 @@ import { CodeXmlAnimatedIcon } from "./icons/code-xml";
 import { ExpandAnimatedIcon } from "./icons/expand";
 import { Music2AnimatedIcon } from "./icons/music-2";
 import { NotebookPenAnimatedIcon } from "./icons/notebook-pen";
+import { XAnimatedIcon } from "./icons/x";
 import type { AnimatedIconHandle } from "./types";
 
 const animatedIcons = {
@@ -24,6 +25,7 @@ const animatedIcons = {
   "arrow-right": ArrowRightAnimatedIcon,
   "arrow-up-right": ArrowUpRightAnimatedIcon,
   expand: ExpandAnimatedIcon,
+  x: XAnimatedIcon,
 } as const;
 
 type HomeAnimatedIconName = keyof typeof animatedIcons;

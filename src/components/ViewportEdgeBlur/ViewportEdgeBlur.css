@@ -2,7 +2,12 @@
   pointer-events: none;
   position: fixed;
   inset: 0;
-  z-index: 1;
+  z-index: var(--z-viewport-edge-blur);
+}
+
+.viewport-edge-blur--contained {
+  position: absolute;
+  z-index: var(--z-photo-gallery-blur);
 }
 
 .viewport-edge-blur-band {

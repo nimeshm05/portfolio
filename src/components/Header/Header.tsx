@@ -14,6 +14,8 @@ type HeaderProps = {
   avatarAlt: string;
   children?: ReactNode;
   bottom?: ReactNode;
+  galleryOpen?: boolean;
+  onAvatarClick?: () => void;
 };
 
 export function Header({
@@ -23,6 +25,8 @@ export function Header({
   avatarAlt,
   children,
   bottom,
+  galleryOpen = false,
+  onAvatarClick,
 }: HeaderProps) {
   const reduceMotion = useReducedMotion() ?? false;
   const [avatarHovered, setAvatarHovered] = useState(false);
@@ -39,7 +43,11 @@ export function Header({
           <button
             type="button"
             className={`site-header-avatar${avatarHovered ? " is-hovered" : ""}`}
-            aria-label={avatarAlt}
+            aria-label={`Open photo gallery. ${avatarAlt}`}
+            aria-haspopup="dialog"
+            aria-expanded={galleryOpen}
+            aria-controls={galleryOpen ? "photo-gallery-dialog" : undefined}
+            onClick={onAvatarClick}
             onPointerEnter={() => setAvatarHovered(true)}
             onPointerLeave={() => setAvatarHovered(false)}
             onFocus={() => setAvatarHovered(true)}

@@ -73,6 +73,26 @@
   --blur-avatar-hover: var(--blur-4);
   --color-avatar-cue: var(--color-white);
 
+  /* Photo gallery overlay */
+  --width-photo-gallery: var(--size-photo-gallery-width);
+  --inset-photo-gallery-x: var(--space-20);
+  --inset-photo-gallery-y: var(--size-viewport-edge-blur);
+  --gap-photo-gallery: var(--space-8);
+  --padding-photo-gallery-chrome: var(--space-20);
+  --padding-photo-gallery-scroll: calc(
+    var(--viewport-edge-blur-size) + var(--space-12)
+  );
+  --size-control-tap: var(--size-control-min);
+  --z-viewport-edge-blur: var(--z-index-1);
+  --z-photo-gallery: var(--z-index-10);
+  --z-photo-gallery-blur: var(--z-index-1);
+  --z-photo-gallery-chrome: var(--z-index-2);
+  --color-photo-gallery-overlay: var(--color-bg-page);
+  --color-photo-gallery-text: var(--color-text-primary);
+  --text-photo-gallery-title-size: var(--text-heading-size);
+  --text-photo-gallery-title-weight: var(--text-heading-weight);
+  --text-photo-gallery-title-line-height: var(--text-heading-line-height);
+
   /* Size roles */
   --icon-size: var(--size-icon);
   --icon-size-sm: var(--size-icon-sm);

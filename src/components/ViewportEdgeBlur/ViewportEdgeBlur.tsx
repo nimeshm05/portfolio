@@ -2,9 +2,16 @@ import "./ViewportEdgeBlur.css";
 
 const BLUR_LAYERS = 6;
 
-export function ViewportEdgeBlur() {
+type ViewportEdgeBlurProps = {
+  contained?: boolean;
+};
+
+export function ViewportEdgeBlur({ contained = false }: ViewportEdgeBlurProps) {
   return (
-    <div className="viewport-edge-blur" aria-hidden="true">
+    <div
+      className={`viewport-edge-blur${contained ? " viewport-edge-blur--contained" : ""}`}
+      aria-hidden="true"
+    >
       <div className="viewport-edge-blur-band viewport-edge-blur-band--top">
         {Array.from({ length: BLUR_LAYERS }, (_, index) => (
           <div
