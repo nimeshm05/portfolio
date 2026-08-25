@@ -31,6 +31,8 @@ export function Header({
   const reduceMotion = useReducedMotion() ?? false;
   const [avatarHovered, setAvatarHovered] = useState(false);
 
+  const galleryEnabled = Boolean(onAvatarClick);
+
   return (
     <header className="site-header">
       <div className="site-header-profile">
@@ -42,15 +44,31 @@ export function Header({
         >
           <button
             type="button"
-            className={`site-header-avatar${avatarHovered ? " is-hovered" : ""}`}
-            aria-label={`Open photo gallery. ${avatarAlt}`}
-            aria-haspopup="dialog"
-            aria-expanded={galleryOpen}
-            aria-controls={galleryOpen ? "photo-gallery-dialog" : undefined}
+            className={`site-header-avatar${avatarHovered ? " is-hovered" : ""}${galleryEnabled ? "" : " is-static"}`}
+            aria-label={
+              galleryEnabled
+                ? `Open photo gallery. ${avatarAlt}`
+                : avatarAlt
+            }
+            aria-haspopup={galleryEnabled ? "dialog" : undefined}
+            aria-expanded={galleryEnabled ? galleryOpen : undefined}
+            aria-controls={
+              galleryEnabled && galleryOpen
+                ? "photo-gallery-dialog"
+                : undefined
+            }
             onClick={onAvatarClick}
-            onPointerEnter={() => setAvatarHovered(true)}
+            onPointerEnter={() => {
+              if (galleryEnabled) {
+                setAvatarHovered(true);
+              }
+            }}
             onPointerLeave={() => setAvatarHovered(false)}
-            onFocus={() => setAvatarHovered(true)}
+            onFocus={() => {
+              if (galleryEnabled) {
+                setAvatarHovered(true);
+              }
+            }}
             onBlur={() => setAvatarHovered(false)}
           >
             <Image

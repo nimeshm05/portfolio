@@ -38,6 +38,8 @@ import {
 } from "@/motion/tabContent";
 import "./HomePage.css";
 
+const PHOTO_GALLERY_ENABLED = false;
+
 export function HomePage() {
   const [pageEl, setPageEl] = useState<HTMLDivElement | null>(null);
   const [contentEl, setContentEl] = useState<HTMLDivElement | null>(null);
@@ -75,8 +77,10 @@ export function HomePage() {
           bio={profile.bioByTab[activeTab]}
           avatarSrc={profile.avatarSrc}
           avatarAlt={profile.avatarAlt}
-          galleryOpen={galleryOpen}
-          onAvatarClick={() => setGalleryOpen(true)}
+          galleryOpen={PHOTO_GALLERY_ENABLED && galleryOpen}
+          onAvatarClick={
+            PHOTO_GALLERY_ENABLED ? () => setGalleryOpen(true) : undefined
+          }
         >
           <div className="home-prompts">
             <ConnectPrompt activeTab={activeTab} />
@@ -157,7 +161,7 @@ export function HomePage() {
         </PageEnterGroup>
       </PageEnter>
       <AnimatePresence>
-        {galleryOpen ? (
+        {PHOTO_GALLERY_ENABLED && galleryOpen ? (
           <PhotoGalleryOverlay
             key="photo-gallery"
             onClose={() => setGalleryOpen(false)}
