@@ -101,6 +101,7 @@ export function ViewSwitcher({ activeView, onChange }: ViewSwitcherProps) {
             aria-pressed={isActive}
             aria-label={option.label}
             className={`view-switcher-option${isActive ? " is-active" : ""}`}
+            data-cuelume-toggle=""
             onClick={() => onChange(option.id)}
           >
             <Icon name={option.icon} className="view-switcher-icon" size={15} />

@@ -56,6 +56,7 @@ function PromptAction({
     <button
       type="button"
       className="connect-prompt-action"
+      data-cuelume-press="success"
       onClick={onClick}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
@@ -80,6 +81,7 @@ function PromptLink({
     <a
       className="connect-prompt-action"
       href={href}
+      data-cuelume-press="arrival"
       {...(isExternal
         ? { target: "_blank", rel: "noopener noreferrer" }
         : {})}
@@ -585,6 +587,7 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
         aria-hidden={isInvite ? true : undefined}
         aria-label={isInvite ? undefined : "Start over"}
         tabIndex={isInvite ? -1 : undefined}
+        data-cuelume-press={isInvite ? undefined : "bloom"}
       >
         <MorphingArrowRight variant={isInvite ? "right" : "left"} />
         {/* <MorphingConnectIcon
