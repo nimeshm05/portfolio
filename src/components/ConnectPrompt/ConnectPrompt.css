@@ -2,13 +2,23 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: space-between;
   gap: var(--gap-sm);
   width: 100%;
+  overflow: visible;
   color: var(--color-text-label);
   font-size: var(--text-list-size);
   font-weight: var(--text-list-weight);
   line-height: var(--text-list-line-height);
   text-align: center;
+}
+
+.connect-prompt-main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--gap-sm);
+  min-width: 0;
 }
 
 .connect-prompt-step {

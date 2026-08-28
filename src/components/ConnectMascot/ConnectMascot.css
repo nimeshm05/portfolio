@@ -1,0 +1,25 @@
+.connect-mascot {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  margin-inline-start: auto;
+  width: var(--icon-size-mascot);
+  height: var(--icon-size-mascot);
+  overflow: visible;
+  pointer-events: none;
+  scale: 2;
+}
+
+.connect-mascot-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.connect-mascot-eye,
+.connect-mascot-eye-turn {
+  transform-box: fill-box;
+  transform-origin: center;
+}

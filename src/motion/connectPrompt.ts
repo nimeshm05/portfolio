@@ -58,6 +58,44 @@ export const excitementSmokeTransition = {
   ease: "easeInOut" as const,
 };
 
+export const mascotPresenceTransition = {
+  y: {
+    type: "spring" as const,
+    stiffness: 420,
+    damping: 18,
+    mass: 0.7,
+  },
+  opacity: {
+    duration: 0.2,
+    ease: excitementDrawEase,
+  },
+};
+
+export const mascotHiddenBelow = {
+  y: "0.5rem",
+  opacity: 0,
+} as const;
+
+export const mascotEnterPose = {
+  y: 0,
+  opacity: 1,
+} as const;
+
+export const mascotEyeTiltDeg = 18;
+
+export const mascotWinkScaleY = 2 / 6;
+
+export const mascotEyeTransition = {
+  duration: 0.2,
+  ease: excitementDrawEase,
+};
+
+export const mascotWinkTransition = {
+  duration: 0.28,
+  ease: excitementDrawEase,
+  times: [0, 0.5, 1] as const,
+};
+
 export const coffeeSteamVariants = {
   normal: {
     y: 0,

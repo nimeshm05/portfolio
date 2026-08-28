@@ -97,6 +97,7 @@
   --icon-size: var(--size-icon);
   --icon-size-sm: var(--size-icon-sm);
   --icon-size-coffee: var(--size-icon-coffee);
+  --icon-size-mascot: var(--size-icon-mascot);
   --icon-size-nav: var(--font-size-15);
   --avatar-size: var(--size-avatar);
   --tab-container-width: var(--size-tab-container);
@@ -109,6 +110,7 @@
   --connect-excitement-width: var(--size-connect-excitement-width);
   --connect-excitement-height: var(--size-connect-excitement-height);
   --connect-excitement-word-scale: var(--scale-110);
+  --connect-mascot-enter-y: var(--space-8);
 
   /* Blur roles */
   --blur-layer-1: var(--blur-1);
