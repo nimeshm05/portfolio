@@ -34,6 +34,7 @@ const PHONE_LABEL_SOON = `I'll see you soon my fren ${PHONE_WAVE_EMOJI}`;
 const SOCIAL_LABEL_HANDLES = "My handles:";
 const SOCIAL_LABEL_BYE = `See ya ${PHONE_WAVE_EMOJI}`;
 const LABEL_SWAP_DELAY_MS = 1500;
+const MASCOT_ENABLED = false;
 
 function PromptText({ children }: { children: ReactNode }) {
   return <span className="connect-prompt-text">{children}</span>;
@@ -721,7 +722,7 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
         </AnimatePresence>
       </div>
       <AnimatePresence>
-        {mascotVisible ? (
+        {MASCOT_ENABLED && mascotVisible ? (
           <ConnectMascot
             key="mascot"
             eyesTilted={optionHovered}
