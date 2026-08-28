@@ -96,6 +96,8 @@ export const mascotWinkTransition = {
   times: [0, 0.5, 1] as const,
 };
 
+export const mascotIdleBlinkMs = 2000;
+
 export const coffeeSteamVariants = {
   normal: {
     y: 0,
