@@ -85,7 +85,7 @@ html:has(.home-page) body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--gap-2xl);
+  gap: var(--gap-intro);
   width: 100%;
 }
 
