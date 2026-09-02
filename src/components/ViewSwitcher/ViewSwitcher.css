@@ -1,6 +1,6 @@
 .view-switcher {
   position: relative;
-  display: flex;
+  display: none;
   align-items: center;
   gap: var(--gap-2xs);
   flex-shrink: 0;

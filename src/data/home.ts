@@ -31,12 +31,12 @@ export const profile = {
   avatarAlt: "Portrait of Nimesh Mohanakrishnan",
   bioByTab: {
     work: [
-      "Product designer in Seattle with 2+ years of experience designing B2B products and internal tools. I design around how people actually work, using interaction design, systems thinking, and agentic coding tools to turn complex workflows into clear experiences.",
-      "Currently pursuing my master’s in HCDE at the University of Washington. Previously, I designed legal tech products at Knool and contact center tools at RozieAI",
+      "Product designer in Seattle focused on making complex B2B workflows feel simple. With 2+ years of experience designing information-heavy products and internal tools, I use subtraction and progressive disclosure to reveal complexity only when it’s useful.",
+      "Currently pursuing my master’s in HCDE at the University of Washington. Previously, I designed legal tech products at Knool and contact center tools at RozieAI.",
     ],
     about: [
-      "Product designer in Seattle with 2+ years of experience designing B2B products and internal tools. I design around how people actually work, using interaction design, systems thinking, and agentic coding tools to turn complex workflows into clear experiences.",
-      "Currently pursuing my master’s in HCDE at the University of Washington. Previously, I designed legal tech products at Knool and contact center tools at RozieAI",
+      "Product designer in Seattle focused on making complex B2B workflows feel simple. With 2+ years of experience designing information-heavy products and internal tools, I use subtraction and progressive disclosure to reveal complexity only when it’s useful.",
+      "Currently pursuing my master’s in HCDE at the University of Washington. Previously, I designed legal tech products at Knool and contact center tools at RozieAI.",
     ],
   },
 } as const;
