@@ -77,12 +77,12 @@ export function HomePage() {
           <div className="home-prompts">
             <ConnectPrompt activeTab={activeTab} />
             <LinkCue
-              label="View resume"
+              label="Resume"
               icon="arrow-up-right"
               href={resume.href}
             />
             <LinkCue
-              label="View work"
+              label="Work"
               icon="arrow-down"
               onSelect={() => handleCueSelect("work")}
             />

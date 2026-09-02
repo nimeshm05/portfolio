@@ -4,7 +4,11 @@ import { createContext, useContext } from "react";
 
 export const tabContentBlurVariants = {
   initial: { opacity: 0, filter: "blur(8px)" },
-  animate: { opacity: 1, filter: "blur(0px)" },
+  animate: {
+    opacity: 1,
+    filter: "blur(0px)",
+    transitionEnd: { filter: "none" },
+  },
   exit: { opacity: 0, filter: "blur(8px)" },
 };
 

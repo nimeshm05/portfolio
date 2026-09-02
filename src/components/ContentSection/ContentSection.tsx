@@ -210,6 +210,7 @@ export function ContentSection({
                 {cardProjects.map((project) => (
                   <motion.div
                     key={project.slug}
+                    className="content-section-card"
                     variants={workViewItemVariants}
                     transition={workViewTransition}
                   >

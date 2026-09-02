@@ -6,6 +6,10 @@
   overflow-x: clip;
 }
 
+.content-section:has(.content-section-cards) {
+  overflow-x: visible;
+}
+
 .content-section-label-wrap {
   display: flex;
   align-items: center;
@@ -34,6 +38,12 @@
   flex-direction: column;
   gap: var(--gap-2xl);
   width: 100%;
+  overflow: visible;
+}
+
+.content-section-card {
+  width: 100%;
+  overflow: visible;
 }
 
 .content-section-divider {

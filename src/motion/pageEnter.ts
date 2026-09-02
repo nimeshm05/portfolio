@@ -21,6 +21,7 @@ export const pageEnterItemVariants: Variants = {
       y: { duration: 1, ease: pageEnterEase },
       filter: { duration: 1, ease: pageEnterEase },
     },
+    transitionEnd: { filter: "none" },
   },
 };
 

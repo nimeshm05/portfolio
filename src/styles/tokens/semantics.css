@@ -1,6 +1,6 @@
 :root {
   /* Surfaces */
-  --color-bg-page: var(--color-white);
+  --color-bg-page: var(--color-neutral-50);
   --color-bg-surface: var(--color-white);
   --color-bg-muted: var(--color-neutral-100);
   --color-card-hover: var(--color-neutral-50);
@@ -47,7 +47,7 @@
   --gap-list-item: var(--space-20);
   --gap-project-section: var(--space-20);
   --gap-section: var(--space-60);
-  --padding-page: var(--space-104);
+  --padding-page: var(--space-60);
   --inset-x: var(--space-12);
   --padding-callout-quote: var(--space-28);
   --gap-callout-cite: var(--text-body-paragraph-gap);
