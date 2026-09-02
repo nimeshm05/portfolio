@@ -1,9 +1,8 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import type { ReactNode } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
-import { AnimatedIcon } from "@/components/AnimatedIcon/AnimatedIcon";
 import { getPageEnterItemVariants } from "@/motion/pageEnter";
 import "./Header.css";
 
@@ -14,8 +13,6 @@ type HeaderProps = {
   avatarAlt: string;
   children?: ReactNode;
   bottom?: ReactNode;
-  galleryOpen?: boolean;
-  onAvatarClick?: () => void;
 };
 
 export function Header({
@@ -25,13 +22,8 @@ export function Header({
   avatarAlt,
   children,
   bottom,
-  galleryOpen = false,
-  onAvatarClick,
 }: HeaderProps) {
   const reduceMotion = useReducedMotion() ?? false;
-  const [avatarHovered, setAvatarHovered] = useState(false);
-
-  const galleryEnabled = Boolean(onAvatarClick);
 
   return (
     <header className="site-header">
@@ -42,47 +34,16 @@ export function Header({
           initial="initial"
           animate="animate"
         >
-          <button
-            type="button"
-            className={`site-header-avatar${avatarHovered ? " is-hovered" : ""}${galleryEnabled ? "" : " is-static"}`}
-            aria-label={
-              galleryEnabled
-                ? `Open photo gallery. ${avatarAlt}`
-                : avatarAlt
-            }
-            aria-haspopup={galleryEnabled ? "dialog" : undefined}
-            aria-expanded={galleryEnabled ? galleryOpen : undefined}
-            aria-controls={
-              galleryEnabled && galleryOpen
-                ? "photo-gallery-dialog"
-                : undefined
-            }
-            onClick={onAvatarClick}
-            onPointerEnter={() => {
-              if (galleryEnabled) {
-                setAvatarHovered(true);
-              }
-            }}
-            onPointerLeave={() => setAvatarHovered(false)}
-            onFocus={() => {
-              if (galleryEnabled) {
-                setAvatarHovered(true);
-              }
-            }}
-            onBlur={() => setAvatarHovered(false)}
-          >
+          <div className="site-header-avatar is-static">
             <Image
               className="site-header-avatar-image"
               src={avatarSrc}
-              alt=""
+              alt={avatarAlt}
               width={60}
               height={60}
               priority
             />
-            <span className="site-header-avatar-cue" aria-hidden="true">
-              <AnimatedIcon name="expand" isActive={avatarHovered} size={20} />
-            </span>
-          </button>
+          </div>
           <div className="site-header-details">
             <div className="site-header-info">
               <h1 className="site-header-name">{name}</h1>

@@ -4,9 +4,10 @@ export type PhotoGalleryItem = {
   alt: string;
   width: number;
   height: number;
+  label: string;
 };
 
-export const photoGalleryTitle = "Life so far";
+const PHOTO_LABEL_PLACEHOLDER = "Photo label";
 
 export const photoGalleryItems: PhotoGalleryItem[] = [
   {
@@ -15,6 +16,7 @@ export const photoGalleryItems: PhotoGalleryItem[] = [
     alt: "A childhood portrait",
     width: 2304,
     height: 2304,
+    label: PHOTO_LABEL_PLACEHOLDER,
   },
   {
     id: "admiring-art",
@@ -22,6 +24,7 @@ export const photoGalleryItems: PhotoGalleryItem[] = [
     alt: "Admiring a piece of art",
     width: 1933,
     height: 2763,
+    label: PHOTO_LABEL_PLACEHOLDER,
   },
   {
     id: "family",
@@ -29,6 +32,7 @@ export const photoGalleryItems: PhotoGalleryItem[] = [
     alt: "Family",
     width: 3024,
     height: 3024,
+    label: PHOTO_LABEL_PLACEHOLDER,
   },
   {
     id: "jp",
@@ -36,6 +40,7 @@ export const photoGalleryItems: PhotoGalleryItem[] = [
     alt: "A portrait with JP",
     width: 554,
     height: 554,
+    label: PHOTO_LABEL_PLACEHOLDER,
   },
   {
     id: "homies",
@@ -43,6 +48,7 @@ export const photoGalleryItems: PhotoGalleryItem[] = [
     alt: "Friends hanging out",
     width: 4032,
     height: 3024,
+    label: PHOTO_LABEL_PLACEHOLDER,
   },
   {
     id: "cindy",
@@ -50,6 +56,7 @@ export const photoGalleryItems: PhotoGalleryItem[] = [
     alt: "Cindy",
     width: 5712,
     height: 4284,
+    label: PHOTO_LABEL_PLACEHOLDER,
   },
   {
     id: "the-girlies",
@@ -57,6 +64,7 @@ export const photoGalleryItems: PhotoGalleryItem[] = [
     alt: "The girlies",
     width: 2316,
     height: 2316,
+    label: PHOTO_LABEL_PLACEHOLDER,
   },
   {
     id: "the-girls",
@@ -64,6 +72,7 @@ export const photoGalleryItems: PhotoGalleryItem[] = [
     alt: "The girls",
     width: 2316,
     height: 2316,
+    label: PHOTO_LABEL_PLACEHOLDER,
   },
   {
     id: "lil-bird",
@@ -71,6 +80,7 @@ export const photoGalleryItems: PhotoGalleryItem[] = [
     alt: "A small bird",
     width: 3024,
     height: 3024,
+    label: PHOTO_LABEL_PLACEHOLDER,
   },
   {
     id: "pnw-nature",
@@ -78,6 +88,7 @@ export const photoGalleryItems: PhotoGalleryItem[] = [
     alt: "Pacific Northwest nature",
     width: 3024,
     height: 3024,
+    label: PHOTO_LABEL_PLACEHOLDER,
   },
   {
     id: "uif-1",
@@ -85,6 +96,7 @@ export const photoGalleryItems: PhotoGalleryItem[] = [
     alt: "University Innovation Fellows",
     width: 4623,
     height: 3460,
+    label: PHOTO_LABEL_PLACEHOLDER,
   },
   {
     id: "seattle-food-fest",
@@ -92,6 +104,7 @@ export const photoGalleryItems: PhotoGalleryItem[] = [
     alt: "Seattle food festival",
     width: 5712,
     height: 4284,
+    label: PHOTO_LABEL_PLACEHOLDER,
   },
   {
     id: "rainer-laugh",
@@ -99,6 +112,7 @@ export const photoGalleryItems: PhotoGalleryItem[] = [
     alt: "Laughing near Mount Rainier",
     width: 7728,
     height: 5152,
+    label: PHOTO_LABEL_PLACEHOLDER,
   },
   {
     id: "uif-2",
@@ -106,6 +120,7 @@ export const photoGalleryItems: PhotoGalleryItem[] = [
     alt: "University Innovation Fellows group",
     width: 4623,
     height: 3460,
+    label: PHOTO_LABEL_PLACEHOLDER,
   },
   {
     id: "suzzallo",
@@ -113,6 +128,7 @@ export const photoGalleryItems: PhotoGalleryItem[] = [
     alt: "Suzzallo Library",
     width: 3024,
     height: 3024,
+    label: PHOTO_LABEL_PLACEHOLDER,
   },
   {
     id: "udub-rainier",
@@ -120,6 +136,7 @@ export const photoGalleryItems: PhotoGalleryItem[] = [
     alt: "Mount Rainier from the University of Washington",
     width: 3024,
     height: 3024,
+    label: PHOTO_LABEL_PLACEHOLDER,
   },
   {
     id: "rainier-udub",
@@ -127,6 +144,7 @@ export const photoGalleryItems: PhotoGalleryItem[] = [
     alt: "University of Washington with Mount Rainier",
     width: 3024,
     height: 3024,
+    label: PHOTO_LABEL_PLACEHOLDER,
   },
   {
     id: "portlandia",
@@ -134,6 +152,7 @@ export const photoGalleryItems: PhotoGalleryItem[] = [
     alt: "Portland",
     width: 3024,
     height: 3024,
+    label: PHOTO_LABEL_PLACEHOLDER,
   },
   {
     id: "portland-collective",
@@ -141,6 +160,7 @@ export const photoGalleryItems: PhotoGalleryItem[] = [
     alt: "A collective in Portland",
     width: 3024,
     height: 3024,
+    label: PHOTO_LABEL_PLACEHOLDER,
   },
   {
     id: "sunset-1",
@@ -148,6 +168,7 @@ export const photoGalleryItems: PhotoGalleryItem[] = [
     alt: "Sunset",
     width: 4284,
     height: 4284,
+    label: PHOTO_LABEL_PLACEHOLDER,
   },
   {
     id: "sunset-2",
@@ -155,6 +176,7 @@ export const photoGalleryItems: PhotoGalleryItem[] = [
     alt: "Sunset over the water",
     width: 4284,
     height: 4284,
+    label: PHOTO_LABEL_PLACEHOLDER,
   },
   {
     id: "sunset-3",
@@ -162,6 +184,7 @@ export const photoGalleryItems: PhotoGalleryItem[] = [
     alt: "Evening sunset",
     width: 4284,
     height: 4284,
+    label: PHOTO_LABEL_PLACEHOLDER,
   },
   {
     id: "sunset-4",
@@ -169,6 +192,7 @@ export const photoGalleryItems: PhotoGalleryItem[] = [
     alt: "Golden hour sunset",
     width: 3024,
     height: 3024,
+    label: PHOTO_LABEL_PLACEHOLDER,
   },
   {
     id: "nonchalant",
@@ -176,5 +200,6 @@ export const photoGalleryItems: PhotoGalleryItem[] = [
     alt: "A nonchalant portrait",
     width: 7728,
     height: 5152,
+    label: PHOTO_LABEL_PLACEHOLDER,
   },
 ];

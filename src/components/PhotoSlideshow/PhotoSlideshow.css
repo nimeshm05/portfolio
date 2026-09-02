@@ -1,0 +1,104 @@
+.photo-slideshow {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-photo-slideshow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--color-photo-slideshow-overlay);
+  color: var(--color-photo-slideshow-text);
+  padding: var(--padding-photo-slideshow-y) var(--padding-photo-slideshow-x);
+  padding-bottom: var(--padding-photo-slideshow-nav);
+}
+
+.photo-slideshow-main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-photo-slideshow);
+  min-width: 0;
+  min-height: 0;
+  width: min(100%, var(--width-photo-slideshow));
+}
+
+.photo-slideshow-stage {
+  position: relative;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.photo-slideshow-frame {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo-slideshow-image {
+  object-fit: contain;
+}
+
+.photo-slideshow-label-slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 100%;
+  min-height: var(--text-photo-slideshow-label-line-height);
+}
+
+.photo-slideshow-label {
+  margin: 0;
+  width: 100%;
+  color: var(--color-photo-slideshow-text);
+  font-size: var(--text-photo-slideshow-label-size);
+  font-weight: var(--text-photo-slideshow-label-weight);
+  line-height: var(--text-photo-slideshow-label-line-height);
+  text-align: center;
+}
+
+.photo-slideshow-nav {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-photo-slideshow-nav);
+  padding-top: var(--gap-photo-slideshow);
+}
+
+.photo-slideshow-nav-button {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: var(--size-control-tap);
+  height: var(--size-control-tap);
+  padding: 0;
+  border-radius: var(--radius-photo-slideshow-nav);
+  background: var(--color-photo-slideshow-nav);
+  color: var(--color-text-label);
+  transition: color var(--transition-fast);
+}
+
+.photo-slideshow-nav-button .icon {
+  color: inherit;
+}
+
+.photo-slideshow-nav-button:hover,
+.photo-slideshow-nav-button:focus-visible {
+  color: var(--color-text-primary);
+}
+
+.photo-slideshow-nav-button:focus-visible {
+  outline: var(--border-width) solid var(--color-text-subtle);
+  outline-offset: var(--space-4);
+}

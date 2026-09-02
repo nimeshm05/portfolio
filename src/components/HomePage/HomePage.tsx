@@ -19,7 +19,6 @@ import {
   type WorkViewMode,
 } from "@/components/ViewSwitcher/ViewSwitcher";
 import { LinkCue } from "@/components/LinkCue/LinkCue";
-import { PhotoGalleryOverlay } from "@/components/PhotoGalleryOverlay/PhotoGalleryOverlay";
 import { ViewportEdgeBlur } from "@/components/ViewportEdgeBlur/ViewportEdgeBlur";
 import {
   aboutSections,
@@ -38,14 +37,11 @@ import {
 } from "@/motion/tabContent";
 import "./HomePage.css";
 
-const PHOTO_GALLERY_ENABLED = false;
-
 export function HomePage() {
   const [pageEl, setPageEl] = useState<HTMLDivElement | null>(null);
   const [contentEl, setContentEl] = useState<HTMLDivElement | null>(null);
   const [activeTab, setActiveTab] = useState<HomeTab>("work");
   const [workViewMode, setWorkViewMode] = useState<WorkViewMode>("card");
-  const [galleryOpen, setGalleryOpen] = useState(false);
   const sections = activeTab === "work" ? workSections : aboutSections;
   const chevronOrientation: ChevronOrientation =
     activeTab === "about" ? "down" : "right";
@@ -77,10 +73,6 @@ export function HomePage() {
           bio={profile.bioByTab[activeTab]}
           avatarSrc={profile.avatarSrc}
           avatarAlt={profile.avatarAlt}
-          galleryOpen={PHOTO_GALLERY_ENABLED && galleryOpen}
-          onAvatarClick={
-            PHOTO_GALLERY_ENABLED ? () => setGalleryOpen(true) : undefined
-          }
         >
           <div className="home-prompts">
             <ConnectPrompt activeTab={activeTab} />
@@ -160,14 +152,6 @@ export function HomePage() {
           </PageEnterItem>
         </PageEnterGroup>
       </PageEnter>
-      <AnimatePresence>
-        {PHOTO_GALLERY_ENABLED && galleryOpen ? (
-          <PhotoGalleryOverlay
-            key="photo-gallery"
-            onClose={() => setGalleryOpen(false)}
-          />
-        ) : null}
-      </AnimatePresence>
     </div>
   );
 }

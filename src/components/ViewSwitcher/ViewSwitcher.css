@@ -44,3 +44,9 @@
   color: var(--color-text-primary);
   opacity: 1;
 }
+
+@media (max-width: 39.9375rem) {
+  .view-switcher {
+    display: none;
+  }
+}

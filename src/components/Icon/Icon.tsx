@@ -17,6 +17,7 @@ import {
   Contrast,
   Database,
   FileText,
+  GalleryThumbnails,
   Gauge,
   GitBranch,
   Handshake,
@@ -83,6 +84,7 @@ export type IconName =
   | "arrow-up-right"
   | "contrast"
   | "expand"
+  | "gallery-thumbnails"
   | "x";
 
 const icons: Record<IconName, LucideIcon> = {
@@ -125,6 +127,7 @@ const icons: Record<IconName, LucideIcon> = {
   "arrow-up-right": ArrowUpRight,
   contrast: Contrast,
   expand: Expand,
+  "gallery-thumbnails": GalleryThumbnails,
   x: X,
 };
 

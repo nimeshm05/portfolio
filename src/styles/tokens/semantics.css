@@ -73,25 +73,27 @@
   --blur-avatar-hover: var(--blur-4);
   --color-avatar-cue: var(--color-white);
 
-  /* Photo gallery overlay */
-  --width-photo-gallery: var(--size-photo-gallery-width);
-  --inset-photo-gallery-x: var(--space-20);
-  --inset-photo-gallery-y: var(--size-viewport-edge-blur);
-  --gap-photo-gallery: var(--space-8);
-  --padding-photo-gallery-chrome: var(--space-20);
-  --padding-photo-gallery-scroll: calc(
-    var(--viewport-edge-blur-size) + var(--space-12)
-  );
+  /* Photo slideshow */
+  --width-photo-slideshow: var(--layout-content-width);
+  --gap-photo-slideshow: var(--space-40);
+  --gap-photo-slideshow-nav: var(--space-40);
+  --padding-photo-slideshow-y: var(--space-80);
+  --padding-photo-slideshow-x: var(--inset-x);
+  --padding-photo-slideshow-nav: var(--space-40);
   --size-control-tap: var(--size-control-min);
+  --radius-photo-slideshow-nav: var(--radius-full);
+  --color-photo-slideshow-overlay: var(--color-bg-page);
+  --color-photo-slideshow-text: var(--color-text-primary);
+  --color-photo-slideshow-nav: var(--color-bg-muted);
+  --text-photo-slideshow-label-size: var(--font-size-32);
+  --text-photo-slideshow-label-weight: var(--font-weight-bold);
+  --text-photo-slideshow-label-line-height: var(--line-height-32);
+  --inset-site-controls: var(--space-24);
+  --gap-site-controls: var(--space-4);
+  --padding-site-control: var(--space-8);
   --z-viewport-edge-blur: var(--z-index-1);
-  --z-photo-gallery: var(--z-index-10);
-  --z-photo-gallery-blur: var(--z-index-1);
-  --z-photo-gallery-chrome: var(--z-index-2);
-  --color-photo-gallery-overlay: var(--color-bg-page);
-  --color-photo-gallery-text: var(--color-text-primary);
-  --text-photo-gallery-title-size: var(--text-heading-size);
-  --text-photo-gallery-title-weight: var(--text-heading-weight);
-  --text-photo-gallery-title-line-height: var(--text-heading-line-height);
+  --z-photo-slideshow: var(--z-index-10);
+  --z-site-controls: var(--z-index-20);
 
   /* Size roles */
   --icon-size: var(--size-icon);

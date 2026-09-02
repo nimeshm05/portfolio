@@ -6,7 +6,6 @@ import { ContrastAnimatedIcon } from "@/components/AnimatedIcon/icons/contrast";
 import { Icon } from "@/components/Icon/Icon";
 import type { AnimatedIconHandle } from "@/components/AnimatedIcon/types";
 import { useTheme } from "@/theme/ThemeProvider";
-import "./ThemeToggle.css";
 
 export function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
@@ -17,7 +16,7 @@ export function ThemeToggle() {
   return (
     <button
       type="button"
-      className="theme-toggle"
+      className="site-control"
       aria-label={`Switch to ${nextTheme} mode`}
       onClick={toggleTheme}
       onPointerEnter={() => {
@@ -32,12 +31,12 @@ export function ThemeToggle() {
       }}
     >
       {reduceMotion ? (
-        <Icon name="contrast" size={20} className="theme-toggle-icon" />
+        <Icon name="contrast" size={20} className="site-control-icon" />
       ) : (
         <ContrastAnimatedIcon
           ref={iconRef}
           size={20}
-          className="theme-toggle-icon"
+          className="site-control-icon"
         />
       )}
     </button>

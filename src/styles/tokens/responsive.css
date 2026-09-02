@@ -24,5 +24,6 @@
     --banner-height: 18rem;
     --card-banner-height: 14rem;
     --inset-x: var(--space-16);
+    --padding-photo-slideshow-y: var(--space-48);
   }
 }

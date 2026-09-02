@@ -89,6 +89,7 @@
   --z-index-2: 2;
   --z-index-3: 3;
   --z-index-10: 10;
+  --z-index-20: 20;
 
   /* Motion */
   --duration-fast: 160ms;
@@ -115,7 +116,6 @@
   --size-card-banner-height: 26rem;
   --size-card-type-max: 8.75rem;
   --size-viewport-edge-blur: 5rem;
-  --size-photo-gallery-width: 39rem;
   --size-control-min: 2.75rem;
   --size-profile-cue-stroke: 0.14rem;
   --size-profile-cue-block: 5.5rem;
