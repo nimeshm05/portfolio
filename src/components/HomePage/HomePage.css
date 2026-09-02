@@ -94,6 +94,16 @@ html:has(.home-page) body {
 }
 
 @media (max-width: 68.6875rem) {
+  html:has(.home-page) {
+    scroll-snap-type: none;
+  }
+
+  html:has(.home-page) .site-header-profile,
+  html:has(.home-page) .home-lower {
+    scroll-snap-align: none;
+    scroll-snap-stop: normal;
+  }
+
   .home-nav {
     flex-wrap: wrap;
     gap: var(--gap-md);

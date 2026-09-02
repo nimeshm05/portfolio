@@ -5,6 +5,7 @@ import { useEffect } from "react";
 const FREE_SCROLL_CLASS = "home-page--free-scroll";
 const RELEASE_PX = 64;
 const PROFILE_RESUME_RATIO = 0.5;
+const COMPACT_QUERY = "(max-width: 68.6875rem)";
 
 export function useHomeSectionSnap(root: HTMLElement | null) {
   useEffect(() => {
@@ -13,6 +14,7 @@ export function useHomeSectionSnap(root: HTMLElement | null) {
     }
 
     const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const compactQuery = window.matchMedia(COMPACT_QUERY);
     const profile = root.querySelector<HTMLElement>(".site-header-profile");
     const lower = root.querySelector<HTMLElement>(".home-lower");
     const scroller = document.documentElement;
@@ -30,7 +32,7 @@ export function useHomeSectionSnap(root: HTMLElement | null) {
     };
 
     const syncSnap = () => {
-      if (motionQuery.matches) {
+      if (motionQuery.matches || compactQuery.matches) {
         freeScroll = true;
         applySnap(true);
         return;
@@ -65,6 +67,7 @@ export function useHomeSectionSnap(root: HTMLElement | null) {
     window.addEventListener("scroll", scheduleSync, { passive: true });
     window.addEventListener("resize", scheduleSync);
     motionQuery.addEventListener("change", scheduleSync);
+    compactQuery.addEventListener("change", scheduleSync);
 
     return () => {
       if (frameId !== 0) {
@@ -77,6 +80,7 @@ export function useHomeSectionSnap(root: HTMLElement | null) {
       window.removeEventListener("scroll", scheduleSync);
       window.removeEventListener("resize", scheduleSync);
       motionQuery.removeEventListener("change", scheduleSync);
+      compactQuery.removeEventListener("change", scheduleSync);
     };
   }, [root]);
 }
