@@ -69,6 +69,11 @@
   color: var(--color-text-primary);
 }
 
+.list-item:hover .list-item-meta,
+.list-item-shell.is-open .list-item-meta {
+  color: var(--color-accent);
+}
+
 .list-item-panel-collapse {
   display: grid;
   grid-template-rows: 0fr;

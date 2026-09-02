@@ -108,4 +108,8 @@ html:has(.home-page) body {
     flex-wrap: wrap;
     gap: var(--gap-md);
   }
+
+  .home-main {
+    gap: var(--gap-md);
+  }
 }
