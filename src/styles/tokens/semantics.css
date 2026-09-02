@@ -10,7 +10,7 @@
   --color-text-primary: var(--color-black);
   --color-text-body: var(--color-neutral-700);
   --color-text-subtle: var(--color-neutral-500);
-  --color-text-label: var(--color-neutral-400);
+  --color-text-label: var(--color-neutral-600);
   --color-text-muted: var(--color-neutral-350);
   --color-connect-prompt-follow-up: var(--color-lime-400);
   --color-accent: var(--color-lime-400);
@@ -244,7 +244,7 @@
   --color-text-primary: var(--color-white);
   --color-text-body: var(--color-neutral-400);
   --color-text-subtle: var(--color-neutral-500);
-  --color-text-label: var(--color-neutral-600);
+  --color-text-label: var(--color-neutral-400);
   --color-text-muted: var(--color-neutral-600);
   --color-callout-text: var(--color-white);
   --color-callout-border: var(--color-neutral-700);

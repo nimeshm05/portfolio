@@ -13,7 +13,7 @@
   gap: var(--gap-xs);
   width: 100%;
   padding: var(--gap-sm) var(--inset-x);
-  color: var(--color-text-label);
+  color: var(--color-text-subtle);
   font-size: var(--text-sidebar-size);
   font-weight: var(--text-sidebar-weight);
   line-height: var(--text-sidebar-line-height);
