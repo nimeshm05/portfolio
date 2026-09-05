@@ -77,7 +77,7 @@
   --font-weight-bold: 700;
 
   /* Letter spacing */
-  --letter-spacing-tight: -0.02em;
+  --letter-spacing-tight: -0.025em;
   --letter-spacing-footer: 0.01em;
 
   /* Opacity */
@@ -157,5 +157,5 @@
   /* Layout */
   --layout-content-width: 42rem;
   --layout-prose-width: 30rem;
-  --layout-bio-width: 38rem;
+  --layout-bio-width: 34rem;
 }

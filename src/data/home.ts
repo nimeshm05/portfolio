@@ -26,16 +26,16 @@ export type ContentSectionData = {
 };
 
 export const profile = {
-  name: "Nimesh Mohanakrishnan",
+  name: "Nimesh M.",
   avatarSrc: "/assets/profile.svg",
   avatarAlt: "Portrait of Nimesh Mohanakrishnan",
   bioByTab: {
     work: [
-      "Product designer in Seattle focused on making complex B2B workflows feel simple. With 2+ years of experience designing information-heavy software products and internal tools, I use subtraction and progressive disclosure to reveal complexity only when it’s useful.",
+      "Product designer in Seattle focused on simplifying B2B software. With 2+ years of experience designing information-heavy products, I use subtraction to make experiences more focused and relevant.",
       "Currently pursuing my master’s in HCDE at the University of Washington. Previously, I designed legal tech products at Knool and contact center tools at RozieAI.",
     ],
     about: [
-      "Product designer in Seattle focused on making complex B2B workflows feel simple. With 2+ years of experience designing information-heavy softwareproducts and internal tools, I use subtraction and progressive disclosure to reveal complexity only when it’s useful.",
+      "Product designer in Seattle focused on simplifying complex B2B software. With 2+ years of experience designing information-heavy products, I use subtraction to make experiences more focused and relevant.",
       "Currently pursuing my master’s in HCDE at the University of Washington. Previously, I designed legal tech products at Knool and contact center tools at RozieAI.",
     ],
   },

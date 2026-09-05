@@ -14,7 +14,6 @@ import {
   Clock,
   CodeXml,
   Columns4,
-  Contrast,
   Database,
   FileText,
   GalleryThumbnails,
@@ -24,6 +23,7 @@ import {
   LayoutGrid,
   Lightbulb,
   List,
+  Moon,
   Music2,
   NotebookPen,
   PanelsTopLeft,
@@ -34,6 +34,7 @@ import {
   Settings,
   SlidersHorizontal,
   Sparkles,
+  Sun,
   Summary,
   Table,
   Type,
@@ -82,7 +83,8 @@ export type IconName =
   | "arrow-down"
   | "arrow-right"
   | "arrow-up-right"
-  | "contrast"
+  | "moon"
+  | "sun"
   | "expand"
   | "gallery-thumbnails"
   | "x";
@@ -125,7 +127,8 @@ const icons: Record<IconName, LucideIcon> = {
   "arrow-down": ArrowDown,
   "arrow-right": ArrowRight,
   "arrow-up-right": ArrowUpRight,
-  contrast: Contrast,
+  moon: Moon,
+  sun: Sun,
   expand: Expand,
   "gallery-thumbnails": GalleryThumbnails,
   x: X,
