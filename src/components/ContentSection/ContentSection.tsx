@@ -10,7 +10,7 @@ import {
 import { ProjectCard } from "@/components/ProjectCard/ProjectCard";
 import { RichText } from "@/components/RichText/RichText";
 import type { ContentSectionData, ListItemBlock, ListItemData } from "@/data/home";
-import { getWorkCard } from "@/data/workCards";
+import { getProjectCard } from "@/data/projectCards";
 import type { WorkViewMode } from "@/components/ViewSwitcher/ViewSwitcher";
 import {
   tabContentBlurVariants,
@@ -136,7 +136,7 @@ export function ContentSection({
 
   const cardProjects = showCardView
     ? section.items
-        .map((item) => getWorkCard(item.id))
+        .map((item) => getProjectCard(item.id))
         .filter((project) => project != null)
     : [];
 
@@ -148,7 +148,7 @@ export function ContentSection({
       icon={item.icon}
       href={item.href}
       chevronOrientation={chevronOrientation}
-      animateIconOnHover={viewMode === "list"}
+      animateIconOnHover={!showCardView}
     >
       {item.blocks?.length ||
       item.paragraphs?.length ||

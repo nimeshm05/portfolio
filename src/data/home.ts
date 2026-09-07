@@ -31,12 +31,12 @@ export const profile = {
   avatarAlt: "Portrait of Nimesh Mohanakrishnan",
   bioByTab: {
     work: [
-      "Product designer in Seattle focused on simplifying B2B software. With 2+ years of experience designing information-heavy products, I use subtraction to make experiences more focused and relevant.",
-      "Currently pursuing my master’s in HCDE at the University of Washington. Previously, I designed legal tech products at Knool and contact center tools at RozieAI.",
+      "Product designer in Seattle with 2+ years of experience designing B2B software. Previously, I designed agentic experiences for legal professionals at Knool and led the design of conversation insights platform for contact center teams at RozieAI. I'm currently pursuing my master's in human-centered design & engineering at the University of Washington.",
+      "Thoughtful reduction is the way I make product experiences more focused and relevant.",
     ],
     about: [
-      "Product designer in Seattle focused on simplifying complex B2B software. With 2+ years of experience designing information-heavy products, I use subtraction to make experiences more focused and relevant.",
-      "Currently pursuing my master’s in HCDE at the University of Washington. Previously, I designed legal tech products at Knool and contact center tools at RozieAI.",
+      "Product designer in Seattle with 2+ years of experience designing B2B software. Previously, I designed agentic experiences for legal professionals at Knool and led the design of conversation insights platform for contact center teams at RozieAI. I'm currently pursuing my master's in human-centered design & engineering at the University of Washington.",
+      "Thoughtful reduction is the way I make product experiences more focused and relevant.",
     ],
   },
 } as const;
@@ -68,7 +68,7 @@ export const footerLinks = [
 export const workSections: ContentSectionData[] = [
   {
     id: "industry-projects",
-    label: "Industry Projects",
+    label: "Work",
     supportsCardView: true,
     items: [
       {
@@ -87,7 +87,7 @@ export const workSections: ContentSectionData[] = [
   },
   {
     id: "personal-projects",
-    label: "Personal Projects",
+    label: "Personal",
     supportsCardView: true,
     items: [
       // {
@@ -118,8 +118,7 @@ export const workSections: ContentSectionData[] = [
   },
   {
     id: "writing",
-    label: "Writing",
-    supportsCardView: true,
+    label: "Notes",
     items: [
       {
         id: "designing-beyond-the-interface",

@@ -2,7 +2,7 @@
   /* Surfaces */
   --color-bg-page: var(--color-neutral-50);
   --color-bg-surface: var(--color-white);
-  --color-bg-muted: var(--color-neutral-100);
+  --color-bg-muted: var(--color-neutral-150);
   --color-card-hover: var(--color-neutral-50);
   --color-divider: var(--color-bg-muted);
 
@@ -46,7 +46,7 @@
   --gap-page: var(--space-160);
   --gap-list-item: var(--space-20);
   --gap-project-section: var(--space-20);
-  --gap-section: var(--space-60);
+  --gap-section: var(--space-80);
   --padding-page: var(--space-60);
   --inset-x: var(--space-12);
   --padding-callout-quote: var(--space-28);
