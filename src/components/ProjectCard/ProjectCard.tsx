@@ -66,7 +66,6 @@ export function ProjectCard({ project }: ProjectCardProps) {
         variant="card"
       />
       <div className="project-card-footer">
-        <p className="project-card-timeline">{project.timeline}</p>
         <p className="project-card-description">{project.description}</p>
       </div>
     </>

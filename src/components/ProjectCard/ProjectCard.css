@@ -33,7 +33,7 @@
 .project-card-type {
   flex-shrink: 0;
   color: var(--color-text-label);
-  font-size: var(--text-body-size);
+  font-size: var(--text-card-type-size);
   font-weight: var(--text-body-weight);
   line-height: normal;
   letter-spacing: var(--letter-spacing-body);
@@ -52,16 +52,6 @@
   padding-inline: var(--padding-card-inline);
 }
 
-.project-card-timeline {
-  margin: 0;
-  color: var(--color-text-muted);
-  font-size: var(--text-body-size);
-  font-weight: var(--weight-medium);
-  line-height: normal;
-  letter-spacing: var(--letter-spacing-body);
-  transition: color var(--transition-fast);
-}
-
 .project-card-description {
   margin: 0;
   color: var(--color-text-label);
@@ -74,10 +64,6 @@
 
 .project-card:hover .project-card-description {
   color: var(--color-text-primary);
-}
-
-.project-card:hover .project-card-timeline {
-  color: var(--color-accent);
 }
 
 .project-card:hover {
