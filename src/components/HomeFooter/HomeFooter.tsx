@@ -2,6 +2,7 @@
 
 import { Fragment, useEffect, useRef, useState } from "react";
 import { motion, useInView, useReducedMotion } from "motion/react";
+import { SocialHoverLink } from "@/components/SocialHoverLink/SocialHoverLink";
 import { footerLinks } from "@/data/home";
 import "./HomeFooter.css";
 
@@ -99,8 +100,6 @@ export function HomeFooter() {
     >
       <nav className="home-footer-links" aria-label="Social links and resume">
         {footerLinks.map((link, index) => {
-          const isExternal = link.href.startsWith("http");
-
           return (
             <Fragment key={link.id}>
               {index > 0 ? (
@@ -108,15 +107,13 @@ export function HomeFooter() {
                   /
                 </span>
               ) : null}
-              <a
+              <SocialHoverLink
                 className="home-footer-link"
                 href={link.href}
-                {...(isExternal
-                  ? { target: "_blank", rel: "noopener noreferrer" }
-                  : {})}
+                iconSrc={"iconSrc" in link ? link.iconSrc : undefined}
               >
                 {link.label}
-              </a>
+              </SocialHoverLink>
             </Fragment>
           );
         })}

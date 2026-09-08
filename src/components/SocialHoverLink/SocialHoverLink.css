@@ -1,0 +1,50 @@
+.social-hover-link {
+  position: relative;
+}
+
+.social-hover-mark {
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  z-index: var(--z-social-hover);
+  display: flex;
+  width: var(--size-social-hover);
+  height: var(--size-social-hover);
+  margin-bottom: var(--gap-xs);
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, var(--offset-social-hover-y));
+  filter: blur(var(--blur-social-hover));
+  transition:
+    opacity var(--transition-expand),
+    transform var(--transition-expand),
+    filter var(--transition-expand);
+}
+
+.social-hover-mark-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .social-hover-link:hover .social-hover-mark {
+    opacity: 1;
+    transform: translate(-50%, 0);
+    filter: none;
+  }
+}
+
+.social-hover-link:focus-visible .social-hover-mark {
+  opacity: 1;
+  transform: translate(-50%, 0);
+  filter: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .social-hover-mark {
+    transform: translate(-50%, 0);
+    filter: none;
+    transition: opacity var(--transition-fast);
+  }
+}

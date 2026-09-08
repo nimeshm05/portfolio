@@ -62,6 +62,14 @@ export const connect = {
   mediumHref: "https://nimeshmohanakrishnan.medium.com/"
 } as const;
 
+export const socialHoverIcons = {
+  linkedin: "/assets/social-media-icons/linkedin.svg",
+  github: "/assets/social-media-icons/github.svg",
+  x: "/assets/social-media-icons/x.svg",
+  medium: "/assets/social-media-icons/medium.svg",
+  email: "/assets/social-media-icons/apple-mail.svg",
+} as const;
+
 export const currently = {
   label: "Currently:",
   status: "MS HCDE Student at Udub",
@@ -72,11 +80,36 @@ export const resume = {
 } as const;
 
 export const footerLinks = [
-  { id: "linkedin", label: "LinkedIn", href: connect.linkedInHref },
-  { id: "github", label: "Github", href: connect.githubHref },
-  { id: "x", label: "X", href: connect.xHref },
-  { id: "medium", label: "Medium", href: connect.mediumHref },
-  { id: "email", label: "Email", href: connect.emailHref },
+  {
+    id: "linkedin",
+    label: "LinkedIn",
+    href: connect.linkedInHref,
+    iconSrc: socialHoverIcons.linkedin,
+  },
+  {
+    id: "github",
+    label: "Github",
+    href: connect.githubHref,
+    iconSrc: socialHoverIcons.github,
+  },
+  {
+    id: "x",
+    label: "X",
+    href: connect.xHref,
+    iconSrc: socialHoverIcons.x,
+  },
+  {
+    id: "medium",
+    label: "Medium",
+    href: connect.mediumHref,
+    iconSrc: socialHoverIcons.medium,
+  },
+  {
+    id: "email",
+    label: "Email",
+    href: connect.emailHref,
+    iconSrc: socialHoverIcons.email,
+  },
   { id: "resume", label: "Resume", href: resume.href },
 ] as const;
 

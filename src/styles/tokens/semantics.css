@@ -101,6 +101,10 @@
   --icon-size-coffee: var(--size-icon-coffee);
   --icon-size-mascot: var(--size-icon-mascot);
   --icon-size-nav: var(--font-size-15);
+  --size-social-hover: var(--size-social-hover-mark);
+  --offset-social-hover-y: var(--space-20);
+  --blur-social-hover: var(--blur-8);
+  --z-social-hover: var(--z-index-1);
   --avatar-size: var(--size-avatar);
   --tab-container-width: var(--size-tab-container);
   --sidebar-width: var(--size-sidebar-width);
