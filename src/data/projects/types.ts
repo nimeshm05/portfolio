@@ -91,7 +91,7 @@ export type ProjectCardData = {
   slug: string;
   href: string;
   title: string;
-  projectType: string;
+  chips: readonly string[];
   timeline: string;
   description: string;
   bannerSrc: string;

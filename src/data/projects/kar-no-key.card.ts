@@ -6,7 +6,7 @@ export const karNoKeyCard: ProjectCardData = {
   slug: "kar-no-key",
   href: "/work/kar-no-key",
   title: "Kar-no-key",
-  projectType: "AI Project, Interaction Design",
+  chips: ["AI project", "Interaction Design"],
   timeline: "2025",
   description:
     "A full-stack multiplayer type racer game built with Supabase and Next.JS using cursor agents.",

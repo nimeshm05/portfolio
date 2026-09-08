@@ -35,18 +35,26 @@ export const profile = {
     work: [
       [
         "A product designer in Seattle,",
-        "with 2+ years designing B2B software where details prevail.",
-        "I look for what's getting in the way,",
-        "and thoughtfully reduce until only what matters can stay.",
+        "with 2+ years designing B2B software where complexity prevails.",
+        "I use thoughtful reduction to bring clarity to the confusion,",
+        "making space for what matters and giving it direction."
       ],
+      [
+        "Currently pursuing a MS in Human Centered Design & Engineering,",
+        "at the University of Washington.",
+      ]
     ],
     about: [
       [
         "A product designer in Seattle,",
-        "with 2+ years designing B2B software where details prevail.",
-        "I look for what's getting in the way,",
-        "and thoughtfully reduce until only what matters can stay.",
+        "with 2+ years designing B2B software where complexity prevails.",
+        "I use thoughtful reduction to bring clarity to the confusion,",
+        "making space for what matters and giving it direction."
       ],
+      [
+        "Currently pursuing a MS in Human Centered Design & Engineering,",
+        "at the University of Washington.",
+      ]
     ],
   },
 } as const;
@@ -68,6 +76,7 @@ export const socialHoverIcons = {
   x: "/assets/social-media-icons/x.svg",
   medium: "/assets/social-media-icons/medium.svg",
   email: "/assets/social-media-icons/apple-mail.svg",
+  phone: "/assets/social-media-icons/phone.svg",
 } as const;
 
 export const currently = {
