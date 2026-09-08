@@ -1,6 +1,6 @@
 :root {
   /* Surfaces */
-  --color-bg-page: var(--color-neutral-50);
+  --color-bg-page: var(--color-white);
   --color-bg-surface: var(--color-white);
   --color-bg-muted: var(--color-neutral-150);
   --color-card-hover: var(--color-neutral-50);
