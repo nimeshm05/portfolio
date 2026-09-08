@@ -114,6 +114,7 @@
   --connect-excitement-height: var(--size-connect-excitement-height);
   --connect-excitement-word-scale: var(--scale-110);
   --connect-mascot-enter-y: var(--space-8);
+  --prompt-label-min-width: 4ch;
 
   /* Blur roles */
   --blur-layer-1: var(--blur-1);
@@ -152,7 +153,7 @@
     var(--shadow-elevation);
 
   /* Typography: display (name, bio) */
-  --text-display-size: var(--font-size-24);
+  --text-display-size: var(--font-size-22);
   --text-display-line-height: var(--line-height-28);
   --text-display-weight: var(--font-weight-semibold);
   --text-subtitle-display-weight: var(--font-weight-regular);

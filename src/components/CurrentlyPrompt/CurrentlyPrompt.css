@@ -1,0 +1,58 @@
+.currently-prompt {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--gap-sm);
+  width: 100%;
+  margin: 0;
+  color: var(--color-text-label);
+  font-size: var(--text-list-size);
+  font-weight: var(--text-list-weight);
+  line-height: var(--text-list-line-height);
+}
+
+.currently-prompt-icon {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  color: var(--color-text-label);
+}
+
+.currently-prompt-icon .morphing-arrow-right {
+  width: var(--icon-size);
+  height: var(--icon-size);
+}
+
+.currently-prompt-copy {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  min-width: 0;
+}
+
+.currently-prompt-label {
+  display: inline-flex;
+  align-items: center;
+  min-width: var(--prompt-label-min-width);
+  color: var(--color-text-label);
+}
+
+.currently-prompt-status {
+  display: inline-flex;
+  align-items: center;
+  padding-inline: var(--gap-md);
+  color: var(--color-text-muted);
+}
+
+@media (max-width: 68.6875rem) {
+  .currently-prompt-copy {
+    gap: var(--gap-sm);
+  }
+
+  .currently-prompt-status {
+    padding-inline: 0;
+  }
+}

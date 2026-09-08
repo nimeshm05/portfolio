@@ -32,6 +32,7 @@
   position: relative;
   display: inline-flex;
   align-items: center;
+  min-width: var(--prompt-label-min-width);
 }
 
 .connect-prompt-invite-label.is-excited .connect-prompt-text {

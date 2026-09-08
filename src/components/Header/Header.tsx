@@ -1,14 +1,15 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { Fragment, type ReactNode } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
+import type { BioParagraph } from "@/data/home";
 import { getPageEnterItemVariants } from "@/motion/pageEnter";
 import "./Header.css";
 
 type HeaderProps = {
   name: string;
-  bio: readonly string[];
+  bio: readonly BioParagraph[];
   avatarSrc: string;
   avatarAlt: string;
   children?: ReactNode;
@@ -49,8 +50,13 @@ export function Header({
               <h1 className="site-header-name">{name}</h1>
               <div className="site-header-bio">
                 {bio.map((paragraph) => (
-                  <p key={paragraph} className="site-header-bio-paragraph">
-                    {paragraph}
+                  <p key={paragraph[0]} className="site-header-bio-paragraph">
+                    {paragraph.map((line, index) => (
+                      <Fragment key={line}>
+                        {index > 0 ? <br /> : null}
+                        {line}
+                      </Fragment>
+                    ))}
                   </p>
                 ))}
               </div>

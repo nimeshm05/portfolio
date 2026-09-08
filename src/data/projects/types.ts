@@ -111,6 +111,7 @@ export type ProjectPageData = {
   bannerType?: "image" | "video";
   bannerBackgroundSrc?: string;
   liveHref?: string;
+  listItemsAlwaysExpanded?: boolean;
   nav?: ProjectNavItem[];
   meta?: {
     items: ProjectMetaItem[];

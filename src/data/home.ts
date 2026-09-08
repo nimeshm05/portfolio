@@ -2,6 +2,8 @@ import type { IconName } from "@/components/Icon/Icon";
 
 export type HomeTab = "work" | "about";
 
+export type BioParagraph = readonly string[];
+
 export type ListItemBlock =
   | { type: "paragraph"; text: string }
   | { type: "callout"; text: string };
@@ -31,12 +33,20 @@ export const profile = {
   avatarAlt: "Portrait of Nimesh Mohanakrishnan",
   bioByTab: {
     work: [
-      "Product designer in Seattle with 2+ years of experience designing B2B software. Previously, I designed agentic experiences for legal professionals at Knool and led the design of conversation insights platform for contact center teams at RozieAI. I'm currently pursuing my master's in human-centered design & engineering at the University of Washington.",
-      "Thoughtful reduction is the way I make product experiences more focused and relevant.",
+      [
+        "A product designer in Seattle,",
+        "with 2+ years designing B2B software where details prevail.",
+        "I look for what's getting in the way,",
+        "and thoughtfully reduce until only what matters can stay.",
+      ],
     ],
     about: [
-      "Product designer in Seattle with 2+ years of experience designing B2B software. Previously, I designed agentic experiences for legal professionals at Knool and led the design of conversation insights platform for contact center teams at RozieAI. I'm currently pursuing my master's in human-centered design & engineering at the University of Washington.",
-      "Thoughtful reduction is the way I make product experiences more focused and relevant.",
+      [
+        "A product designer in Seattle,",
+        "with 2+ years designing B2B software where details prevail.",
+        "I look for what's getting in the way,",
+        "and thoughtfully reduce until only what matters can stay.",
+      ],
     ],
   },
 } as const;
@@ -50,6 +60,11 @@ export const connect = {
   githubHref: "https://github.com/nimeshm05",
   xHref: "https://x.com/nimeshm_me",
   mediumHref: "https://nimeshmohanakrishnan.medium.com/"
+} as const;
+
+export const currently = {
+  label: "Currently:",
+  status: "MS HCDE Student at Udub",
 } as const;
 
 export const resume = {

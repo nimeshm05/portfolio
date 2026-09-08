@@ -12,6 +12,7 @@ export const architectureAgent: ProjectPageData = {
   bannerSrc: asset("actual-ai-preview.mp4"),
   bannerAlt: "Architecture Agent product preview",
   bannerType: "video",
+  listItemsAlwaysExpanded: true,
   nav: [
     { id: "overview", label: "Overview", href: "#overview" },
     {
