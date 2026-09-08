@@ -7,7 +7,8 @@ import { ConnectMascot } from "@/components/ConnectMascot/ConnectMascot";
 import { AnimatedCoffeeIcon } from "@/components/AnimatedCoffeeIcon/AnimatedCoffeeIcon";
 import { MorphingArrowRight } from "@/components/MorphingArrowRight/MorphingArrowRight";
 import { MorphingConnectIcon } from "@/components/MorphingConnectIcon/MorphingConnectIcon";
-import { connect, type HomeTab } from "@/data/home";
+import { SocialHoverLink } from "@/components/SocialHoverLink/SocialHoverLink";
+import { connect, socialHoverIcons, type HomeTab } from "@/data/home";
 import {
   PHONE_WAVE_EMOJI,
   excitementSmokeTransition,
@@ -88,29 +89,27 @@ function PromptAction({
 function PromptLink({
   children,
   href,
+  iconSrc,
   onHoverChange,
 }: {
   children: ReactNode;
   href: string;
+  iconSrc?: string;
   onHoverChange?: (hovered: boolean) => void;
 }) {
-  const isExternal = href.startsWith("http");
-
   return (
-    <a
+    <SocialHoverLink
       className="connect-prompt-action"
       href={href}
+      iconSrc={iconSrc}
       data-cuelume-press="arrival"
       onMouseEnter={() => onHoverChange?.(true)}
       onMouseLeave={() => onHoverChange?.(false)}
       onFocus={() => onHoverChange?.(true)}
       onBlur={() => onHoverChange?.(false)}
-      {...(isExternal
-        ? { target: "_blank", rel: "noopener noreferrer" }
-        : {})}
     >
       {children}
-    </a>
+    </SocialHoverLink>
   );
 }
 
@@ -544,6 +543,7 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
                 node: (
                   <PromptLink
                     href={connect.linkedInHref}
+                    iconSrc={socialHoverIcons.linkedin}
                     onHoverChange={setOptionHovered}
                   >
                     LinkedIn
@@ -555,6 +555,7 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
                 node: (
                   <PromptLink
                     href={connect.githubHref}
+                    iconSrc={socialHoverIcons.github}
                     onHoverChange={setOptionHovered}
                   >
                     Github
@@ -566,6 +567,7 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
                 node: (
                   <PromptLink
                     href={connect.xHref}
+                    iconSrc={socialHoverIcons.x}
                     onHoverChange={setOptionHovered}
                   >
                     X
@@ -577,6 +579,7 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
                 node: (
                   <PromptLink
                     href={connect.mediumHref}
+                    iconSrc={socialHoverIcons.medium}
                     onHoverChange={setOptionHovered}
                   >
                     Medium
@@ -588,6 +591,7 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
                 node: (
                   <PromptLink
                     href={connect.emailHref}
+                    iconSrc={socialHoverIcons.email}
                     onHoverChange={setOptionHovered}
                   >
                     Email
@@ -672,6 +676,7 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
                 node: (
                   <PromptLink
                     href={connect.emailHref}
+                    iconSrc={socialHoverIcons.email}
                     onHoverChange={setOptionHovered}
                   >
                     Email
