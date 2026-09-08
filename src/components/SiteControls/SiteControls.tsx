@@ -4,6 +4,7 @@ import { useState } from "react";
 import { AnimatePresence } from "motion/react";
 import { GalleryToggle } from "@/components/GalleryToggle/GalleryToggle";
 import { PhotoSlideshow } from "@/components/PhotoSlideshow/PhotoSlideshow";
+import { ScrollToTop } from "@/components/ScrollToTop/ScrollToTop";
 import { ThemeToggle } from "@/components/ThemeToggle/ThemeToggle";
 import "./SiteControls.css";
 
@@ -21,6 +22,7 @@ export function SiteControls() {
             onToggle={() => setSlideshowOpen((open) => !open)}
           />
         ) : null}
+        <ScrollToTop />
         <ThemeToggle />
       </div>
       <AnimatePresence>

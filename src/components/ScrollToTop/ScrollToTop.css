@@ -1,0 +1,11 @@
+.scroll-to-top {
+  position: absolute;
+  top: 0;
+  right: 100%;
+  margin-right: var(--gap-site-controls);
+  overflow: visible;
+}
+
+.scroll-to-top-control {
+  display: inline-flex;
+}

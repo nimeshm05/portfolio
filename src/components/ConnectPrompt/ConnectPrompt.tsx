@@ -49,6 +49,7 @@ function PromptAction({
   onMouseLeave,
   onFocus,
   onBlur,
+  pulse = false,
 }: {
   children: ReactNode;
   onClick: () => void;
@@ -57,6 +58,7 @@ function PromptAction({
   onMouseLeave?: () => void;
   onFocus?: () => void;
   onBlur?: () => void;
+  pulse?: boolean;
 }) {
   return (
     <button
@@ -81,7 +83,11 @@ function PromptAction({
         onBlur?.();
       }}
     >
-      {children}
+      {pulse ? (
+        <span className="connect-prompt-action-pulse">{children}</span>
+      ) : (
+        children
+      )}
     </button>
   );
 }
@@ -425,6 +431,7 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
                 key: "yes",
                 node: (
                   <PromptAction
+                    pulse
                     onHoverChange={setOptionHovered}
                     onMouseEnter={() => {
                       if (
@@ -665,6 +672,7 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
                 node: (
                   <PromptLink
                     href={connect.phoneHref}
+                    iconSrc={socialHoverIcons.phone}
                     onHoverChange={setOptionHovered}
                   >
                     {connect.phoneDisplay}

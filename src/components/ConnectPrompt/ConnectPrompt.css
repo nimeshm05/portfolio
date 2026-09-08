@@ -85,6 +85,43 @@
   transition: scale var(--transition-fast);
 }
 
+.connect-prompt-action-pulse {
+  display: inline-block;
+  color: var(--color-text-muted);
+  animation: connect-sure-pulse var(--duration-connect-sure-pulse)
+    var(--ease-default) infinite;
+}
+
+@keyframes connect-sure-pulse {
+  0%,
+  14%,
+  23%,
+  100% {
+    color: var(--color-text-muted);
+    scale: 1;
+  }
+
+  8%,
+  20% {
+    color: var(--color-connect-sure-pulse);
+    scale: var(--scale-connect-sure-pulse);
+  }
+}
+
+.connect-prompt-action:hover .connect-prompt-action-pulse,
+.connect-prompt-action:focus-visible .connect-prompt-action-pulse,
+.connect-prompt-action:active .connect-prompt-action-pulse {
+  animation: none;
+  color: inherit;
+  scale: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .connect-prompt-action-pulse {
+    animation: none;
+  }
+}
+
 .connect-prompt-separator {
   color: var(--color-text-muted);
 }
