@@ -13,6 +13,8 @@ import {
   applyTheme,
   isTheme,
   persistTheme,
+  readStoredTheme,
+  readSystemTheme,
   resolveInitialTheme,
   type Theme,
 } from "./theme";
@@ -37,6 +39,20 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     const initial = readDocumentTheme();
     setThemeState(initial);
     applyTheme(initial);
+
+    const media = window.matchMedia("(prefers-color-scheme: dark)");
+    const onSystemThemeChange = () => {
+      if (readStoredTheme()) {
+        return;
+      }
+
+      const next = readSystemTheme();
+      setThemeState(next);
+      applyTheme(next);
+    };
+
+    media.addEventListener("change", onSystemThemeChange);
+    return () => media.removeEventListener("change", onSystemThemeChange);
   }, []);
 
   const setTheme = useCallback((next: Theme) => {

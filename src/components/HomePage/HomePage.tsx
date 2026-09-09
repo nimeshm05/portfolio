@@ -136,6 +136,7 @@ export function HomePage() {
                         key={section.id}
                         section={section}
                         showDivider={index > 0}
+                        showLabel={activeTab !== "work"}
                         chevronOrientation={chevronOrientation}
                         viewMode={
                           activeTab === "work" ? workViewMode : undefined

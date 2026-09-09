@@ -99,6 +99,7 @@ function ListItemCopy({ item }: { item: ListItemData }) {
 type ContentSectionProps = {
   section: ContentSectionData;
   showDivider?: boolean;
+  showLabel?: boolean;
   chevronOrientation?: ChevronOrientation;
   viewMode?: WorkViewMode;
 };
@@ -106,6 +107,7 @@ type ContentSectionProps = {
 export function ContentSection({
   section,
   showDivider = false,
+  showLabel = true,
   chevronOrientation,
   viewMode = "list",
 }: ContentSectionProps) {
@@ -159,43 +161,52 @@ export function ContentSection({
     </ListItem>
   ));
 
+  const labelId = `${section.id}-label`;
+
   return (
     <>
       {showDivider ? <hr className="content-section-divider" /> : null}
-      <section className="content-section" aria-labelledby={section.id}>
-        <div className="content-section-label-wrap">
-          {supportsCardView ? (
-            <AnimatePresence mode="popLayout">
+      <section
+        className="content-section"
+        id={section.id}
+        aria-labelledby={showLabel ? labelId : undefined}
+        aria-label={showLabel ? undefined : section.label}
+      >
+        {showLabel ? (
+          <div className="content-section-label-wrap">
+            {supportsCardView ? (
+              <AnimatePresence mode="popLayout">
+                <motion.h2
+                  key={viewMode}
+                  className="content-section-label"
+                  id={labelId}
+                  variants={workViewItemVariants}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  transition={workViewTransition}
+                >
+                  {section.label}
+                </motion.h2>
+              </AnimatePresence>
+            ) : blurOnTabChange ? (
               <motion.h2
-                key={viewMode}
                 className="content-section-label"
-                id={section.id}
-                variants={workViewItemVariants}
+                id={labelId}
+                variants={tabContentBlurVariants}
                 initial="initial"
                 animate="animate"
-                exit="exit"
-                transition={workViewTransition}
+                transition={tabContentTransition}
               >
                 {section.label}
               </motion.h2>
-            </AnimatePresence>
-          ) : blurOnTabChange ? (
-            <motion.h2
-              className="content-section-label"
-              id={section.id}
-              variants={tabContentBlurVariants}
-              initial="initial"
-              animate="animate"
-              transition={tabContentTransition}
-            >
-              {section.label}
-            </motion.h2>
-          ) : (
-            <h2 className="content-section-label" id={section.id}>
-              {section.label}
-            </h2>
-          )}
-        </div>
+            ) : (
+              <h2 className="content-section-label" id={labelId}>
+                {section.label}
+              </h2>
+            )}
+          </div>
+        ) : null}
         {supportsCardView ? (
           <AnimatePresence mode="wait">
             {showCardView ? (

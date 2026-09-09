@@ -4,6 +4,7 @@
   align-items: flex-start;
   width: 100%;
   overflow-x: clip;
+  scroll-margin-top: var(--scroll-margin-section);
 }
 
 .content-section:has(.content-section-cards) {
