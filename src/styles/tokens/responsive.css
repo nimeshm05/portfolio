@@ -22,7 +22,7 @@
     --gap-page: var(--space-48);
     --scroll-margin-section: var(--space-48);
     --banner-height: 18rem;
-    --card-banner-height: 14rem;
+    --card-banner-height: 13rem;
     --inset-x: var(--space-16);
     --padding-photo-slideshow-y: var(--space-48);
   }
