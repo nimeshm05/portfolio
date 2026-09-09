@@ -15,8 +15,18 @@ export function readStoredTheme(): Theme | null {
   return isTheme(stored) ? stored : null;
 }
 
+export function readSystemTheme(): Theme {
+  if (typeof window === "undefined") {
+    return "light";
+  }
+
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+}
+
 export function resolveInitialTheme(): Theme {
-  return readStoredTheme() ?? "light";
+  return readStoredTheme() ?? readSystemTheme();
 }
 
 export function applyTheme(theme: Theme) {
@@ -28,4 +38,4 @@ export function persistTheme(theme: Theme) {
 }
 
 /** Inline script run before paint to avoid a flash of the wrong theme. */
-export const themeInitScript = `(function(){try{var k=${JSON.stringify(THEME_STORAGE_KEY)};var s=localStorage.getItem(k);var t=s==="light"||s==="dark"?s:"light";document.documentElement.dataset.theme=t;}catch(e){document.documentElement.dataset.theme="light";}})();`;
+export const themeInitScript = `(function(){try{var k=${JSON.stringify(THEME_STORAGE_KEY)};var s=localStorage.getItem(k);var t=s==="light"||s==="dark"?s:(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.dataset.theme=t;}catch(e){try{document.documentElement.dataset.theme=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}catch(e2){document.documentElement.dataset.theme="light";}}})();`;

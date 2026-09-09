@@ -75,20 +75,18 @@ export function HomePage() {
           avatarSrc={profile.avatarSrc}
           avatarAlt={profile.avatarAlt}
         >
-          <div className="home-prompts">
-            <ConnectPrompt activeTab={activeTab} />
-            {/* <CurrentlyPrompt /> */}
-            <LinkCue
-              label="Resume"
-              icon="arrow-up-right"
-              href={resume.href}
-            />
-            <LinkCue
-              label="Work"
-              icon="arrow-down"
-              onSelect={() => handleCueSelect("work")}
-            />
-          </div>
+          <ConnectPrompt activeTab={activeTab} />
+          {/* <CurrentlyPrompt /> */}
+          <LinkCue
+            label="Resume"
+            icon="arrow-up-right"
+            href={resume.href}
+          />
+          <LinkCue
+            label="Work"
+            icon="arrow-down"
+            onSelect={() => handleCueSelect("work")}
+          />
         </Header>
         <PageEnterGroup className="home-lower">
           <PageEnterGroup className="home-main">
@@ -138,6 +136,7 @@ export function HomePage() {
                         key={section.id}
                         section={section}
                         showDivider={index > 0}
+                        showLabel={activeTab !== "work"}
                         chevronOrientation={chevronOrientation}
                         viewMode={
                           activeTab === "work" ? workViewMode : undefined
