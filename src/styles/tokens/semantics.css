@@ -177,7 +177,7 @@
   --text-subtitle-weight: var(--font-weight-regular);
 
   /* Typography: heading (section title) */
-  --text-heading-size: var(--font-size-20);
+  --text-heading-size: var(--font-size-22);
   --text-heading-line-height: var(--line-height-tight);
   --text-heading-weight: var(--font-weight-bold);
 
