@@ -151,7 +151,7 @@
   align-items: flex-start;
   gap: var(--text-body-paragraph-gap);
   max-width: var(--max-width-bio);
-  color: var(--color-text-body);
+  color: var(--color-text-subtle);
   font-size: var(--text-subtitle-display-size);
   font-weight: var(--text-subtitle-display-weight);
   line-height: var(--line-height-body);

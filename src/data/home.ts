@@ -36,8 +36,8 @@ export const profile = {
       [
         "A product designer in Seattle,",
         "with 2+ years designing B2B software where complexity prevails.",
-        "I use thoughtful reduction to bring clarity to the confusion,",
-        "making space for what matters and giving it direction."
+        "I use thoughtful reduction to bring clarity to the complexity,",
+        "And I design in code to turn ideas into reality."
       ],
       [
         "Currently pursuing a MS in Human Centered Design & Engineering,",
@@ -48,8 +48,8 @@ export const profile = {
       [
         "A product designer in Seattle,",
         "with 2+ years designing B2B software where complexity prevails.",
-        "I use thoughtful reduction to bring clarity to the confusion,",
-        "making space for what matters and giving it direction."
+        "I use thoughtful reduction to bring clarity to the complexity,",
+        "And I design in code to turn ideas into reality."
       ],
       [
         "Currently pursuing a MS in Human Centered Design & Engineering,",

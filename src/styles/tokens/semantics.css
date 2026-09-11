@@ -4,11 +4,10 @@
   --color-bg-surface: var(--color-white);
   --color-bg-muted: var(--color-neutral-100);
   --color-card-hover: var(--color-neutral-50);
-  --color-divider: var(--color-bg-muted);
 
   /* Text */
   --color-text-primary: var(--color-black);
-  --color-text-body: var(--color-neutral-700);
+  --color-text-body: var(--color-neutral-600);
   --color-text-subtle: var(--color-neutral-500);
   --color-text-label: var(--color-neutral-600);
   --color-text-muted: var(--color-neutral-400);
@@ -47,6 +46,7 @@
   --gap-page: var(--space-160);
   --gap-list-item: var(--space-20);
   --gap-project-section: var(--space-20);
+  --gap-heading-divider: var(--space-8);
   --gap-section: var(--space-80);
   --padding-page: var(--space-60);
   --inset-x: var(--space-12);
@@ -184,7 +184,7 @@
   --text-subtitle-weight: var(--font-weight-regular);
 
   /* Typography: heading (section title) */
-  --text-heading-size: var(--font-size-22);
+  --text-heading-size: var(--font-size-20);
   --text-heading-line-height: var(--line-height-tight);
   --text-heading-weight: var(--font-weight-bold);
 
@@ -256,7 +256,6 @@
   --color-card-hover: var(--color-neutral-950);
   --color-card-chip-bg: var(--color-neutral-900);
   --color-card-chip-bg-hover: var(--color-bg-surface);
-  --color-divider: var(--color-bg-muted);
 
   /* Text */
   --color-text-primary: var(--color-white);

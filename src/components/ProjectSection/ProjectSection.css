@@ -23,3 +23,12 @@
   font-weight: var(--text-heading-weight);
   line-height: var(--text-heading-line-height);
 }
+
+.project-section-heading-divider {
+  align-self: stretch;
+  height: 0;
+  margin: 0;
+  margin-block-start: var(--gap-heading-divider);
+  border: 0;
+  border-top: var(--border-width) solid var(--color-table-row-border);
+}
