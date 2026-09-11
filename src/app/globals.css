@@ -9,6 +9,11 @@
   scrollbar-width: none;
 }
 
+*::selection {
+  color: var(--color-selection-text);
+  background-color: var(--color-selection-bg);
+}
+
 *::-webkit-scrollbar {
   width: 0;
   height: 0;

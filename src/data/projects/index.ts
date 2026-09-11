@@ -1,10 +1,9 @@
-import { getProjectCard as getProjectCardFromRegistry } from "@/data/projectCards";
 import { architectureAgent } from "./architecture-agent";
 import { connectPrompt } from "./connect-prompt";
 import { conversationInsights } from "./conversation-insights";
 import { gzLang } from "./gz-lang";
 import { karNoKey } from "./kar-no-key";
-import type { ProjectCardData, ProjectPageData } from "./types";
+import type { ProjectPageData } from "./types";
 
 const projects: Record<string, ProjectPageData> = {
   [conversationInsights.slug]: conversationInsights,
@@ -22,7 +21,4 @@ export function getProjectSlugs(): string[] {
   return Object.keys(projects);
 }
 
-export function getProjectCard(slug: string): ProjectCardData | undefined {
-  return getProjectCardFromRegistry(slug);
-}
 export type { ProjectCardData } from "./types";

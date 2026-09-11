@@ -10,7 +10,6 @@ import { ArrowUpRightAnimatedIcon } from "./icons/arrow-up-right";
 import { BotAnimatedIcon } from "./icons/bot";
 import { ChartPieAnimatedIcon } from "./icons/chart-pie";
 import { CodeXmlAnimatedIcon } from "./icons/code-xml";
-import { ExpandAnimatedIcon } from "./icons/expand";
 import { Music2AnimatedIcon } from "./icons/music-2";
 import { NotebookPenAnimatedIcon } from "./icons/notebook-pen";
 import { XAnimatedIcon } from "./icons/x";
@@ -26,7 +25,6 @@ const animatedIcons = {
   "arrow-right": ArrowRightAnimatedIcon,
   "arrow-up": ArrowUpAnimatedIcon,
   "arrow-up-right": ArrowUpRightAnimatedIcon,
-  expand: ExpandAnimatedIcon,
   x: XAnimatedIcon,
 } as const;
 

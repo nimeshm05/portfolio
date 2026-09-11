@@ -148,8 +148,7 @@
   pointer-events: none;
 }
 
-.connect-prompt-reset .morphing-arrow-right,
-.connect-prompt-reset .morphing-connect-icon {
+.connect-prompt-reset .morphing-arrow-right {
   width: var(--icon-size);
   height: var(--icon-size);
 }

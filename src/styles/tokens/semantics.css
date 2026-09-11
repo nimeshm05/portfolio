@@ -14,6 +14,8 @@
   --color-connect-sure-pulse: var(--color-text-primary);
   --color-connect-prompt-follow-up: var(--color-lime-400);
   --color-accent: var(--color-lime-400);
+  --color-selection-text: var(--color-accent);
+  --color-selection-bg: var(--color-lime-50);
   --color-footer: var(--color-lime-400);
   --color-callout-text: var(--color-black);
   --color-callout-border: var(--color-neutral-200);
@@ -57,7 +59,6 @@
   --color-callout-attribution: var(--color-text-primary);
   --color-callout-attribution-source: var(--color-text-subtle);
   --color-callout-attribution-rule: var(--color-border);
-  --padding-page-inline: var(--inset-x);
   --padding-card-block: var(--space-12);
   --padding-card-inline: var(--space-12);
   --padding-card-chip-block: var(--space-4);
@@ -71,15 +72,11 @@
   --padding-inset-list-inline: var(--space-48);
   --offset-banner-inline: var(--space-120);
   --offset-banner-bleed: var(--space-160);
-  --offset-sidebar-top: var(--gap-page);
   --offset-sidebar-left: var(--gap-xl);
   --offset-home-main-top: var(--space-104);
   --scroll-margin-section: var(--gap-page);
   --padding-list-indent: var(--space-24);
   --opacity-control-inactive: var(--opacity-subtle);
-  --opacity-avatar-scrim: var(--opacity-scrim);
-  --blur-avatar-hover: var(--blur-4);
-  --color-avatar-cue: var(--color-white);
 
   /* Photo slideshow */
   --width-photo-slideshow: var(--layout-content-width);
@@ -118,14 +115,12 @@
   --sidebar-width: var(--size-sidebar-width);
   --banner-height: var(--size-banner-height);
   --card-banner-height: var(--size-card-banner-height);
-  --card-type-max-width: var(--size-card-type-max);
   --text-card-type-size: var(--font-size-15);
   --viewport-edge-blur-size: var(--size-viewport-edge-blur);
   --architecture-workflow-height: var(--size-architecture-workflow-height);
   --connect-excitement-width: var(--size-connect-excitement-width);
   --connect-excitement-height: var(--size-connect-excitement-height);
   --connect-excitement-word-scale: var(--scale-110);
-  --connect-mascot-enter-y: var(--space-8);
   --prompt-label-min-width: 4ch;
 
   /* Blur roles */
@@ -149,8 +144,6 @@
   /* Motion */
   --transition-fast: var(--duration-fast) var(--ease-default);
   --transition-expand: var(--duration-expand) var(--ease-expand);
-  --duration-card-type-marquee: var(--duration-marquee);
-  --ease-card-type-marquee: var(--ease-linear);
   --duration-connect-sure-pulse: var(--duration-sure-pulse);
   --scale-connect-sure-pulse: var(--scale-101);
 
@@ -233,16 +226,6 @@
   --text-footer-letter-spacing: var(--letter-spacing-footer);
   --text-footer-line-gap: 0.15em;
 
-  /* Typography: profile scroll cues */
-  --text-profile-cue-size: var(--font-size-32);
-  --text-profile-cue-size-sm: var(--font-size-22);
-  --text-profile-cue-weight: var(--font-weight-bold);
-  --color-profile-cue: var(--color-text-muted);
-  --color-profile-cue-hover: var(--color-accent);
-  --stroke-profile-cue: var(--size-profile-cue-stroke);
-  --profile-cue-block-size: var(--size-profile-cue-block);
-  --gap-profile-cue: var(--space-4);
-
   /* Typography: weight roles */
   --weight-medium: var(--font-weight-medium);
   --weight-semibold: var(--font-weight-semibold);
@@ -259,6 +242,7 @@
 
   /* Text */
   --color-text-primary: var(--color-white);
+  --color-selection-bg: var(--color-lime-900);
   --color-text-body: var(--color-neutral-400);
   --color-text-subtle: var(--color-neutral-500);
   --color-text-label: var(--color-neutral-400);

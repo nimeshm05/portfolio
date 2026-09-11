@@ -31,7 +31,6 @@ import {
   Scale,
   ScanSearch,
   Search,
-  SendToBack,
   Settings,
   SlidersHorizontal,
   Sparkles,
@@ -41,7 +40,6 @@ import {
   Type,
   Users,
   Workflow,
-  Expand,
   X,
 } from "lucide-react";
 import "./Icon.css";
@@ -57,7 +55,6 @@ export type IconName =
   | "database"
   | "chevron-right"
   | "lightbulb"
-  | "send-to-back"
   | "workflow"
   | "settings"
   | "notebook-pen"
@@ -87,7 +84,6 @@ export type IconName =
   | "arrow-up-right"
   | "moon"
   | "sun"
-  | "expand"
   | "gallery-thumbnails"
   | "x";
 
@@ -102,7 +98,6 @@ const icons: Record<IconName, LucideIcon> = {
   database: Database,
   "chevron-right": ChevronRight,
   lightbulb: Lightbulb,
-  "send-to-back": SendToBack,
   workflow: Workflow,
   settings: Settings,
   "notebook-pen": NotebookPen,
@@ -132,7 +127,6 @@ const icons: Record<IconName, LucideIcon> = {
   "arrow-up-right": ArrowUpRight,
   moon: Moon,
   sun: Sun,
-  expand: Expand,
   "gallery-thumbnails": GalleryThumbnails,
   x: X,
 };

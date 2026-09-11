@@ -34,7 +34,7 @@ export const profile = {
   bioByTab: {
     work: [
       [
-        "A product designer in Seattle,",
+        "Product designer in Seattle,",
         "with 2+ years designing B2B software where complexity prevails.",
         "I use thoughtful reduction to bring clarity to the complexity,",
         "And I design in code to turn ideas into reality."
@@ -46,7 +46,7 @@ export const profile = {
     ],
     about: [
       [
-        "A product designer in Seattle,",
+        "Product designer in Seattle,",
         "with 2+ years designing B2B software where complexity prevails.",
         "I use thoughtful reduction to bring clarity to the complexity,",
         "And I design in code to turn ideas into reality."
@@ -77,11 +77,6 @@ export const socialHoverIcons = {
   medium: "/assets/social-media-icons/medium.svg",
   email: "/assets/social-media-icons/apple-mail.svg",
   phone: "/assets/social-media-icons/phone.svg",
-} as const;
-
-export const currently = {
-  label: "Currently:",
-  status: "MS HCDE Student at Udub",
 } as const;
 
 export const resume = {
@@ -147,12 +142,6 @@ export const workSections: ContentSectionData[] = [
     label: "Personal",
     supportsCardView: true,
     items: [
-      // {
-      //   id: "digital-footprints",
-      //   title: "Digital Footprints",
-      //   icon: "footprints",
-      //   href: "/work/digital-footprints",
-      // },
       {
         id: "kar-no-key",
         title: "kar-no-key",

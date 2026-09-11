@@ -250,7 +250,6 @@ export function ProjectPage({ project }: ProjectPageProps) {
                   <ListItem
                     key={item.id}
                     title={item.title}
-                    icon={item.icon}
                     defaultOpen={true}
                     alwaysExpanded={project.listItemsAlwaysExpanded}
                   >
@@ -325,7 +324,6 @@ export function ProjectPage({ project }: ProjectPageProps) {
                 <ListItem
                   key={item.id}
                   title={item.title}
-                  icon={item.icon}
                   defaultOpen={true}
                   alwaysExpanded={project.listItemsAlwaysExpanded}
                 >
@@ -359,7 +357,6 @@ export function ProjectPage({ project }: ProjectPageProps) {
                 <ListItem
                   key={item.id}
                   title={item.title}
-                  icon={item.icon}
                   defaultOpen
                   alwaysExpanded={project.listItemsAlwaysExpanded}
                 >
@@ -414,7 +411,6 @@ export function ProjectPage({ project }: ProjectPageProps) {
                 <ListItem
                   key={item.id}
                   title={item.title}
-                  icon={item.icon}
                   defaultOpen
                   alwaysExpanded={project.listItemsAlwaysExpanded}
                 >
@@ -451,7 +447,6 @@ export function ProjectPage({ project }: ProjectPageProps) {
                 <ListItem
                   key={item.id}
                   title={item.title}
-                  icon={item.icon}
                   alwaysExpanded={project.listItemsAlwaysExpanded}
                 >
                   {hasExpandableItemBody(item) ? (
@@ -482,7 +477,6 @@ export function ProjectPage({ project }: ProjectPageProps) {
                 <ListItem
                   key={item.id}
                   title={item.title}
-                  icon={item.icon}
                   defaultOpen
                   alwaysExpanded={project.listItemsAlwaysExpanded}
                 >
@@ -514,7 +508,6 @@ export function ProjectPage({ project }: ProjectPageProps) {
                 <ListItem
                   key={item.id}
                   title={item.title}
-                  icon={item.icon}
                   defaultOpen
                   alwaysExpanded={project.listItemsAlwaysExpanded}
                 >
@@ -548,7 +541,6 @@ export function ProjectPage({ project }: ProjectPageProps) {
                 <ListItem
                   key={item.id}
                   title={item.title}
-                  icon={item.icon}
                   defaultOpen
                   alwaysExpanded={project.listItemsAlwaysExpanded}
                 >

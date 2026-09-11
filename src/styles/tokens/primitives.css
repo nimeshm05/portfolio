@@ -6,8 +6,6 @@
   --color-neutral-100: oklch(0.9743 0 0);
   --color-neutral-150: oklch(0.9534 0 0);
   --color-neutral-200: oklch(0.9327 0 0);
-  --color-neutral-300: oklch(0.87 0.00 0);
-  --color-neutral-350: oklch(0.8234 0 0);
   --color-neutral-400: oklch(0.7547 0 0);
   --color-neutral-500: oklch(0.6168 0 0);
   --color-neutral-600: oklch(0.516 0 0);
@@ -16,7 +14,9 @@
   --color-neutral-850: oklch(0.24 0 0);
   --color-neutral-900: oklch(0.20 0.00 0);
   --color-neutral-950: oklch(0.14 0.00 0);
+  --color-lime-50: oklch(0.96 0.04 137.06);
   --color-lime-400: oklch(66.88% 0.138 137.06);
+  --color-lime-900: oklch(0.24 0.055 137.06);
   --color-coffee-500: oklch(63.008% 0.17108 48.174);
   --color-green-500: oklch(0.7303 0.194 147.4);
   --color-agent-chip-bg: oklch(0.2905 0.047 150.4);
@@ -39,7 +39,6 @@
   --space-80: 5rem;
   --space-104: 6.5rem;
   --space-120: 7.5rem;
-  --space-128: 8rem;
   --space-160: 10rem;
 
   /* Radius */
@@ -56,7 +55,6 @@
   --font-size-18: 1.125rem;
   --font-size-20: 1.25rem;
   --font-size-22: 1.375rem;
-  --font-size-24: 1.5rem;
   --font-size-26: 1.625rem;
   --font-size-32: 2rem;
   --font-size-footer: 2.5rem;
@@ -83,25 +81,18 @@
 
   /* Opacity */
   --opacity-subtle: 0.8;
-  --opacity-scrim: 0.4;
 
   /* Z-index */
   --z-index-1: 1;
-  --z-index-2: 2;
-  --z-index-3: 3;
   --z-index-10: 10;
   --z-index-20: 20;
 
   /* Motion */
   --duration-fast: 160ms;
   --duration-expand: 500ms;
-  --duration-page: 620ms;
-  --duration-marquee: 4s;
   --duration-sure-pulse: 3s;
   --ease-default: ease;
-  --ease-out-soft: cubic-bezier(0.32, 0.72, 0, 1);
   --ease-expand: cubic-bezier(0.22, 1, 0.36, 1);
-  --ease-linear: linear;
 
   /* Sizes */
   --size-icon: 1.25rem;
@@ -117,26 +108,13 @@
   --size-sidebar-width: 11.25rem;
   --size-banner-height: 40rem;
   --size-card-banner-height: 26rem;
-  --size-card-type-max: 8.75rem;
   --size-viewport-edge-blur: 5rem;
   --size-control-min: 2.75rem;
-  --size-profile-cue-stroke: 0.14rem;
-  --size-profile-cue-block: 5.5rem;
   --size-architecture-workflow-height: 18.5625rem;
   --size-connect-excitement-width: 5.625rem;
   --size-connect-excitement-height: 3.75rem;
   --scale-101: 1.01;
   --scale-110: 1.1;
-
-  /*
-   * Mask geometry: an oversized gradient mask, two viewports of travel plus a
-   * feather. Total is 200% + feather, and the stops are 100/total and
-   * (100 + feather)/total, so the opaque band is exactly one viewport wide.
-   * Feather here is 50%.
-   */
-  --mask-oversize: 250%;
-  --mask-stop-opaque: 40%;
-  --mask-stop-feather: 60%;
 
   /* Blur */
   --blur-1: 0.0625rem;

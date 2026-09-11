@@ -39,7 +39,7 @@ export function Header({
   const nextIntroIndex = () => introIndex++;
 
   const avatar = (
-    <div className="site-header-avatar is-static">
+    <div className="site-header-avatar">
       <Image
         className="site-header-avatar-image"
         src={avatarSrc}

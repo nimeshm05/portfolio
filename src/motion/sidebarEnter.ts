@@ -1,4 +1,4 @@
-import type { Transition, Variants } from "motion/react";
+import type { Variants } from "motion/react";
 
 /** Pixel offset — do not use CSS vars here; Motion cannot interpolate them smoothly. */
 const SIDEBAR_ENTER_OFFSET_PX = 40;
@@ -47,24 +47,8 @@ export const sidebarEnterContainerVariants: Variants = {
   },
 };
 
-export const sidebarEnterTransition: Transition = {
-  duration: 0.52,
-  ease: sidebarEnterEase,
-};
-
-export const sidebarEnterReducedMotionTransition: Transition = {
-  duration: 0,
-  ease: "linear",
-};
-
 export function getSidebarEnterItemVariants(reduceMotion: boolean): Variants {
   return reduceMotion ? sidebarEnterOpacityVariants : sidebarEnterItemVariants;
-}
-
-export function getSidebarEnterTransition(reduceMotion: boolean): Transition {
-  return reduceMotion
-    ? sidebarEnterReducedMotionTransition
-    : sidebarEnterTransition;
 }
 
 export function getSidebarEnterContainerVariants(

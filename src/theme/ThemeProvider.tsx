@@ -21,7 +21,6 @@ import {
 
 type ThemeContextValue = {
   theme: Theme;
-  setTheme: (theme: Theme) => void;
   toggleTheme: () => void;
 };
 
@@ -55,12 +54,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     return () => media.removeEventListener("change", onSystemThemeChange);
   }, []);
 
-  const setTheme = useCallback((next: Theme) => {
-    setThemeState(next);
-    applyTheme(next);
-    persistTheme(next);
-  }, []);
-
   const toggleTheme = useCallback(() => {
     const current = readDocumentTheme();
     const next: Theme = current === "dark" ? "light" : "dark";
@@ -70,8 +63,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const value = useMemo(
-    () => ({ theme, setTheme, toggleTheme }),
-    [theme, setTheme, toggleTheme],
+    () => ({ theme, toggleTheme }),
+    [theme, toggleTheme],
   );
 
   return (

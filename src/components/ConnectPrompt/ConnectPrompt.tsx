@@ -6,7 +6,6 @@ import { ConnectExcitement, type ExcitementExitMode } from "@/components/Connect
 import { ConnectMascot } from "@/components/ConnectMascot/ConnectMascot";
 import { AnimatedCoffeeIcon } from "@/components/AnimatedCoffeeIcon/AnimatedCoffeeIcon";
 import { MorphingArrowRight } from "@/components/MorphingArrowRight/MorphingArrowRight";
-import { MorphingConnectIcon } from "@/components/MorphingConnectIcon/MorphingConnectIcon";
 import { SocialHoverLink } from "@/components/SocialHoverLink/SocialHoverLink";
 import { connect, socialHoverIcons, type HomeTab } from "@/data/home";
 import {
@@ -716,9 +715,6 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
           data-cuelume-press={isInvite ? undefined : "bloom"}
         >
           <MorphingArrowRight variant={isInvite ? "right" : "left"} />
-          {/* <MorphingConnectIcon
-            variant={isInvite ? "workflow" : "send-to-back"}
-          /> */}
         </button>
         <AnimatePresence mode="wait">
           <motion.div

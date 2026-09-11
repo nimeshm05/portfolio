@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ConnectPrompt } from "@/components/ConnectPrompt/ConnectPrompt";
-import { CurrentlyPrompt } from "@/components/CurrentlyPrompt/CurrentlyPrompt";
 import { ContentSection } from "@/components/ContentSection/ContentSection";
 import { Header } from "@/components/Header/Header";
 import { HomeFooter } from "@/components/HomeFooter/HomeFooter";
@@ -76,7 +75,6 @@ export function HomePage() {
           avatarAlt={profile.avatarAlt}
         >
           <ConnectPrompt activeTab={activeTab} />
-          {/* <CurrentlyPrompt /> */}
           <LinkCue
             label="Resume"
             icon="arrow-up-right"
