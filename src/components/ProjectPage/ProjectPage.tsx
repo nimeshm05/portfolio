@@ -243,6 +243,15 @@ export function ProjectPage({ project }: ProjectPageProps) {
               {project.problem.paragraphs.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
+              {project.problem.list?.length ? (
+                <RichText
+                  content={{
+                    type: "paragraphs-with-list",
+                    intro: [],
+                    items: project.problem.list,
+                  }}
+                />
+              ) : null}
             </div>
             {project.problem.items?.length ? (
               <div className="project-section-list">

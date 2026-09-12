@@ -4,6 +4,7 @@
   --color-bg-surface: var(--color-white);
   --color-bg-muted: var(--color-neutral-100);
   --color-card-hover: var(--color-neutral-50);
+  --color-divider: var(--color-bg-muted);
 
   /* Text */
   --color-text-primary: var(--color-black);
@@ -239,6 +240,7 @@
   --color-card-hover: var(--color-neutral-950);
   --color-card-chip-bg: var(--color-neutral-900);
   --color-card-chip-bg-hover: var(--color-bg-surface);
+  --color-divider: var(--color-bg-muted);
 
   /* Text */
   --color-text-primary: var(--color-white);

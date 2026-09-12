@@ -85,29 +85,9 @@ export const architectureAgent: ProjectPageData = {
     paragraphs: [
       "The team didn't know whether developers could actually understand what the AI was recommending or confidently apply those recommendations without guidance. Our usability study focused on answering two questions:",
     ],
-    items: [
-      {
-        id: "discover-interpret-act",
-        title: "Discover, Interpret, Act",
-        icon: "scan-search",
-        content: {
-          type: "paragraphs",
-          paragraphs: [
-            "Can users find, understand, and act on ADRs without guidance?",
-          ],
-        },
-      },
-      {
-        id: "evaluate",
-        title: "Evaluate",
-        icon: "scale",
-        content: {
-          type: "paragraphs",
-          paragraphs: [
-            "How do users decide whether to accept, reject, or revert a decision, and what information do they lean on most to make that call?",
-          ],
-        },
-      },
+    list: [
+      "Can users find, understand, and act on ADRs without guidance?",
+      "How do users decide whether to accept, reject, or revert a decision, and what information do they lean on most to make that call?",
     ],
     imageSrc: asset("team-meeting.png"),
     imageAlt:

@@ -124,6 +124,7 @@ export type ProjectPageData = {
   product?: ProjectSectionWithMedia;
   problem?: ProjectSectionWithMedia & {
     items?: ExpandableItemContent[];
+    list?: string[];
   };
   studyDesign?: ProjectSectionWithMedia & {
     table?: ProjectContentTable;

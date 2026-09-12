@@ -23,6 +23,7 @@ export function ProjectSection({
     >
       {eyebrow || heading ? (
         <div className="project-section-heading">
+          <div className="project-section-heading-content">
           {eyebrow ? (
             <p
               className="content-section-label"
@@ -36,6 +37,7 @@ export function ProjectSection({
               {heading}
             </h2>
           ) : null}
+          </div>
           {heading ? (
             <hr className="project-section-heading-divider" />
           ) : null}

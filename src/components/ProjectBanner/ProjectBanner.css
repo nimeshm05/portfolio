@@ -58,6 +58,12 @@
   height: 100%;
 }
 
+.project-banner--no-background .project-banner-media img,
+.project-banner--no-background .project-banner-media video,
+.project-banner--no-background .project-banner-media .project-banner-video-wrap video {
+  object-position: top center;
+}
+
 .project-banner-media {
   position: relative;
   z-index: 1;
