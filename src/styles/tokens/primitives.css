@@ -106,8 +106,6 @@
   --size-border-callout: 0.25rem;
   --size-border-card: 0.05rem;
   --size-sidebar-width: 11.25rem;
-  --size-banner-height: 40rem;
-  --size-card-banner-height: 26rem;
   --size-viewport-edge-blur: 5rem;
   --size-control-min: 2.75rem;
   --size-architecture-workflow-height: 18.5625rem;
@@ -137,7 +135,7 @@
     0 0.0625rem 0.0625rem oklch(18.22% 0.00002 271.152 / 0.4);
 
   /* Layout */
-  --layout-content-width: 40rem;
+  --layout-content-width: 42.5rem;
   --layout-prose-width: 42rem;
   --layout-bio-width: 35rem;
 }

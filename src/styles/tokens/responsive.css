@@ -8,8 +8,6 @@
     --scroll-margin-section: var(--space-80);
     --offset-banner-inline: 0;
     --offset-banner-bleed: 0;
-    --banner-height: 22rem;
-    --card-banner-height: 18rem;
   }
 }
 
@@ -20,8 +18,6 @@
     --gap-intro: var(--space-48);
     --gap-page: var(--space-48);
     --scroll-margin-section: var(--space-48);
-    --banner-height: 18rem;
-    --card-banner-height: 14rem;
     --inset-x: var(--space-16);
     --padding-photo-slideshow-y: var(--space-48);
   }

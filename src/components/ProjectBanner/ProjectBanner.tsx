@@ -9,7 +9,7 @@ type ProjectBannerProps = {
   backgroundSrc?: string;
   showBackground?: boolean;
   variant?: "page" | "card";
-  /** When true, banner height follows the media instead of the fixed banner height. */
+  /** When true, keep the banner inside the content column (no desktop bleed). */
   hugContent?: boolean;
 };
 
