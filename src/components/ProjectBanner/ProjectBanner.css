@@ -10,7 +10,7 @@
   max-width: 100%;
   height: var(--banner-height);
   margin-inline: 0;
-  padding: var(--gap-3xl);
+  padding: var(--gap-xl);
   border: var(--border-width) solid var(--color-border);
   border-radius: var(--radius-sm);
   overflow: hidden;

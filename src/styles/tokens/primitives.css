@@ -137,7 +137,7 @@
     0 0.0625rem 0.0625rem oklch(18.22% 0.00002 271.152 / 0.4);
 
   /* Layout */
-  --layout-content-width: 42rem;
+  --layout-content-width: 40rem;
   --layout-prose-width: 42rem;
   --layout-bio-width: 35rem;
 }
