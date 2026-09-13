@@ -26,17 +26,20 @@ export function ProjectHeader({
           <span>Back</span>
         </Link>
       ) : null}
-      <div className="project-header-info">
-        <h1 className="project-header-title">{title}</h1>
-        <p className="project-header-subtitle">{subtitle}</p>
-        {liveHref ? (
-          <LinkCue
-            label="View Live"
-            icon="arrow-right"
-            href={liveHref}
-            tone="accent"
-          />
-        ) : null}
+      <div className="project-header-content" aria-hidden="true">
+        <div className="project-header-info">
+          <h1 className="project-header-title">{title}</h1>
+          <p className="project-header-subtitle">{subtitle}</p>
+          {liveHref ? (
+            <LinkCue
+              label="View Live"
+              icon="arrow-right"
+              href={liveHref}
+              tone="accent"
+            />
+          ) : null}
+        </div>
+        <span className="callout-rule" aria-hidden="true"></span>
       </div>
     </header>
   );

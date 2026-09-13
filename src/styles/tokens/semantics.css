@@ -61,7 +61,7 @@
   --gap-callout-rule: var(--space-40);
   --rule-width: var(--space-48);
   --callout-rule-width: var(--rule-width);
-  --color-callout-attribution: var(--color-text-primary);
+  --color-callout-attribution: var(--color-neutral-400);
   --color-callout-attribution-source: var(--color-text-subtle);
   --padding-card-block: var(--space-12);
   --padding-card-inline: var(--space-12);
@@ -185,7 +185,7 @@
 
   /* Typography: heading (section title) */
   --text-heading-size: var(--font-size-20);
-  --text-heading-line-height: var(--line-height-tight);
+  --text-heading-line-height: var(--line-height-24);
   --text-heading-weight: var(--font-weight-bold);
 
   /* Typography: callout */
@@ -195,7 +195,7 @@
   --text-callout-weight: var(--font-weight-medium);
   --text-callout-attribution-family: var(--font-family-sans);
   --text-callout-attribution-size: var(--text-body-size);
-  --text-callout-attribution-weight: var(--font-weight-semibold);
+  --text-callout-attribution-weight: var(--font-weight-medium);
 
   /* Typography: label (section label / eyebrow) */
   --text-label-size: var(--font-size-16);
@@ -256,7 +256,7 @@
   --color-text-label: var(--color-neutral-400);
   --color-text-muted: var(--color-neutral-600);
   --color-callout-text: var(--color-white);
-  --color-callout-border: var(--color-neutral-700);
+  --color-callout-border: var(--color-neutral-800);
 
   /* Borders */
   --color-border: var(--color-neutral-900);
