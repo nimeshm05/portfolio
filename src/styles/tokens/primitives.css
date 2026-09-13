@@ -22,6 +22,11 @@
   --color-green-500: oklch(0.7303 0.194 147.4);
   --color-agent-chip-bg: oklch(0.2905 0.047 150.4);
   --color-agent-chip-text: oklch(0.8792 0.278 139.1);
+  --color-purple-700: oklch(0.4115 0.218 301.36);
+  --color-purple-300: oklch(0.7536 0.184 314.24);
+  --color-rose-600: oklch(0.5522 0.2038 13.45);
+  --color-rose-400: oklch(0.6963 0.1496 16.66);
+  --color-rose-200: oklch(0.838 0.0903 14.04);
 
   /* Spacing */
   --space-2: 0.125rem;
@@ -106,6 +111,9 @@
   --size-hairline: 0.0625rem;
   --size-border-callout: 0.25rem;
   --size-border-card: 0.05rem;
+  --size-data-attribute-stripe: 0.3rem;
+  --size-data-attribute-rule-width: 3.3125rem;
+  --size-data-attribute-rule-height: 0.165rem;
   --size-sidebar-width: 11.25rem;
   --size-viewport-edge-blur: 5rem;
   --size-control-min: 2.75rem;
@@ -139,6 +147,7 @@
   --layout-content-width-home: 40rem;
   --layout-content-width-project: 34rem;
   --layout-project-banner-width: 57.5rem;
+  --layout-data-attribute-cards-width: 63.75rem;
   --layout-prose-width: 34rem;
   --layout-bio-width: 34rem;
   --layout-project-header-info-width: 23.75rem;

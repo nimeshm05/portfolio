@@ -1,6 +1,7 @@
 import { ArchitectureWorkflow } from "@/components/ArchitectureWorkflow/ArchitectureWorkflow";
 import { Callout } from "@/components/Callout/Callout";
 import { ContentTable } from "@/components/ContentTable/ContentTable";
+import { DataAttributeCards } from "@/components/DataAttributeCards/DataAttributeCards";
 import { ListItem } from "@/components/ListItem/ListItem";
 import { PageEnter, PageEnterItems } from "@/components/PageEnter/PageEnter";
 import { ProjectBanner } from "@/components/ProjectBanner/ProjectBanner";
@@ -119,11 +120,22 @@ function ExpandableItemMedia({
 }
 
 function ExpandableItemVisual({ visual }: { visual: ExpandableVisual }) {
-  if (visual.type === "source-cards") {
-    return <SourceCards cards={visual.cards} />;
+  switch (visual.type) {
+    case "source-cards":
+      return <SourceCards cards={visual.cards} />;
+    case "data-attribute-cards":
+      return <DataAttributeCards cards={visual.cards} />;
+    case "workflow-steps":
+      return <WorkflowSteps steps={visual.steps} />;
+  }
+}
+
+function getItemVisuals(item: ExpandableItemContent): ExpandableVisual[] {
+  if (item.visuals?.length) {
+    return item.visuals;
   }
 
-  return <WorkflowSteps steps={visual.steps} />;
+  return item.visual ? [item.visual] : [];
 }
 
 function ExpandableItemBody({
@@ -153,7 +165,9 @@ function ExpandableItemBody({
           ))}
         </div>
       ) : null}
-      {item.visual ? <ExpandableItemVisual visual={item.visual} /> : null}
+      {getItemVisuals(item).map((visual, index) => (
+        <ExpandableItemVisual key={`${visual.type}-${index}`} visual={visual} />
+      ))}
       <ExpandableItemMedia item={item} backgroundSrc={backgroundSrc} />
     </>
   );
@@ -164,6 +178,7 @@ function hasExpandableItemBody(item: ExpandableItemContent) {
     item.content ||
       item.quotes?.length ||
       item.visual ||
+      item.visuals?.length ||
       getItemMedia(item).length,
   );
 }

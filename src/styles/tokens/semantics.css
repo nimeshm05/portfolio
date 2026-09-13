@@ -24,6 +24,13 @@
   --color-workflow-accent: var(--color-green-500);
   --color-workflow-chip-bg: var(--color-agent-chip-bg);
   --color-workflow-chip-text: var(--color-agent-chip-text);
+  --color-data-insight-surface: var(--color-purple-700);
+  --color-data-insight-accent: var(--color-purple-300);
+  --color-data-insight-copy: var(--color-purple-300);
+  --color-data-operational-surface: var(--color-rose-600);
+  --color-data-operational-accent: var(--color-rose-400);
+  --color-data-operational-copy: var(--color-rose-200);
+  --color-data-attribute-title: var(--color-white);
 
   /* Borders */
   --color-border: var(--color-neutral-200);
@@ -120,6 +127,20 @@
   --text-card-type-size: var(--font-size-15);
   --viewport-edge-blur-size: var(--size-viewport-edge-blur);
   --architecture-workflow-height: var(--size-architecture-workflow-height);
+  --data-attribute-stripe: var(--size-data-attribute-stripe);
+  --data-attribute-rule-width: var(--size-data-attribute-rule-width);
+  --data-attribute-rule-height: var(--size-data-attribute-rule-height);
+  --padding-data-attribute-card: var(--space-24);
+  --gap-data-attribute-cards: var(--gap-xl);
+  --gap-data-attribute-card: var(--gap-xl);
+  --gap-data-attribute-copy: var(--gap-xs);
+  --radius-data-attribute-card: var(--radius-lg);
+  --radius-data-attribute-rule: var(--radius-sm);
+  --text-data-attribute-title-size: var(--font-size-16);
+  --text-data-attribute-title-weight: var(--font-weight-bold);
+  --text-data-attribute-copy-size: var(--text-body-size);
+  --text-data-attribute-copy-weight: var(--weight-medium);
+  --text-data-attribute-copy-line-height: var(--line-height-24);
   --connect-excitement-width: var(--size-connect-excitement-width);
   --connect-excitement-height: var(--size-connect-excitement-height);
   --connect-excitement-word-scale: var(--scale-110);
@@ -143,6 +164,7 @@
   --content-width-project: var(--layout-content-width-project);
   --content-width: var(--content-width-home);
   --width-project-banner: var(--layout-project-banner-width);
+  --width-data-attribute-cards: var(--layout-data-attribute-cards-width);
   --max-width-prose: var(--layout-prose-width);
   --max-width-bio: var(--layout-bio-width);
   --max-width-project-header-info: var(--layout-project-header-info-width);

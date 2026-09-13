@@ -80,7 +80,7 @@ export const conversationInsights: ProjectPageData = {
         content: {
           type: "paragraphs",
           paragraphs: [
-            "By surfacing with data scientists, I found that teams combined two complementary types of data:",
+            "By surfacing with data scientists, I found that teams combined two complementary types of data (RozieAI generated insights and AWS Connect attributes):",
           ],
         },
         visual: {

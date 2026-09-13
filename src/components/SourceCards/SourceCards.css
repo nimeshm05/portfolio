@@ -1,6 +1,6 @@
 .source-cards {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: var(--gap-xl);
   width: 100%;
   min-width: 0;

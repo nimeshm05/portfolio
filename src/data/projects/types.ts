@@ -25,6 +25,14 @@ export type SourceCard = {
   items: string[];
 };
 
+export type DataAttributeTone = "insight" | "operational";
+
+export type DataAttributeCard = {
+  title: string;
+  description: string;
+  tone: DataAttributeTone;
+};
+
 export type WorkflowStep = {
   icon: IconName;
   title: string;
@@ -45,6 +53,7 @@ export type ArchitectureWorkflowData = {
 
 export type ExpandableVisual =
   | { type: "source-cards"; cards: SourceCard[] }
+  | { type: "data-attribute-cards"; cards: DataAttributeCard[] }
   | { type: "workflow-steps"; steps: WorkflowStep[] };
 
 export type CalloutQuote = {
@@ -65,6 +74,7 @@ export type ExpandableItemContent = {
   imageAlt?: string;
   media?: ProjectMedia[];
   visual?: ExpandableVisual;
+  visuals?: ExpandableVisual[];
 };
 
 export type ProjectContentTable = {
