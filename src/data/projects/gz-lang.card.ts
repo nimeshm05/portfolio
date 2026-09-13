@@ -10,7 +10,7 @@ export const gzLangCard: ProjectCardData = {
   timeline: "2025",
   description:
     "A GenZ programming language that transpiles to JavaScript. no cap. Write JavaScript using Gen Z slang.",
-  bannerSrc: asset("gz-lang-preview.mp4"),
+  bannerSrc: asset("gz-lang.mp4"),
   bannerAlt: "gz-lang project preview",
   bannerType: "video",
 };

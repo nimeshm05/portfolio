@@ -3,11 +3,16 @@
 @media (max-width: 68.6875rem) {
   :root {
     --padding-page: var(--space-48);
+    --padding-project-top: var(--space-60);
     --gap-intro: var(--space-80);
     --gap-page: var(--space-80);
     --scroll-margin-section: var(--space-80);
     --offset-banner-inline: 0;
     --offset-banner-bleed: 0;
+    --content-width-home: var(--layout-content-width-home);
+    --content-width-project: var(--layout-content-width-project);
+    --content-width: var(--content-width-home);
+    --gap-callout-rule: var(--space-32);
   }
 }
 
@@ -15,10 +20,15 @@
 @media (max-width: 39.9375rem) {
   :root {
     --padding-page: var(--space-60);
+    --padding-project-top: var(--space-80);
     --gap-intro: var(--space-48);
     --gap-page: var(--space-48);
     --scroll-margin-section: var(--space-48);
     --inset-x: var(--space-16);
     --padding-photo-slideshow-y: var(--space-48);
+    --content-width-home: var(--layout-content-width-home);
+    --content-width-project: var(--layout-content-width-project);
+    --content-width: var(--content-width-home);
+    --gap-callout-rule: var(--space-32);
   }
 }

@@ -1,41 +1,37 @@
 .callout {
   display: flex;
-  align-items: start;
-  justify-content: start;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-callout-rule);
   width: 100%;
-  padding: 0 var(--padding-callout-quote);
-  border-left: var(--callout-border-width) solid var(--color-callout-border);
-}
-
-.callout--quoted {
+  min-width: 0;
   margin: 0;
-  min-width: 0;
 }
 
-.callout-with-attribution {
+.callout-rule {
+  flex-shrink: 0;
+  width: var(--callout-rule-width);
+  height: var(--border-width);
+  background: var(--color-callout-border);
+}
+
+.callout-body {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: var(--gap-callout-cite);
-  width: 100%;
-  min-width: 0;
-}
-
-.callout-with-principle {
-  display: flex;
-  flex-direction: column;
-  gap: var(--gap-callout-copy);
   width: 100%;
   min-width: 0;
 }
 
 .callout-design-principle {
   margin: 0;
-  padding-inline: var(--padding-callout-quote);
   color: var(--color-text-body);
   font-family: var(--font-family-sans);
   font-size: var(--text-body-size);
   font-weight: var(--text-body-weight);
   line-height: var(--text-body-line-height);
+  text-align: center;
 }
 
 .callout-design-principle-label {
@@ -44,38 +40,25 @@
 }
 
 .callout-text {
-  position: relative;
-  flex: 1 0 0;
+  margin: 0;
+  width: 100%;
   min-width: 0;
   font-family: var(--text-callout-family);
   font-size: var(--text-callout-size);
   font-weight: var(--text-callout-weight);
   line-height: var(--text-callout-line-height);
-  text-align: start;
-  font-style: italic;
+  text-align: center;
+  font-style: normal;
   color: var(--color-callout-text);
-}
-
-.callout-quote {
-  position: absolute;
-  font-family: Georgia;
-  right: 100%;
 }
 
 .callout-attribution {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
-  gap: var(--gap-sm);
   font-family: var(--text-callout-attribution-family);
   font-size: var(--text-callout-attribution-size);
-}
-
-.callout-attribution-rule {
-  flex-shrink: 0;
-  width: var(--callout-attribution-rule-width);
-  height: var(--border-width);
-  background: var(--color-callout-attribution-rule);
+  text-align: center;
 }
 
 .callout-attribution-name {

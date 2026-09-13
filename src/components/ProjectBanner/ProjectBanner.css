@@ -36,9 +36,23 @@
 /* Hero / full-width page banners only — not inline case-study media */
 @media (min-width: 68.75rem) {
   .project-banner:not(.project-banner--card):not(.project-banner--hug) {
-    width: calc(100% + 2 * var(--offset-banner-bleed));
-    max-width: calc(100% + 2 * var(--offset-banner-bleed));
-    margin-inline: calc(-1 * var(--offset-banner-inline));
+    width: min(
+      var(--width-project-banner),
+      calc(100vw - 2 * var(--inset-x))
+    );
+    max-width: min(
+      var(--width-project-banner),
+      calc(100vw - 2 * var(--inset-x))
+    );
+    margin-inline: calc(
+      (
+          100% -
+            min(
+              var(--width-project-banner),
+              calc(100vw - 2 * var(--inset-x))
+            )
+        ) / 2
+    );
   }
 }
 

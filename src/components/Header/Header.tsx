@@ -77,9 +77,13 @@ export function Header({
               animate="animate"
             >
               {name}
+              <span className="site-header-name-rule" aria-hidden="true" />
             </motion.h1>
           ) : (
-            <h1 className="site-header-name">{name}</h1>
+            <h1 className="site-header-name">
+              {name}
+              <span className="site-header-name-rule" aria-hidden="true" />
+            </h1>
           )}
           <div className="site-header-bio">
             {bio.map((paragraph) => (

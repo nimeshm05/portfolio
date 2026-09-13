@@ -37,34 +37,43 @@ export function Callout({
   variant = "quote",
 }: CalloutProps) {
   const text = <CalloutText variant={variant}>{children}</CalloutText>;
-  const className = variant === "body" ? "callout callout--body" : "callout";
+  const className = [
+    "callout",
+    variant === "body" ? "callout--body" : "",
+    attribution ? "callout--quoted" : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
 
-  if (designPrinciple) {
-    return (
-      <div className="callout-with-principle">
-        <aside className={className}>{text}</aside>
-        <p className="callout-design-principle">
-          <span className="callout-design-principle-label">Design Principle:</span>{" "}
-          {designPrinciple}
-        </p>
-      </div>
-    );
-  }
-
-  if (!attribution) {
-    return <aside className={className}>{text}</aside>;
-  }
-
-  return (
-    <div className="callout-with-attribution">
-      <blockquote className={`${className} callout--quoted`}>{text}</blockquote>
-      <footer className="callout-attribution">
-        <span className="callout-attribution-rule" aria-hidden="true" />
-        <cite className="callout-attribution-name">{attribution}</cite>
-        {source ? (
-          <span className="callout-attribution-source">, {source}</span>
+  const inner = (
+    <>
+      <span className="callout-rule" aria-hidden="true" />
+      <div className="callout-body">
+        {text}
+        {designPrinciple ? (
+          <p className="callout-design-principle">
+            <span className="callout-design-principle-label">
+              Design Principle:
+            </span>{" "}
+            {designPrinciple}
+          </p>
         ) : null}
-      </footer>
-    </div>
+        {attribution ? (
+          <footer className="callout-attribution">
+            <cite className="callout-attribution-name">{attribution}</cite>
+            {source ? (
+              <span className="callout-attribution-source">{source}</span>
+            ) : null}
+          </footer>
+        ) : null}
+      </div>
+      <span className="callout-rule" aria-hidden="true" />
+    </>
   );
+
+  if (attribution) {
+    return <blockquote className={className}>{inner}</blockquote>;
+  }
+
+  return <aside className={className}>{inner}</aside>;
 }

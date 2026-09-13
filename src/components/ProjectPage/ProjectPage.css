@@ -6,6 +6,7 @@
   width: 100%;
   min-width: 0;
   min-height: 100%;
+  overflow-x: clip;
   background: var(--color-bg-page);
 }
 
@@ -16,8 +17,9 @@
   gap: var(--gap-page);
   width: 100%;
   min-width: 0;
-  max-width: var(--content-width);
-  padding: var(--padding-page) var(--inset-x);
+  max-width: var(--content-width-project);
+  padding: var(--padding-project-top) var(--inset-x) var(--padding-page);
+  overflow: visible;
 }
 
 .project-intro {
@@ -27,6 +29,7 @@
   gap: var(--gap-project-section);
   width: 100%;
   min-width: 0;
+  overflow: visible;
 }
 
 .project-section-body {

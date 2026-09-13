@@ -6,6 +6,7 @@
   --color-neutral-100: oklch(0.9743 0 0);
   --color-neutral-150: oklch(0.9534 0 0);
   --color-neutral-200: oklch(0.9327 0 0);
+  --color-neutral-300: oklch(0.8654 0 0);
   --color-neutral-400: oklch(0.7547 0 0);
   --color-neutral-500: oklch(0.6168 0 0);
   --color-neutral-600: oklch(0.516 0 0);
@@ -51,7 +52,7 @@
   /* Font sizes */
   --font-size-14: 0.875rem;
   --font-size-15: 0.9375rem;
-  --font-size-16: 1rem;
+  --font-size-16: 1.05rem;
   --font-size-18: 1.125rem;
   --font-size-20: 1.25rem;
   --font-size-22: 1.375rem;
@@ -62,12 +63,12 @@
 
   /* Line heights */
   --line-height-15: 0.9375rem;
-  --line-height-16: 1rem;
+  --line-height-16: 1.125rem;
   --line-height-24: 1.5rem;
   --line-height-28: 1.625rem;
   --line-height-32: 2rem;
   --line-height-tight: 1.4;
-  --line-height-body: 1.62;
+  --line-height-body: 1.67;
 
   /* Font weights */
   --font-weight-regular: 400;
@@ -99,7 +100,7 @@
   --size-icon-sm: 1rem;
   --size-icon-coffee: 1.15rem;
   --size-icon-mascot: 1.5rem;
-  --size-social-hover-mark: 2.4rem;
+  --size-social-hover-mark: 2.2rem;
   --size-avatar: 4.5rem;
   --size-tab-container: 12rem;
   --size-hairline: 0.0625rem;
@@ -135,7 +136,9 @@
     0 0.0625rem 0.0625rem oklch(18.22% 0.00002 271.152 / 0.4);
 
   /* Layout */
-  --layout-content-width: 42.5rem;
-  --layout-prose-width: 42rem;
+  --layout-content-width-home: 40rem;
+  --layout-content-width-project: 35rem;
+  --layout-project-banner-width: 57.5rem;
+  --layout-prose-width: 35rem;
   --layout-bio-width: 35rem;
 }

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Caveat, Inter } from "next/font/google";
+import { Caveat, Inter, Newsreader, Domine } from "next/font/google";
 import { ClickSound } from "@/components/ClickSound/ClickSound";
 import { SiteControls } from "@/components/SiteControls/SiteControls";
 import { ThemeProvider } from "@/theme/ThemeProvider";
@@ -20,6 +20,17 @@ const caveat = Caveat({
   weight: ["500", "700"],
 });
 
+const newsreader = Newsreader({
+  variable: "--font-newsreader",
+  subsets: ["latin"],
+  axes: ["opsz"],
+});
+
+const domine = Domine({
+  variable: "--font-domine",
+  subsets: ["latin"],
+});
+
 export const metadata: Metadata = {
   title: "Nimesh Mohanakrishnan",
   description:
@@ -31,7 +42,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${inter.variable} ${caveat.variable}`}
+      className={`${inter.variable} ${caveat.variable} ${newsreader.variable} ${domine.variable}`}
       suppressHydrationWarning
     >
       <head>

@@ -47,16 +47,20 @@
 .project-header-info {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: var(--gap-lg);
   width: 100%;
+  text-align: center;
 }
 
 .project-header-title {
   color: var(--color-text-primary);
+  font-family: var(--text-title-family);
   font-size: var(--text-title-size);
   font-weight: var(--text-title-weight);
   line-height: var(--text-title-line-height);
+  letter-spacing: var(--text-title-letter-spacing);
+  text-align: center;
 }
 
 .project-header-subtitle {
@@ -64,4 +68,5 @@
   font-size: var(--text-subtitle-size);
   font-weight: var(--text-subtitle-weight);
   line-height: var(--text-subtitle-line-height);
+  text-align: center;
 }

@@ -42,7 +42,7 @@ html:has(.home-page) body {
   gap: var(--gap-intro);
   width: 100%;
   min-height: 100%;
-  max-width: var(--content-width);
+  max-width: var(--content-width-home);
   padding: 0 var(--inset-x) var(--padding-page);
 }
 

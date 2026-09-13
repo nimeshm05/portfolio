@@ -4,11 +4,11 @@
   --color-bg-surface: var(--color-white);
   --color-bg-muted: var(--color-neutral-100);
   --color-card-hover: var(--color-neutral-50);
-  --color-divider: var(--color-bg-muted);
+  --color-divider: var(--color-neutral-150);
 
   /* Text */
   --color-text-primary: var(--color-black);
-  --color-text-body: var(--color-neutral-600);
+  --color-text-body: var(--color-neutral-700);
   --color-text-subtle: var(--color-neutral-500);
   --color-text-label: var(--color-neutral-600);
   --color-text-muted: var(--color-neutral-400);
@@ -19,7 +19,7 @@
   --color-selection-bg: var(--color-lime-50);
   --color-footer: var(--color-lime-400);
   --color-callout-text: var(--color-black);
-  --color-callout-border: var(--color-neutral-200);
+  --color-callout-border: var(--color-neutral-300);
   --color-icon-coffee: var(--color-coffee-500);
   --color-workflow-accent: var(--color-green-500);
   --color-workflow-chip-bg: var(--color-agent-chip-bg);
@@ -48,18 +48,21 @@
   --gap-intro: var(--space-60);
   --gap-page: var(--space-160);
   --gap-list-item: var(--space-20);
-  --gap-project-section: var(--space-40);
+  --gap-project-section: var(--space-80);
   --gap-heading-divider: var(--space-8);
+  --gap-site-header-info: var(--space-32);
   --gap-section: var(--space-80);
   --padding-page: var(--space-60);
+  --padding-project-top: var(--space-80);
   --inset-x: var(--space-12);
   --padding-callout-quote: var(--space-28);
-  --gap-callout-cite: var(--text-body-paragraph-gap);
+  --gap-callout-cite: var(--space-16);
   --gap-callout-copy: var(--space-40);
-  --callout-attribution-rule-width: var(--space-24);
+  --gap-callout-rule: var(--space-40);
+  --rule-width: var(--space-48);
+  --callout-rule-width: var(--rule-width);
   --color-callout-attribution: var(--color-text-primary);
   --color-callout-attribution-source: var(--color-text-subtle);
-  --color-callout-attribution-rule: var(--color-border);
   --padding-card-block: var(--space-12);
   --padding-card-inline: var(--space-12);
   --padding-card-chip-block: var(--space-4);
@@ -80,7 +83,7 @@
   --opacity-control-inactive: var(--opacity-subtle);
 
   /* Photo slideshow */
-  --width-photo-slideshow: var(--layout-content-width);
+  --width-photo-slideshow: var(--layout-content-width-home);
   --gap-photo-slideshow: var(--space-40);
   --gap-photo-slideshow-nav: var(--space-40);
   --padding-photo-slideshow-y: var(--space-80);
@@ -132,11 +135,14 @@
 
   /* Shared layout */
   --font-family-sans: -apple-system, BlinkMacSystemFont, var(--font-inter), "Segoe UI", sans-serif;
-  --font-family-serif: serif;
+  --font-family-serif: var(--font-domine), serif;
   --font-family-hand: var(--font-caveat), cursive;
   --letter-spacing-body: var(--letter-spacing-tight);
   --letter-spacing-display: var(--letter-spacing-tight);
-  --content-width: var(--layout-content-width);
+  --content-width-home: var(--layout-content-width-home);
+  --content-width-project: var(--layout-content-width-project);
+  --content-width: var(--content-width-home);
+  --width-project-banner: var(--layout-project-banner-width);
   --max-width-prose: var(--layout-prose-width);
   --max-width-bio: var(--layout-bio-width);
 
@@ -159,15 +165,17 @@
     var(--shadow-elevation);
 
   /* Typography: display (name, bio) */
-  --text-display-size: var(--font-size-22);
+  --text-display-size: var(--font-size-20);
   --text-display-line-height: var(--line-height-28);
   --text-display-weight: var(--font-weight-semibold);
   --text-subtitle-display-weight: var(--font-weight-regular);
   --text-subtitle-display-size: var(--font-size-18);
 
   /* Typography: title (project header) */
+  --text-title-family: var(--font-family-serif);
   --text-title-size: var(--font-size-32);
   --text-title-line-height: var(--line-height-32);
+  --text-title-letter-spacing: var(--letter-spacing-tight);
   --text-title-weight: var(--font-weight-bold);
 
   /* Typography: subtitle */
@@ -176,13 +184,13 @@
   --text-subtitle-weight: var(--font-weight-regular);
 
   /* Typography: heading (section title) */
-  --text-heading-size: var(--font-size-22);
+  --text-heading-size: var(--font-size-20);
   --text-heading-line-height: var(--line-height-tight);
   --text-heading-weight: var(--font-weight-bold);
 
-  /* Typography: callout (reuses heading size) */
+  /* Typography: callout */
   --text-callout-family: var(--font-family-serif);
-  --text-callout-size: var(--font-size-26);
+  --text-callout-size: var(--font-size-22);
   --text-callout-line-height: var(--line-height-body);
   --text-callout-weight: var(--font-weight-medium);
   --text-callout-attribution-family: var(--font-family-sans);
