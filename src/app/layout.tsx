@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Caveat, Inter, Newsreader, Domine } from "next/font/google";
+import { Caveat, Inter, Newsreader, Libre_Baskerville } from "next/font/google";
 import { ClickSound } from "@/components/ClickSound/ClickSound";
 import { SiteControls } from "@/components/SiteControls/SiteControls";
 import { ThemeProvider } from "@/theme/ThemeProvider";
@@ -26,9 +26,10 @@ const newsreader = Newsreader({
   axes: ["opsz"],
 });
 
-const domine = Domine({
-  variable: "--font-domine",
+const libreBaskerville = Libre_Baskerville({
+  variable: "--font-libre-baskerville",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -42,7 +43,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${inter.variable} ${caveat.variable} ${newsreader.variable} ${domine.variable}`}
+      className={`${inter.variable} ${caveat.variable} ${newsreader.variable} ${libreBaskerville.variable}`}
       suppressHydrationWarning
     >
       <head>

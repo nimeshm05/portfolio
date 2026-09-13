@@ -53,7 +53,7 @@
   --gap-site-header-info: var(--space-32);
   --gap-section: var(--space-80);
   --padding-page: var(--space-60);
-  --padding-project-top: var(--space-80);
+  --padding-project-top: var(--space-160);
   --inset-x: var(--space-12);
   --padding-callout-quote: var(--space-28);
   --gap-callout-cite: var(--space-16);
@@ -135,7 +135,7 @@
 
   /* Shared layout */
   --font-family-sans: -apple-system, BlinkMacSystemFont, var(--font-inter), "Segoe UI", sans-serif;
-  --font-family-serif: var(--font-domine), serif;
+  --font-family-serif: var(--font-libre-baskerville), serif;
   --font-family-hand: var(--font-caveat), cursive;
   --letter-spacing-body: var(--letter-spacing-tight);
   --letter-spacing-display: var(--letter-spacing-tight);
@@ -176,10 +176,10 @@
   --text-title-size: var(--font-size-32);
   --text-title-line-height: var(--line-height-32);
   --text-title-letter-spacing: var(--letter-spacing-tight);
-  --text-title-weight: var(--font-weight-bold);
+  --text-title-weight: var(--font-weight-semibold);
 
   /* Typography: subtitle */
-  --text-subtitle-size: var(--font-size-18);
+  --text-subtitle-size: var(--font-size-16);
   --text-subtitle-line-height: var(--line-height-28);
   --text-subtitle-weight: var(--font-weight-regular);
 
