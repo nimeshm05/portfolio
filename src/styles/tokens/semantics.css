@@ -53,7 +53,7 @@
   --gap-site-header-info: var(--space-32);
   --gap-section: var(--space-80);
   --padding-page: var(--space-60);
-  --padding-project-top: var(--space-160);
+  --padding-project-top: var(--space-120);
   --inset-x: var(--space-12);
   --padding-callout-quote: var(--space-28);
   --gap-callout-cite: var(--space-16);
@@ -252,7 +252,7 @@
   /* Text */
   --color-text-primary: var(--color-white);
   --color-selection-bg: var(--color-lime-900);
-  --color-text-body: var(--color-neutral-400);
+  --color-text-body: var(--color-neutral-500);
   --color-text-subtle: var(--color-neutral-500);
   --color-text-label: var(--color-neutral-400);
   --color-text-muted: var(--color-neutral-600);

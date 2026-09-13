@@ -38,6 +38,9 @@ export function LinkCue({
 
   const content: ReactNode = (
     <>
+      <span className="link-cue-icon" aria-hidden="true">
+        <AnimatedIcon name={icon} isActive={isHovered} />
+      </span>
       <span className="link-cue-label">{label}</span>
     </>
   );
