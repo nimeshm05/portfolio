@@ -3,7 +3,7 @@
 @media (max-width: 68.6875rem) {
   :root {
     --padding-page: var(--space-48);
-    --padding-project-top: var(--space-60);
+    --padding-project-top: var(--space-80);
     --gap-intro: var(--space-80);
     --gap-page: var(--space-80);
     --scroll-margin-section: var(--space-80);
@@ -30,5 +30,7 @@
     --content-width-project: var(--layout-content-width-project);
     --content-width: var(--content-width-home);
     --gap-callout-rule: var(--space-32);
+    --text-title-size: var(--font-size-26);
+    --text-title-line-height: var(--line-height-tight);
   }
 }

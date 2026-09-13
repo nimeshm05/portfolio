@@ -256,7 +256,7 @@
   --color-text-label: var(--color-neutral-400);
   --color-text-muted: var(--color-neutral-600);
   --color-callout-text: var(--color-white);
-  --color-callout-border: var(--color-neutral-800);
+  --color-callout-border: var(--color-neutral-700);
 
   /* Borders */
   --color-border: var(--color-neutral-900);

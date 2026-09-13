@@ -179,7 +179,6 @@ export function ProjectPage({ project }: ProjectPageProps) {
           <ProjectHeader
             title={project.title}
             subtitle={project.subtitle}
-            showMobileBack
             liveHref={project.liveHref}
           />
           <ProjectBanner
