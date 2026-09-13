@@ -13,6 +13,7 @@
   flex-direction: column;
   align-items: center;
   gap: var(--gap-3xl);
+  width: 100%;
 }
 
 .project-header-info {
@@ -21,6 +22,7 @@
   align-items: center;
   gap: var(--gap-lg);
   width: 100%;
+  max-width: var(--max-width-project-header-info);
   text-align: center;
 }
 

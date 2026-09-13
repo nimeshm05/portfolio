@@ -137,8 +137,9 @@
 
   /* Layout */
   --layout-content-width-home: 40rem;
-  --layout-content-width-project: 35rem;
+  --layout-content-width-project: 34rem;
   --layout-project-banner-width: 57.5rem;
-  --layout-prose-width: 35rem;
-  --layout-bio-width: 35rem;
+  --layout-prose-width: 34rem;
+  --layout-bio-width: 34rem;
+  --layout-project-header-info-width: 23.75rem;
 }

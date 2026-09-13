@@ -59,7 +59,7 @@
   --gap-callout-cite: var(--space-16);
   --gap-callout-copy: var(--space-40);
   --gap-callout-rule: var(--space-40);
-  --rule-width: var(--space-48);
+  --rule-width: var(--space-60);
   --callout-rule-width: var(--rule-width);
   --color-callout-attribution: var(--color-neutral-400);
   --color-callout-attribution-source: var(--color-text-subtle);
@@ -145,6 +145,7 @@
   --width-project-banner: var(--layout-project-banner-width);
   --max-width-prose: var(--layout-prose-width);
   --max-width-bio: var(--layout-bio-width);
+  --max-width-project-header-info: var(--layout-project-header-info-width);
 
   /* Motion */
   --transition-fast: var(--duration-fast) var(--ease-default);
@@ -176,7 +177,7 @@
   --text-title-size: var(--font-size-32);
   --text-title-line-height: var(--line-height-32);
   --text-title-letter-spacing: var(--letter-spacing-tight);
-  --text-title-weight: var(--font-weight-semibold);
+  --text-title-weight: var(--font-weight-bold);
 
   /* Typography: subtitle */
   --text-subtitle-size: var(--font-size-16);
