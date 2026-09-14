@@ -2,11 +2,39 @@ import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Caveat, Inter, Newsreader, Libre_Baskerville, Cormorant_Garamond, Cardo } from "next/font/google";
+import localFont from "next/font/local";
 import { ClickSound } from "@/components/ClickSound/ClickSound";
 import { SiteControls } from "@/components/SiteControls/SiteControls";
 import { ThemeProvider } from "@/theme/ThemeProvider";
 import { themeInitScript } from "@/theme/theme";
 import "./globals.css";
+
+const openRunde = localFont({
+  variable: "--font-open-runde",
+  display: "swap",
+  src: [
+    {
+      path: "../../public/assets/open-runde-font/web/OpenRunde-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../public/assets/open-runde-font/web/OpenRunde-Medium.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../../public/assets/open-runde-font/web/OpenRunde-Semibold.woff2",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../../public/assets/open-runde-font/web/OpenRunde-Bold.woff2",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+});
 
 const inter = Inter({
   variable: "--font-inter",
@@ -55,7 +83,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${inter.variable} ${caveat.variable} ${newsreader.variable} ${libreBaskerville.variable} ${cormorantGaramond.variable} ${cardo.variable}`}
+      className={`${openRunde.variable} ${inter.variable} ${caveat.variable} ${newsreader.variable} ${libreBaskerville.variable} ${cormorantGaramond.variable} ${cardo.variable}`}
       suppressHydrationWarning
     >
       <head>

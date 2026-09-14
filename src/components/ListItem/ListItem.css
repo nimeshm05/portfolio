@@ -8,7 +8,7 @@
   gap: var(--gap-md);
   width: 100%;
   min-height: 2.75rem;
-  padding: var(--gap-lg) var(--inset-x);
+  padding: var(--inset-x);
   border-radius: var(--radius-md);
   text-align: left;
 }
