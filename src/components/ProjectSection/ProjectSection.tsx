@@ -38,9 +38,9 @@ export function ProjectSection({
             </h2>
           ) : null}
           </div>
-          {heading ? (
+          {/* {heading ? (
             <hr className="project-section-heading-divider" />
-          ) : null}
+          ) : null} */}
         </div>
       ) : null}
       {children}

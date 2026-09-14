@@ -65,7 +65,7 @@
   --gap-intro: var(--space-60);
   --gap-page: var(--space-160);
   --gap-list-item: var(--space-20);
-  --gap-project-section: var(--space-80);
+  --gap-project-section: var(--space-60);
   --gap-heading-divider: var(--space-8);
   --gap-site-header-info: var(--space-32);
   --gap-section: var(--space-80);
@@ -240,7 +240,7 @@
 
   /* Typography: heading (section title) */
   --text-heading-size: var(--font-size-20);
-  --text-heading-line-height: var(--line-height-24);
+  --text-heading-line-height: var(--line-height-tight);
   --text-heading-weight: var(--font-weight-bold);
 
   /* Typography: callout */

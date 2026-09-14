@@ -18,7 +18,8 @@ export const conversationInsights: ProjectPageData = {
   nav: [
     { id: "overview", label: "Overview", href: "#overview" },
     { id: "problem", label: "Problem", href: "#problem" },
-    { id: "discovery", label: "Discovery & Insights", href: "#discovery" },
+    { id: "discovery", label: "Discovery", href: "#discovery" },
+    { id: "insights", label: "Insights", href: "#insights" },
     { id: "early-designs", label: "Early Designs", href: "#early-designs" },
     { id: "learnings", label: "Learnings", href: "#learnings" },
     { id: "solutions", label: "Solutions", href: "#solutions" },
@@ -55,7 +56,7 @@ export const conversationInsights: ProjectPageData = {
   calloutOne:
     "The opportunity was to transform customer issue investigation into a self-serve workflow to enable contact centre managers to independently understand and act on customer issues so that they can make faster operational decisions.",
   discovery: {
-    eyebrow: "Discovery & Insights",
+    eyebrow: "Discovery",
     heading:
       "Understanding the system - users, data, & how teams analyzed customer issues.",
     paragraphs: [
@@ -153,19 +154,14 @@ export const conversationInsights: ProjectPageData = {
           ],
         },
       },
-      {
-        id: "insights",
-        title: "Insights",
-        icon: "bug",
-        content: {
-          type: "paragraphs-with-list",
-          intro: [],
-          items: [
-            "The investigation workflow revealed that insights were not endpoints, but starting points for understanding and resolving customer issues.",
-            "Teams used call insights to identify issues, then combined it with operational metadata to understand causes, trace impact, and take action.",
-          ],
-        },
-      },
+    ],
+  },
+  insights: {
+    eyebrow: "Insights",
+    heading: "Insights",
+    paragraphs: [
+      "The investigation workflow revealed that insights were not endpoints, but starting points for understanding and resolving customer issues.",
+      "Teams used call insights to identify issues, then combined it with operational metadata to understand causes, trace impact, and take action.",
     ],
   },
   calloutTwo:

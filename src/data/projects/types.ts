@@ -154,6 +154,12 @@ export type ProjectPageData = {
     paragraphs: string[];
     items: ExpandableItemContent[];
   };
+  insights?: {
+    eyebrow: string;
+    heading: string;
+    paragraphs: string[];
+    items?: ExpandableItemContent[];
+  };
   calloutTwo?: string;
   constraints?: ProjectSectionWithMedia;
   earlyDesigns?: {

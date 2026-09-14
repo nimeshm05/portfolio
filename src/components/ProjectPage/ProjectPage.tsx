@@ -395,6 +395,39 @@ export function ProjectPage({ project }: ProjectPageProps) {
           </ProjectSection>
         ) : null}
 
+        {project.insights ? (
+          <ProjectSection
+            id="insights"
+            eyebrow={project.insights.eyebrow}
+            heading={project.insights.heading}
+          >
+            <div className="project-section-body">
+              {project.insights.paragraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+            {project.insights.items?.length ? (
+              <div className="project-section-list">
+                {project.insights.items.map((item) => (
+                  <ListItem
+                    key={item.id}
+                    title={item.title}
+                    defaultOpen
+                    alwaysExpanded={project.listItemsAlwaysExpanded}
+                  >
+                    {hasExpandableItemBody(item) ? (
+                      <ExpandableItemBody
+                        item={item}
+                        backgroundSrc={project.bannerBackgroundSrc}
+                      />
+                    ) : null}
+                  </ListItem>
+                ))}
+              </div>
+            ) : null}
+          </ProjectSection>
+        ) : null}
+
         {project.calloutTwo ? <Callout>{project.calloutTwo}</Callout> : null}
 
         {project.constraints ? (
