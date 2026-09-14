@@ -165,7 +165,7 @@
   --rotate-note-card-hover: var(--rotate-3);
   --z-note-card-hover: var(--z-index-1);
   --font-family-note-source: var(--font-libre-baskerville), serif;
-  --text-note-title-size: var(--font-size-28);
+  --text-note-title-size: var(--font-size-26);
   --text-note-title-weight: var(--font-weight-bold);
   --text-note-title-line-height: var(--font-size-32);
   --text-note-source-size: var(--text-body-size);

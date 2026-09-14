@@ -40,6 +40,7 @@
   width: calc(100% - var(--offset-note-card-stack));
   min-height: var(--min-height-note-card);
   margin-left: var(--offset-note-card-stack);
+  margin-bottom: var(--offset-note-card-stack);
   background: var(--color-note-backing);
   border: var(--border-width) solid var(--color-note-accent);
   box-sizing: border-box;
