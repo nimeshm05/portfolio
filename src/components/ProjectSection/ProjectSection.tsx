@@ -24,14 +24,14 @@ export function ProjectSection({
       {eyebrow || heading ? (
         <div className="project-section-heading">
           <div className="project-section-heading-content">
-          {eyebrow ? (
+          {/* {eyebrow ? (
             <p
               className="content-section-label"
               id={heading ? undefined : `${id}-heading`}
             >
               {eyebrow}
             </p>
-          ) : null}
+          ) : null} */}
           {heading ? (
             <h2 className="project-section-title" id={`${id}-heading`}>
               {heading}

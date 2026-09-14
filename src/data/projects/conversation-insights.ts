@@ -37,7 +37,7 @@ export const conversationInsights: ProjectPageData = {
     eyebrow: "Overview",
     heading: "Analytics Platform for Air Canada's Contact Centre Managers",
     paragraphs: [
-      "Conversation Insights is an enterprise analytics platform developed by RozieAI for Air Canada's contact centre managers (users). The platform uses AI to analyze hundreds of thousands of customer calls, surfacing trends and operational signals that help managers understand their customer issues at scale. Although initially built to meet Air Canada's operational needs, the product was designed as a scalable solution for future enterprise customers.",
+      "Conversation Insights is an analytics platform developed by RozieAI for Air Canada's contact centre managers (users). The platform uses AI to analyze hundreds of thousands of customer calls, surfacing trends and operational signals that help managers understand their customer issues at scale. Although initially built to meet Air Canada's operational needs, the product was designed as a scalable solution for future enterprise customers.",
     ],
   },
   problem: {
@@ -45,8 +45,8 @@ export const conversationInsights: ProjectPageData = {
     heading:
       "Air Canada contact centre managers had access to AI-generated insights, but not a way to investigate them independently",
     paragraphs: [
-      "Before Conversation Insights, AI-generated insights were delivered through weekly reports prepared by RozieAI product owners. While these reports helped Air Canada teams identify emerging issues, they provided limited context for understanding where those issues were occurring or what was driving them.",
-      "Investigating an issue meant moving between reports, AWS Connect, and follow-up discussions with RozieAI stakeholders to piece together the operational context. Users therefore depended on a fragmented, people-dependent workflow to move from identifying an issue to understanding it, slowing how quickly they could make operational decisions.",
+      "Before Conversation Insights, AI-generated call insights were delivered as weekly reports prepared by RozieAI product owners. While these reports helped Air Canada teams identify emerging issues, they provided limited context for understanding where those issues were occurring or what was driving them.",
+      "Investigating an issue was a big hurdle because it required moving between reports, AWS Connect, and follow-up discussions with RozieAI stakeholders to piece together the operational context. Users therefore depended on a fragmented, people-dependent workflow to move from identifying an issue to understanding it, slowing how quickly they could make operational decisions.",
     ],
     imageSrc: asset("problem.mp4"),
     imageAlt:
@@ -59,7 +59,7 @@ export const conversationInsights: ProjectPageData = {
     heading:
       "Understanding the system - users, data, & how teams analyzed customer issues.",
     paragraphs: [
-      "I first aligned with RozieAI product owners, data scientists, and Air Canada stakeholders to understand how insights were generated, delivered, and investigated. This showed me that the existing reports surfaced issues but didn't support the investigation that followed, so I focused the product on the underlying workflow rather than recreating the reports.",
+      "I first aligned with RozieAI product owners, data scientists, and Air Canada stakeholders to understand how teams used insights to investigate customer issues. I found that reports helped managers identify issues, but understanding what was happening and where required piecing together information from multiple sources. So I focused the product on supporting that investigation rather than recreating the reports.",
     ],
     items: [
       {
@@ -75,7 +75,7 @@ export const conversationInsights: ProjectPageData = {
       },
       {
         id: "what-type-of-data",
-        title: "What data did they use?",
+        title: "What data do they use?",
         icon: "database",
         content: {
           type: "paragraphs",

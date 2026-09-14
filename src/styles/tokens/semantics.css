@@ -156,7 +156,7 @@
 
   /* Shared layout */
   --font-family-sans: -apple-system, BlinkMacSystemFont, var(--font-inter), "Segoe UI", sans-serif;
-  --font-family-serif: var(--font-libre-baskerville), serif;
+  --font-family-serif: var(--font-cardo), serif;
   --font-family-hand: var(--font-caveat), cursive;
   --letter-spacing-body: var(--letter-spacing-tight);
   --letter-spacing-display: var(--letter-spacing-tight);
@@ -277,7 +277,7 @@
   --color-text-body: var(--color-neutral-500);
   --color-text-subtle: var(--color-neutral-500);
   --color-text-label: var(--color-neutral-400);
-  --color-text-muted: var(--color-neutral-600);
+  --color-text-muted: var(--color-neutral-700);
   --color-callout-text: var(--color-white);
   --color-callout-border: var(--color-neutral-700);
 
