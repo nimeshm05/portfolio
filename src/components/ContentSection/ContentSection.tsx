@@ -7,9 +7,15 @@ import {
   ListItem,
   type ChevronOrientation,
 } from "@/components/ListItem/ListItem";
+import { NoteCards } from "@/components/NoteCards/NoteCards";
 import { ProjectCard } from "@/components/ProjectCard/ProjectCard";
 import { RichText } from "@/components/RichText/RichText";
-import type { ContentSectionData, ListItemBlock, ListItemData } from "@/data/home";
+import type {
+  ContentSectionData,
+  ListItemBlock,
+  ListItemData,
+  NoteCardData,
+} from "@/data/home";
 import { getProjectCard } from "@/data/projectCards";
 import type { WorkViewMode } from "@/components/ViewSwitcher/ViewSwitcher";
 import {
@@ -116,6 +122,7 @@ export function ContentSection({
   const isInitialMount = useRef(true);
   const supportsCardView = section.supportsCardView === true;
   const showCardView = viewMode === "card" && supportsCardView;
+  const showNoteCards = showCardView && section.cardType === "note";
   const workViewTransition = getWorkViewTransition(reduceMotion);
   const workViewItemVariants = getWorkViewItemVariants(reduceMotion);
   const workViewCardContainerVariants =
@@ -136,10 +143,36 @@ export function ContentSection({
     isInitialMount.current = false;
   }, []);
 
-  const cardProjects = showCardView
-    ? section.items
-        .map((item) => getProjectCard(item.id))
-        .filter((project) => project != null)
+  const cardProjects =
+    showCardView && !showNoteCards
+      ? section.items
+          .map((item) => getProjectCard(item.id))
+          .filter((project) => project != null)
+      : [];
+
+  const noteCards: NoteCardData[] = showNoteCards
+    ? section.items.flatMap((item) => {
+        if (
+          !item.cardTitle ||
+          !item.source ||
+          !item.cardDescription ||
+          !item.tone ||
+          !item.href
+        ) {
+          return [];
+        }
+
+        return [
+          {
+            id: item.id,
+            title: item.cardTitle,
+            source: item.source,
+            description: item.cardDescription,
+            href: item.href,
+            tone: item.tone,
+          },
+        ];
+      })
     : [];
 
   const listContent = section.items.map((item) => (
@@ -210,25 +243,43 @@ export function ContentSection({
         {supportsCardView ? (
           <AnimatePresence mode="wait">
             {showCardView ? (
-              <motion.div
-                key="card"
-                className="content-section-cards"
-                variants={workViewCardContainerVariants}
-                initial={isInitialMount.current ? false : "initial"}
-                animate="animate"
-                exit="exit"
-              >
-                {cardProjects.map((project) => (
+              showNoteCards ? (
+                <motion.div
+                  key="card"
+                  className="content-section-notes"
+                  variants={workViewCardContainerVariants}
+                  initial={isInitialMount.current ? false : "initial"}
+                  animate="animate"
+                  exit="exit"
+                >
                   <motion.div
-                    key={project.slug}
-                    className="content-section-card"
                     variants={workViewItemVariants}
                     transition={workViewTransition}
                   >
-                    <ProjectCard project={project} />
+                    <NoteCards notes={noteCards} />
                   </motion.div>
-                ))}
-              </motion.div>
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="card"
+                  className="content-section-cards"
+                  variants={workViewCardContainerVariants}
+                  initial={isInitialMount.current ? false : "initial"}
+                  animate="animate"
+                  exit="exit"
+                >
+                  {cardProjects.map((project) => (
+                    <motion.div
+                      key={project.slug}
+                      className="content-section-card"
+                      variants={workViewItemVariants}
+                      transition={workViewTransition}
+                    >
+                      <ProjectCard project={project} />
+                    </motion.div>
+                  ))}
+                </motion.div>
+              )
             ) : (
               <motion.div
                 key="list"

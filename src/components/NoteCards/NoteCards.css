@@ -1,0 +1,146 @@
+.note-cards {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, var(--min-width-note-card)), 1fr)
+  );
+  gap: var(--gap-note-cards);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.note-card-stack {
+  display: grid;
+  min-width: 0;
+  overflow: visible;
+}
+
+.note-card-stack--interface {
+  --color-note-surface: var(--color-note-interface-surface);
+  --color-note-accent: var(--color-note-interface-accent);
+  --color-note-copy: var(--color-note-interface-copy);
+  --color-note-backing: var(--color-note-interface-backing);
+}
+
+.note-card-stack--self {
+  --color-note-surface: var(--color-note-self-surface);
+  --color-note-accent: var(--color-note-self-accent);
+  --color-note-copy: var(--color-note-self-copy);
+  --color-note-backing: var(--color-note-self-backing);
+}
+
+.note-card-backing,
+.note-card {
+  grid-area: 1 / 1;
+}
+
+.note-card-backing {
+  width: calc(100% - var(--offset-note-card-stack));
+  min-height: var(--min-height-note-card);
+  margin-left: var(--offset-note-card-stack);
+  background: var(--color-note-backing);
+  border: var(--border-width) solid var(--color-note-accent);
+  box-sizing: border-box;
+}
+
+.note-card {
+  position: relative;
+  z-index: var(--z-note-card-hover);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--gap-note-card-top);
+  width: calc(100% - var(--offset-note-card-stack));
+  min-height: var(--min-height-note-card);
+  margin-top: var(--offset-note-card-stack);
+  padding: var(--padding-note-card-block) var(--padding-note-card-inline);
+  border-block: var(--note-card-stripe) solid var(--color-note-accent);
+  background: var(--color-note-surface);
+  color: var(--color-note-title);
+  text-decoration: none;
+  box-sizing: border-box;
+  rotate: 0deg;
+  transform-origin: center center;
+  transition: rotate var(--transition-fast);
+}
+
+.note-card-stack:hover,
+.note-card-stack:focus-within {
+  z-index: var(--z-note-card-hover);
+}
+
+.note-card-stack:hover .note-card,
+.note-card:focus-visible {
+  rotate: var(--rotate-note-card-hover);
+}
+
+.note-card-top,
+.note-card-heading {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-note-card-top);
+  min-width: 0;
+}
+
+.note-card-top {
+  flex: 1;
+}
+
+.note-card-rule {
+  display: block;
+  flex-shrink: 0;
+  width: min(100%, var(--note-card-rule-width));
+  height: var(--note-card-rule-height);
+  border-radius: var(--radius-note-card-rule);
+  background: var(--color-note-copy);
+}
+
+.note-card-title,
+.note-card-source,
+.note-card-description {
+  margin: 0;
+  overflow-wrap: break-word;
+}
+
+.note-card-title {
+  color: var(--color-note-title);
+  font-family: var(--font-family-sans);
+  font-size: var(--text-note-title-size);
+  font-weight: var(--text-note-title-weight);
+  line-height: var(--text-note-title-line-height);
+}
+
+.note-card-source {
+  color: var(--color-note-copy);
+  font-family: var(--font-family-note-source);
+  font-size: var(--text-note-source-size);
+  font-weight: var(--text-note-source-weight);
+  line-height: normal;
+}
+
+.note-card-description {
+  color: var(--color-note-description);
+  font-family: var(--font-family-hand);
+  font-size: var(--text-note-description-size);
+  font-weight: var(--text-note-description-weight);
+  line-height: var(--text-note-description-line-height);
+}
+
+@media (max-width: 39.9375rem) {
+  .note-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .note-card {
+    transition: none;
+  }
+
+  .note-card-stack:hover .note-card,
+  .note-card:focus-visible {
+    rotate: 0deg;
+  }
+}

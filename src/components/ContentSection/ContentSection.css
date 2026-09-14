@@ -7,8 +7,14 @@
   scroll-margin-top: var(--scroll-margin-section);
 }
 
-.content-section:has(.content-section-cards) {
+.content-section:has(.content-section-cards),
+.content-section:has(.content-section-notes) {
   overflow-x: visible;
+}
+
+.content-section-notes {
+  width: 100%;
+  overflow: visible;
 }
 
 .content-section-label-wrap {

@@ -19,7 +19,15 @@
   --color-lime-400: oklch(66.88% 0.138 137.06);
   --color-lime-900: oklch(0.24 0.055 137.06);
   --color-coffee-500: oklch(63.008% 0.17108 48.174);
+  --color-green-100: oklch(0.9644 0.0652 141.03);
+  --color-green-200: oklch(0.9241 0.1241 155.89);
+  --color-green-400: oklch(0.8120 0.1769 141.10);
   --color-green-500: oklch(0.7303 0.194 147.4);
+  --color-green-600: oklch(0.6488 0.1577 155.88);
+  --color-blue-100: oklch(0.8544 0.0716 262.19);
+  --color-blue-200: oklch(0.8062 0.0971 262.43);
+  --color-blue-400: oklch(0.6836 0.1666 261.56);
+  --color-blue-600: oklch(0.5235 0.2231 260.77);
   --color-agent-chip-bg: oklch(0.2905 0.047 150.4);
   --color-agent-chip-text: oklch(0.8792 0.278 139.1);
   --color-purple-700: oklch(0.4115 0.218 301.36);
@@ -62,6 +70,7 @@
   --font-size-20: 1.25rem;
   --font-size-22: 1.375rem;
   --font-size-26: 1.625rem;
+  --font-size-28: 1.75rem;
   --font-size-32: 2rem;
   --font-size-footer: 2.5rem;
   --font-size-footer-sm: 2rem;
@@ -122,6 +131,10 @@
   --size-connect-excitement-height: 3.75rem;
   --scale-101: 1.01;
   --scale-110: 1.1;
+  --rotate-3: 3deg;
+  --size-note-card-stripe: 0.6625rem;
+  --size-note-card-height: 27.5rem;
+  --size-note-card-min-width: 12rem;
 
   /* Blur */
   --blur-1: 0.0625rem;

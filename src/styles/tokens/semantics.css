@@ -31,6 +31,16 @@
   --color-data-operational-accent: var(--color-rose-400);
   --color-data-operational-copy: var(--color-rose-200);
   --color-data-attribute-title: var(--color-white);
+  --color-note-interface-surface: var(--color-green-600);
+  --color-note-interface-accent: var(--color-green-400);
+  --color-note-interface-copy: var(--color-green-200);
+  --color-note-interface-backing: var(--color-green-100);
+  --color-note-self-surface: var(--color-blue-600);
+  --color-note-self-accent: var(--color-blue-400);
+  --color-note-self-copy: var(--color-blue-200);
+  --color-note-self-backing: var(--color-blue-100);
+  --color-note-title: var(--color-white);
+  --color-note-description: var(--color-white);
 
   /* Borders */
   --color-border: var(--color-neutral-200);
@@ -141,6 +151,28 @@
   --text-data-attribute-copy-size: var(--text-body-size);
   --text-data-attribute-copy-weight: var(--weight-medium);
   --text-data-attribute-copy-line-height: var(--line-height-24);
+  --note-card-stripe: var(--size-note-card-stripe);
+  --note-card-rule-width: var(--size-data-attribute-rule-width);
+  --note-card-rule-height: var(--size-data-attribute-rule-height);
+  --radius-note-card-rule: var(--radius-sm);
+  --padding-note-card-inline: var(--space-24);
+  --padding-note-card-block: var(--space-40);
+  --gap-note-cards: var(--space-24);
+  --gap-note-card-top: var(--gap-xl);
+  --min-height-note-card: var(--size-note-card-height);
+  --min-width-note-card: var(--size-note-card-min-width);
+  --offset-note-card-stack: var(--space-12);
+  --rotate-note-card-hover: var(--rotate-3);
+  --z-note-card-hover: var(--z-index-1);
+  --font-family-note-source: var(--font-libre-baskerville), serif;
+  --text-note-title-size: var(--font-size-28);
+  --text-note-title-weight: var(--font-weight-bold);
+  --text-note-title-line-height: var(--font-size-32);
+  --text-note-source-size: var(--text-body-size);
+  --text-note-source-weight: var(--weight-medium);
+  --text-note-description-size: var(--font-size-22);
+  --text-note-description-weight: var(--font-weight-regular);
+  --text-note-description-line-height: var(--line-height-tight);
   --connect-excitement-width: var(--size-connect-excitement-width);
   --connect-excitement-height: var(--size-connect-excitement-height);
   --connect-excitement-word-scale: var(--scale-110);
