@@ -1,6 +1,3 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import type { Variants } from "motion/react";
 import { pageEnterEase } from "@/motion/pageEnter";
 
@@ -9,22 +6,6 @@ const HOME_INTRO_OFFSET_PX = 80;
 const HOME_INTRO_STAGGER_S = 0.02;
 const HOME_INTRO_DURATION_S = 1;
 const HOME_INTRO_BLUR = "blur(8px)";
-
-let homeIntroConsumed = false;
-
-export function useHomeFirstLoadIntro() {
-  const [isFirstLoad] = useState(() => !homeIntroConsumed);
-
-  useEffect(() => {
-    const frame = requestAnimationFrame(() => {
-      homeIntroConsumed = true;
-    });
-
-    return () => cancelAnimationFrame(frame);
-  }, []);
-
-  return isFirstLoad;
-}
 
 function introTransition(index: number) {
   return {

@@ -100,7 +100,7 @@ export const conversationInsights: ProjectPageData = {
               ],
             },
             {
-              title: "Operational Metadata",
+              title: "AWS Attributes",
               logoSrc: asset("aws-connect.svg"),
               logoAlt: "Amazon Connect logo",
               items: [

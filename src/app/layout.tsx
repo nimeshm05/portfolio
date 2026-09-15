@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Caveat, Inter, Newsreader, Libre_Baskerville, Cormorant_Garamond, Cardo } from "next/font/google";
+import { Caveat, Google_Sans, Inter, Newsreader, Libre_Baskerville, Cormorant_Garamond, Cardo } from "next/font/google";
 import localFont from "next/font/local";
 import { ClickSound } from "@/components/ClickSound/ClickSound";
 import { SiteControls } from "@/components/SiteControls/SiteControls";
@@ -34,6 +34,13 @@ const openRunde = localFont({
       style: "normal",
     },
   ],
+});
+
+const googleSans = Google_Sans({
+  variable: "--font-google-sans",
+  subsets: ["latin"],
+  axes: ["opsz"],
+  adjustFontFallback: false,
 });
 
 const inter = Inter({
@@ -83,7 +90,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${openRunde.variable} ${inter.variable} ${caveat.variable} ${newsreader.variable} ${libreBaskerville.variable} ${cormorantGaramond.variable} ${cardo.variable}`}
+      className={`${openRunde.variable} ${googleSans.variable} ${inter.variable} ${caveat.variable} ${newsreader.variable} ${libreBaskerville.variable} ${cormorantGaramond.variable} ${cardo.variable}`}
       suppressHydrationWarning
     >
       <head>

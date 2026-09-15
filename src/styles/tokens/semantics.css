@@ -91,6 +91,9 @@
   --color-card-chip-text: var(--color-text-label);
   --padding-inset-panel: var(--space-20);
   --padding-inset-list-inline: var(--space-48);
+  --source-index-width: 2ch;
+  --gap-source-index: var(--gap-sm);
+  --color-source-index: var(--color-text-muted);
   --offset-banner-inline: var(--space-120);
   --offset-banner-bleed: var(--space-160);
   --offset-sidebar-left: var(--gap-xl);
@@ -187,7 +190,7 @@
   --blur-layer-6: var(--blur-24);
 
   /* Shared layout */
-  --font-family-sans: var(--font-open-runde), -apple-system, BlinkMacSystemFont, var(--font-inter), "Segoe UI", sans-serif;
+  --font-family-sans: var(--font-google-sans), var(--font-open-runde), -apple-system, BlinkMacSystemFont, var(--font-inter), "Segoe UI", sans-serif;
   --font-family-serif: var(--font-cardo), serif;
   --font-family-hand: var(--font-caveat), cursive;
   --letter-spacing-body: var(--letter-spacing-tight);
