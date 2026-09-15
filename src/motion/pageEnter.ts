@@ -1,10 +1,20 @@
 import type { Variants } from "motion/react";
 
 /** Pixel offset — Motion cannot interpolate CSS variables smoothly. */
-const PAGE_ENTER_OFFSET_PX = 40;
+const PAGE_ENTER_OFFSET_PX = 80;
+const PAGE_ENTER_STAGGER_S = 0.02;
+const PAGE_ENTER_DURATION_S = 1;
 const PAGE_ENTER_BLUR = "blur(8px)";
 
 export const pageEnterEase = [0.16, 1, 0.3, 1] as const;
+
+function enterTransition(index: number) {
+  return {
+    delay: index * PAGE_ENTER_STAGGER_S,
+    duration: PAGE_ENTER_DURATION_S,
+    ease: pageEnterEase,
+  };
+}
 
 export const pageEnterItemVariants: Variants = {
   initial: {
@@ -12,32 +22,30 @@ export const pageEnterItemVariants: Variants = {
     y: PAGE_ENTER_OFFSET_PX,
     filter: PAGE_ENTER_BLUR,
   },
-  animate: {
+  animate: (index: number = 0) => ({
     opacity: 1,
     y: 0,
     filter: "blur(0px)",
     transition: {
-      opacity: { duration: 1, ease: pageEnterEase },
-      y: { duration: 1, ease: pageEnterEase },
-      filter: { duration: 1, ease: pageEnterEase },
+      opacity: enterTransition(index),
+      y: enterTransition(index),
+      filter: enterTransition(index),
     },
     transitionEnd: { filter: "none" },
-  },
+  }),
 };
 
 export const pageEnterOpacityVariants: Variants = {
   initial: { opacity: 0 },
-  animate: { opacity: 1 },
+  animate: (index: number = 0) => ({
+    opacity: 1,
+    transition: enterTransition(index),
+  }),
 };
 
 export const pageEnterContainerVariants: Variants = {
   initial: {},
-  animate: {
-    transition: {
-      delayChildren: 0.04,
-      staggerChildren: 0.07,
-    },
-  },
+  animate: {},
 };
 
 export function getPageEnterItemVariants(reduceMotion: boolean): Variants {

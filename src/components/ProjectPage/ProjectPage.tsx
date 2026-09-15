@@ -3,7 +3,11 @@ import { Callout } from "@/components/Callout/Callout";
 import { ContentTable } from "@/components/ContentTable/ContentTable";
 import { DataAttributeCards } from "@/components/DataAttributeCards/DataAttributeCards";
 import { ListItem } from "@/components/ListItem/ListItem";
-import { PageEnter, PageEnterItems } from "@/components/PageEnter/PageEnter";
+import {
+  PageEnter,
+  PageEnterItem,
+  PageEnterItems,
+} from "@/components/PageEnter/PageEnter";
 import { ProjectBanner } from "@/components/ProjectBanner/ProjectBanner";
 import { ProjectHeader } from "@/components/ProjectHeader/ProjectHeader";
 import { ProjectMeta } from "@/components/ProjectMeta/ProjectMeta";
@@ -189,24 +193,26 @@ export function ProjectPage({ project }: ProjectPageProps) {
       <ViewportEdgeBlur />
       <ProjectSidebar items={project.nav ?? []} />
       <PageEnter as="main" className="project-body">
-        <PageEnterItems>
         <div className="project-intro">
           <ProjectHeader
             title={project.title}
             subtitle={project.subtitle}
             liveHref={project.liveHref}
           />
-          <ProjectBanner
-            src={project.bannerSrc}
-            alt={project.bannerAlt}
-            type={project.bannerType}
-            backgroundSrc={project.bannerBackgroundSrc}
-            showBackground={project.bannerType !== "video"}
-          />
+          <PageEnterItem>
+            <ProjectBanner
+              src={project.bannerSrc}
+              alt={project.bannerAlt}
+              type={project.bannerType}
+              backgroundSrc={project.bannerBackgroundSrc}
+              showBackground={project.bannerType !== "video"}
+            />
+          </PageEnterItem>
           {project.meta?.items?.length ? (
             <ProjectMeta items={project.meta.items} />
           ) : null}
         </div>
+        <PageEnterItems>
 
         {project.overview ? (
           <ProjectSection

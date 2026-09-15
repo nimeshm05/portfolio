@@ -1,3 +1,6 @@
+"use client";
+
+import { PageEnterItem } from "@/components/PageEnter/PageEnter";
 import { LinkCue } from "@/components/LinkCue/LinkCue";
 import "./ProjectHeader.css";
 
@@ -16,18 +19,24 @@ export function ProjectHeader({
     <header className="project-header">
       <div className="project-header-content">
         <div className="project-header-info">
-          <h1 className="project-header-title">{title}</h1>
-          <p className="project-header-subtitle">{subtitle}</p>
+          <PageEnterItem as="h1" className="project-header-title">
+            {title}
+          </PageEnterItem>
+          <PageEnterItem as="p" className="project-header-subtitle">
+            {subtitle}
+          </PageEnterItem>
           {liveHref ? (
-            <LinkCue
-              label="View Live"
-              icon="arrow-right"
-              href={liveHref}
-              tone="accent"
-            />
+            <PageEnterItem>
+              <LinkCue
+                label="View Live"
+                icon="arrow-right"
+                href={liveHref}
+                tone="accent"
+              />
+            </PageEnterItem>
           ) : null}
         </div>
-        <span className="callout-rule" aria-hidden="true"></span>
+        <PageEnterItem as="span" className="callout-rule" aria-hidden />
       </div>
     </header>
   );

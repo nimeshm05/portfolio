@@ -14,6 +14,7 @@ import {
 import "./PageEnter.css";
 
 const PageEnterContext = createContext(false);
+const PageEnterIndexContext = createContext<(() => number) | null>(null);
 
 type PageEnterProps = {
   children: ReactNode;
@@ -26,6 +27,22 @@ type PageEnterChildProps = {
   className?: string;
 };
 
+type PageEnterItemAs = "div" | "span" | "h1" | "p";
+
+type PageEnterItemProps = {
+  children?: ReactNode;
+  className?: string;
+  as?: PageEnterItemAs;
+  "aria-hidden"?: boolean;
+};
+
+const motionTags = {
+  div: motion.div,
+  span: motion.span,
+  h1: motion.h1,
+  p: motion.p,
+} as const;
+
 export function PageEnter({
   children,
   className = "",
@@ -34,45 +51,52 @@ export function PageEnter({
   const reduceMotion = useReducedMotion() ?? false;
   const Root = as === "main" ? motion.main : motion.div;
   const nested = useContext(PageEnterContext);
+  let itemIndex = 0;
+  const nextItemIndex = () => itemIndex++;
 
   return (
     <PageEnterContext.Provider value={true}>
-      <Root
-        className={className}
-        variants={getPageEnterContainerVariants(reduceMotion)}
-        initial={nested ? undefined : "initial"}
-        animate={nested ? undefined : "animate"}
-      >
-        {children}
-      </Root>
+      <PageEnterIndexContext.Provider value={nextItemIndex}>
+        <Root
+          className={className}
+          variants={getPageEnterContainerVariants(reduceMotion)}
+          initial={nested ? undefined : "initial"}
+          animate={nested ? undefined : "animate"}
+        >
+          {children}
+        </Root>
+      </PageEnterIndexContext.Provider>
     </PageEnterContext.Provider>
   );
 }
 
 export function PageEnterGroup({ children, className = "" }: PageEnterChildProps) {
-  const reduceMotion = useReducedMotion() ?? false;
-
-  return (
-    <motion.div
-      className={className}
-      variants={getPageEnterContainerVariants(reduceMotion)}
-    >
-      {children}
-    </motion.div>
-  );
+  return <div className={className}>{children}</div>;
 }
 
-export function PageEnterItem({ children, className = "" }: PageEnterChildProps) {
+export function PageEnterItem({
+  children,
+  className = "",
+  as = "div",
+  "aria-hidden": ariaHidden,
+}: PageEnterItemProps) {
   const reduceMotion = useReducedMotion() ?? false;
+  const nextItemIndex = useContext(PageEnterIndexContext);
+  const index = nextItemIndex?.() ?? 0;
+  const MotionTag = motionTags[as];
   const classNames = ["page-enter-item", className].filter(Boolean).join(" ");
 
   return (
-    <motion.div
+    <MotionTag
       className={classNames}
       variants={getPageEnterItemVariants(reduceMotion)}
+      custom={index}
+      initial="initial"
+      animate="animate"
+      aria-hidden={ariaHidden}
     >
       {children}
-    </motion.div>
+    </MotionTag>
   );
 }
 

@@ -6,9 +6,8 @@ import {
   type ReactNode,
 } from "react";
 import Image from "next/image";
-import { motion, useReducedMotion } from "motion/react";
 import type { BioParagraph } from "@/data/home";
-import { getHomeIntroItemVariants } from "@/motion/homeIntro";
+import { PageEnterItem } from "@/components/PageEnter/PageEnter";
 import "./Header.css";
 
 type HeaderProps = {
@@ -28,22 +27,11 @@ export function Header({
   children,
   bottom,
 }: HeaderProps) {
-  const reduceMotion = useReducedMotion() ?? false;
-  const introVariants = getHomeIntroItemVariants(reduceMotion);
-  let introIndex = 0;
-  const nextIntroIndex = () => introIndex++;
-
   return (
     <header className="site-header">
       <div className="site-header-profile">
         <div className="site-header-profile-content">
-          <motion.div
-            className="site-header-avatar-enter"
-            variants={introVariants}
-            custom={nextIntroIndex()}
-            initial="initial"
-            animate="animate"
-          >
+          <PageEnterItem className="site-header-avatar-enter">
             <div className="site-header-avatar">
               <Image
                 className="site-header-avatar-image"
@@ -54,34 +42,22 @@ export function Header({
                 priority
               />
             </div>
-          </motion.div>
+          </PageEnterItem>
           <div className="site-header-details">
             <div className="site-header-info">
-              <motion.h1
-                className="site-header-name"
-                variants={introVariants}
-                custom={nextIntroIndex()}
-                initial="initial"
-                animate="animate"
-              >
+              <PageEnterItem as="h1" className="site-header-name">
                 {name}
                 <span className="site-header-name-rule" aria-hidden="true" />
-              </motion.h1>
+              </PageEnterItem>
               <div className="site-header-bio">
                 {bio.map((paragraph) => (
                   <p key={paragraph[0]} className="site-header-bio-paragraph">
                     {paragraph.map((line, index) => (
                       <Fragment key={line}>
                         {index > 0 ? <br /> : null}
-                        <motion.span
-                          className="site-header-bio-line"
-                          variants={introVariants}
-                          custom={nextIntroIndex()}
-                          initial="initial"
-                          animate="animate"
-                        >
+                        <PageEnterItem as="span" className="site-header-bio-line">
                           {line}
-                        </motion.span>
+                        </PageEnterItem>
                       </Fragment>
                     ))}
                   </p>
@@ -91,16 +67,9 @@ export function Header({
             {children ? (
               <div className="home-prompts">
                 {Children.map(children, (child, index) => (
-                  <motion.div
-                    key={index}
-                    className="home-prompt-enter"
-                    variants={introVariants}
-                    custom={nextIntroIndex()}
-                    initial="initial"
-                    animate="animate"
-                  >
+                  <PageEnterItem key={index} className="home-prompt-enter">
                     {child}
-                  </motion.div>
+                  </PageEnterItem>
                 ))}
               </div>
             ) : null}
