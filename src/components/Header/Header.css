@@ -83,7 +83,7 @@
   font-size: var(--text-display-size);
   font-weight: var(--text-display-weight);
   line-height: var(--text-display-line-height);
-  font-family: var(--font-family-serif);
+  font-family: var(--font-family-sans);
 }
 
 .site-header-name-rule {

@@ -46,7 +46,7 @@ export type ContentSectionData = {
 };
 
 export const profile = {
-  name: "nimesh.mohanakrishnan",
+  name: "@nimesh.mohanakrishnan",
   avatarSrc: "/assets/profile.svg",
   avatarAlt: "Portrait of Nimesh Mohanakrishnan",
   bioByTab: {
