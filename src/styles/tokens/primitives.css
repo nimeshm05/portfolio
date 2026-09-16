@@ -94,6 +94,10 @@
   --letter-spacing-tight: -0.01em;
   --letter-spacing-footer: 0.01em;
 
+  /* Text wrap */
+  --text-wrap-balance: balance;
+  --text-wrap-pretty: pretty;
+
   /* Opacity */
   --opacity-subtle: 0.8;
 
@@ -117,6 +121,7 @@
   --size-social-hover-mark: 2.2rem;
   --size-avatar: 4.5rem;
   --size-tab-container: 12rem;
+  --size-table-column-min: 12rem;
   --size-hairline: 0.0625rem;
   --size-border-callout: 0.25rem;
   --size-border-card: 0.05rem;

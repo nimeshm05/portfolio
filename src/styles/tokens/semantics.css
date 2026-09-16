@@ -13,11 +13,11 @@
   --color-text-label: var(--color-neutral-600);
   --color-text-muted: var(--color-neutral-400);
   --color-connect-sure-pulse: var(--color-text-primary);
-  --color-connect-prompt-follow-up: var(--color-lime-400);
-  --color-accent: var(--color-lime-400);
+  --color-accent: var(--color-green-500);
+  --color-connect-prompt-follow-up: var(--color-accent);
   --color-selection-text: var(--color-accent);
   --color-selection-bg: var(--color-lime-50);
-  --color-footer: var(--color-lime-400);
+  --color-footer: var(--color-accent);
   --color-callout-text: var(--color-black);
   --color-callout-border: var(--color-neutral-300);
   --color-icon-coffee: var(--color-coffee-500);
@@ -94,6 +94,8 @@
   --source-index-width: 2ch;
   --gap-source-index: var(--gap-sm);
   --color-source-index: var(--color-text-muted);
+  --content-table-column-min: var(--size-table-column-min);
+  --scrollbar-size: var(--space-8);
   --offset-banner-inline: var(--space-120);
   --offset-banner-bleed: var(--space-160);
   --offset-sidebar-left: var(--gap-xl);
@@ -195,6 +197,8 @@
   --font-family-hand: var(--font-caveat), cursive;
   --letter-spacing-body: var(--letter-spacing-tight);
   --letter-spacing-display: var(--letter-spacing-tight);
+  --text-wrap: var(--text-wrap-pretty);
+  --text-wrap-heading: var(--text-wrap-balance);
   --content-width-home: var(--layout-content-width-home);
   --content-width-project: var(--layout-content-width-project);
   --content-width: var(--content-width-home);

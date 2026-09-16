@@ -49,11 +49,21 @@ body {
   background: var(--color-bg-page);
   font-family: var(--font-family-sans);
   letter-spacing: var(--letter-spacing-body);
+  text-wrap: var(--text-wrap);
   text-rendering: optimizeLegibility;
   font-optical-sizing: auto;
   font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: var(--text-wrap-heading);
 }
 
 a {
