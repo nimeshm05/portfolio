@@ -157,7 +157,7 @@ export const workSections: ContentSectionData[] = [
   },
   {
     id: "personal-projects",
-    label: "play",
+    label: "Play",
     supportsCardView: true,
     items: [
       {

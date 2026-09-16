@@ -8,7 +8,7 @@ type LinkCueIcon = "arrow-down" | "arrow-right" | "arrow-up-right";
 
 type LinkCueProps = {
   label: string;
-  icon: LinkCueIcon;
+  icon?: LinkCueIcon;
   href?: string;
   onSelect?: () => void;
   tone?: "default" | "accent";
@@ -29,18 +29,22 @@ export function LinkCue({
     .filter(Boolean)
     .join(" ");
 
-  const hoverHandlers = {
-    onPointerEnter: () => setIsHovered(true),
-    onPointerLeave: () => setIsHovered(false),
-    onFocus: () => setIsHovered(true),
-    onBlur: () => setIsHovered(false),
-  };
+  const hoverHandlers = icon
+    ? {
+        onPointerEnter: () => setIsHovered(true),
+        onPointerLeave: () => setIsHovered(false),
+        onFocus: () => setIsHovered(true),
+        onBlur: () => setIsHovered(false),
+      }
+    : undefined;
 
   const content: ReactNode = (
     <>
-      <span className="link-cue-icon" aria-hidden="true">
-        <AnimatedIcon name={icon} isActive={isHovered} />
-      </span>
+      {icon ? (
+        <span className="link-cue-icon" aria-hidden="true">
+          <AnimatedIcon name={icon} isActive={isHovered} />
+        </span>
+      ) : null}
       <span className="link-cue-label">{label}</span>
     </>
   );

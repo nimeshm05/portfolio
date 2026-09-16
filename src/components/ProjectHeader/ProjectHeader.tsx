@@ -29,7 +29,6 @@ export function ProjectHeader({
             <PageEnterItem>
               <LinkCue
                 label="View Live"
-                icon="arrow-right"
                 href={liveHref}
                 tone="accent"
               />
