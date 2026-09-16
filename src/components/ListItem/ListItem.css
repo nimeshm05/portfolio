@@ -22,10 +22,6 @@
   cursor: default;
 }
 
-.list-item--static:hover {
-  background-color: var(--color-bg-surface);
-}
-
 .list-item-icon,
 .list-item-chevron {
   display: flex;
@@ -58,10 +54,6 @@
 
 .list-item-meta {
   color: var(--color-text-muted);
-}
-
-.list-item:hover {
-  background-color: var(--color-bg-muted);
 }
 
 .list-item:hover .list-item-title,
