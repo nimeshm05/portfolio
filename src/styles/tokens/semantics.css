@@ -86,8 +86,8 @@
   --padding-card-chip-inline: var(--space-12);
   --gap-card-chips: var(--space-8);
   --radius-card-chip: var(--radius-4);
-  --color-card-chip-bg: var(--color-neutral-100);
-  --color-card-chip-bg-hover: var(--color-white);
+  --color-card-chip-bg: var(--color-neutral-200);
+  --color-card-chip-bg-hover: var(--color-neutral-100);
   --color-card-chip-text: var(--color-text-label);
   --padding-inset-panel: var(--space-20);
   --padding-inset-list-inline: var(--space-48);

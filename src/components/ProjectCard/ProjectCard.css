@@ -5,18 +5,18 @@
   width: 100%;
   padding-block: var(--padding-card-block);
   padding-inline: 0;
-  border: var(--border-card);
+  /* border: var(--border-card); */
   border-radius: var(--radius-sm);
-  background: var(--color-bg-surface);
+  /* background: var(--color-bg-surface); */
   text-decoration: none;
-  box-shadow: var(--shadow-card);
+  /* box-shadow: var(--shadow-card); */
 }
 
 .project-card-header {
   display: flex;
   align-items: center;
   width: 100%;
-  padding-inline: var(--padding-card-inline);
+  /* padding-inline: var(--padding-card-inline); */
 }
 
 .project-card-title {
@@ -33,7 +33,7 @@
   flex-direction: column;
   gap: var(--gap-md);
   width: 100%;
-  padding-inline: var(--padding-card-inline);
+  /* padding-inline: var(--padding-card-inline); */
 }
 
 .project-card-description {

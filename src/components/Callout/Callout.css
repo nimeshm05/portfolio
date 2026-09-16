@@ -15,6 +15,10 @@
   background: var(--color-callout-border);
 }
 
+.callout + .callout > .callout-rule:first-child {
+  display: none;
+}
+
 .callout-body {
   display: flex;
   flex-direction: column;
