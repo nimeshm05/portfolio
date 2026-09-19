@@ -10,7 +10,7 @@ export const karNoKeyCard: ProjectCardData = {
   timeline: "2025",
   description:
     "A full-stack multiplayer type racer game built with Supabase and Next.JS using cursor agents.",
-  bannerSrc: asset("kar-no-key-preview.mp4"),
+  bannerSrc: asset("kar-no-key.mp4"),
   bannerAlt: "kar-no-key project preview",
   bannerType: "video",
 };
