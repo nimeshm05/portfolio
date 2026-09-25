@@ -121,7 +121,9 @@ export function HomePage() {
                 <motion.div
                   key={activeTab}
                   ref={setContentEl}
-                  className="home-content"
+                  className={`home-content${
+                    activeTab === "about" ? " home-content--about" : ""
+                  }`}
                   role="tabpanel"
                   initial={false}
                   animate="animate"

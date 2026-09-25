@@ -162,7 +162,8 @@
     0 0.0625rem 0.0625rem oklch(18.22% 0.00002 271.152 / 0.4);
 
   /* Layout */
-  --layout-content-width-home: 40rem;
+  --layout-content-width-home: 46rem;
+  --layout-content-width-about: 40rem;
   --layout-content-width-project: 34rem;
   --layout-project-banner-width: 57.5rem;
   --layout-data-attribute-cards-width: 63.75rem;

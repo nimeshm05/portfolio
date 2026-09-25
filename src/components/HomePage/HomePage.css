@@ -81,6 +81,16 @@ html:has(.home-page) body {
   width: 100%;
 }
 
+.home-content--about {
+  max-width: var(--content-width-about);
+}
+
+.home-content--about .content-section-label-wrap,
+.home-content--about .list-item,
+.home-content--about .list-item-panel {
+  padding-inline: 0;
+}
+
 .segmented-control-container {
   width: 100%;
 }
