@@ -16,7 +16,6 @@
   min-height: 100vh;
   min-height: 100dvh;
   padding-top: var(--padding-page);
-  padding-inline: var(--inset-x);
   padding-bottom: var(--padding-page);
   scroll-snap-align: start;
   scroll-snap-stop: always;
