@@ -79,10 +79,6 @@
   background: var(--color-card-chip-bg-hover);
 }
 
-.project-card:hover {
-  background-color: var(--color-card-hover);
-}
-
 .project-card:active {
   scale: 0.99;
   transition: scale var(--transition-fast);

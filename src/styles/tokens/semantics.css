@@ -303,7 +303,7 @@
 
 [data-theme="dark"] {
   /* Surfaces */
-  --color-bg-page: var(--color-neutral-950);
+  --color-bg-page: var(--color-black);
   --color-bg-surface: var(--color-neutral-800);
   --color-bg-muted: var(--color-neutral-900);
   --color-card-hover: var(--color-neutral-950);
