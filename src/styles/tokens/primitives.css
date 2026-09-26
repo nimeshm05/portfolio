@@ -1,7 +1,7 @@
 :root {
   /* Colors (oklch) */
   --color-white: oklch(1 0 0);
-  --color-black: oklch(0 0 0);
+  --color-black: oklch(0.125 0 0);
   --color-neutral-50: oklch(0.9916 0 0);
   --color-neutral-100: oklch(0.9743 0 0);
   --color-neutral-150: oklch(0.9534 0 0);
@@ -162,8 +162,8 @@
     0 0.0625rem 0.0625rem oklch(18.22% 0.00002 271.152 / 0.4);
 
   /* Layout */
-  --layout-content-width-home: 46rem;
-  --layout-content-width-about: 40rem;
+  --layout-content-width-home: 43rem;
+  --layout-content-width-about: 43rem;
   --layout-content-width-project: 34rem;
   --layout-project-banner-width: 57.5rem;
   --layout-data-attribute-cards-width: 63.75rem;

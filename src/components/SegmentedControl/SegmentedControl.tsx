@@ -1,7 +1,7 @@
 "use client";
 
-import { useLayoutEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
+import type { CSSProperties } from "react";
 import type { HomeTab } from "@/data/home";
 import "./SegmentedControl.css";
 
@@ -21,89 +21,51 @@ const PILL_TRANSITION = {
   ease: "easeInOut" as const,
 };
 
-const SNAP_TRANSITION = { duration: 0 };
-
 export function SegmentedControl({
   tabs,
   activeTab,
   onChange,
 }: SegmentedControlProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const activeTabRef = useRef<HTMLButtonElement>(null);
-  const hasMeasuredRef = useRef(false);
-  const [pill, setPill] = useState<{ left: number; width: number } | null>(
-    null,
+  const activeIndex = Math.max(
+    0,
+    tabs.findIndex((tab) => tab.id === activeTab),
   );
-  const [transition, setTransition] = useState(SNAP_TRANSITION);
-
-  useLayoutEffect(() => {
-    const container = containerRef.current;
-
-    const updatePill = (immediate: boolean) => {
-      const activeTabElement = activeTabRef.current;
-
-      if (!activeTabElement) {
-        return;
-      }
-
-      setTransition(immediate ? SNAP_TRANSITION : PILL_TRANSITION);
-      setPill({
-        left: activeTabElement.offsetLeft,
-        width: activeTabElement.offsetWidth,
-      });
-    };
-
-    updatePill(!hasMeasuredRef.current);
-    hasMeasuredRef.current = true;
-
-    if (!container) {
-      return;
-    }
-
-    const observer = new ResizeObserver(() => {
-      updatePill(true);
-    });
-
-    observer.observe(container);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [activeTab]);
+  const pillShift =
+    activeIndex === 0
+      ? 0
+      : `calc(${activeIndex} * (100% + var(--gap-2xs)))`;
 
   return (
     <div
       className="segmented-control"
-      ref={containerRef}
+      style={{ "--segment-count": tabs.length } as CSSProperties}
       role="tablist"
       aria-label="Portfolio sections"
     >
-      {pill ? (
-        <motion.div
-          className="segmented-control-pill"
-          initial={false}
-          animate={{ left: pill.left, width: pill.width }}
-          transition={transition}
-          aria-hidden="true"
-        />
-      ) : null}
-      {tabs.map((tab) => {
+      {tabs.map((tab, index) => {
         const isActive = tab.id === activeTab;
 
         return (
           <button
             key={tab.id}
-            ref={isActive ? activeTabRef : null}
             type="button"
             role="tab"
             aria-selected={isActive}
             className={`segmented-control-tab${isActive ? " is-active" : ""}`}
+            style={{ gridColumn: index + 1 }}
             onClick={() => onChange(tab.id)}
           >
             {tab.label}
           </button>
         );
       })}
+      <motion.div
+        className="segmented-control-pill"
+        initial={false}
+        animate={{ x: pillShift }}
+        transition={PILL_TRANSITION}
+        aria-hidden="true"
+      />
     </div>
   );
 }

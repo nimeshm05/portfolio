@@ -1,8 +1,8 @@
 .segmented-control {
   position: relative;
-  display: flex;
-  align-items: center;
-  gap: var(--gap-2xs);
+  display: grid;
+  grid-template-columns: repeat(var(--segment-count), minmax(0, 1fr));
+  column-gap: var(--gap-2xs);
   width: var(--tab-container-width);
   padding: var(--gap-xs);
   background: var(--color-bg-muted);
@@ -11,9 +11,8 @@
 }
 
 .segmented-control-pill {
-  position: absolute;
-  top: var(--gap-xs);
-  bottom: var(--gap-xs);
+  grid-column: 1;
+  grid-row: 1;
   z-index: 0;
   border-radius: var(--radius-sm);
   background: var(--color-bg-surface);
@@ -22,6 +21,7 @@
 }
 
 .segmented-control-tab {
+  grid-row: 1;
   position: relative;
   z-index: 1;
   display: flex;
