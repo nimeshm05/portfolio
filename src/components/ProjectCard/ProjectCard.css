@@ -22,8 +22,8 @@
 .project-card-title {
   min-width: 0;
   color: var(--color-text-primary);
-  font-size: var(--text-body-size);
-  font-weight: var(--weight-semibold);
+  font-size: var(--text-list-size);
+  font-weight: var(--text-list-weight);
   line-height: var(--text-body-line-height-fixed);
   letter-spacing: var(--letter-spacing-body);
 }

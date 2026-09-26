@@ -56,7 +56,6 @@
 .content-section-divider {
   align-self: stretch;
   height: 0;
-  margin-inline: var(--inset-x);
   border: 0;
   border-top: var(--border-width) solid var(--color-divider);
 }
