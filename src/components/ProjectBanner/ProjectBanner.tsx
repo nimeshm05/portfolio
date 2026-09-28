@@ -1,4 +1,3 @@
-import type { CSSProperties } from "react";
 import { LazyBannerVideo } from "./LazyBannerVideo";
 import "./ProjectBanner.css";
 
@@ -6,7 +5,6 @@ type ProjectBannerProps = {
   src: string;
   alt: string;
   type?: "image" | "video";
-  backgroundSrc?: string;
   showBackground?: boolean;
   variant?: "page" | "card";
   /** When true, keep the banner inside the content column (no desktop bleed). */
@@ -17,13 +15,12 @@ export function ProjectBanner({
   src,
   alt,
   type = "image",
-  backgroundSrc,
   showBackground = true,
   variant = "page",
   hugContent = false,
 }: ProjectBannerProps) {
   const isCard = variant === "card";
-  const shouldShowBackground = isCard ? false : showBackground;
+  const shouldShowBackground = !isCard && type !== "video" && showBackground;
   const isHeroMedia = variant === "page" && !hugContent;
   const imageLoading = isHeroMedia ? "eager" : "lazy";
 
@@ -34,11 +31,6 @@ export function ProjectBanner({
       }${hugContent ? " project-banner--hug" : ""}${
         shouldShowBackground ? "" : " project-banner--no-background"
       }`}
-      style={
-        shouldShowBackground && backgroundSrc
-          ? ({ "--project-banner-bg": `url(${backgroundSrc})` } as CSSProperties)
-          : undefined
-      }
     >
       <div className="project-banner-media">
         {type === "video" ? (

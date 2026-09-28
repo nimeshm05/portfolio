@@ -3,6 +3,7 @@
   --color-bg-page: var(--color-neutral-50);
   --color-bg-surface: var(--color-white);
   --color-bg-muted: var(--color-neutral-100);
+  --color-banner-bg: var(--color-neutral-100);
   --color-card-hover: var(--color-neutral-50);
   --color-divider: var(--color-neutral-150);
 
@@ -192,7 +193,7 @@
   --blur-layer-6: var(--blur-24);
 
   /* Shared layout */
-  --font-family-sans: system-ui, var(--font-google-sans), var(--font-open-runde), -apple-system, BlinkMacSystemFont, var(--font-inter), "Segoe UI", sans-serif;
+  --font-family-sans: var(--font-google-sans), var(--font-open-runde), -apple-system, BlinkMacSystemFont, var(--font-inter), "Segoe UI", sans-serif;
   --font-family-serif: var(--font-cardo), serif;
   --font-family-hand: var(--font-caveat), cursive;
   --letter-spacing-body: var(--letter-spacing-tight);
@@ -306,6 +307,7 @@
   --color-bg-page: var(--color-black);
   --color-bg-surface: var(--color-neutral-800);
   --color-bg-muted: var(--color-neutral-900);
+  --color-banner-bg: var(--color-bg-surface);
   --color-card-hover: var(--color-neutral-950);
   --color-card-chip-bg: var(--color-neutral-900);
   --color-card-chip-bg-hover: var(--color-bg-surface);

@@ -14,23 +14,7 @@
   border: var(--border-width) solid var(--color-border);
   border-radius: var(--radius-sm);
   overflow: hidden;
-}
-
-.project-banner::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background-image: var(
-    --project-banner-bg,
-    url("/assets/projects/background.png")
-  );
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  filter: blur(var(--blur-24));
-  transform: scale(var(--scale-110));
-  transform-origin: center;
+  background-color: var(--color-banner-bg);
 }
 
 /* Hero / full-width page banners only — not inline case-study media */
@@ -60,10 +44,6 @@
   background-color: transparent;
   border-color: transparent;
   padding: 0;
-}
-
-.project-banner--no-background::before {
-  content: none;
 }
 
 .project-banner-media {
@@ -100,10 +80,6 @@
   border: 0;
   border-radius: 0;
   background-color: transparent;
-}
-
-.project-banner--card::before {
-  content: none;
 }
 
 .project-banner--card .project-banner-media {

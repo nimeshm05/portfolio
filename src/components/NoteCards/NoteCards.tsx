@@ -11,7 +11,7 @@ export function NoteCards({ notes }: NoteCardsProps) {
       {notes.map((note) => (
         <li
           key={note.id}
-          className={`note-card-stack note-card-stack--${note.tone}`}
+          className="note-card-stack"
         >
           <span className="note-card-backing" aria-hidden="true" />
           <a

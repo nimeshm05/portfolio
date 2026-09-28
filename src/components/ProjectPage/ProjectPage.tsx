@@ -93,13 +93,7 @@ function getItemMedia(item: ExpandableItemContent): ProjectMedia[] {
   return [];
 }
 
-function ExpandableItemMedia({
-  item,
-  backgroundSrc,
-}: {
-  item: ExpandableItemContent;
-  backgroundSrc?: string;
-}) {
+function ExpandableItemMedia({ item }: { item: ExpandableItemContent }) {
   const media = getItemMedia(item);
 
   if (!media.length) {
@@ -114,7 +108,6 @@ function ExpandableItemMedia({
           src={entry.src}
           alt={entry.alt}
           type={entry.type}
-          backgroundSrc={backgroundSrc}
           showBackground={entry.showBackground}
           hugContent={entry.hugContent}
         />
@@ -142,13 +135,7 @@ function getItemVisuals(item: ExpandableItemContent): ExpandableVisual[] {
   return item.visual ? [item.visual] : [];
 }
 
-function ExpandableItemBody({
-  item,
-  backgroundSrc,
-}: {
-  item: ExpandableItemContent;
-  backgroundSrc?: string;
-}) {
+function ExpandableItemBody({ item }: { item: ExpandableItemContent }) {
   const hasCopy = Boolean(item.content || item.quotes?.length);
 
   return (
@@ -172,7 +159,7 @@ function ExpandableItemBody({
       {getItemVisuals(item).map((visual, index) => (
         <ExpandableItemVisual key={`${visual.type}-${index}`} visual={visual} />
       ))}
-      <ExpandableItemMedia item={item} backgroundSrc={backgroundSrc} />
+      <ExpandableItemMedia item={item} />
     </>
   );
 }
@@ -204,7 +191,6 @@ export function ProjectPage({ project }: ProjectPageProps) {
               src={project.bannerSrc}
               alt={project.bannerAlt}
               type={project.bannerType}
-              backgroundSrc={project.bannerBackgroundSrc}
               showBackground={project.bannerType !== "video"}
             />
           </PageEnterItem>
@@ -283,10 +269,7 @@ export function ProjectPage({ project }: ProjectPageProps) {
                     alwaysExpanded={project.listItemsAlwaysExpanded}
                   >
                     {hasExpandableItemBody(item) ? (
-                      <ExpandableItemBody
-                        item={item}
-                        backgroundSrc={project.bannerBackgroundSrc}
-                      />
+                      <ExpandableItemBody item={item} />
                     ) : null}
                   </ListItem>
                 ))}
@@ -357,10 +340,7 @@ export function ProjectPage({ project }: ProjectPageProps) {
                   alwaysExpanded={project.listItemsAlwaysExpanded}
                 >
                   {hasExpandableItemBody(item) ? (
-                    <ExpandableItemBody
-                      item={item}
-                      backgroundSrc={project.bannerBackgroundSrc}
-                    />
+                    <ExpandableItemBody item={item} />
                   ) : null}
                 </ListItem>
               ))}
@@ -390,10 +370,7 @@ export function ProjectPage({ project }: ProjectPageProps) {
                   alwaysExpanded={project.listItemsAlwaysExpanded}
                 >
                   {hasExpandableItemBody(item) ? (
-                    <ExpandableItemBody
-                      item={item}
-                      backgroundSrc={project.bannerBackgroundSrc}
-                    />
+                    <ExpandableItemBody item={item} />
                   ) : null}
                 </ListItem>
               ))}
@@ -422,10 +399,7 @@ export function ProjectPage({ project }: ProjectPageProps) {
                     alwaysExpanded={project.listItemsAlwaysExpanded}
                   >
                     {hasExpandableItemBody(item) ? (
-                      <ExpandableItemBody
-                        item={item}
-                        backgroundSrc={project.bannerBackgroundSrc}
-                      />
+                      <ExpandableItemBody item={item} />
                     ) : null}
                   </ListItem>
                 ))}
@@ -477,10 +451,7 @@ export function ProjectPage({ project }: ProjectPageProps) {
                   alwaysExpanded={project.listItemsAlwaysExpanded}
                 >
                   {hasExpandableItemBody(item) ? (
-                    <ExpandableItemBody
-                      item={item}
-                      backgroundSrc={project.bannerBackgroundSrc}
-                    />
+                    <ExpandableItemBody item={item} />
                   ) : null}
                 </ListItem>
               ))}
@@ -512,10 +483,7 @@ export function ProjectPage({ project }: ProjectPageProps) {
                   alwaysExpanded={project.listItemsAlwaysExpanded}
                 >
                   {hasExpandableItemBody(item) ? (
-                    <ExpandableItemBody
-                      item={item}
-                      backgroundSrc={project.bannerBackgroundSrc}
-                    />
+                    <ExpandableItemBody item={item} />
                   ) : null}
                 </ListItem>
               ))}
@@ -543,10 +511,7 @@ export function ProjectPage({ project }: ProjectPageProps) {
                   alwaysExpanded={project.listItemsAlwaysExpanded}
                 >
                   {hasExpandableItemBody(item) ? (
-                    <ExpandableItemBody
-                      item={item}
-                      backgroundSrc={project.bannerBackgroundSrc}
-                    />
+                    <ExpandableItemBody item={item} />
                   ) : null}
                 </ListItem>
               ))}
@@ -574,10 +539,7 @@ export function ProjectPage({ project }: ProjectPageProps) {
                   alwaysExpanded={project.listItemsAlwaysExpanded}
                 >
                   {hasExpandableItemBody(item) ? (
-                    <ExpandableItemBody
-                      item={item}
-                      backgroundSrc={project.bannerBackgroundSrc}
-                    />
+                    <ExpandableItemBody item={item} />
                   ) : null}
                 </ListItem>
               ))}
@@ -607,10 +569,7 @@ export function ProjectPage({ project }: ProjectPageProps) {
                   alwaysExpanded={project.listItemsAlwaysExpanded}
                 >
                   {hasExpandableItemBody(item) ? (
-                    <ExpandableItemBody
-                      item={item}
-                      backgroundSrc={project.bannerBackgroundSrc}
-                    />
+                    <ExpandableItemBody item={item} />
                   ) : null}
                 </ListItem>
               ))}

@@ -15,20 +15,10 @@
   display: grid;
   min-width: 0;
   overflow: visible;
-}
-
-.note-card-stack--interface {
   --color-note-surface: var(--color-note-interface-surface);
   --color-note-accent: var(--color-note-interface-accent);
   --color-note-copy: var(--color-note-interface-copy);
   --color-note-backing: var(--color-note-interface-backing);
-}
-
-.note-card-stack--self {
-  --color-note-surface: var(--color-note-self-surface);
-  --color-note-accent: var(--color-note-self-accent);
-  --color-note-copy: var(--color-note-self-copy);
-  --color-note-backing: var(--color-note-self-backing);
 }
 
 .note-card-backing,

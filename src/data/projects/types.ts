@@ -107,7 +107,6 @@ export type ProjectCardData = {
   bannerSrc: string;
   bannerAlt: string;
   bannerType?: "image" | "video";
-  bannerBackgroundSrc?: string;
 };
 
 export type ProjectPageData = {
@@ -119,7 +118,6 @@ export type ProjectPageData = {
   bannerSrc: string;
   bannerAlt: string;
   bannerType?: "image" | "video";
-  bannerBackgroundSrc?: string;
   liveHref?: string;
   listItemsAlwaysExpanded?: boolean;
   nav?: ProjectNavItem[];
