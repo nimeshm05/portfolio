@@ -121,6 +121,10 @@
   .list-item-panel {
     overflow-x: clip;
   }
+
+  .list-item-panel:has(.project-section-media) {
+    overflow-x: visible;
+  }
 }
 
 .list-item-copy {

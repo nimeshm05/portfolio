@@ -6,7 +6,7 @@ export const gzLangCard: ProjectCardData = {
   slug: "gz-lang",
   href: "/work/gz-lang",
   title: "GZ-lang",
-  chips: ["AI project", "Transpiler"],
+  chips: ["Transpiler", "Developer Tool"],
   timeline: "2025",
   description:
     "A GenZ programming language that transpiles to JavaScript. no cap. Write JavaScript using Gen Z slang.",

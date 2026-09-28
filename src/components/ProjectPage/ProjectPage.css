@@ -62,6 +62,13 @@
   border: var(--border-card);
 }
 
+/* List copy stays inset. Section media bleeds back to the project column. */
+.list-item-panel .project-section-media {
+  width: calc(100% + (2 * var(--inset-x)));
+  max-width: none;
+  margin-inline: calc(-1 * var(--inset-x));
+}
+
 .project-section-media-frame {
   position: relative;
   overflow: hidden;
@@ -88,6 +95,14 @@
   max-width: 100%;
   height: auto;
   border-radius: inherit;
+}
+
+.project-section-media > img,
+.project-section-media > video {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
 }
 
 .project-section-media-frame video {

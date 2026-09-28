@@ -16,6 +16,9 @@ export type ProjectMedia = {
   type?: "image" | "video";
   showBackground?: boolean;
   hugContent?: boolean;
+  frame?: "section";
+  /** When false, section media keeps the outer container and omits the inner frame. */
+  framed?: boolean;
 };
 
 export type SourceCard = {

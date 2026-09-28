@@ -53,30 +53,25 @@ function SectionMedia({
   src,
   alt,
   imageType,
+  framed = true,
 }: {
   src: string;
   alt: string;
   imageType?: "image" | "video";
+  framed?: boolean;
 }) {
   const type = resolveSectionMediaType(src, imageType);
+  const media =
+    type === "video" ? (
+      <video src={src} aria-label={alt} autoPlay loop muted playsInline />
+    ) : (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img src={src} alt={alt} loading="lazy" decoding="async" />
+    );
 
   return (
     <div className="project-section-media">
-      <div className="project-section-media-frame">
-        {type === "video" ? (
-          <video
-            src={src}
-            aria-label={alt}
-            autoPlay
-            loop
-            muted
-            playsInline
-          />
-        ) : (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={src} alt={alt} loading="lazy" decoding="async" />
-        )}
-      </div>
+      {framed ? <div className="project-section-media-frame">{media}</div> : media}
     </div>
   );
 }
@@ -102,16 +97,26 @@ function ExpandableItemMedia({ item }: { item: ExpandableItemContent }) {
 
   return (
     <>
-      {media.map((entry) => (
-        <ProjectBanner
-          key={entry.src}
-          src={entry.src}
-          alt={entry.alt}
-          type={entry.type}
-          showBackground={entry.showBackground}
-          hugContent={entry.hugContent}
-        />
-      ))}
+      {media.map((entry) =>
+        entry.frame === "section" ? (
+          <SectionMedia
+            key={entry.src}
+            src={entry.src}
+            alt={entry.alt}
+            imageType={entry.type}
+            framed={entry.framed}
+          />
+        ) : (
+          <ProjectBanner
+            key={entry.src}
+            src={entry.src}
+            alt={entry.alt}
+            type={entry.type}
+            showBackground={entry.showBackground}
+            hugContent={entry.hugContent}
+          />
+        ),
+      )}
     </>
   );
 }

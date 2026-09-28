@@ -53,24 +53,24 @@ export const profile = {
     work: [
       [
         "Product designer in Seattle,",
-        "with 2+ years designing B2B software where complexity prevails.",
+        "with 2+ years designing B2B software in early stage startups.",
         "I use thoughtful reduction to bring clarity to the complexity,",
         "And I design in code to turn ideas into reality."
       ],
       [
-        "Currently pursuing a MS in Human Centered Design & Engineering,",
+        "Currently pursuing MS in Human Centered Design & Engineering,",
         "at the University of Washington.",
       ]
     ],
     about: [
       [
         "Product designer in Seattle,",
-        "with 2+ years designing B2B software where complexity prevails.",
+        "with 2+ years designing B2B software in early stage startups.",
         "I use thoughtful reduction to bring clarity to the complexity,",
         "And I design in code to turn ideas into reality."
       ],
       [
-        "Currently pursuing a MS in Human Centered Design & Engineering,",
+        "Currently pursuing MS in Human Centered Design & Engineering,",
         "at the University of Washington.",
       ]
     ],

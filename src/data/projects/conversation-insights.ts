@@ -249,9 +249,14 @@ export const conversationInsights: ProjectPageData = {
             'The chart I designed assumed users wanted to explore how an issue moved over time: is this topic trending up, how does it compare to others this week. But for a lot of what teams needed first, the question wasn\'t "how is this trending," it was "what are the biggest issues right now, and how many calls does each represent." I\'d designed for exploration when what was needed, at least as a starting point, was a direct, scannable summary.',
           ],
         },
-        imageSrc: asset("learnings/old-chart.png"),
-        imageAlt:
-          "Early chart visualization that users bypassed in favor of direct conversation records",
+        media: [
+          {
+            src: asset("learnings/old-chart.png"),
+            alt: "Early chart visualization that users bypassed in favor of direct conversation records",
+            frame: "section",
+            framed: false,
+          },
+        ],
       },
       {
         id: "filtering-didnt-scale",
