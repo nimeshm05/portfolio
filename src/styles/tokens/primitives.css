@@ -115,6 +115,12 @@
 
   /* Sizes */
   --size-icon: 1.25rem;
+  --size-row-icon-well-width: 2.2941875rem;
+  --size-row-icon-well-height: 2.75rem;
+  --size-row-icon-border: 0.0455625rem;
+  --radius-row-icon-well: 0.3798125rem;
+  --radius-row-icon-face: 0.227875rem;
+  --space-row-icon-well: 0.0759375rem;
   --size-icon-sm: 1rem;
   --size-icon-coffee: 1.15rem;
   --size-icon-mascot: 1.5rem;

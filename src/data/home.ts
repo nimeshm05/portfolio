@@ -1,7 +1,5 @@
 import type { IconName } from "@/components/Icon/Icon";
 
-export type HomeTab = "work" | "about";
-
 export type BioParagraph = readonly string[];
 
 export type ListItemBlock =
@@ -33,6 +31,9 @@ export type ListItemData = {
   source?: string;
   cardDescription?: string;
   tone?: NoteTone;
+  year?: string;
+  category?: string;
+  aside?: string;
 };
 
 export type ContentSectionCardType = "project" | "note";
@@ -43,6 +44,7 @@ export type ContentSectionData = {
   items: ListItemData[];
   supportsCardView?: boolean;
   cardType?: ContentSectionCardType;
+  seeMore?: boolean;
 };
 
 export const profile = {
@@ -51,28 +53,16 @@ export const profile = {
   avatarAlt: "Portrait of Nimesh Mohanakrishnan",
   bioByTab: {
     work: [
+      ["Product designer focused on bringing clarity to complex software."],
       [
-        "Product designer in Seattle,",
-        "with 2+ years designing B2B software where complexity prevails.",
-        "I use thoughtful reduction to bring clarity to the complexity,",
-        "And I design in code to turn ideas into reality."
+        "I design for dense, high-stakes workflows and prototype in code to work closely with engineering. Based in Seattle, studying HCDE at UW.",
       ],
-      [
-        "Currently pursuing a MS in Human Centered Design & Engineering,",
-        "at the University of Washington.",
-      ]
     ],
     about: [
+      ["Product designer focused on bringing clarity to complex software."],
       [
-        "Product designer in Seattle,",
-        "with 2+ years designing B2B software where complexity prevails.",
-        "I use thoughtful reduction to bring clarity to the complexity,",
-        "And I design in code to turn ideas into reality."
+        "I design for dense, high-stakes workflows and prototype in code to work closely with engineering. Based in Seattle, studying HCDE at UW.",
       ],
-      [
-        "Currently pursuing a MS in Human Centered Design & Engineering,",
-        "at the University of Washington.",
-      ]
     ],
   },
 } as const;
@@ -138,7 +128,7 @@ export const footerLinks = [
 export const workSections: ContentSectionData[] = [
   {
     id: "industry-projects",
-    label: "Work",
+    label: "Work Projects",
     supportsCardView: true,
     items: [
       {
@@ -146,18 +136,24 @@ export const workSections: ContentSectionData[] = [
         title: "Conversation Insights",
         icon: "chart-pie",
         href: "/work/conversation-insights",
+        year: "2025",
+        category: "Product design",
+        aside: "RozieAI Labs",
       },
       {
         id: "architecture-agent",
         title: "Architecture Agent",
         icon: "bot",
         href: "/work/architecture-agent",
+        year: "2026",
+        category: "Usability testing",
+        aside: "Actual AI",
       },
     ],
   },
   {
     id: "personal-projects",
-    label: "Play",
+    label: "Personal Projects",
     supportsCardView: true,
     items: [
       {
@@ -165,24 +161,27 @@ export const workSections: ContentSectionData[] = [
         title: "kar-no-key",
         icon: "music-2",
         href: "/work/kar-no-key",
+        year: "2025",
       },
       {
         id: "gz-lang",
         title: "gz-lang",
         icon: "code-xml",
         href: "/work/gz-lang",
+        year: "2025",
       },
       {
         id: "connect-prompt",
         title: "Connect Prompt",
         icon: "notebook-pen",
         href: "/work/connect-prompt",
+        year: "2026",
       },
     ],
   },
   {
     id: "writing",
-    label: "Notes",
+    label: "Writing",
     supportsCardView: true,
     cardType: "note",
     items: [
@@ -214,13 +213,17 @@ export const workSections: ContentSectionData[] = [
 
 export const aboutSections: ContentSectionData[] = [
   {
-    id: "past-experience",
-    label: "Past Experience",
+    id: "experience",
+    label: "Experience",
+    supportsCardView: true,
+    seeMore: true,
     items: [
       {
         id: "knool",
         title: "Product Intern,",
         meta: "Knool",
+        year: "2026",
+        aside: "Knool",
         description:
           "Currently on the AI workspace team, leading feature improvements to increase usage metrics. Doing bit of design, strategic work, & product analytics - start-up life :)",
         dates: "June 2026 – August 2026",
@@ -229,6 +232,8 @@ export const aboutSections: ContentSectionData[] = [
         id: "rozieai",
         title: "Product Designer,",
         meta: "RozieAI",
+        year: "2025",
+        aside: "RozieAI",
         description:
           "Led end-to-end design for a couple of internal tools like conversation insights and experience studio, which was used by clients like Air Canada.",
         dates: "August 2023 – August 2025",
@@ -237,6 +242,8 @@ export const aboutSections: ContentSectionData[] = [
         id: "rozieai-intern",
         title: "Product Design Intern,",
         meta: "RozieAI",
+        year: "2023",
+        aside: "RozieAI",
         description:
           "Partnered with Design Lead to maintain and scale the organization’s design system, improving component re-usability, styleguide, and design-to-dev handoff efficiency.",
         dates: "March 2023 – July 2023",
@@ -245,6 +252,8 @@ export const aboutSections: ContentSectionData[] = [
         id: "brane",
         title: "Software Engineer Intern,",
         meta: "Brane Enterprises",
+        year: "2021",
+        aside: "Brane Enterprises",
         description:
           "Learned Flutter, software testing, and state management by building and shipping three core features and fixing 20+ bugs.",
         dates: "June 2021 – November 2021",
@@ -253,6 +262,8 @@ export const aboutSections: ContentSectionData[] = [
         id: "stanford",
         title: "Innovation Fellow,",
         meta: "Stanford d.school",
+        year: "2019",
+        aside: "Stanford d.school",
         description:
           "Announced as innovation fellow by the UIF community at Stanford d.school, also where I was trained in design thinking.",
         dates: "2019",
@@ -262,11 +273,14 @@ export const aboutSections: ContentSectionData[] = [
   {
     id: "education",
     label: "Education",
+    supportsCardView: true,
+    seeMore: true,
     items: [
       {
         id: "ms-hcde",
         title: "M.S. Human Centered Design & Engineering, ",
         meta: "Univeristy of Washington",
+        category: "Univeristy of Washington",
         description: "Mastering my skills in systems thinking, prototyping, and interaction design at the University of Washington.",
         dates: "September 2025 – July 2027 (Expected)",
       },
@@ -274,6 +288,7 @@ export const aboutSections: ContentSectionData[] = [
         id: "beng-cse",
         title: "B.Eng. Computer Science & Engineering, ",
         meta: "VTU",
+        category: "VTU",
         description: "Gained skills in developing software systems at the Visvesvaraya Technological University.",
         dates: "August 2018 – July 2022",
       },
@@ -282,6 +297,8 @@ export const aboutSections: ContentSectionData[] = [
   {
     id: "my-journey",
     label: "My Journey",
+    supportsCardView: true,
+    seeMore: true,
     items: [
       {
         id: "where-it-started",
@@ -394,9 +411,4 @@ export const aboutSections: ContentSectionData[] = [
       },
     ],
   },
-];
-
-export const homeTabs = [
-  { id: "work" as const, label: "Work" },
-  { id: "about" as const, label: "About" },
 ];

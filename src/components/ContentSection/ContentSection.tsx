@@ -1,22 +1,19 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { Callout } from "@/components/Callout/Callout";
+import { ContentRow } from "@/components/ContentRow/ContentRow";
 import {
   ListItem,
   type ChevronOrientation,
 } from "@/components/ListItem/ListItem";
-import { NoteCards } from "@/components/NoteCards/NoteCards";
-import { ProjectCard } from "@/components/ProjectCard/ProjectCard";
 import { RichText } from "@/components/RichText/RichText";
 import type {
   ContentSectionData,
   ListItemBlock,
   ListItemData,
-  NoteCardData,
 } from "@/data/home";
-import { getProjectCard } from "@/data/projectCards";
 import type { WorkViewMode } from "@/components/ViewSwitcher/ViewSwitcher";
 import {
   tabContentBlurVariants,
@@ -120,9 +117,10 @@ export function ContentSection({
   const blurOnTabChange = useTabContentMotion();
   const reduceMotion = useReducedMotion() ?? false;
   const isInitialMount = useRef(true);
+  const [detailsOpen, setDetailsOpen] = useState(false);
   const supportsCardView = section.supportsCardView === true;
   const showCardView = viewMode === "card" && supportsCardView;
-  const showNoteCards = showCardView && section.cardType === "note";
+  const showCompactRows = showCardView && !(section.seeMore && detailsOpen);
   const workViewTransition = getWorkViewTransition(reduceMotion);
   const workViewItemVariants = getWorkViewItemVariants(reduceMotion);
   const workViewCardContainerVariants =
@@ -143,38 +141,6 @@ export function ContentSection({
     isInitialMount.current = false;
   }, []);
 
-  const cardProjects =
-    showCardView && !showNoteCards
-      ? section.items
-          .map((item) => getProjectCard(item.id))
-          .filter((project) => project != null)
-      : [];
-
-  const noteCards: NoteCardData[] = showNoteCards
-    ? section.items.flatMap((item) => {
-        if (
-          !item.cardTitle ||
-          !item.source ||
-          !item.cardDescription ||
-          !item.tone ||
-          !item.href
-        ) {
-          return [];
-        }
-
-        return [
-          {
-            id: item.id,
-            title: item.cardTitle,
-            source: item.source,
-            description: item.cardDescription,
-            href: item.href,
-            tone: item.tone,
-          },
-        ];
-      })
-    : [];
-
   const listContent = section.items.map((item) => (
     <ListItem
       key={item.id}
@@ -183,7 +149,7 @@ export function ContentSection({
       icon={item.icon}
       href={item.href}
       chevronOrientation={chevronOrientation}
-      animateIconOnHover={!showCardView}
+      animateIconOnHover={!showCompactRows}
     >
       {item.blocks?.length ||
       item.paragraphs?.length ||
@@ -195,17 +161,36 @@ export function ContentSection({
   ));
 
   const labelId = `${section.id}-label`;
+  const showSectionLabel = showCardView || showLabel;
 
   return (
     <>
-      {showDivider ? <hr className="content-section-divider" /> : null}
+      {showDivider && !showCardView ? (
+        <hr className="content-section-divider" />
+      ) : null}
       <section
         className="content-section"
         id={section.id}
-        aria-labelledby={showLabel ? labelId : undefined}
-        aria-label={showLabel ? undefined : section.label}
+        aria-labelledby={showSectionLabel ? labelId : undefined}
+        aria-label={showSectionLabel ? undefined : section.label}
       >
-        {showLabel ? (
+        {showCardView ? (
+          <div className="content-section-heading">
+            <h2 className="content-section-label" id={labelId}>
+              {section.label}
+            </h2>
+            {section.seeMore ? (
+              <button
+                type="button"
+                className="content-section-see-more"
+                aria-expanded={detailsOpen}
+                onClick={() => setDetailsOpen((open) => !open)}
+              >
+                {detailsOpen ? "See less" : "See more"}
+              </button>
+            ) : null}
+          </div>
+        ) : showLabel ? (
           <div className="content-section-label-wrap">
             {supportsCardView ? (
               <AnimatePresence mode="popLayout">
@@ -242,44 +227,32 @@ export function ContentSection({
         ) : null}
         {supportsCardView ? (
           <AnimatePresence mode="wait">
-            {showCardView ? (
-              showNoteCards ? (
-                <motion.div
-                  key="card"
-                  className="content-section-notes"
-                  variants={workViewCardContainerVariants}
-                  initial={isInitialMount.current ? false : "initial"}
-                  animate="animate"
-                  exit="exit"
-                >
+            {showCompactRows ? (
+              <motion.div
+                key="card"
+                className="content-section-rows"
+                variants={workViewCardContainerVariants}
+                initial={isInitialMount.current ? false : "initial"}
+                animate="animate"
+                exit="exit"
+              >
+                {section.items.map((item) => (
                   <motion.div
+                    key={item.id}
+                    className="content-section-row"
                     variants={workViewItemVariants}
                     transition={workViewTransition}
                   >
-                    <NoteCards notes={noteCards} />
+                    <ContentRow
+                      title={item.title}
+                      href={item.href}
+                      year={item.year}
+                      category={item.category}
+                      aside={item.aside ?? item.source}
+                    />
                   </motion.div>
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="card"
-                  className="content-section-cards"
-                  variants={workViewCardContainerVariants}
-                  initial={isInitialMount.current ? false : "initial"}
-                  animate="animate"
-                  exit="exit"
-                >
-                  {cardProjects.map((project) => (
-                    <motion.div
-                      key={project.slug}
-                      className="content-section-card"
-                      variants={workViewItemVariants}
-                      transition={workViewTransition}
-                    >
-                      <ProjectCard project={project} />
-                    </motion.div>
-                  ))}
-                </motion.div>
-              )
+                ))}
+              </motion.div>
             ) : (
               <motion.div
                 key="list"

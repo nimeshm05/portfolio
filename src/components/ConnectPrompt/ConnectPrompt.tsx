@@ -7,7 +7,7 @@ import { ConnectMascot } from "@/components/ConnectMascot/ConnectMascot";
 import { AnimatedCoffeeIcon } from "@/components/AnimatedCoffeeIcon/AnimatedCoffeeIcon";
 import { MorphingArrowRight } from "@/components/MorphingArrowRight/MorphingArrowRight";
 import { SocialHoverLink } from "@/components/SocialHoverLink/SocialHoverLink";
-import { connect, socialHoverIcons, type HomeTab } from "@/data/home";
+import { connect, socialHoverIcons } from "@/data/home";
 import {
   PHONE_WAVE_EMOJI,
   excitementSmokeTransition,
@@ -292,7 +292,7 @@ function PullLabelSlot({
   );
 }
 
-export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
+export function ConnectPrompt() {
   const [step, setStep] = useState<ConnectStep>("invite");
   const [phoneLabel, setPhoneLabel] = useState<PhoneLabel>("contact");
   const [socialLabel, setSocialLabel] = useState<SocialLabel>("handles");
@@ -305,7 +305,6 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
   const [mascotBlinkKey, setMascotBlinkKey] = useState(0);
   const isInvite = step === "invite";
   const mascotVisible = mascotPinned || mascotPreview;
-  const previousTabRef = useRef(activeTab);
   const rootRef = useRef<HTMLDivElement>(null);
   const smokingRef = useRef(false);
   const smokeTimeoutRef = useRef(0);
@@ -359,19 +358,6 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
     observer.observe(node);
     return () => observer.disconnect();
   }, [isInvite]);
-
-  useEffect(() => {
-    const previousTab = previousTabRef.current;
-    previousTabRef.current = activeTab;
-
-    if (previousTab === activeTab) {
-      return;
-    }
-
-    if (!isInvite) {
-      reset();
-    }
-  }, [activeTab, isInvite]);
 
   useEffect(() => {
     if (step !== "phone") {

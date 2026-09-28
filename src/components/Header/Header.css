@@ -11,14 +11,10 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
   width: 100%;
-  min-height: 100vh;
-  min-height: 100dvh;
-  padding-top: var(--padding-page);
+  padding-top: calc(var(--padding-page) + var(--padding-page));
   padding-bottom: var(--padding-page);
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
   overflow: visible;
 }
 
@@ -121,11 +117,6 @@
   width: 100%;
 }
 
-@media (max-width: 68.6875rem) {
-  .site-header-profile {
-    justify-content: flex-start;
-    min-height: 0;
-    scroll-snap-align: none;
-    scroll-snap-stop: normal;
-  }
+.home-prompts .link-cue {
+  font-size: var(--text-prompt-size);
 }

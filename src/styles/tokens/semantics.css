@@ -3,6 +3,7 @@
   --color-bg-page: var(--color-neutral-50);
   --color-bg-surface: var(--color-white);
   --color-bg-muted: var(--color-neutral-100);
+  --color-list-item-hover: var(--color-bg-muted);
   --color-banner-bg: var(--color-neutral-100);
   --color-card-hover: var(--color-neutral-50);
   --color-divider: var(--color-neutral-150);
@@ -129,6 +130,14 @@
 
   /* Size roles */
   --icon-size: var(--size-icon);
+  --width-content-row-icon: var(--size-row-icon-well-width);
+  --height-content-row-icon: var(--size-row-icon-well-height);
+  --border-width-content-row-icon: var(--size-row-icon-border);
+  --radius-content-row-icon: var(--radius-row-icon-well);
+  --radius-content-row-icon-face: var(--radius-row-icon-face);
+  --padding-content-row-icon: var(--space-row-icon-well);
+  --padding-content-row-icon-face: var(--space-4);
+  --size-inline-dot: var(--space-6);
   --icon-size-sm: var(--size-icon-sm);
   --icon-size-coffee: var(--size-icon-coffee);
   --icon-size-mascot: var(--size-icon-mascot);
@@ -233,7 +242,10 @@
   --text-display-line-height: var(--line-height-28);
   --text-display-weight: var(--font-weight-semibold);
   --text-subtitle-display-weight: var(--font-weight-regular);
-  --text-subtitle-display-size: var(--font-size-18);
+  --text-subtitle-display-size: var(--font-size-16);
+
+  /* Typography: header prompts */
+  --text-prompt-size: var(--font-size-16);
 
   /* Typography: title (project header) */
   --text-title-family: var(--font-family-serif);
@@ -265,6 +277,16 @@
   --text-label-size: var(--font-size-16);
   --text-label-line-height: var(--line-height-16);
   --text-label-weight: var(--font-weight-medium);
+
+  /* Typography: content section label */
+  --text-section-label-size: var(--font-size-18);
+  --text-section-label-line-height: var(--line-height-tight);
+  --text-section-label-weight: var(--font-weight-medium);
+
+  /* Typography: content row title */
+  --text-row-title-size: var(--font-size-16);
+  --text-row-title-line-height: var(--line-height-24);
+  --text-row-title-weight: var(--font-weight-medium);
 
   /* Typography: list item */
   --text-list-size: var(--font-size-18);

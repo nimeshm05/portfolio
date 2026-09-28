@@ -7,7 +7,7 @@
   width: 100%;
   overflow: visible;
   color: var(--color-text-label);
-  font-size: var(--text-list-size);
+  font-size: var(--text-prompt-size);
   font-weight: var(--text-list-weight);
   line-height: var(--text-list-line-height);
   text-align: center;

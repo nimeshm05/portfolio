@@ -7,14 +7,61 @@
   scroll-margin-top: var(--scroll-margin-section);
 }
 
-.content-section:has(.content-section-cards),
-.content-section:has(.content-section-notes) {
+.content-section:has(.content-section-rows) {
   overflow-x: visible;
 }
 
-.content-section-notes {
+.content-section-heading {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-sm);
   width: 100%;
-  overflow: visible;
+  padding: var(--inset-x);
+  border-bottom: var(--border-width) solid var(--color-border);
+}
+
+.content-section-heading .content-section-label {
+  flex: 1;
+  min-width: 0;
+  color: var(--color-text-subtle);
+  text-align: left;
+  white-space: normal;
+}
+
+.content-section-see-more {
+  flex-shrink: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-text-muted);
+  font-family: inherit;
+  font-size: var(--text-body-size);
+  font-weight: var(--text-body-weight);
+  line-height: var(--text-body-line-height-fixed);
+  cursor: pointer;
+}
+
+.content-section-see-more:hover,
+.content-section-see-more:focus-visible {
+  color: var(--color-text-primary);
+}
+
+.content-section-see-more:focus-visible {
+  outline: var(--border-width) solid var(--color-text-subtle);
+  outline-offset: var(--gap-xs);
+  border-radius: var(--radius-sm);
+}
+
+.content-section-rows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-sm);
+  width: 100%;
+  padding-top: var(--gap-sm);
+}
+
+.content-section-row {
+  width: 100%;
 }
 
 .content-section-label-wrap {
@@ -26,9 +73,9 @@
 
 .content-section-label {
   color: var(--color-text-muted);
-  font-size: var(--text-label-size);
-  font-weight: var(--text-label-weight);
-  line-height: var(--text-label-line-height);
+  font-size: var(--text-section-label-size);
+  font-weight: var(--text-section-label-weight);
+  line-height: var(--text-section-label-line-height);
   white-space: nowrap;
   scroll-margin-top: var(--scroll-margin-section);
 }
@@ -38,19 +85,6 @@
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-}
-
-.content-section-cards {
-  display: flex;
-  flex-direction: column;
-  gap: var(--gap-2xl);
-  width: 100%;
-  overflow: visible;
-}
-
-.content-section-card {
-  width: 100%;
-  overflow: visible;
 }
 
 .content-section-divider {

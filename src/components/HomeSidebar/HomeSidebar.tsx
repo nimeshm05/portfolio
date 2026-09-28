@@ -69,7 +69,7 @@ export function HomeSidebar({ visible, sections }: HomeSidebarProps) {
           items={items}
           activeId={activeId}
           animate
-          aria-label="Work sections"
+          aria-label="Sections"
           onItemClick={(event, item) =>
             scrollToHomeSection(event, item, reduceMotion)
           }
