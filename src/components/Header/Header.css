@@ -89,7 +89,7 @@
   flex-shrink: 0;
   width: var(--rule-width);
   height: var(--border-width);
-  background: var(--color-border-muted);
+  background: var(--color-divider);
 }
 
 .site-header-bio {

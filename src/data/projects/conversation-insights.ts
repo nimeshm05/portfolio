@@ -269,9 +269,14 @@ export const conversationInsights: ProjectPageData = {
             "The deeper issue wasn't just the pattern itself; it was what the pattern was doing to the page. Filters had grown to occupy as much visual space as the data they were meant to scope. That inverted the priority of the dashboard: filters are an affordance to control what data is visible, not the content users came to see. Once filtering started competing with the charts and table for attention, the product was asking users to work through the tool before they could get to the information.",
           ],
         },
-        imageSrc: asset("learnings/old-filters.png"),
-        imageAlt:
-          "Early filter toolbar with stacked chips that became hard to manage during complex investigations",
+        media: [
+          {
+            src: asset("learnings/old-filters.png"),
+            alt: "Early filter toolbar with stacked chips that became hard to manage during complex investigations",
+            frame: "section",
+            framed: false,
+          },
+        ],
       },
       {
         id: "gap-in-discovery",
