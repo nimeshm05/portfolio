@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  Children,
-  Fragment,
-  type ReactNode,
-} from "react";
+import { Children, Fragment, type ReactNode } from "react";
 import Image from "next/image";
 import type { BioParagraph } from "@/data/home";
 import { PageEnterItem } from "@/components/PageEnter/PageEnter";
@@ -43,36 +39,42 @@ export function Header({
               />
             </div>
           </PageEnterItem>
-          <div className="site-header-details">
-            <div className="site-header-info">
-              <PageEnterItem as="h1" className="site-header-name">
-                {name}
-                <span className="site-header-name-rule" aria-hidden="true" />
-              </PageEnterItem>
-              <div className="site-header-bio">
-                {bio.map((paragraph) => (
-                  <p key={paragraph[0]} className="site-header-bio-paragraph">
-                    {paragraph.map((line, index) => (
-                      <Fragment key={line}>
-                        {index > 0 ? <br /> : null}
-                        <PageEnterItem as="span" className="site-header-bio-line">
-                          {line}
-                        </PageEnterItem>
-                      </Fragment>
-                    ))}
-                  </p>
-                ))}
+          <div className="site-header-info">
+            <div className="site-header-lead">
+              <div className="site-header-intro">
+                <PageEnterItem as="h1" className="site-header-name">
+                  {name}
+                </PageEnterItem>
+                <div className="site-header-bio">
+                  {bio.map((paragraph) => (
+                    <p key={paragraph[0]} className="site-header-bio-paragraph">
+                      {paragraph.map((line, index) => (
+                        <Fragment key={line}>
+                          {index > 0 ? <br /> : null}
+                          <PageEnterItem as="span" className="site-header-bio-line">
+                            {line}
+                          </PageEnterItem>
+                        </Fragment>
+                      ))}
+                    </p>
+                  ))}
+                </div>
               </div>
+              {children ? (
+                <div className="home-prompts">
+                  {Children.map(children, (child, index) => (
+                    <PageEnterItem key={index} className="home-prompt-enter">
+                      {child}
+                    </PageEnterItem>
+                  ))}
+                </div>
+              ) : null}
             </div>
-            {children ? (
-              <div className="home-prompts">
-                {Children.map(children, (child, index) => (
-                  <PageEnterItem key={index} className="home-prompt-enter">
-                    {child}
-                  </PageEnterItem>
-                ))}
-              </div>
-            ) : null}
+            <PageEnterItem
+              as="span"
+              className="site-header-name-rule"
+              aria-hidden
+            />
           </div>
           {bottom}
         </div>

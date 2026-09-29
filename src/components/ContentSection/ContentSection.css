@@ -43,7 +43,7 @@
 .content-section-cards {
   display: flex;
   flex-direction: column;
-  gap: var(--gap-2xl);
+  gap: var(--gap-content-section-cards);
   width: 100%;
   overflow: visible;
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { ConnectPrompt } from "@/components/ConnectPrompt/ConnectPrompt";
 import { ContentSection } from "@/components/ContentSection/ContentSection";
 import { Header } from "@/components/Header/Header";
@@ -28,7 +28,6 @@ import {
   workSections,
   type HomeTab,
 } from "@/data/home";
-import { useHomeSectionSnap } from "@/motion/homeSectionSnap";
 import { useHomeSidebarVisibility } from "@/motion/homeSidebarVisibility";
 import {
   TabContentMotionProvider,
@@ -38,7 +37,6 @@ import {
 import "./HomePage.css";
 
 export function HomePage() {
-  const [pageEl, setPageEl] = useState<HTMLDivElement | null>(null);
   const [contentEl, setContentEl] = useState<HTMLDivElement | null>(null);
   const [activeTab, setActiveTab] = useState<HomeTab>("work");
   const [workViewMode, setWorkViewMode] = useState<WorkViewMode>("card");
@@ -49,19 +47,9 @@ export function HomePage() {
   const homeSidebarVisible = useHomeSidebarVisibility(contentEl, {
     enabled: homeSidebarEnabled,
   });
-  useHomeSectionSnap(pageEl);
-  const reduceMotion = useReducedMotion() ?? false;
-
-  const handleCueSelect = (tab: HomeTab) => {
-    setActiveTab(tab);
-    pageEl?.querySelector(".home-lower")?.scrollIntoView({
-      behavior: reduceMotion ? "auto" : "smooth",
-      block: "start",
-    });
-  };
 
   return (
-    <div className="home-page" ref={setPageEl}>
+    <div className="home-page">
       <ViewportEdgeBlur />
       <HomeSidebar
         visible={homeSidebarEnabled && homeSidebarVisible}
@@ -75,16 +63,7 @@ export function HomePage() {
           avatarAlt={profile.avatarAlt}
         >
           <ConnectPrompt activeTab={activeTab} />
-          <LinkCue
-            label="Resume"
-            icon="arrow-up-right"
-            href={resume.href}
-          />
-          <LinkCue
-            label="Work"
-            icon="arrow-down"
-            onSelect={() => handleCueSelect("work")}
-          />
+          <LinkCue label="Resume" icon="arrow-up-right" href={resume.href} />
         </Header>
         <PageEnterGroup className="home-lower">
           <PageEnterGroup className="home-main">
