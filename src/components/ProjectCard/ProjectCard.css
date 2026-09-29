@@ -22,7 +22,7 @@
 .project-card-title {
   min-width: 0;
   color: var(--color-text-primary);
-  font-size: var(--text-list-size);
+  font-size: var(--text-body-size);
   font-weight: var(--text-list-weight);
   line-height: var(--text-body-line-height-fixed);
   letter-spacing: var(--letter-spacing-body);
@@ -38,7 +38,7 @@
 
 .project-card-description {
   margin: 0;
-  color: var(--color-text-label);
+  color: var(--color-text-subtle);
   font-size: var(--text-body-size);
   font-weight: var(--text-body-weight);
   line-height: var(--text-body-line-height-fixed);
