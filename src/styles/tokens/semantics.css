@@ -86,6 +86,8 @@
   --padding-card-chip-block: var(--space-4);
   --padding-card-chip-inline: var(--space-12);
   --gap-card-chips: var(--space-8);
+  --gap-card-copy: var(--space-4);
+  --gap-card-footer: var(--space-20);
   --radius-card-chip: var(--radius-4);
   --color-card-chip-bg: var(--color-neutral-100);
   --color-card-chip-bg-hover: var(--color-neutral-200);

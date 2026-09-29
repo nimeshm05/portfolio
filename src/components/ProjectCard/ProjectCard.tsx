@@ -12,9 +12,6 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
   const content = (
     <>
-      <div className="project-card-header">
-        <span className="project-card-title">{project.title}</span>
-      </div>
       <ProjectBanner
         src={project.bannerSrc}
         alt={project.bannerAlt}
@@ -22,7 +19,10 @@ export function ProjectCard({ project }: ProjectCardProps) {
         variant="card"
       />
       <div className="project-card-footer">
-        <p className="project-card-description">{project.description}</p>
+        <div className="project-card-copy">
+          <span className="project-card-title">{project.title}</span>
+          <p className="project-card-description">{project.description}</p>
+        </div>
         {project.chips.length ? (
           <ul className="project-card-chips">
             {project.chips.map((chip) => (

@@ -1,7 +1,7 @@
 .project-card {
   display: flex;
   flex-direction: column;
-  gap: var(--gap-sm);
+  gap: var(--gap-md);
   width: 100%;
   padding-block: var(--padding-card-block);
   padding-inline: 0;
@@ -12,11 +12,11 @@
   /* box-shadow: var(--shadow-card); */
 }
 
-.project-card-header {
+.project-card-copy {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  gap: var(--gap-card-copy);
   width: 100%;
-  /* padding-inline: var(--padding-card-inline); */
 }
 
 .project-card-title {
@@ -31,7 +31,7 @@
 .project-card-footer {
   display: flex;
   flex-direction: column;
-  gap: var(--gap-md);
+  gap: var(--gap-card-footer);
   width: 100%;
   /* padding-inline: var(--padding-card-inline); */
 }
