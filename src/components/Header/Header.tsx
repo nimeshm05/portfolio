@@ -5,8 +5,8 @@ import {
   Fragment,
   type ReactNode,
 } from "react";
-import Image from "next/image";
 import type { BioParagraph } from "@/data/home";
+import { JellyAvatar } from "@/components/JellyAvatar/JellyAvatar";
 import { PageEnterItem } from "@/components/PageEnter/PageEnter";
 import "./Header.css";
 
@@ -31,18 +31,10 @@ export function Header({
     <header className="site-header">
       <div className="site-header-profile">
         <div className="site-header-profile-content">
-          <PageEnterItem className="site-header-avatar-enter">
-            <div className="site-header-avatar">
-              <Image
-                className="site-header-avatar-image"
-                src={avatarSrc}
-                alt={avatarAlt}
-                width={60}
-                height={60}
-                priority
-              />
-            </div>
-          </PageEnterItem>
+          {/* not part of the text stagger: the jelly drops in on its own once the text has entered */}
+          <div className="site-header-avatar-enter">
+            <JellyAvatar src={avatarSrc} alt={avatarAlt} />
+          </div>
           <div className="site-header-details">
             <div className="site-header-info">
               <PageEnterItem as="h1" className="site-header-name">
