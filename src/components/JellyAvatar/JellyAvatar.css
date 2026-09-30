@@ -1,0 +1,68 @@
+.jelly-avatar {
+  /* Room around the 80px body for stretching and jumping; the layout box stays 80px. */
+  --jelly-overflow: 70px;
+  --jelly-octagon: polygon(29.3% 0, 70.7% 0, 100% 29.3%, 100% 70.7%, 70.7% 100%, 29.3% 100%, 0 70.7%, 0 29.3%);
+
+  position: relative;
+  display: block;
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  flex-shrink: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 24%;
+  background: transparent;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.jelly-avatar:active {
+  cursor: grabbing;
+}
+
+.jelly-avatar:focus-visible {
+  outline: var(--border-width) solid var(--color-text-subtle);
+  outline-offset: var(--space-4);
+}
+
+.jelly-avatar-still {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  clip-path: var(--jelly-octagon);
+  transition: opacity 160ms ease-out;
+  pointer-events: none;
+}
+
+.jelly-avatar-canvas {
+  position: absolute;
+  inset: calc(-1 * var(--jelly-overflow));
+  width: calc(100% + 2 * var(--jelly-overflow));
+  height: calc(100% + 2 * var(--jelly-overflow));
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 160ms ease-out;
+}
+
+.jelly-avatar[data-ready="true"] .jelly-avatar-canvas {
+  opacity: 1;
+}
+
+.jelly-avatar[data-ready="true"] .jelly-avatar-still {
+  opacity: 0;
+}
+
+/* Reduced motion / no WebGL: a small, quiet hop of the still photo. */
+.jelly-avatar[data-hopping="true"] .jelly-avatar-still {
+  animation: jelly-avatar-hop 220ms ease-out;
+}
+
+@keyframes jelly-avatar-hop {
+  50% {
+    transform: translateY(-3px);
+  }
+}

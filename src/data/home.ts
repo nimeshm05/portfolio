@@ -47,7 +47,7 @@ export type ContentSectionData = {
 
 export const profile = {
   name: "@nimesh.mohanakrishnan",
-  avatarSrc: "/assets/profile.svg",
+  avatarSrc: "/assets/profile-jelly.webp",
   avatarAlt: "Portrait of Nimesh Mohanakrishnan",
   bioByTab: {
     work: [
