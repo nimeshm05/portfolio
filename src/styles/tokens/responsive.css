@@ -9,6 +9,7 @@
     --scroll-margin-section: var(--space-80);
     --offset-banner-inline: 0;
     --offset-banner-bleed: 0;
+    --offset-home-main-top: 0;
     --content-width-home: var(--layout-content-width-home);
     --content-width-about: var(--layout-content-width-about);
     --content-width-project: var(--layout-content-width-project);
