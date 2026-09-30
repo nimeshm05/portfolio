@@ -32,12 +32,14 @@ const JUMP_SPEED = 6.4;
 const ANCHOR_K = 70; // spring back to home (x / z)
 const ANCHOR_C = 7;
 const MAX_RISE_SPEED = 7.8; // a little above a jump's launch speed
+const DROP_START_SPEED = 9; // entrance drop is thrown down, not just released (faster fall, same gravity)
+const DROP_BOUNCE_SPEED = 3.2; // rebound cap after the entrance drop (~12px bounce)
 const MAX_RISE = 1.35; // highest the centre may travel (54px at 80px)
 const HOLD_K = 160; // vertical pin while held
 const HOLD_C = 14;
 const MAX_PULL = 1.5; // world units the grabbed skin may travel (60px at 80px)
 const GRAB_RADIUS = 0.85;
-const OCTAGON_R = 1 / Math.cos(Math.PI / 8); // flat-to-flat width of exactly 2 units
+const DISC_R = 1; // diameter of exactly 2 units
 const HALF_DEPTH = 0.6;
 const ROUND = 0.26;
 
@@ -81,30 +83,10 @@ function qmat(q: Quat): number[] {
   ];
 }
 
-// ---------- the rest shape: a rounded, extruded octagon ----------
-function octagonSdf(): (x: number, y: number, z: number) => number {
-  const V: [number, number][] = [];
-  for (let i = 0; i < 8; i++) {
-    const a = Math.PI / 8 + (i / 8) * Math.PI * 2;
-    V.push([Math.sin(a) * OCTAGON_R, Math.cos(a) * OCTAGON_R]);
-  }
-  const sd2 = (px: number, py: number) => {
-    let d = Infinity;
-    let s = 1;
-    for (let i = 0, j = V.length - 1; i < V.length; j = i, i++) {
-      const [ax, ay] = V[i];
-      const [bx, by] = V[j];
-      const ex = bx - ax, ey = by - ay, wx = px - ax, wy = py - ay;
-      const t = Math.max(0, Math.min(1, (wx * ex + wy * ey) / (ex * ex + ey * ey)));
-      const qx = wx - ex * t, qy = wy - ey * t;
-      d = Math.min(d, qx * qx + qy * qy);
-      const c1 = py >= ay, c2 = py < by, c3 = ex * wy > ey * wx;
-      if ((c1 && c2 && c3) || (!c1 && !c2 && !c3)) s = -s;
-    }
-    return s * Math.sqrt(d);
-  };
+// ---------- the rest shape: a rounded, extruded disc ----------
+function discSdf(): (x: number, y: number, z: number) => number {
   return (x, y, z) => {
-    const wx = sd2(x, y) + ROUND;
+    const wx = Math.hypot(x, y) - DISC_R + ROUND;
     const wy = Math.abs(z) - HALF_DEPTH + ROUND;
     return Math.min(Math.max(wx, wy), 0) + Math.hypot(Math.max(wx, 0), Math.max(wy, 0)) - ROUND;
   };
@@ -162,8 +144,8 @@ out vec2 vQ;
 void main(){ vQ = aQ; gl_Position = uProj * vec4(uRect.xy + aQ*uRect.zw, -2.0, 1.0); }`;
 const FS_SHADOW = `#version 300 es
 precision mediump float;
-in vec2 vQ; uniform float uAlpha; out vec4 o;
-void main(){ float a = uAlpha * (1. - smoothstep(0.2, 1., length(vQ))); o = vec4(0.,0.,0.,a); }`;
+in vec2 vQ; uniform float uAlpha; uniform vec3 uTint; out vec4 o;
+void main(){ float a = uAlpha * (1. - smoothstep(0.2, 1., length(vQ))); o = vec4(uTint * a, a); }`;
 
 function compile(gl: WebGL2RenderingContext, vs: string, fs: string) {
   const mk = (type: number, src: string) => {
@@ -191,6 +173,8 @@ export class JellyEngine {
   private readonly shadowProg: WebGLProgram;
   private readonly vao: WebGLVertexArrayObject;
   private readonly shadowVao: WebGLVertexArrayObject;
+  // redraw on theme change so the shadow strength follows it
+  private readonly themeObserver = new MutationObserver(() => this.wake());
   private readonly vbo: WebGLBuffer;
   private readonly tex: WebGLTexture;
   private readonly indexCount: number;
@@ -227,6 +211,7 @@ export class JellyEngine {
   private ready = false;
   private destroyed = false;
   private readonly unitsPerPx: number;
+  private riseCap = MAX_RISE_SPEED;
 
   constructor(opts: JellyEngineOptions) {
     this.opts = opts;
@@ -261,8 +246,8 @@ export class JellyEngine {
       }
     }
 
-    // --- project each direction onto the octagon surface
-    const sdf = octagonSdf();
+    // --- project each direction onto the disc surface
+    const sdf = discSdf();
     const q = (this.q = new Float32Array(N * 3));
     for (let i = 0; i < N; i++) {
       const [dx, dy, dz] = dirs[i];
@@ -352,6 +337,7 @@ export class JellyEngine {
     this.vbo = vbo;
     this.tex = tex;
     this.shadowVao = svao;
+    this.themeObserver.observe(document.documentElement, { attributeFilter: ["data-theme"] });
     gl.bindVertexArray(vao);
     gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
     gl.bufferData(gl.ARRAY_BUFFER, this.interleaved, gl.DYNAMIC_DRAW);
@@ -431,6 +417,7 @@ export class JellyEngine {
         w.push(t * t * (3 - 2 * t));
       }
     }
+    this.riseCap = MAX_RISE_SPEED;
     this.grab = { ids, w, wsum: w.reduce((a, b) => a + b, 0), target: [hx, hy, hz], want: [hx, hy, hz], hit: [hx, hy, hz], from: [wx, wy] };
     this.wake();
     return true;
@@ -471,6 +458,26 @@ export class JellyEngine {
     }
     this.jumpCooldown = 0.25;
     this.grounded = false;
+    this.riseCap = MAX_RISE_SPEED;
+    this.wake();
+  }
+
+  /** Entrance: place the body just above the canvas' top edge and let it fall home, bouncing a little. */
+  dropIn() {
+    const { x, q, v } = this;
+    const lift = this.homePx()[1] * this.unitsPerPx + 1.1;
+    for (let i = 0; i < this.N; i++) {
+      x[i * 3] = q[i * 3];
+      x[i * 3 + 1] = q[i * 3 + 1] + lift;
+      x[i * 3 + 2] = q[i * 3 + 2];
+    }
+    v.fill(0);
+    for (let i = 0; i < this.N; i++) v[i * 3 + 1] = -DROP_START_SPEED;
+    this.rot = [0, 0, 0, 1];
+    this.grab = null;
+    this.grounded = false;
+    this.riseCap = DROP_BOUNCE_SPEED;
+    this.render();
     this.wake();
   }
 
@@ -483,6 +490,7 @@ export class JellyEngine {
   destroy() {
     this.destroyed = true;
     this.stop();
+    this.themeObserver.disconnect();
     const gl = this.gl;
     gl.deleteTexture(this.tex);
     gl.deleteProgram(this.prog);
@@ -529,8 +537,14 @@ export class JellyEngine {
   };
 
   private toWorld(clientX: number, clientY: number): [number, number] {
-    const r = this.opts.canvas.getBoundingClientRect();
-    return [(clientX - (r.left + r.width / 2)) * this.unitsPerPx, -(clientY - (r.top + r.height / 2)) * this.unitsPerPx];
+    const r = this.opts.canvas.getBoundingClientRect(), [hx, hy] = this.homePx();
+    return [(clientX - (r.left + hx)) * this.unitsPerPx, -(clientY - (r.top + hy)) * this.unitsPerPx];
+  }
+
+  /** Home (the avatar box's centre) in canvas CSS px. The canvas is positioned against the box. */
+  private homePx(): [number, number] {
+    const c = this.opts.canvas, half = this.opts.boxPx / 2;
+    return [half - c.offsetLeft, half - c.offsetTop];
   }
 
   // ---------- physics ----------
@@ -604,7 +618,7 @@ export class JellyEngine {
     py /= N;
     let limY = my;
     if (!held) {
-      if (limY > MAX_RISE_SPEED) limY = MAX_RISE_SPEED;
+      if (limY > this.riseCap) limY = this.riseCap;
       if (py > MAX_RISE && limY > 0) limY = 0;
     }
     const shiftY = limY - my;
@@ -741,14 +755,16 @@ export class JellyEngine {
     }
 
     const c = this.opts.canvas;
-    const hw = (c.clientWidth / 2) * this.unitsPerPx, hh = (c.clientHeight / 2) * this.unitsPerPx;
-    // orthographic, looking straight down -z; the rest body is centred on the canvas
-    const proj = new Float32Array([1 / hw, 0, 0, 0, 0, 1 / hh, 0, 0, 0, 0, -0.1, 0, 0, 0, 0, 1]);
+    const W = c.clientWidth, H = c.clientHeight, [hx, hy] = this.homePx();
+    // orthographic, looking straight down -z; home sits at the avatar box's centre (the canvas may overhang unevenly)
+    const sx = 2 / (W * this.unitsPerPx), sy = 2 / (H * this.unitsPerPx);
+    const proj = new Float32Array([sx, 0, 0, 0, 0, sy, 0, 0, 0, 0, -0.1, 0, (2 * hx) / W - 1, 1 - (2 * hy) / H, 0, 1]);
     gl.viewport(0, 0, c.width, c.height);
     gl.clearColor(0, 0, 0, 0);
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-    // contact shadow: shrinks and fades as the body leaves the floor
+    // contact shadow: shrinks and fades as the body leaves the floor; a soft white glow on a dark page
+    const dark = document.documentElement.dataset.theme === "dark";
     const lift = Math.max(0, minY - this.floorY);
     const fade = Math.max(0, 1 - lift / 1.6);
     gl.disable(gl.DEPTH_TEST);
@@ -757,7 +773,8 @@ export class JellyEngine {
     gl.useProgram(this.shadowProg);
     gl.uniformMatrix4fv(gl.getUniformLocation(this.shadowProg, "uProj"), false, proj);
     gl.uniform4f(gl.getUniformLocation(this.shadowProg, "uRect"), (x0 + x1) / 2, this.floorY + 0.02, ((x1 - x0) / 2) * (0.75 + 0.2 * fade), 0.13);
-    gl.uniform1f(gl.getUniformLocation(this.shadowProg, "uAlpha"), 0.22 * fade * fade);
+    gl.uniform1f(gl.getUniformLocation(this.shadowProg, "uAlpha"), (dark ? 0.16 : 0.22) * fade * fade);
+    gl.uniform3f(gl.getUniformLocation(this.shadowProg, "uTint"), dark ? 1 : 0, dark ? 1 : 0, dark ? 1 : 0);
     gl.bindVertexArray(this.shadowVao);
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
 

@@ -8,6 +8,12 @@ const PAGE_ENTER_BLUR = "blur(8px)";
 
 export const pageEnterEase = [0.16, 1, 0.3, 1] as const;
 
+/**
+ * When the home avatar drops in: the header's ~10 staggered text items have
+ * started by ~0.2s and, with this ease-out, are mostly settled ~0.7s later.
+ */
+export const AVATAR_DROP_DELAY_MS = 900;
+
 function enterTransition(index: number) {
   return {
     delay: index * PAGE_ENTER_STAGGER_S,

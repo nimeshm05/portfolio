@@ -31,9 +31,10 @@ export function Header({
     <header className="site-header">
       <div className="site-header-profile">
         <div className="site-header-profile-content">
-          <PageEnterItem className="site-header-avatar-enter">
+          {/* not part of the text stagger: the jelly drops in on its own once the text has entered */}
+          <div className="site-header-avatar-enter">
             <JellyAvatar src={avatarSrc} alt={avatarAlt} />
-          </PageEnterItem>
+          </div>
           <div className="site-header-details">
             <div className="site-header-info">
               <PageEnterItem as="h1" className="site-header-name">

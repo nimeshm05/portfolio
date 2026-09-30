@@ -1,7 +1,6 @@
 .jelly-avatar {
   /* Room around the 80px body for stretching and jumping; the layout box stays 80px. */
   --jelly-overflow: 70px;
-  --jelly-octagon: polygon(29.3% 0, 70.7% 0, 100% 29.3%, 100% 70.7%, 70.7% 100%, 29.3% 100%, 0 70.7%, 0 29.3%);
 
   position: relative;
   display: block;
@@ -10,16 +9,22 @@
   flex-shrink: 0;
   padding: 0;
   border: 0;
-  border-radius: 24%;
+  border-radius: 50%;
   background: transparent;
-  cursor: grab;
-  touch-action: none;
+  cursor: pointer;
+  touch-action: manipulation;
   user-select: none;
   -webkit-user-select: none;
   -webkit-tap-highlight-color: transparent;
 }
 
-.jelly-avatar:active {
+/* Pulling only exists on the jelly; the still photo leaves the page scrollable underneath. */
+.jelly-avatar[data-view="jelly"] {
+  cursor: grab;
+  touch-action: none;
+}
+
+.jelly-avatar[data-view="jelly"]:active {
   cursor: grabbing;
 }
 
@@ -33,27 +38,29 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  clip-path: var(--jelly-octagon);
-  transition: opacity 160ms ease-out;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 240ms ease-out;
   pointer-events: none;
 }
 
 .jelly-avatar-canvas {
+  /* --jelly-overflow-top is set from JS during the entrance, reaching up to the viewport's top edge */
+  --jelly-top: max(var(--jelly-overflow), var(--jelly-overflow-top, 0px));
+
   position: absolute;
-  inset: calc(-1 * var(--jelly-overflow));
+  top: calc(-1 * var(--jelly-top));
+  left: calc(-1 * var(--jelly-overflow));
   width: calc(100% + 2 * var(--jelly-overflow));
-  height: calc(100% + 2 * var(--jelly-overflow));
+  height: calc(100% + var(--jelly-overflow) + var(--jelly-top));
   pointer-events: none;
   opacity: 0;
   transition: opacity 160ms ease-out;
 }
 
-.jelly-avatar[data-ready="true"] .jelly-avatar-canvas {
+.jelly-avatar[data-view="jelly"] .jelly-avatar-canvas,
+.jelly-avatar[data-view="still"] .jelly-avatar-still {
   opacity: 1;
-}
-
-.jelly-avatar[data-ready="true"] .jelly-avatar-still {
-  opacity: 0;
 }
 
 /* Reduced motion / no WebGL: a small, quiet hop of the still photo. */
