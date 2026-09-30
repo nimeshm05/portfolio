@@ -106,6 +106,10 @@ html:has(.home-page) body {
     scroll-snap-stop: normal;
   }
 
+  .home-lower {
+    scroll-margin-top: var(--space-80);
+  }
+
   .home-nav {
     flex-wrap: wrap;
     gap: var(--gap-md);

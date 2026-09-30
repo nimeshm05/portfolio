@@ -108,6 +108,7 @@
   .site-header-profile {
     justify-content: flex-start;
     min-height: 0;
+    padding-bottom: 0;
     scroll-snap-align: none;
     scroll-snap-stop: normal;
   }
