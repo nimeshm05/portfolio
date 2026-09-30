@@ -19,6 +19,7 @@ import {
   type WorkViewMode,
 } from "@/components/ViewSwitcher/ViewSwitcher";
 import { LinkCue } from "@/components/LinkCue/LinkCue";
+import { SocialIconRow } from "@/components/SocialIconRow/SocialIconRow";
 import { ViewportEdgeBlur } from "@/components/ViewportEdgeBlur/ViewportEdgeBlur";
 import {
   aboutSections,
@@ -75,6 +76,7 @@ export function HomePage() {
           avatarAlt={profile.avatarAlt}
         >
           <ConnectPrompt activeTab={activeTab} />
+          <SocialIconRow />
           <LinkCue
             label="Resume"
             icon="arrow-up-right"
@@ -84,6 +86,7 @@ export function HomePage() {
             label="Work"
             icon="arrow-down"
             onSelect={() => handleCueSelect("work")}
+            hideOnMobile
           />
         </Header>
         <PageEnterGroup className="home-lower">

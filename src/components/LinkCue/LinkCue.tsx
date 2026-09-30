@@ -12,6 +12,7 @@ type LinkCueProps = {
   href?: string;
   onSelect?: () => void;
   tone?: "default" | "accent";
+  hideOnMobile?: boolean;
 };
 
 export function LinkCue({
@@ -20,11 +21,13 @@ export function LinkCue({
   href,
   onSelect,
   tone = "default",
+  hideOnMobile = false,
 }: LinkCueProps) {
   const [isHovered, setIsHovered] = useState(false);
   const className = [
     "link-cue",
     tone === "accent" ? "link-cue--accent" : null,
+    hideOnMobile ? "link-cue--mobile-hidden" : null,
   ]
     .filter(Boolean)
     .join(" ");

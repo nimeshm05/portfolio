@@ -113,3 +113,19 @@
     scroll-snap-stop: normal;
   }
 }
+
+/* social icons stand in for the connect prompt on mobile */
+.home-prompt-enter:has(.social-icon-row) {
+  display: none;
+}
+
+@media (max-width: 39.9375rem) {
+  .home-prompt-enter:has(.social-icon-row) {
+    display: block;
+  }
+
+  .home-prompt-enter:has(.connect-prompt),
+  .home-prompt-enter:has(.link-cue--mobile-hidden) {
+    display: none;
+  }
+}
