@@ -20,6 +20,7 @@ export function SocialIconRow() {
               ? { target: "_blank", rel: "noopener noreferrer" }
               : {})}
           >
+            {/* eslint-disable-next-line @next/next/no-img-element -- small decorative icon */}
             <img className="social-icon-row-image" src={"iconSrc" in link ? link.iconSrc : undefined} alt="" />
           </a>
         );

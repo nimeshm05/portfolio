@@ -6,7 +6,7 @@ import {
   useContext,
   useLayoutEffect,
   useMemo,
-  useState,
+  useSyncExternalStore,
   type ReactNode,
 } from "react";
 import {
@@ -31,13 +31,29 @@ function readDocumentTheme(): Theme {
   return isTheme(current) ? current : resolveInitialTheme();
 }
 
+/** The document's data-theme attribute is the source of truth; React subscribes to it. */
+function subscribeToDocumentTheme(onChange: () => void) {
+  const observer = new MutationObserver(onChange);
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["data-theme"],
+  });
+  return () => observer.disconnect();
+}
+
+function getServerTheme(): Theme {
+  return "light";
+}
+
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>("light");
+  const theme = useSyncExternalStore(
+    subscribeToDocumentTheme,
+    readDocumentTheme,
+    getServerTheme,
+  );
 
   useLayoutEffect(() => {
-    const initial = readDocumentTheme();
-    setThemeState(initial);
-    applyTheme(initial);
+    applyTheme(readDocumentTheme());
 
     const media = window.matchMedia("(prefers-color-scheme: dark)");
     const onSystemThemeChange = () => {
@@ -45,9 +61,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         return;
       }
 
-      const next = readSystemTheme();
-      setThemeState(next);
-      applyTheme(next);
+      applyTheme(readSystemTheme());
     };
 
     media.addEventListener("change", onSystemThemeChange);
@@ -57,7 +71,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const toggleTheme = useCallback(() => {
     const current = readDocumentTheme();
     const next: Theme = current === "dark" ? "light" : "dark";
-    setThemeState(next);
     applyTheme(next);
     persistTheme(next);
   }, []);

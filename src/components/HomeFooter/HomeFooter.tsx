@@ -63,18 +63,18 @@ type AnimationPhase = "waiting" | "playing" | "done";
 
 export function HomeFooter() {
   const footerRef = useRef<HTMLElement>(null);
-  const [animationPhase, setAnimationPhase] = useState<AnimationPhase>("waiting");
+  const [animationDone, setAnimationDone] = useState(false);
   const prefersReducedMotion = useReducedMotion();
   const inView = useInView(footerRef, {
     once: true,
     amount: 0.4,
   });
 
-  useEffect(() => {
-    if (inView && animationPhase === "waiting") {
-      setAnimationPhase("playing");
-    }
-  }, [inView, animationPhase]);
+  const animationPhase: AnimationPhase = animationDone
+    ? "done"
+    : inView
+      ? "playing"
+      : "waiting";
 
   useEffect(() => {
     if (animationPhase !== "playing") {
@@ -82,7 +82,7 @@ export function HomeFooter() {
     }
 
     const timer = window.setTimeout(() => {
-      setAnimationPhase("done");
+      setAnimationDone(true);
     }, TOTAL_ANIMATION_MS);
 
     return () => window.clearTimeout(timer);

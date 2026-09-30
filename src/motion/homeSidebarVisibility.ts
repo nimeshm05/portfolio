@@ -30,7 +30,6 @@ export function useHomeSidebarVisibility(
 
   useEffect(() => {
     if (!enabled || !target?.isConnected) {
-      setVisible(false);
       return;
     }
 
@@ -71,5 +70,5 @@ export function useHomeSidebarVisibility(
     };
   }, [enabled, target, thresholdPx]);
 
-  return visible;
+  return enabled && Boolean(target?.isConnected) && visible;
 }

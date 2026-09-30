@@ -32,6 +32,7 @@ export function SocialHoverLink({
     >
       {iconSrc ? (
         <span className="social-hover-mark" aria-hidden="true">
+          {/* eslint-disable-next-line @next/next/no-img-element -- small decorative icon */}
           <img className="social-hover-mark-image" src={iconSrc} alt="" />
         </span>
       ) : null}

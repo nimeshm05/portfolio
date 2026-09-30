@@ -6,6 +6,7 @@ import {
   motion,
   useMotionValue,
   useReducedMotion,
+  type MotionValue,
 } from "motion/react";
 import {
   mascotEnterPose,
@@ -19,6 +20,29 @@ import {
 } from "@/motion/connectPrompt";
 import "./ConnectMascot.css";
 
+function playBlink(
+  leftScaleY: MotionValue<number>,
+  rightScaleY: MotionValue<number>,
+  left: boolean,
+  right: boolean,
+) {
+  const frames = [1, mascotWinkScaleY, 1] as const;
+  const options = {
+    duration: mascotWinkTransition.duration,
+    ease: mascotWinkTransition.ease,
+    times: [...mascotWinkTransition.times],
+  };
+
+  if (left) {
+    leftScaleY.set(1);
+    animate(leftScaleY, [...frames], options);
+  }
+  if (right) {
+    rightScaleY.set(1);
+    animate(rightScaleY, [...frames], options);
+  }
+}
+
 type ConnectMascotProps = {
   eyesTilted: boolean;
   blinkKey: number;
@@ -31,23 +55,6 @@ export function ConnectMascot({ eyesTilted, blinkKey }: ConnectMascotProps) {
   const eyeRotate =
     reduceMotion || !eyesTilted ? 0 : mascotEyeTiltDeg;
 
-  const playBlink = (left: boolean, right: boolean) => {
-    const frames = [1, mascotWinkScaleY, 1] as const;
-    const options = {
-      duration: mascotWinkTransition.duration,
-      ease: mascotWinkTransition.ease,
-      times: [...mascotWinkTransition.times],
-    };
-
-    if (left) {
-      leftScaleY.set(1);
-      animate(leftScaleY, [...frames], options);
-    }
-    if (right) {
-      rightScaleY.set(1);
-      animate(rightScaleY, [...frames], options);
-    }
-  };
 
   useEffect(() => {
     if (blinkKey === 0 || reduceMotion) {
@@ -55,8 +62,8 @@ export function ConnectMascot({ eyesTilted, blinkKey }: ConnectMascotProps) {
       return;
     }
 
-    playBlink(false, true);
-  }, [blinkKey, reduceMotion, rightScaleY]);
+    playBlink(leftScaleY, rightScaleY, false, true);
+  }, [blinkKey, reduceMotion, leftScaleY, rightScaleY]);
 
   useEffect(() => {
     if (reduceMotion) {
@@ -64,7 +71,7 @@ export function ConnectMascot({ eyesTilted, blinkKey }: ConnectMascotProps) {
     }
 
     const intervalId = window.setInterval(() => {
-      playBlink(true, true);
+      playBlink(leftScaleY, rightScaleY, true, true);
     }, mascotIdleBlinkMs);
 
     return () => {

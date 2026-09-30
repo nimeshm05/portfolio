@@ -151,29 +151,38 @@ function WordPullText({
    * Parent step AnimatePresence can suppress nested mount `initial`→`animate`.
    * Drive the pull-up from state after paint (same pattern as ListItem chevrons).
    */
-  const [pulled, setPulled] = useState(!animateEntrance);
+  const entranceKey = `${animateEntrance}:${text}`;
+  const [pullState, setPullState] = useState({
+    key: entranceKey,
+    pulled: !animateEntrance,
+  });
+
+  if (pullState.key !== entranceKey) {
+    setPullState({ key: entranceKey, pulled: !animateEntrance });
+  }
+
+  const pulled =
+    pullState.key === entranceKey ? pullState.pulled : !animateEntrance;
   const exitDuration =
     phoneWordTransition.duration +
     phoneWordStaggerSeconds * Math.max(words.length - 1, 0);
 
   useEffect(() => {
     if (!animateEntrance) {
-      setPulled(true);
       return;
     }
 
-    setPulled(false);
     let innerFrameId = 0;
     const outerFrameId = requestAnimationFrame(() => {
       innerFrameId = requestAnimationFrame(() => {
-        setPulled(true);
+        setPullState({ key: entranceKey, pulled: true });
       });
     });
     return () => {
       cancelAnimationFrame(outerFrameId);
       cancelAnimationFrame(innerFrameId);
     };
-  }, [text, animateEntrance]);
+  }, [entranceKey, animateEntrance]);
 
   return (
     <motion.span
@@ -294,8 +303,11 @@ function PullLabelSlot({
 
 export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
   const [step, setStep] = useState<ConnectStep>("invite");
-  const [phoneLabel, setPhoneLabel] = useState<PhoneLabel>("contact");
-  const [socialLabel, setSocialLabel] = useState<SocialLabel>("handles");
+  const [labelSwappedStep, setLabelSwappedStep] = useState<ConnectStep | null>(
+    null,
+  );
+  const [previousStep, setPreviousStep] = useState(step);
+  const [previousTab, setPreviousTab] = useState(activeTab);
   const [yesHovered, setYesHovered] = useState(false);
   const [burstExitMode, setBurstExitMode] =
     useState<ExcitementExitMode>("reverse");
@@ -304,18 +316,20 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
   const [optionHovered, setOptionHovered] = useState(false);
   const [mascotBlinkKey, setMascotBlinkKey] = useState(0);
   const isInvite = step === "invite";
+  const phoneLabel: PhoneLabel =
+    step === "phone" && labelSwappedStep === "phone" ? "soon" : "contact";
+  const socialLabel: SocialLabel =
+    step === "social" && labelSwappedStep === "social" ? "bye" : "handles";
   const mascotVisible = mascotPinned || mascotPreview;
-  const previousTabRef = useRef(activeTab);
   const rootRef = useRef<HTMLDivElement>(null);
   const smokingRef = useRef(false);
   const smokeTimeoutRef = useRef(0);
   const mascotPinnedRef = useRef(false);
   const winkNavigateTimeoutRef = useRef(0);
 
+  // State-only reset, safe to call during render; ref cleanup runs in the
+  // isInvite effect below once the step is back to "invite".
   const reset = () => {
-    smokingRef.current = false;
-    mascotPinnedRef.current = false;
-    window.clearTimeout(winkNavigateTimeoutRef.current);
     setYesHovered(false);
     setBurstExitMode("reverse");
     setMascotPinned(false);
@@ -325,6 +339,18 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
     setStep("invite");
   };
 
+  if (previousStep !== step) {
+    setPreviousStep(step);
+    setLabelSwappedStep(null);
+  }
+
+  if (previousTab !== activeTab) {
+    setPreviousTab(activeTab);
+    if (!isInvite) {
+      reset();
+    }
+  }
+
   useEffect(() => {
     return () => {
       window.clearTimeout(smokeTimeoutRef.current);
@@ -333,10 +359,14 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
   }, []);
 
   useEffect(() => {
-    if (burstExitMode === "smoke" && yesHovered) {
-      setYesHovered(false);
+    if (!isInvite) {
+      return;
     }
-  }, [burstExitMode, yesHovered]);
+
+    smokingRef.current = false;
+    mascotPinnedRef.current = false;
+    window.clearTimeout(winkNavigateTimeoutRef.current);
+  }, [isInvite]);
 
   useEffect(() => {
     if (isInvite) {
@@ -361,43 +391,12 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
   }, [isInvite]);
 
   useEffect(() => {
-    const previousTab = previousTabRef.current;
-    previousTabRef.current = activeTab;
-
-    if (previousTab === activeTab) {
+    if (step !== "phone" && step !== "social") {
       return;
     }
 
-    if (!isInvite) {
-      reset();
-    }
-  }, [activeTab, isInvite]);
-
-  useEffect(() => {
-    if (step !== "phone") {
-      setPhoneLabel("contact");
-      return;
-    }
-
-    setPhoneLabel("contact");
     const timeoutId = window.setTimeout(() => {
-      setPhoneLabel("soon");
-    }, LABEL_SWAP_DELAY_MS);
-
-    return () => {
-      window.clearTimeout(timeoutId);
-    };
-  }, [step]);
-
-  useEffect(() => {
-    if (step !== "social") {
-      setSocialLabel("handles");
-      return;
-    }
-
-    setSocialLabel("handles");
-    const timeoutId = window.setTimeout(() => {
-      setSocialLabel("bye");
+      setLabelSwappedStep(step);
     }, LABEL_SWAP_DELAY_MS);
 
     return () => {
@@ -414,7 +413,7 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
           <span
             className={`connect-prompt-invite-label${yesHovered || burstExitMode === "smoke" ? " is-excited" : ""}`}
           >
-            <AnimatePresence>
+            <AnimatePresence custom={burstExitMode}>
               {yesHovered ? (
                 <ConnectExcitement
                   key="excitement"
@@ -479,6 +478,7 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
                       if (yesHovered) {
                         smokingRef.current = true;
                         setBurstExitMode("smoke");
+                        setYesHovered(false);
                         window.clearTimeout(smokeTimeoutRef.current);
                         smokeTimeoutRef.current = window.setTimeout(() => {
                           smokingRef.current = false;

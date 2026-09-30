@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion, usePresenceData, useReducedMotion } from "motion/react";
 import {
   excitementLegStaggerSeconds,
   excitementLegTransition,
@@ -29,7 +29,9 @@ const undrawn = { pathLength: 0, opacity: 1 };
 
 export function ConnectExcitement({ exitMode }: ConnectExcitementProps) {
   const reduceMotion = useReducedMotion() ?? false;
-  const smokeOut = exitMode === "smoke";
+  // While exiting, AnimatePresence's `custom` carries the latest exit mode.
+  const presenceExitMode = usePresenceData() as ExcitementExitMode | undefined;
+  const smokeOut = (presenceExitMode ?? exitMode) === "smoke";
 
   return (
     <motion.span

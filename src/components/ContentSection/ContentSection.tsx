@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { Callout } from "@/components/Callout/Callout";
 import {
@@ -119,7 +119,16 @@ export function ContentSection({
 }: ContentSectionProps) {
   const blurOnTabChange = useTabContentMotion();
   const reduceMotion = useReducedMotion() ?? false;
-  const isInitialMount = useRef(true);
+  /**
+   * Until the first list↔card switch, mount views without an enter animation.
+   * Tracked in state (not a ref) so it's safe to read during render.
+   */
+  const [initialViewMode] = useState(viewMode);
+  const [viewModeChanged, setViewModeChanged] = useState(false);
+  if (!viewModeChanged && viewMode !== initialViewMode) {
+    setViewModeChanged(true);
+  }
+  const isInitialMount = !viewModeChanged;
   const supportsCardView = section.supportsCardView === true;
   const showCardView = viewMode === "card" && supportsCardView;
   const showNoteCards = showCardView && section.cardType === "note";
@@ -135,13 +144,7 @@ export function ContentSection({
   const workViewVisible = reduceMotion
     ? { opacity: 1 }
     : { opacity: 1, filter: "blur(0px)" };
-  const listEnterInitial = isInitialMount.current
-    ? workViewVisible
-    : "initial";
-
-  useEffect(() => {
-    isInitialMount.current = false;
-  }, []);
+  const listEnterInitial = isInitialMount ? workViewVisible : "initial";
 
   const cardProjects =
     showCardView && !showNoteCards
@@ -248,7 +251,7 @@ export function ContentSection({
                   key="card"
                   className="content-section-notes"
                   variants={workViewCardContainerVariants}
-                  initial={isInitialMount.current ? false : "initial"}
+                  initial={isInitialMount ? false : "initial"}
                   animate="animate"
                   exit="exit"
                 >
@@ -264,7 +267,7 @@ export function ContentSection({
                   key="card"
                   className="content-section-cards"
                   variants={workViewCardContainerVariants}
-                  initial={isInitialMount.current ? false : "initial"}
+                  initial={isInitialMount ? false : "initial"}
                   animate="animate"
                   exit="exit"
                 >

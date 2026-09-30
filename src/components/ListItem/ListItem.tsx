@@ -109,9 +109,10 @@ export function ListItem({
       : chevronRotate,
   );
 
+  const displayedChevronAngle = blurOnTabChange ? chevronAngle : chevronRotate;
+
   useEffect(() => {
     if (!blurOnTabChange) {
-      setChevronAngle(chevronRotate);
       return;
     }
 
@@ -177,7 +178,7 @@ export function ListItem({
       className="list-item-chevron"
       aria-hidden="true"
       initial={false}
-      animate={{ rotate: isExternalLink ? 0 : chevronAngle }}
+      animate={{ rotate: isExternalLink ? 0 : displayedChevronAngle }}
       transition={CHEVRON_TRANSITION}
     >
       {isExpandable ? (
