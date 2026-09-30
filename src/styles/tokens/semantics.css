@@ -108,7 +108,7 @@
   --opacity-control-inactive: var(--opacity-subtle);
 
   /* Photo slideshow */
-  --width-photo-slideshow: var(--layout-content-width-home);
+  --width-photo-slideshow: var(--layout-photo-slideshow-width);
   --gap-photo-slideshow: var(--space-40);
   --gap-photo-slideshow-nav: var(--space-40);
   --padding-photo-slideshow-y: var(--space-80);
@@ -207,6 +207,8 @@
   --content-width-project: var(--layout-content-width-project);
   --content-width: var(--content-width-home);
   --width-project-banner: var(--layout-project-banner-width);
+  --width-section-media: var(--layout-section-media-width);
+  --width-home-cards: var(--layout-home-cards-width);
   --width-data-attribute-cards: var(--layout-data-attribute-cards-width);
   --max-width-prose: var(--layout-prose-width);
   --max-width-bio: var(--layout-bio-width);

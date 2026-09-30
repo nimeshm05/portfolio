@@ -49,16 +49,24 @@ function resolveSectionMediaType(
   return VIDEO_EXTENSIONS.has(getMediaExtension(src)) ? "video" : "image";
 }
 
+function sectionMediaClassName(contained?: boolean) {
+  return contained
+    ? "project-section-media project-section-media--contained"
+    : "project-section-media";
+}
+
 function SectionMedia({
   src,
   alt,
   imageType,
   framed = true,
+  contained = false,
 }: {
   src: string;
   alt: string;
   imageType?: "image" | "video";
   framed?: boolean;
+  contained?: boolean;
 }) {
   const type = resolveSectionMediaType(src, imageType);
   const media =
@@ -70,7 +78,7 @@ function SectionMedia({
     );
 
   return (
-    <div className="project-section-media">
+    <div className={sectionMediaClassName(contained)}>
       {framed ? <div className="project-section-media-frame">{media}</div> : media}
     </div>
   );
@@ -105,6 +113,7 @@ function ExpandableItemMedia({ item }: { item: ExpandableItemContent }) {
             alt={entry.alt}
             imageType={entry.type}
             framed={entry.framed}
+            contained={entry.contained}
           />
         ) : (
           <ProjectBanner
@@ -231,7 +240,7 @@ export function ProjectPage({ project }: ProjectPageProps) {
               ))}
             </div>
             {project.product.workflow ? (
-              <div className="project-section-media">
+              <div className={sectionMediaClassName(project.product.imageContained)}>
                 <ArchitectureWorkflow steps={project.product.workflow.steps} />
               </div>
             ) : project.product.imageSrc ? (
@@ -239,6 +248,7 @@ export function ProjectPage({ project }: ProjectPageProps) {
                 src={project.product.imageSrc}
                 alt={project.product.imageAlt ?? ""}
                 imageType={project.product.imageType}
+                contained={project.product.imageContained}
               />
             ) : null}
           </ProjectSection>
@@ -285,6 +295,7 @@ export function ProjectPage({ project }: ProjectPageProps) {
                 src={project.problem.imageSrc}
                 alt={project.problem.imageAlt ?? ""}
                 imageType={project.problem.imageType}
+                contained={project.problem.imageContained}
               />
             ) : null}
           </ProjectSection>
@@ -309,6 +320,7 @@ export function ProjectPage({ project }: ProjectPageProps) {
                 src={project.studyDesign.imageSrc}
                 alt={project.studyDesign.imageAlt ?? ""}
                 imageType={project.studyDesign.imageType}
+                contained={project.studyDesign.imageContained}
               />
             ) : null}
           </ProjectSection>
@@ -431,6 +443,7 @@ export function ProjectPage({ project }: ProjectPageProps) {
                 src={project.constraints.imageSrc}
                 alt={project.constraints.imageAlt ?? ""}
                 imageType={project.constraints.imageType}
+                contained={project.constraints.imageContained}
               />
             ) : null}
           </ProjectSection>

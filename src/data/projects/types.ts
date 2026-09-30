@@ -19,6 +19,8 @@ export type ProjectMedia = {
   frame?: "section";
   /** When false, section media keeps the outer container and omits the inner frame. */
   framed?: boolean;
+  /** When true, section media stays within the text column instead of widening on large screens. */
+  contained?: boolean;
 };
 
 export type SourceCard = {
@@ -92,6 +94,8 @@ export type ProjectSectionWithMedia = {
   imageSrc?: string;
   imageAlt?: string;
   imageType?: "image" | "video";
+  /** When true, the section media stays within the text column instead of widening on large screens. */
+  imageContained?: boolean;
   workflow?: ArchitectureWorkflowData;
 };
 

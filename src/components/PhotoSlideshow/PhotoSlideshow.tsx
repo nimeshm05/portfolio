@@ -115,7 +115,7 @@ export function PhotoSlideshow({ onClose }: PhotoSlideshowProps) {
                 src={item.src}
                 alt={item.alt}
                 fill
-                sizes="(max-width: 44rem) 100vw, 44rem"
+                sizes="(max-width: 46rem) 100vw, 60vw"
                 priority
               />
             </motion.div>

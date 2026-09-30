@@ -52,6 +52,7 @@ export const architectureAgent: ProjectPageData = {
       'The architecture agent is an AI agent scans your code and proposes fixes called Architecture Decision Records (ADRs) — like standardizing testing or configurations. The developer accepts, rejects, or archives each one.',
       "Accepted ADRs then need to reach your Context Files — the docs that AI coding tools actually read before writing code. That happens via a pull request, which a human still reviews and merges.",
     ],
+    imageContained: true,
     workflow: {
       steps: [
         {

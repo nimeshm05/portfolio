@@ -77,13 +77,14 @@
 }
 
 .list-item-panel-collapse-inner {
-  overflow: hidden;
+  /* Clip vertically only, so breakout media isn't cut off at the sides */
+  clip-path: inset(0 -100vw);
   min-height: 0;
 }
 
 /* Once open, stop clipping so nested banners/media keep their full height */
 .list-item-shell.is-open .list-item-panel-collapse-inner {
-  overflow: visible;
+  clip-path: none;
   min-height: min-content;
 }
 

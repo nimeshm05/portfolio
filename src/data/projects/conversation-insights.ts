@@ -49,6 +49,7 @@ export const conversationInsights: ProjectPageData = {
       "Investigating an issue was a big hurdle because it required moving between reports, AWS Connect, and follow-up discussions with RozieAI stakeholders to piece together the operational context. Users therefore depended on a fragmented, people-dependent workflow to move from identifying an issue to understanding it, slowing how quickly they could make operational decisions.",
     ],
     imageSrc: asset("problem.mp4"),
+    imageContained: true,
     imageAlt:
       "Diagram showing fragmented investigation across Outlook, Teams, Excel, Word, and AWS Connect",
   },
@@ -255,6 +256,7 @@ export const conversationInsights: ProjectPageData = {
             alt: "Early chart visualization that users bypassed in favor of direct conversation records",
             frame: "section",
             framed: false,
+            contained: true,
           },
         ],
       },
@@ -275,6 +277,7 @@ export const conversationInsights: ProjectPageData = {
             alt: "Early filter toolbar with stacked chips that became hard to manage during complex investigations",
             frame: "section",
             framed: false,
+            contained: true,
           },
         ],
       },
