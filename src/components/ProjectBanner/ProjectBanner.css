@@ -19,7 +19,7 @@
 
 /* Hero / full-width page banners only — not inline case-study media */
 @media (min-width: 68.75rem) {
-  .project-banner:not(.project-banner--card):not(.project-banner--hug) {
+  .project-banner:not(.project-banner--card) {
     width: min(
       var(--width-project-banner),
       calc(100vw - 2 * var(--inset-x))
@@ -63,13 +63,6 @@
   height: auto;
 }
 
-.project-banner--hug {
-  align-self: stretch;
-  width: 100%;
-  max-width: 100%;
-  margin-inline: 0;
-  overflow: visible;
-}
 
 .project-banner--card {
   align-self: stretch;
@@ -87,7 +80,7 @@
 }
 
 @media (max-width: 68.6875rem) {
-  .project-banner:not(.project-banner--card):not(.project-banner--hug):not(
+  .project-banner:not(.project-banner--card):not(
       .project-banner--no-background
     ) {
     padding: var(--gap-lg);

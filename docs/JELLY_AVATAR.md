@@ -24,10 +24,8 @@ The home-page profile photo, rebuilt as a soft round jelly. Replaces the old rou
 | `src/components/JellyAvatar/JellyAvatar.tsx` | React wrapper: pointer/keyboard handling, lazy-loads the engine, fallbacks. |
 | `src/components/JellyAvatar/JellyAvatar.css` | Box, overflow canvas, circular clip for the still image, focus ring. |
 | `src/components/Header/Header.tsx` / `.css` | Uses `<JellyAvatar>`; avatar wrapper gets `z-index: 1` so the jelly draws over the name. |
-| `src/data/home.ts` | `avatarSrc` → `/assets/profile-jelly.webp` (14 KB, cropped from the photo embedded in `profile.svg`). |
+| `src/data/home.ts` | `avatarSrc` → `/assets/profile-jelly.webp` (14 KB, cropped from the old `profile.svg`, since removed). |
 | `src/styles/tokens/primitives.css` | `--size-avatar` 4.5rem → 5rem. |
-
-`public/assets/profile.svg` (3.5 MB) is no longer used by the home page but was left in place.
 
 ## How the engine works
 
@@ -67,4 +65,4 @@ Verified in headless Chromium (SwiftShader WebGL2) with the real component in Re
 ## Ideas parked for later
 
 - Sound on jump (existing Cuelume presets).
-- Eyes/expressions like the Connect mascot, or a blink.
+- Eyes/expressions, or a blink.

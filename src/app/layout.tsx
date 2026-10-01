@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Caveat, Google_Sans, Inter, Newsreader, Libre_Baskerville, Cormorant_Garamond, Cardo } from "next/font/google";
+import { Caveat, Google_Sans, Inter, Libre_Baskerville, Cardo } from "next/font/google";
 import localFont from "next/font/local";
 import { ClickSound } from "@/components/ClickSound/ClickSound";
 import { SiteControls } from "@/components/SiteControls/SiteControls";
@@ -55,20 +55,8 @@ const caveat = Caveat({
   weight: ["500", "700"],
 });
 
-const newsreader = Newsreader({
-  variable: "--font-newsreader",
-  subsets: ["latin"],
-  axes: ["opsz"],
-});
-
 const libreBaskerville = Libre_Baskerville({
   variable: "--font-libre-baskerville",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
-
-const cormorantGaramond = Cormorant_Garamond({
-  variable: "--font-cormorant-garamond",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
@@ -90,7 +78,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${openRunde.variable} ${googleSans.variable} ${inter.variable} ${caveat.variable} ${newsreader.variable} ${libreBaskerville.variable} ${cormorantGaramond.variable} ${cardo.variable}`}
+      className={`${openRunde.variable} ${googleSans.variable} ${inter.variable} ${caveat.variable} ${libreBaskerville.variable} ${cardo.variable}`}
       suppressHydrationWarning
     >
       <head>

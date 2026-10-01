@@ -2,7 +2,6 @@
   /* Colors (oklch) */
   --color-white: oklch(1 0 0);
   --color-black: oklch(0.1822 0 0);
-  --color-neutral-50: oklch(0.9916 0 0);
   --color-neutral-100: oklch(0.9743 0 0);
   --color-neutral-150: oklch(0.9534 0 0);
   --color-neutral-200: oklch(0.9327 0 0);
@@ -14,9 +13,7 @@
   --color-neutral-800: oklch(0.27 0.00 0);
   --color-neutral-850: oklch(0.24 0 0);
   --color-neutral-900: oklch(0.20 0.00 0);
-  --color-neutral-950: oklch(0.14 0.00 0);
   --color-lime-50: oklch(0.96 0.04 137.06);
-  --color-lime-400: oklch(66.88% 0.138 137.06);
   --color-lime-900: oklch(0.24 0.055 137.06);
   --color-coffee-500: oklch(63.008% 0.17108 48.174);
   --color-green-100: oklch(0.9644 0.0652 141.03);
@@ -24,10 +21,6 @@
   --color-green-400: oklch(0.8120 0.1769 141.10);
   --color-green-500: oklch(73.03% 0.1944 147.44);
   --color-green-600: oklch(0.6488 0.1577 155.88);
-  --color-blue-100: oklch(0.8544 0.0716 262.19);
-  --color-blue-200: oklch(0.8062 0.0971 262.43);
-  --color-blue-400: oklch(0.6836 0.1666 261.56);
-  --color-blue-600: oklch(0.5235 0.2231 260.77);
   --color-agent-chip-bg: oklch(0.2905 0.047 150.4);
   --color-agent-chip-text: oklch(0.8792 0.278 139.1);
   --color-purple-700: oklch(0.4115 0.218 301.36);
@@ -45,7 +38,6 @@
   --space-16: 1rem;
   --space-20: 1.25rem;
   --space-24: 1.5rem;
-  --space-28: 1.75rem;
   --space-32: 2rem;
   --space-40: 2.5rem;
   --space-48: 3rem;
@@ -70,7 +62,6 @@
   --font-size-20: 1.25rem;
   --font-size-22: 1.375rem;
   --font-size-26: 1.625rem;
-  --font-size-28: 1.75rem;
   --font-size-32: 2rem;
   --font-size-footer: 2.5rem;
   --font-size-footer-sm: 1.7rem;
@@ -80,7 +71,6 @@
   --line-height-16: 1.125;
   --line-height-24: 1.5;
   --line-height-28: 1.625;
-  --line-height-32: 2;
   --line-height-tight: 1.4;
   --line-height-body: 1.55;
 
@@ -103,7 +93,6 @@
 
   /* Z-index */
   --z-index-1: 1;
-  --z-index-10: 10;
   --z-index-20: 20;
 
   /* Motion */
@@ -117,20 +106,17 @@
   --size-icon: 1.25rem;
   --size-icon-sm: 1rem;
   --size-icon-coffee: 1.15rem;
-  --size-icon-mascot: 1.5rem;
   --size-social-hover-mark: 2.2rem;
   --size-avatar: 5rem;
   --size-tab-container: 12rem;
   --size-table-column-min: 12rem;
   --size-hairline: 0.0625rem;
-  --size-border-callout: 0.25rem;
   --size-border-card: 0.05rem;
   --size-data-attribute-stripe: 0.3rem;
   --size-data-attribute-rule-width: 3.3125rem;
   --size-data-attribute-rule-height: 0.165rem;
   --size-sidebar-width: 11.25rem;
   --size-viewport-edge-blur: 5rem;
-  --size-control-min: 2.75rem;
   --size-architecture-workflow-height: 18.5625rem;
   --size-connect-excitement-width: 5.625rem;
   --size-connect-excitement-height: 3.75rem;
@@ -170,7 +156,6 @@
   --layout-section-media-width: clamp(34rem, 52vw, 84rem);
   --layout-home-cards-width: clamp(48rem, 44vw, 64rem);
   --layout-data-attribute-cards-width: clamp(63.75rem, 64vw, 100rem);
-  --layout-photo-slideshow-width: clamp(46rem, 60vw, 96rem);
   --layout-prose-width: 34rem;
   --layout-bio-width: 34rem;
   --layout-project-header-info-width: 23.75rem;

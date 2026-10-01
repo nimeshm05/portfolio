@@ -7,9 +7,9 @@ import { SunAnimatedIcon } from "@/components/AnimatedIcon/icons/sun";
 import { Icon } from "@/components/Icon/Icon";
 import type { AnimatedIconHandle } from "@/components/AnimatedIcon/types";
 import {
-  getPhotoSlideshowSwapVariants,
-  photoSlideshowSwapTransition,
-} from "@/motion/photoSlideshow";
+  getIconSwapVariants,
+  iconSwapTransition,
+} from "@/motion/iconSwap";
 import { useTheme } from "@/theme/ThemeProvider";
 
 export function ThemeToggle() {
@@ -17,7 +17,7 @@ export function ThemeToggle() {
   const reduceMotion = useReducedMotion() ?? false;
   const iconRef = useRef<AnimatedIconHandle>(null);
   const nextTheme = theme === "dark" ? "light" : "dark";
-  const variants = getPhotoSlideshowSwapVariants(reduceMotion);
+  const variants = getIconSwapVariants(reduceMotion);
   const isDark = theme === "dark";
 
   return (
@@ -45,7 +45,7 @@ export function ThemeToggle() {
           initial="initial"
           animate="animate"
           exit="exit"
-          transition={photoSlideshowSwapTransition}
+          transition={iconSwapTransition}
         >
           {isDark ? (
             reduceMotion ? (

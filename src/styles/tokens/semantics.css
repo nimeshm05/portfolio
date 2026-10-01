@@ -4,7 +4,6 @@
   --color-bg-surface: var(--color-white);
   --color-bg-muted: var(--color-neutral-100);
   --color-banner-bg: var(--color-neutral-900);
-  --color-card-hover: var(--color-neutral-50);
   --color-divider: var(--color-neutral-200);
 
   /* Text */
@@ -36,22 +35,15 @@
   --color-note-interface-accent: var(--color-green-400);
   --color-note-interface-copy: var(--color-green-200);
   --color-note-interface-backing: var(--color-green-100);
-  --color-note-self-surface: var(--color-blue-600);
-  --color-note-self-accent: var(--color-blue-400);
-  --color-note-self-copy: var(--color-blue-200);
-  --color-note-self-backing: var(--color-blue-100);
   --color-note-title: var(--color-white);
   --color-note-description: var(--color-white);
 
   /* Borders */
   --color-border: var(--color-neutral-200);
-  --color-border-muted: var(--color-neutral-100);
-  --color-table-heading-border: var(--color-neutral-200);
   --color-table-row-border: var(--color-neutral-150);
   --border-width: var(--size-hairline);
   --border-card-width: var(--size-border-card);
   --border-card: var(--border-card-width) solid var(--color-border);
-  --callout-border-width: var(--size-border-callout);
 
   /* Spacing roles */
   --gap-2xs: var(--space-2);
@@ -73,7 +65,6 @@
   --padding-page: var(--space-60);
   --padding-project-top: var(--space-120);
   --inset-x: var(--space-12);
-  --padding-callout-quote: var(--space-28);
   --gap-callout-cite: var(--space-16);
   --gap-callout-copy: var(--space-40);
   --gap-callout-rule: var(--space-40);
@@ -93,47 +84,28 @@
   --color-card-chip-bg-hover: var(--color-neutral-200);
   --color-card-chip-text: var(--color-text-label);
   --padding-inset-panel: var(--space-20);
-  --padding-inset-list-inline: var(--space-48);
   --source-index-width: 2ch;
   --gap-source-index: var(--gap-sm);
   --color-source-index: var(--color-text-muted);
   --content-table-column-min: var(--size-table-column-min);
   --scrollbar-size: var(--space-8);
-  --offset-banner-inline: var(--space-120);
-  --offset-banner-bleed: var(--space-160);
   --offset-sidebar-left: var(--gap-xl);
   --offset-home-main-top: var(--space-104);
   --scroll-margin-section: var(--gap-page);
   --padding-list-indent: var(--space-24);
   --opacity-control-inactive: var(--opacity-subtle);
 
-  /* Photo slideshow */
-  --width-photo-slideshow: var(--layout-photo-slideshow-width);
-  --gap-photo-slideshow: var(--space-40);
-  --gap-photo-slideshow-nav: var(--space-40);
-  --padding-photo-slideshow-y: var(--space-80);
-  --padding-photo-slideshow-x: var(--inset-x);
-  --padding-photo-slideshow-nav: var(--space-40);
-  --size-control-tap: var(--size-control-min);
-  --radius-photo-slideshow-nav: var(--radius-full);
-  --color-photo-slideshow-overlay: var(--color-bg-page);
-  --color-photo-slideshow-text: var(--color-text-primary);
-  --color-photo-slideshow-nav: var(--color-bg-muted);
-  --text-photo-slideshow-label-size: var(--font-size-32);
-  --text-photo-slideshow-label-weight: var(--font-weight-bold);
-  --text-photo-slideshow-label-line-height: var(--line-height-32);
+  /* Site controls */
   --inset-site-controls: var(--space-24);
   --gap-site-controls: var(--space-4);
   --padding-site-control: var(--space-8);
   --z-viewport-edge-blur: var(--z-index-1);
-  --z-photo-slideshow: var(--z-index-10);
   --z-site-controls: var(--z-index-20);
 
   /* Size roles */
   --icon-size: var(--size-icon);
   --icon-size-sm: var(--size-icon-sm);
   --icon-size-coffee: var(--size-icon-coffee);
-  --icon-size-mascot: var(--size-icon-mascot);
   --icon-size-nav: var(--font-size-15);
   --size-social-hover: var(--size-social-hover-mark);
   --offset-social-hover-y: var(--space-20);
@@ -205,7 +177,6 @@
   --content-width-home: var(--layout-content-width-home);
   --content-width-about: var(--layout-content-width-about);
   --content-width-project: var(--layout-content-width-project);
-  --content-width: var(--content-width-home);
   --width-project-banner: var(--layout-project-banner-width);
   --width-section-media: var(--layout-section-media-width);
   --width-home-cards: var(--layout-home-cards-width);
@@ -312,7 +283,6 @@
   --color-bg-surface: var(--color-neutral-800);
   --color-bg-muted: var(--color-neutral-900);
   --color-banner-bg: var(--color-bg-surface);
-  --color-card-hover: var(--color-neutral-950);
   --color-card-chip-bg: var(--color-bg-surface);
   --color-card-chip-bg-hover: var(--color-neutral-900);
   --color-divider: var(--color-neutral-800);
@@ -329,8 +299,6 @@
 
   /* Borders */
   --color-border: var(--color-neutral-900);
-  --color-border-muted: var(--color-neutral-850);
-  --color-table-heading-border: var(--color-neutral-700);
   --color-table-row-border: var(--color-neutral-850);
 
   /* Shadows */

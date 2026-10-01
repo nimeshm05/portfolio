@@ -15,7 +15,6 @@ export type ProjectMedia = {
   alt: string;
   type?: "image" | "video";
   showBackground?: boolean;
-  hugContent?: boolean;
   frame?: "section";
   /** When false, section media keeps the outer container and omits the inner frame. */
   framed?: boolean;
@@ -65,8 +64,6 @@ export type CalloutQuote = {
   text: string;
   attribution?: string;
   source?: string;
-  designPrinciple?: string;
-  variant?: "quote" | "body";
 };
 
 export type ExpandableItemContent = {
@@ -79,7 +76,6 @@ export type ExpandableItemContent = {
   imageAlt?: string;
   media?: ProjectMedia[];
   visual?: ExpandableVisual;
-  visuals?: ExpandableVisual[];
 };
 
 export type ProjectContentTable = {
@@ -166,7 +162,6 @@ export type ProjectPageData = {
     items?: ExpandableItemContent[];
   };
   calloutTwo?: string;
-  constraints?: ProjectSectionWithMedia;
   earlyDesigns?: {
     eyebrow: string;
     heading: string;

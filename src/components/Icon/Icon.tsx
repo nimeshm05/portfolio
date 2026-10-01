@@ -2,7 +2,6 @@ import type { LucideIcon } from "lucide-react";
 import {
   Activity,
   ArrowDown,
-  ArrowRight,
   ArrowUp,
   ArrowUpRight,
   Bot,
@@ -17,7 +16,6 @@ import {
   Columns4,
   Database,
   FileText,
-  GalleryThumbnails,
   Gauge,
   GitBranch,
   Handshake,
@@ -29,7 +27,6 @@ import {
   NotebookPen,
   PanelsTopLeft,
   Scale,
-  ScanSearch,
   Search,
   Settings,
   SlidersHorizontal,
@@ -65,7 +62,6 @@ export type IconName =
   | "table"
   | "columns-4"
   | "sliders-horizontal"
-  | "scan-search"
   | "scale"
   | "clipboard-list"
   | "sparkles"
@@ -79,12 +75,10 @@ export type IconName =
   | "activity"
   | "type"
   | "arrow-down"
-  | "arrow-right"
   | "arrow-up"
   | "arrow-up-right"
   | "moon"
   | "sun"
-  | "gallery-thumbnails"
   | "x";
 
 const icons: Record<IconName, LucideIcon> = {
@@ -108,7 +102,6 @@ const icons: Record<IconName, LucideIcon> = {
   table: Table,
   "columns-4": Columns4,
   "sliders-horizontal": SlidersHorizontal,
-  "scan-search": ScanSearch,
   scale: Scale,
   "clipboard-list": ClipboardList,
   sparkles: Sparkles,
@@ -122,12 +115,10 @@ const icons: Record<IconName, LucideIcon> = {
   activity: Activity,
   type: Type,
   "arrow-down": ArrowDown,
-  "arrow-right": ArrowRight,
   "arrow-up": ArrowUp,
   "arrow-up-right": ArrowUpRight,
   moon: Moon,
   sun: Sun,
-  "gallery-thumbnails": GalleryThumbnails,
   x: X,
 };
 

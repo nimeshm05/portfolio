@@ -122,7 +122,6 @@ function ExpandableItemMedia({ item }: { item: ExpandableItemContent }) {
             alt={entry.alt}
             type={entry.type}
             showBackground={entry.showBackground}
-            hugContent={entry.hugContent}
           />
         ),
       )}
@@ -141,14 +140,6 @@ function ExpandableItemVisual({ visual }: { visual: ExpandableVisual }) {
   }
 }
 
-function getItemVisuals(item: ExpandableItemContent): ExpandableVisual[] {
-  if (item.visuals?.length) {
-    return item.visuals;
-  }
-
-  return item.visual ? [item.visual] : [];
-}
-
 function ExpandableItemBody({ item }: { item: ExpandableItemContent }) {
   const hasCopy = Boolean(item.content || item.quotes?.length);
 
@@ -162,17 +153,13 @@ function ExpandableItemBody({ item }: { item: ExpandableItemContent }) {
               key={quote.text}
               attribution={quote.attribution}
               source={quote.source}
-              designPrinciple={quote.designPrinciple}
-              variant={quote.variant}
             >
               {quote.text}
             </Callout>
           ))}
         </div>
       ) : null}
-      {getItemVisuals(item).map((visual, index) => (
-        <ExpandableItemVisual key={`${visual.type}-${index}`} visual={visual} />
-      ))}
+      {item.visual ? <ExpandableItemVisual visual={item.visual} /> : null}
       <ExpandableItemMedia item={item} />
     </>
   );
@@ -183,7 +170,6 @@ function hasExpandableItemBody(item: ExpandableItemContent) {
     item.content ||
       item.quotes?.length ||
       item.visual ||
-      item.visuals?.length ||
       getItemMedia(item).length,
   );
 }
@@ -345,7 +331,6 @@ export function ProjectPage({ project }: ProjectPageProps) {
                 alt={entry.alt}
                 type={entry.type}
                 showBackground={entry.showBackground ?? false}
-                hugContent={entry.hugContent}
               />
             ))}
             <div className="project-section-list">
@@ -426,28 +411,6 @@ export function ProjectPage({ project }: ProjectPageProps) {
         ) : null}
 
         {project.calloutTwo ? <Callout>{project.calloutTwo}</Callout> : null}
-
-        {project.constraints ? (
-          <ProjectSection
-            id="constraints"
-            eyebrow={project.constraints.eyebrow}
-            heading={project.constraints.heading}
-          >
-            <div className="project-section-body">
-              {project.constraints.paragraphs.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
-            </div>
-            {project.constraints.imageSrc ? (
-              <SectionMedia
-                src={project.constraints.imageSrc}
-                alt={project.constraints.imageAlt ?? ""}
-                imageType={project.constraints.imageType}
-                contained={project.constraints.imageContained}
-              />
-            ) : null}
-          </ProjectSection>
-        ) : null}
 
         {project.earlyDesigns ? (
           <ProjectSection

@@ -4,7 +4,6 @@ import { useEffect, useRef } from "react";
 import { useReducedMotion } from "motion/react";
 import { Icon, type IconName } from "@/components/Icon/Icon";
 import { ArrowDownAnimatedIcon } from "./icons/arrow-down";
-import { ArrowRightAnimatedIcon } from "./icons/arrow-right";
 import { ArrowUpAnimatedIcon } from "./icons/arrow-up";
 import { ArrowUpRightAnimatedIcon } from "./icons/arrow-up-right";
 import { BotAnimatedIcon } from "./icons/bot";
@@ -22,7 +21,6 @@ const animatedIcons = {
   "code-xml": CodeXmlAnimatedIcon,
   "notebook-pen": NotebookPenAnimatedIcon,
   "arrow-down": ArrowDownAnimatedIcon,
-  "arrow-right": ArrowRightAnimatedIcon,
   "arrow-up": ArrowUpAnimatedIcon,
   "arrow-up-right": ArrowUpRightAnimatedIcon,
   x: XAnimatedIcon,

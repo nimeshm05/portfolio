@@ -3,7 +3,6 @@
 import { Fragment, useEffect, useRef, useState, type ReactNode } from "react";
 import { AnimatePresence, motion, type Transition } from "motion/react";
 import { ConnectExcitement, type ExcitementExitMode } from "@/components/ConnectExcitement/ConnectExcitement";
-import { ConnectMascot } from "@/components/ConnectMascot/ConnectMascot";
 import { AnimatedCoffeeIcon } from "@/components/AnimatedCoffeeIcon/AnimatedCoffeeIcon";
 import { MorphingArrowRight } from "@/components/MorphingArrowRight/MorphingArrowRight";
 import { SocialHoverLink } from "@/components/SocialHoverLink/SocialHoverLink";
@@ -11,7 +10,6 @@ import { connect, socialHoverIcons, type HomeTab } from "@/data/home";
 import {
   PHONE_WAVE_EMOJI,
   excitementSmokeTransition,
-  mascotWinkTransition,
   phoneWaveRotate,
   phoneWaveTransition,
   phoneWordEnter,
@@ -34,7 +32,6 @@ const PHONE_LABEL_SOON = `I'll see you soon my fren ${PHONE_WAVE_EMOJI}`;
 const SOCIAL_LABEL_HANDLES = "My handles:";
 const SOCIAL_LABEL_BYE = `See ya ${PHONE_WAVE_EMOJI}`;
 const LABEL_SWAP_DELAY_MS = 1500;
-const MASCOT_ENABLED = false;
 
 function PromptText({ children }: { children: ReactNode }) {
   return <span className="connect-prompt-text">{children}</span>;
@@ -43,7 +40,6 @@ function PromptText({ children }: { children: ReactNode }) {
 function PromptAction({
   children,
   onClick,
-  onHoverChange,
   onMouseEnter,
   onMouseLeave,
   onFocus,
@@ -52,7 +48,6 @@ function PromptAction({
 }: {
   children: ReactNode;
   onClick: () => void;
-  onHoverChange?: (hovered: boolean) => void;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
   onFocus?: () => void;
@@ -65,22 +60,10 @@ function PromptAction({
       className="connect-prompt-action"
       data-cuelume-press="success"
       onClick={onClick}
-      onMouseEnter={() => {
-        onHoverChange?.(true);
-        onMouseEnter?.();
-      }}
-      onMouseLeave={() => {
-        onHoverChange?.(false);
-        onMouseLeave?.();
-      }}
-      onFocus={() => {
-        onHoverChange?.(true);
-        onFocus?.();
-      }}
-      onBlur={() => {
-        onHoverChange?.(false);
-        onBlur?.();
-      }}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      onFocus={onFocus}
+      onBlur={onBlur}
     >
       {pulse ? (
         <span className="connect-prompt-action-pulse">{children}</span>
@@ -95,12 +78,10 @@ function PromptLink({
   children,
   href,
   iconSrc,
-  onHoverChange,
 }: {
   children: ReactNode;
   href: string;
   iconSrc?: string;
-  onHoverChange?: (hovered: boolean) => void;
 }) {
   return (
     <SocialHoverLink
@@ -108,10 +89,6 @@ function PromptLink({
       href={href}
       iconSrc={iconSrc}
       data-cuelume-press="arrival"
-      onMouseEnter={() => onHoverChange?.(true)}
-      onMouseLeave={() => onHoverChange?.(false)}
-      onFocus={() => onHoverChange?.(true)}
-      onBlur={() => onHoverChange?.(false)}
     >
       {children}
     </SocialHoverLink>
@@ -311,31 +288,20 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
   const [yesHovered, setYesHovered] = useState(false);
   const [burstExitMode, setBurstExitMode] =
     useState<ExcitementExitMode>("reverse");
-  const [mascotPinned, setMascotPinned] = useState(false);
-  const [mascotPreview, setMascotPreview] = useState(false);
-  const [optionHovered, setOptionHovered] = useState(false);
-  const [mascotBlinkKey, setMascotBlinkKey] = useState(0);
   const isInvite = step === "invite";
   const phoneLabel: PhoneLabel =
     step === "phone" && labelSwappedStep === "phone" ? "soon" : "contact";
   const socialLabel: SocialLabel =
     step === "social" && labelSwappedStep === "social" ? "bye" : "handles";
-  const mascotVisible = mascotPinned || mascotPreview;
   const rootRef = useRef<HTMLDivElement>(null);
   const smokingRef = useRef(false);
   const smokeTimeoutRef = useRef(0);
-  const mascotPinnedRef = useRef(false);
-  const winkNavigateTimeoutRef = useRef(0);
 
   // State-only reset, safe to call during render; ref cleanup runs in the
   // isInvite effect below once the step is back to "invite".
   const reset = () => {
     setYesHovered(false);
     setBurstExitMode("reverse");
-    setMascotPinned(false);
-    setMascotPreview(false);
-    setOptionHovered(false);
-    setMascotBlinkKey(0);
     setStep("invite");
   };
 
@@ -354,7 +320,6 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
   useEffect(() => {
     return () => {
       window.clearTimeout(smokeTimeoutRef.current);
-      window.clearTimeout(winkNavigateTimeoutRef.current);
     };
   }, []);
 
@@ -364,8 +329,6 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
     }
 
     smokingRef.current = false;
-    mascotPinnedRef.current = false;
-    window.clearTimeout(winkNavigateTimeoutRef.current);
   }, [isInvite]);
 
   useEffect(() => {
@@ -430,7 +393,6 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
                 node: (
                   <PromptAction
                     pulse
-                    onHoverChange={setOptionHovered}
                     onMouseEnter={() => {
                       if (
                         smokingRef.current ||
@@ -440,7 +402,6 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
                       }
                       setBurstExitMode("reverse");
                       setYesHovered(true);
-                      setMascotPreview(true);
                     }}
                     onMouseLeave={() => {
                       if (smokingRef.current) {
@@ -448,9 +409,6 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
                       }
                       setBurstExitMode("reverse");
                       setYesHovered(false);
-                      if (!mascotPinnedRef.current) {
-                        setMascotPreview(false);
-                      }
                     }}
                     onFocus={() => {
                       if (smokingRef.current) {
@@ -458,7 +416,6 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
                       }
                       setBurstExitMode("reverse");
                       setYesHovered(true);
-                      setMascotPreview(true);
                     }}
                     onBlur={() => {
                       if (smokingRef.current) {
@@ -466,15 +423,8 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
                       }
                       setBurstExitMode("reverse");
                       setYesHovered(false);
-                      if (!mascotPinnedRef.current) {
-                        setMascotPreview(false);
-                      }
                     }}
                     onClick={() => {
-                      mascotPinnedRef.current = true;
-                      setMascotPinned(true);
-                      setOptionHovered(false);
-
                       if (yesHovered) {
                         smokingRef.current = true;
                         setBurstExitMode("smoke");
@@ -510,7 +460,6 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
                 key: "social",
                 node: (
                   <PromptAction
-                    onHoverChange={setOptionHovered}
                     onClick={() => setStep("social")}
                   >
                     Social Media
@@ -521,7 +470,6 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
                 key: "inPerson",
                 node: (
                   <PromptAction
-                    onHoverChange={setOptionHovered}
                     onClick={() => setStep("inPerson")}
                   >
                     In Person
@@ -550,7 +498,6 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
                   <PromptLink
                     href={connect.linkedInHref}
                     iconSrc={socialHoverIcons.linkedin}
-                    onHoverChange={setOptionHovered}
                   >
                     LinkedIn
                   </PromptLink>
@@ -562,7 +509,6 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
                   <PromptLink
                     href={connect.githubHref}
                     iconSrc={socialHoverIcons.github}
-                    onHoverChange={setOptionHovered}
                   >
                     Github
                   </PromptLink>
@@ -574,7 +520,6 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
                   <PromptLink
                     href={connect.xHref}
                     iconSrc={socialHoverIcons.x}
-                    onHoverChange={setOptionHovered}
                   >
                     X
                   </PromptLink>
@@ -586,7 +531,6 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
                   <PromptLink
                     href={connect.mediumHref}
                     iconSrc={socialHoverIcons.medium}
-                    onHoverChange={setOptionHovered}
                   >
                     Medium
                   </PromptLink>
@@ -598,7 +542,6 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
                   <PromptLink
                     href={connect.emailHref}
                     iconSrc={socialHoverIcons.email}
-                    onHoverChange={setOptionHovered}
                   >
                     Email
                   </PromptLink>
@@ -623,17 +566,7 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
                 key: "cool",
                 node: (
                   <PromptAction
-                    onHoverChange={setOptionHovered}
-                    onClick={() => {
-                      setMascotBlinkKey((key) => key + 1);
-                      window.clearTimeout(winkNavigateTimeoutRef.current);
-                      winkNavigateTimeoutRef.current = window.setTimeout(
-                        () => {
-                          setStep("phone");
-                        },
-                        mascotWinkTransition.duration * 1000,
-                      );
-                    }}
+                    onClick={() => setStep("phone")}
                   >
                     Cool
                   </PromptAction>
@@ -643,7 +576,6 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
                 key: "nah",
                 node: (
                   <PromptAction
-                    onHoverChange={setOptionHovered}
                     onClick={() => setStep("phone")}
                   >
                     Nah, something else?
@@ -672,7 +604,6 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
                   <PromptLink
                     href={connect.phoneHref}
                     iconSrc={socialHoverIcons.phone}
-                    onHoverChange={setOptionHovered}
                   >
                     {connect.phoneDisplay}
                   </PromptLink>
@@ -684,7 +615,6 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
                   <PromptLink
                     href={connect.emailHref}
                     iconSrc={socialHoverIcons.email}
-                    onHoverChange={setOptionHovered}
                   >
                     Email
                   </PromptLink>
@@ -730,15 +660,6 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
           </motion.div>
         </AnimatePresence>
       </div>
-      <AnimatePresence>
-        {MASCOT_ENABLED && mascotVisible ? (
-          <ConnectMascot
-            key="mascot"
-            eyesTilted={optionHovered}
-            blinkKey={mascotBlinkKey}
-          />
-        ) : null}
-      </AnimatePresence>
     </div>
   );
 }

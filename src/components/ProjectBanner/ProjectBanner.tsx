@@ -7,8 +7,6 @@ type ProjectBannerProps = {
   type?: "image" | "video";
   showBackground?: boolean;
   variant?: "page" | "card";
-  /** When true, keep the banner inside the content column (no desktop bleed). */
-  hugContent?: boolean;
 };
 
 export function ProjectBanner({
@@ -17,18 +15,17 @@ export function ProjectBanner({
   type = "image",
   showBackground = true,
   variant = "page",
-  hugContent = false,
 }: ProjectBannerProps) {
   const isCard = variant === "card";
   const shouldShowBackground = !isCard && type !== "video" && showBackground;
-  const isHeroMedia = variant === "page" && !hugContent;
+  const isHeroMedia = variant === "page";
   const imageLoading = isHeroMedia ? "eager" : "lazy";
 
   return (
     <div
       className={`project-banner${
         isCard ? " project-banner--card" : ""
-      }${hugContent ? " project-banner--hug" : ""}${
+      }${
         shouldShowBackground ? "" : " project-banner--no-background"
       }`}
     >
