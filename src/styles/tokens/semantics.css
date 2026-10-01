@@ -242,7 +242,7 @@
   /* Typography: title (project header) */
   --text-title-family: var(--font-family-serif);
   --text-title-size: var(--font-size-32);
-  --text-title-line-height: var(--line-height-32);
+  --text-title-line-height: var(--line-height-24);
   --text-title-letter-spacing: var(--letter-spacing-tight);
   --text-title-weight: var(--font-weight-bold);
 

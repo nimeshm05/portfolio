@@ -34,6 +34,5 @@
     --content-width: var(--content-width-home);
     --gap-callout-rule: var(--space-32);
     --text-title-size: var(--font-size-26);
-    --text-title-line-height: var(--line-height-tight);
   }
 }

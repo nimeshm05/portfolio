@@ -142,6 +142,12 @@ export const workSections: ContentSectionData[] = [
     supportsCardView: true,
     items: [
       {
+        id: "knool-2",
+        title: "Knool 2.0: Rethinking the Case Assistant's First Screen",
+        icon: "scale",
+        href: "/work/knool-2",
+      },
+      {
         id: "conversation-insights",
         title: "Conversation Insights",
         icon: "chart-pie",

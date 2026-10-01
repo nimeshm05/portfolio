@@ -79,12 +79,16 @@
 .list-item-panel-collapse-inner {
   /* Clip vertically only, so breakout media isn't cut off at the sides */
   clip-path: inset(0 -100vw);
+  /* clip-path only hides paint; also clip layout overflow so collapsed
+     content doesn't extend the page's scrollable height */
+  overflow-y: clip;
   min-height: 0;
 }
 
 /* Once open, stop clipping so nested banners/media keep their full height */
 .list-item-shell.is-open .list-item-panel-collapse-inner {
   clip-path: none;
+  overflow-y: visible;
   min-height: min-content;
 }
 
