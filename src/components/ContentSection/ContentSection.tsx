@@ -198,6 +198,7 @@ export function ContentSection({
   ));
 
   const labelId = `${section.id}-label`;
+  const heading = section.heading ?? section.label;
 
   return (
     <>
@@ -206,7 +207,7 @@ export function ContentSection({
         className="content-section"
         id={section.id}
         aria-labelledby={showLabel ? labelId : undefined}
-        aria-label={showLabel ? undefined : section.label}
+        aria-label={showLabel ? undefined : heading}
       >
         {showLabel ? (
           <div className="content-section-label-wrap">
@@ -222,7 +223,7 @@ export function ContentSection({
                   exit="exit"
                   transition={workViewTransition}
                 >
-                  {section.label}
+                  {heading}
                 </motion.h2>
               </AnimatePresence>
             ) : blurOnTabChange ? (
@@ -234,11 +235,11 @@ export function ContentSection({
                 animate="animate"
                 transition={tabContentTransition}
               >
-                {section.label}
+                {heading}
               </motion.h2>
             ) : (
               <h2 className="content-section-label" id={labelId}>
-                {section.label}
+                {heading}
               </h2>
             )}
           </div>

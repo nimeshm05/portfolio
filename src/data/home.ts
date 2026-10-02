@@ -37,7 +37,10 @@ export type ContentSectionCardType = "project" | "note";
 
 export type ContentSectionData = {
   id: string;
+  /** Short name, used in the sidebar */
   label: string;
+  /** Section heading on the page; falls back to label */
+  heading?: string;
   items: ListItemData[];
   supportsCardView?: boolean;
   cardType?: ContentSectionCardType;
@@ -123,6 +126,7 @@ export const workSections: ContentSectionData[] = [
   {
     id: "industry-projects",
     label: "Work",
+    heading: "Things I got paid for",
     supportsCardView: true,
     items: [
       {
@@ -148,6 +152,7 @@ export const workSections: ContentSectionData[] = [
   {
     id: "personal-projects",
     label: "Play",
+    heading: "Just for fun, honestly",
     supportsCardView: true,
     items: [
       {
@@ -173,6 +178,7 @@ export const workSections: ContentSectionData[] = [
   {
     id: "writing",
     label: "Notes",
+    heading: "Thinking out loud",
     supportsCardView: true,
     cardType: "note",
     items: [
@@ -206,6 +212,7 @@ export const aboutSections: ContentSectionData[] = [
   {
     id: "past-experience",
     label: "Experience",
+    heading: "Where I've clocked in",
     items: [
       {
         id: "knool",
@@ -252,6 +259,7 @@ export const aboutSections: ContentSectionData[] = [
   {
     id: "education",
     label: "Education",
+    heading: "Where I got schooled",
     items: [
       {
         id: "ms-hcde",
@@ -272,6 +280,7 @@ export const aboutSections: ContentSectionData[] = [
   {
     id: "my-journey",
     label: "Journey",
+    heading: "The plot so far",
     items: [
       {
         id: "where-it-started",
