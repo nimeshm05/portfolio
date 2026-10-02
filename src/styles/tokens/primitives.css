@@ -149,7 +149,7 @@
 
   /* Layout */
   --layout-content-width-home: 46rem;
-  --layout-content-width-project: 34rem;
+  --layout-content-width-project: 37.5rem;
   /* Media widths grow with wide viewports: floor = laptop size, ceiling caps ultra-wide */
   --layout-project-banner-width: clamp(59rem, 50vw, 108rem);
   --layout-section-media-width: clamp(34rem, 52vw, 84rem);
