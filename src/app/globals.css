@@ -20,8 +20,8 @@
 }
 
 html {
-  /* Gently scale everything rem-based on wide screens: 16px ≤1440px → 18px at 2560px */
-  font-size: clamp(100%, 0.8393rem + 0.1786vw, 112.5%);
+  /* Gently scale everything rem-based on wide screens: 16px ≤1440px → 19px at 2560px */
+  font-size: clamp(100%, 0.7589rem + 0.2679vw, 118.75%);
   height: 100%;
   scroll-behavior: smooth;
   color-scheme: light;

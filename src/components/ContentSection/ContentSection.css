@@ -48,16 +48,6 @@
   overflow: visible;
 }
 
-/* Wide screens: project cards break out of the home column, centred */
-@media (min-width: 68.75rem) {
-  .content-section-cards {
-    width: min(var(--width-home-cards), calc(100vw - 2 * var(--inset-x)));
-    margin-inline: calc(
-      (100% - min(var(--width-home-cards), calc(100vw - 2 * var(--inset-x)))) / 2
-    );
-  }
-}
-
 .content-section-card {
   width: 100%;
   overflow: visible;

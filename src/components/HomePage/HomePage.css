@@ -46,6 +46,13 @@ html:has(.home-page) body {
   padding: 0 var(--inset-x) var(--padding-page);
 }
 
+/* Wide screens: the home column grows with the project cards so every edge lines up */
+@media (min-width: 68.75rem) {
+  .home-body {
+    max-width: calc(var(--width-home-cards) + 2 * var(--inset-x));
+  }
+}
+
 .home-lower {
   display: flex;
   flex-direction: column;
