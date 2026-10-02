@@ -25,6 +25,19 @@
   line-height: var(--text-label-line-height);
   white-space: nowrap;
   scroll-margin-top: var(--scroll-margin-section);
+  transition: color var(--transition-fast);
+}
+
+/* Recede the heading while one of its rows is expanded */
+.content-section:has(.list-item.is-open:not(.list-item--static))
+  .content-section-label {
+  color: var(--color-text-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .content-section-label {
+    transition: none;
+  }
 }
 
 .content-section-list {

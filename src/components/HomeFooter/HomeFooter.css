@@ -4,7 +4,6 @@
   align-items: flex-start;
   gap: var(--gap-3xl);
   width: 100%;
-  padding-inline: var(--inset-x);
 }
 
 .home-footer-links {
