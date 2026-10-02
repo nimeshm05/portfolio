@@ -92,6 +92,16 @@ html:has(.home-page) body {
   padding-inline: 0;
 }
 
+/* Link rows (notes) match the expandable rows: subtle tone, chevron hugs the title */
+.home-content .list-item:not(.list-item--expandable) .list-item-title {
+  flex: 0 1 auto;
+  color: var(--color-text-subtle);
+}
+
+.home-content .list-item:not(.list-item--expandable):hover .list-item-title {
+  color: var(--color-text-primary);
+}
+
 @media (max-width: 68.6875rem) {
   html:has(.home-page) {
     scroll-snap-type: none;

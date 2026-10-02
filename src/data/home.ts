@@ -6,17 +6,6 @@ export type ListItemBlock =
   | { type: "paragraph"; text: string }
   | { type: "callout"; text: string };
 
-export type NoteTone = "interface" | "self";
-
-export type NoteCardData = {
-  id: string;
-  title: string;
-  source: string;
-  description: string;
-  href: string;
-  tone: NoteTone;
-};
-
 export type ListItemData = {
   id: string;
   title: string;
@@ -27,13 +16,7 @@ export type ListItemData = {
   dates?: string;
   paragraphs?: string[];
   blocks?: ListItemBlock[];
-  cardTitle?: string;
-  source?: string;
-  cardDescription?: string;
-  tone?: NoteTone;
 };
-
-export type ContentSectionCardType = "project" | "note";
 
 export type ContentSectionData = {
   id: string;
@@ -43,7 +26,6 @@ export type ContentSectionData = {
   heading?: string;
   items: ListItemData[];
   supportsCardView?: boolean;
-  cardType?: ContentSectionCardType;
 };
 
 export const profile = {
@@ -179,29 +161,15 @@ export const workSections: ContentSectionData[] = [
     id: "writing",
     label: "Notes",
     heading: "Thinking out loud",
-    supportsCardView: true,
-    cardType: "note",
     items: [
       {
         id: "designing-beyond-the-interface",
         title: "Designing Beyond the Interface",
-        cardTitle: "Designing beyond the interface",
-        source: "Medium",
-        cardDescription:
-          "Something I wrote for my HCDE 501 class taught by Dr. Mark Zachry",
-        tone: "interface",
-        icon: "notebook-pen",
         href: "https://nimeshmohanakrishnan.medium.com/designing-beyond-the-interface-what-contact-centers-taught-me-about-systems-thinking-ac164a68cc36",
       },
       {
         id: "note-to-myself",
         title: "A Note to Myself",
-        cardTitle: "An ever evolving note to myself",
-        source: "Medium",
-        cardDescription:
-          "Just some reflections about who I am and where wanna be. This will probably evolve lol",
-        tone: "self",
-        icon: "notebook-pen",
         href: "https://nimeshmohanakrishnan.medium.com/a-note-to-myself-339b3e6b02c9",
       },
     ],
