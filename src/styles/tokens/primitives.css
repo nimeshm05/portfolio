@@ -149,7 +149,6 @@
 
   /* Layout */
   --layout-content-width-home: 46rem;
-  --layout-content-width-about: 46rem;
   --layout-content-width-project: 34rem;
   /* Media widths grow with wide viewports: floor = laptop size, ceiling caps ultra-wide */
   --layout-project-banner-width: clamp(59rem, 50vw, 108rem);
@@ -157,6 +156,6 @@
   --layout-home-cards-width: clamp(48rem, 44vw, 64rem);
   --layout-data-attribute-cards-width: clamp(63.75rem, 64vw, 100rem);
   --layout-prose-width: 34rem;
-  --layout-bio-width: 34rem;
+  --layout-text-width: 37.5rem; /* 600px at the 16px base */
   --layout-project-header-info-width: 23.75rem;
 }

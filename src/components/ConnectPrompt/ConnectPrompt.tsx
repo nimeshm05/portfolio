@@ -6,7 +6,7 @@ import { ConnectExcitement, type ExcitementExitMode } from "@/components/Connect
 import { AnimatedCoffeeIcon } from "@/components/AnimatedCoffeeIcon/AnimatedCoffeeIcon";
 import { MorphingArrowRight } from "@/components/MorphingArrowRight/MorphingArrowRight";
 import { SocialHoverLink } from "@/components/SocialHoverLink/SocialHoverLink";
-import { connect, socialHoverIcons, type HomeTab } from "@/data/home";
+import { connect, socialHoverIcons } from "@/data/home";
 import {
   PHONE_WAVE_EMOJI,
   excitementSmokeTransition,
@@ -278,13 +278,12 @@ function PullLabelSlot({
   );
 }
 
-export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
+export function ConnectPrompt() {
   const [step, setStep] = useState<ConnectStep>("invite");
   const [labelSwappedStep, setLabelSwappedStep] = useState<ConnectStep | null>(
     null,
   );
   const [previousStep, setPreviousStep] = useState(step);
-  const [previousTab, setPreviousTab] = useState(activeTab);
   const [yesHovered, setYesHovered] = useState(false);
   const [burstExitMode, setBurstExitMode] =
     useState<ExcitementExitMode>("reverse");
@@ -308,13 +307,6 @@ export function ConnectPrompt({ activeTab }: { activeTab: HomeTab }) {
   if (previousStep !== step) {
     setPreviousStep(step);
     setLabelSwappedStep(null);
-  }
-
-  if (previousTab !== activeTab) {
-    setPreviousTab(activeTab);
-    if (!isInvite) {
-      reset();
-    }
   }
 
   useEffect(() => {

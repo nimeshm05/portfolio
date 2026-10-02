@@ -72,14 +72,6 @@ html:has(.home-page) body {
   padding-top: var(--offset-home-main-top);
 }
 
-.home-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  /* padding-inline: var(--inset-x); */
-}
-
 .home-content {
   display: flex;
   flex-direction: column;
@@ -88,18 +80,16 @@ html:has(.home-page) body {
   width: 100%;
 }
 
-.home-content--about {
-  max-width: var(--content-width-about);
+/* Expandable sections (experience, education, journey) read as text, so they
+   share the text measure; cards, notes and the footer keep the full column. */
+.home-content .content-section-list {
+  max-width: var(--max-width-text);
 }
 
-.home-content--about .content-section-label-wrap,
-.home-content--about .list-item,
-.home-content--about .list-item-panel {
+.home-content .content-section-label-wrap,
+.home-content .content-section-list .list-item,
+.home-content .content-section-list .list-item-panel {
   padding-inline: 0;
-}
-
-.segmented-control-container {
-  width: 100%;
 }
 
 @media (max-width: 68.6875rem) {
@@ -115,11 +105,6 @@ html:has(.home-page) body {
 
   .home-lower {
     scroll-margin-top: var(--space-80);
-  }
-
-  .home-nav {
-    flex-wrap: wrap;
-    gap: var(--gap-md);
   }
 
   .home-main {

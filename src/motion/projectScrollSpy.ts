@@ -25,10 +25,24 @@ export function getActiveSectionId(
     return "";
   }
 
+  const scrollBottom = window.scrollY + window.innerHeight;
+  const maxScroll = document.documentElement.scrollHeight;
+
+  // The last sections may be too short to ever reach the activation line;
+  // once the page can't scroll further, the final section is the one in view.
+  if (scrollBottom >= maxScroll - 2) {
+    return elements[elements.length - 1].id;
+  }
+
   let activeId = elements[0].id;
 
   for (const element of elements) {
-    if (element.getBoundingClientRect().top <= offsetPx) {
+    // A section scrolled to via its anchor rests at its scroll-margin, which
+    // can sit below offsetPx; treat that resting position as active too.
+    const scrollMargin = parseFloat(getComputedStyle(element).scrollMarginTop);
+    const activationLine = Math.max(offsetPx, (scrollMargin || 0) + 1);
+
+    if (element.getBoundingClientRect().top <= activationLine) {
       activeId = element.id;
     }
   }

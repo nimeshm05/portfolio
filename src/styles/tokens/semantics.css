@@ -175,14 +175,13 @@
   --text-wrap: var(--text-wrap-pretty);
   --text-wrap-heading: var(--text-wrap-balance);
   --content-width-home: var(--layout-content-width-home);
-  --content-width-about: var(--layout-content-width-about);
   --content-width-project: var(--layout-content-width-project);
   --width-project-banner: var(--layout-project-banner-width);
   --width-section-media: var(--layout-section-media-width);
   --width-home-cards: var(--layout-home-cards-width);
   --width-data-attribute-cards: var(--layout-data-attribute-cards-width);
   --max-width-prose: var(--layout-prose-width);
-  --max-width-bio: var(--layout-bio-width);
+  --max-width-text: var(--layout-text-width);
   --max-width-project-header-info: var(--layout-project-header-info-width);
 
   /* Motion */

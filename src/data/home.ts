@@ -1,7 +1,5 @@
 import type { IconName } from "@/components/Icon/Icon";
 
-export type HomeTab = "work" | "about";
-
 export type BioParagraph = readonly string[];
 
 export type ListItemBlock =
@@ -49,32 +47,18 @@ export const profile = {
   name: "@nimesh.mohanakrishnan",
   avatarSrc: "/assets/profile-jelly.webp",
   avatarAlt: "Portrait of Nimesh Mohanakrishnan",
-  bioByTab: {
-    work: [
-      [
-        "Product designer in Seattle,",
-        "with 2+ years designing B2B software in early stage startups.",
-        "I use thoughtful reduction to bring clarity to the complexity,",
-        "And I design in code to turn ideas into reality."
-      ],
-      [
-        "Currently pursuing MS in Human Centered Design & Engineering,",
-        "at the University of Washington.",
-      ]
+  bio: [
+    [
+      "Product designer in Seattle,",
+      "with 2+ years designing B2B software in early stage startups.",
+      "I use thoughtful reduction to bring clarity to the complexity,",
+      "And I design in code to turn ideas into reality."
     ],
-    about: [
-      [
-        "Product designer in Seattle,",
-        "with 2+ years designing B2B software in early stage startups.",
-        "I use thoughtful reduction to bring clarity to the complexity,",
-        "And I design in code to turn ideas into reality."
-      ],
-      [
-        "Currently pursuing MS in Human Centered Design & Engineering,",
-        "at the University of Washington.",
-      ]
-    ],
-  },
+    [
+      "Currently pursuing MS in Human Centered Design & Engineering,",
+      "at the University of Washington.",
+    ]
+  ],
 } as const;
 
 export const connect = {
@@ -221,7 +205,7 @@ export const workSections: ContentSectionData[] = [
 export const aboutSections: ContentSectionData[] = [
   {
     id: "past-experience",
-    label: "Past Experience",
+    label: "Experience",
     items: [
       {
         id: "knool",
@@ -287,7 +271,7 @@ export const aboutSections: ContentSectionData[] = [
   },
   {
     id: "my-journey",
-    label: "My Journey",
+    label: "Journey",
     items: [
       {
         id: "where-it-started",
@@ -402,7 +386,8 @@ export const aboutSections: ContentSectionData[] = [
   },
 ];
 
-export const homeTabs = [
-  { id: "work" as const, label: "Work" },
-  { id: "about" as const, label: "About" },
+/** Work, then everything about me, in one continuous scroll */
+export const homeSections: ContentSectionData[] = [
+  ...workSections,
+  ...aboutSections,
 ];

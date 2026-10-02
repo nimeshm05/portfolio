@@ -4,7 +4,7 @@
 
 .list-item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--gap-md);
   width: 100%;
   min-height: 2.75rem;
@@ -30,7 +30,16 @@
   justify-content: center;
   width: var(--icon-size);
   height: var(--icon-size);
+  /* Rows are top-aligned; centre the glyph on the title's first line */
+  margin-block-start: calc(
+    (var(--text-list-size) * var(--text-list-line-height) - var(--icon-size)) / 2
+  );
   overflow: hidden;
+}
+
+/* Glyphs carry their own label colour elsewhere; here they follow the meta */
+.list-item .list-item-chevron > * {
+  color: inherit;
 }
 
 .list-item-icon svg,
@@ -49,10 +58,13 @@
 }
 
 .list-item--expandable .list-item-title {
+  /* Size to the text so the chevron sits right after it, not at the row end */
+  flex: 0 1 auto;
   color: var(--color-text-subtle);
 }
 
-.list-item-meta {
+.list-item-meta,
+.list-item-chevron {
   color: var(--color-text-muted);
 }
 
@@ -62,7 +74,9 @@
 }
 
 .list-item:hover .list-item-meta,
-.list-item-shell.is-open .list-item-meta {
+.list-item-shell.is-open .list-item-meta,
+.list-item:hover .list-item-chevron,
+.list-item-shell.is-open .list-item-chevron {
   color: var(--color-accent);
 }
 

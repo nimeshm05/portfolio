@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, type MouseEvent } from "react";
+import { useEffect, useMemo, useState, type MouseEvent } from "react";
 import { AnimatePresence, useReducedMotion } from "motion/react";
 import { SidebarNav, type SidebarNavItem } from "@/components/SidebarNav/SidebarNav";
 import type { ContentSectionData } from "@/data/home";
@@ -30,6 +30,9 @@ function scrollToHomeSection(
   }
 
   event.preventDefault();
+  // Release the hero/content scroll snap first, otherwise a click that lands
+  // while snapping is still active gets pulled back to the snap point.
+  document.documentElement.style.scrollSnapType = "none";
   target.scrollIntoView({
     behavior: reduceMotion ? "auto" : "smooth",
     block: "start",
@@ -44,10 +47,33 @@ export function HomeSidebar({ visible, sections }: HomeSidebarProps) {
     [sections],
   );
 
-  const activeId = useProjectScrollSpy({
+  const spyActiveId = useProjectScrollSpy({
     sectionIds,
     enabled: visible,
   });
+  /** The section last clicked, held until the user scrolls on their own. */
+  const [clickedId, setClickedId] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!clickedId) {
+      return;
+    }
+
+    const release = () => setClickedId(null);
+    const options = { passive: true, once: true } as const;
+
+    window.addEventListener("wheel", release, options);
+    window.addEventListener("touchstart", release, options);
+    window.addEventListener("keydown", release, options);
+
+    return () => {
+      window.removeEventListener("wheel", release);
+      window.removeEventListener("touchstart", release);
+      window.removeEventListener("keydown", release);
+    };
+  }, [clickedId]);
+
+  const activeId = clickedId ?? spyActiveId;
 
   const items = useMemo(
     () =>
@@ -70,9 +96,10 @@ export function HomeSidebar({ visible, sections }: HomeSidebarProps) {
           activeId={activeId}
           animate
           aria-label="Work sections"
-          onItemClick={(event, item) =>
-            scrollToHomeSection(event, item, reduceMotion)
-          }
+          onItemClick={(event, item) => {
+            setClickedId(item.id);
+            scrollToHomeSection(event, item, reduceMotion);
+          }}
         />
       ) : null}
     </AnimatePresence>
