@@ -67,7 +67,7 @@ export const socialHoverIcons = {
 } as const;
 
 export const resume = {
-  href: "#",
+  href: "https://drive.google.com/file/d/1PDmCOGi8dJJMie-l7Vh5ztorGKP4oord/view?usp=sharing",
 } as const;
 
 export const footerLinks = [
