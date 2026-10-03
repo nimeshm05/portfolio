@@ -200,7 +200,7 @@ export const architectureAgent: ProjectPageData = {
               src: asset("production-1.mp4"),
               alt: "Production Architecture Agent workflow after accepting an ADR, with Context Files generated automatically",
               type: "video",
-              aspectRatio: "1920 / 1080",
+              aspectRatio: "3290 / 2160",
               showBackground: false,
             },
           ],
