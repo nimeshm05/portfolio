@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useId, useState, type ReactNode } from "react";
+import { useEffect, useId, useRef, useState, type ReactNode } from "react";
+import { flushSync } from "react-dom";
 import { motion } from "motion/react";
 import { AnimatedIcon } from "@/components/AnimatedIcon/AnimatedIcon";
 import { Icon, type IconName } from "@/components/Icon/Icon";
@@ -78,6 +79,7 @@ export function ListItem({
 }: ListItemProps) {
   const [isOpen, setIsOpen] = useState(defaultOpen || alwaysExpanded);
   const [isHovered, setIsHovered] = useState(false);
+  const shellRef = useRef<HTMLDivElement>(null);
   const panelId = useId();
   const blurOnTabChange = useTabContentMotion();
   const hasContent = children != null;
@@ -122,6 +124,43 @@ export function ListItem({
 
     return () => cancelAnimationFrame(frameId);
   }, [blurOnTabChange, chevronRotate]);
+
+  /**
+   * Close an open row once it scrolls fully out of view. Below the viewport it
+   * collapses as usual; above it, it closes instantly and the scroll position
+   * absorbs the lost height, so the content in view doesn't jump.
+   */
+  useEffect(() => {
+    const shell = shellRef.current;
+    if (!isExpandable || !isOpen || !shell) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        return;
+      }
+
+      if (entry.boundingClientRect.bottom > 0) {
+        setIsOpen(false);
+        return;
+      }
+
+      // Measure the shift instead of the lost height: browsers with scroll
+      // anchoring already hold the content in view still, others don't.
+      const bottomBefore = shell.getBoundingClientRect().bottom;
+      shell.setAttribute("data-instant-close", "");
+      flushSync(() => setIsOpen(false));
+      window.scrollBy({
+        top: shell.getBoundingClientRect().bottom - bottomBefore,
+        behavior: "instant",
+      });
+      requestAnimationFrame(() => shell.removeAttribute("data-instant-close"));
+    });
+
+    observer.observe(shell);
+    return () => observer.disconnect();
+  }, [isExpandable, isOpen]);
 
   const rowHoverHandlers = {
     onPointerEnter: () => setIsHovered(true),
@@ -212,7 +251,10 @@ export function ListItem({
 
   if (isExpandable) {
     return (
-      <div className={`list-item-shell${isOpen ? " is-open" : ""}`}>
+      <div
+        ref={shellRef}
+        className={`list-item-shell${isOpen ? " is-open" : ""}`}
+      >
         <button
           type="button"
           className={className}

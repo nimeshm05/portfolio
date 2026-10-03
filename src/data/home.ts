@@ -251,112 +251,113 @@ export const aboutSections: ContentSectionData[] = [
     heading: "The plot so far",
     items: [
       {
-        id: "where-it-started",
-        title: "Where it all started...",
+        id: "a-box-on-a-screen",
+        title: "A box on a screen",
         paragraphs: [
-          "Okay, this is a long statement. But I promise there's a point.",
-          "I was introduced to programming in 10th grade, and very quickly became fascinated by the fact that I could make things exist on a screen. I remember writing some HTML and CSS and being genuinely amazed that I could draw a box on a webpage. A box. I had just learned how the web worked, so this felt like some kind of magic trick. I could imagine something, write a few lines of code, and suddenly it existed. Better yet, I could control how it looked and behaved.",
-          "That fascination with creating and controlling things eventually led me to study computer science. At the time, my goal was pretty straightforward: get better at building things for the web.",
-          "Then, during my internship at Brane Enterprises, I started noticing that there was a whole lot more to building digital products than writing the code.",
-          "I was working as a developer on a no-code platform and collaborating with designers and product managers. I started paying attention to how designers made decisions. They weren't just handing me screens to build. They were questioning the screens themselves. I remember working on a feature where users could add an intent. My instinct was to build it as a modal: click a button, modal opens, fill in some details, done. The designers came back and questioned whether a modal was actually the right way to approach the interaction.",
-          "I don't remember the exact reason anymore. It was 2021, and apparently my brain decided that detail was optional. What I do remember is the realization: **there was an entire layer of thinking between an idea and its implementation that I hadn't learned to see yet.**",
-          "That pulled me toward UX, and eventually into product design at RozieAI. There, I learned another important lesson: decoration is not UX. Making an interface look good is part of the job, but it isn't the job. The interesting part was understanding workflows, constraints, user needs, and business goals, then figuring out how they could come together in a useful solution.",
-          "Over time, I realized I wanted to get better at the thinking behind those decisions. I could reason about interfaces and workflows, but I wanted a more structured way to think about the people, activities, and systems surrounding them. I didn't want to think of a user simply as someone interacting with a screen. I wanted to understand what they were doing, who else was involved, what constraints shaped their behavior, and how a product fit into the larger system.",
-          "That realization led me to HCDE.",
-          "Looking back, my path into design wasn't really a change of direction. It was a gradual move toward asking better questions about the things I was building.",
-          'From **“How do I make this?”** to **“Why should this work this way?”** to **“What problem are we actually solving?”** and, eventually, **“What exists around the problem? What should exist? What should be subtracted?”**',
-          "Apparently, I just really like asking questions.",
+          "I first got into programming in 10th grade. I wrote a little HTML and CSS and managed to draw a box on a webpage. Just a box. But I'd only just learned how the web worked, so it honestly felt like a magic trick. I could imagine something, write a few lines of code, and there it was. And I got to decide how it looked and how it behaved.",
+          "That feeling is what took me to computer science. There, I learned what I'd now call the science of making things: databases, microcontrollers, how to build something end to end. For my database class, I built a full-stack blog in Django. Whenever I wasn't sure how something should work, I'd just look at how other blogs did it and build that. I knew how to make things. It never really occurred to me to ask whether they should work that way.",
         ],
       },
       {
-        id: "stride-forward",
-        title: "The stride forward...",
+        id: "the-first-question",
+        title: "The first question",
+        paragraphs: [
+          "As it turns out, someone else asked that question for me. In 2021, I was interning as a developer at Brane Enterprises, working on a no-code platform. I was building a feature that let users add an intent, and my instinct was a modal: click a button, fill in a few details, done. Then the designers came back with a question. Was a modal even the right interaction here?",
+          "I wasn't annoyed. I was curious. Why would they pick one approach over another? So I started asking questions of my own, and learned that the information was dense enough to need its own page. The point wasn't just to let people enter it. It was to help them understand it.",
+          "Honestly, I don't remember the rest of the details. It was 2021, and apparently my brain decided those were optional. What stuck with me was the realization that **there was a whole layer of thinking between an idea and its implementation, and I hadn't learned to see it yet.**",
+        ],
+      },
+      {
+        id: "decoration-is-not-ux",
+        title: "Decoration is not UX",
+        paragraphs: [
+          "So I went looking for that layer. I started with the Google UX Design Certificate course, which taught me the process: research, define, ideate, card sorting, all of it. Not long after, I joined RozieAI as a design intern, and that's where real work started teaching me the things a process can't.",
+          "My first job there was redesigning screens for Experience Studio, a no-code tool businesses used to build their own conversation workflows. About a year in, I got my own project: Conversation Insights, an analytics platform for Air Canada's contact centre managers.",
+          "That project is where I learned that decoration is not UX. I kept spotting chances to polish the interface, but my users were a small group of power users. They didn't need delight. They needed the right information. The biggest improvements actually came from taking things away: a trend chart people kept skipping, a filter bar that had grown as big as the data it was filtering. And the biggest gap came from a question I never thought to ask. I'd researched how managers investigated an issue, but not how they decided an issue was worth investigating in the first place.",
+        ],
+      },
+      {
+        id: "am-i-asking-the-right-questions",
+        title: "Am I asking the right questions?",
+        paragraphs: [
+          "That missed question stayed with me. I'd learned design on the job, one screen at a time, and part of me wondered whether I'd learned it the right way. Was I asking the right questions? Would I even know if I wasn't? I wanted a real foundation, especially in research, which I'd never formally practiced. That's what brought me to HCDE at the University of Washington.",
+        ],
+      },
+      {
+        id: "the-question-shapes-the-answer",
+        title: "The question shapes the answer",
+        paragraphs: [
+          "I started finding answers sooner than I expected. In my usability testing class, we ran a study for an industry partner. One of our tasks asked participants to find “architectural recommendations you care about.” The first two participants struggled. So we changed it to “find specific architectural recommendations,” and the next three completed it.",
+          "One phrase changed the result. That's when it clicked for me: a question isn't just how you find an answer. It decides which answers you can find at all.",
+          "Looking back, I don't think my path into design was ever a change of direction. It was me slowly learning to ask better questions about the things I was building. From **“How do I make this?”** to **“Why should this work this way?”** to **“What problem are we actually solving?”** and now, **“What exists around the problem? What should exist? What should be subtracted?”**",
+          "And yes, I still work in code. I don't write much of it by hand these days, but I use it to close the gap between design and implementation, that same layer I couldn't see back at Brane. The box is still there. I just ask why it should exist before I draw it.",
+        ],
+      },
+      {
+        id: "the-magic-again",
+        title: "The magic, again",
+        paragraphs: [
+          "Lately, building with AI has given me the same feeling I had with that box. I can picture something, describe it, and watch it come together, sometimes in a single day. It's honestly magical.",
+          "But here's the thing. That magic used to feel like mine, and now it's everyone's. Anyone with the right tools can pick up a new skill, build something impressive, or put together a polished artifact in an afternoon. So I've been sitting with a slightly uncomfortable question: if making things isn't the hard part anymore, what do I actually bring?",
+        ],
+      },
+      {
+        id: "whats-still-mine",
+        title: "What's still mine",
+        paragraphs: [
+          "A few months ago, I built a game entirely with AI tools. It's called kar-no-key: one person makes a room, shares a short code, and everyone races each other one lyric at a time. No accounts, nothing to sign up for. Front end, back end, all of it, in a matter of days.",
+          "Then I realized something. Nobody was going to click “Leave game.” People just close the tab. But the game didn't know that, so it still thought they were in the room. The next time they opened it, it told them they were already in a game. And if the person who left was the host, their friends were stuck in a room with nobody running it.",
+          "My first idea was a popup: “Leave the game?” Turns out that can't exist. When you close a tab, the browser just shuts the page down. The site doesn't get to ask you anything. So we went with a heartbeat instead. As long as your tab is open, it quietly lets the game know you're still there. Close the tab, and the heartbeat stops.",
+          "Then I asked the question the AI hadn't: what about someone who's still there, just not clicking? Someone waiting for their friends, or thinking about the next lyric? They shouldn't get kicked out for being quiet. And they don't, because the heartbeat comes from the open tab, not from clicks. If the host leaves, the room doesn't disappear either. Someone else just takes over.",
+          "That's what made it make sense for me. The building is getting easier. The questions are still mine. And when I look at the questions I keep asking, they tend to come back to two ideas that have started shaping how I design, and honestly, how I live.",
+        ],
+      },
+      {
+        id: "subtraction",
+        title: "Subtraction",
         blocks: [
-          {
-            type: "paragraph",
-            text: "In the age of AI, I've been thinking a lot about what I can actually contribute.",
-          },
-          {
-            type: "paragraph",
-            text: "Truth be told, that's a difficult question. When anyone with the right AI tools can learn a new skill, build something impressive, or produce a pretty commendable artifact in an afternoon, it's harder to convince myself that *being able to make things* is enough.",
-          },
-          {
-            type: "paragraph",
-            text: "Perhaps that's just how life works.",
-          },
-          {
-            type: "paragraph",
-            text: "Okay, enough philosophy that leads nowhere.",
-          },
-          {
-            type: "paragraph",
-            text: "When I think about what I want my contribution to be, I keep coming back to a few principles that have started shaping both how I design and how I live.",
-          },
-          { type: "paragraph", text: "**Subtraction.**" },
+          { type: "paragraph", text: "The first one is simple:" },
           { type: "callout", text: "I like removing things." },
           {
             type: "paragraph",
-            text: "In design, I naturally look for what doesn't need to be there: an extra interaction, another piece of information, another decision the user has to make. If something doesn't add value, why make someone deal with it?",
+            text: "When I design, I'm always looking for what doesn't need to be there. An extra interaction, another piece of information, one more decision the user has to make. If it doesn't add value, why make anyone deal with it?",
           },
           {
             type: "paragraph",
-            text: "I've started thinking about life in much the same way. Some connections, commitments, and systems are just noise. Not everything needs to come with me into the next chapter. Subtraction isn't about having less for the sake of having less. It's about making room for what actually matters.",
-          },
-          { type: "paragraph", text: "**Intent.**" },
-          {
-            type: "callout",
-            text: "I've become increasingly interested in the idea of intent: knowing why something exists before figuring out how it should work.",
+            text: "I'm doing exactly this right now on Knool, an AI workspace for attorneys. Over time, the case assistant's first screen had grown to 20 clickable elements and 37 shortcut labels, a lot of them duplicates. Fifteen of those shortcuts together got under 2% of clicks. So most of the redesign came down to deciding what to take away.",
           },
           {
             type: "paragraph",
-            text: "Living in America over the past year has made me notice this in people, too. Intent is captivating. When someone knows what they're trying to accomplish, their decisions become clearer, their communication becomes sharper, and their energy has somewhere to go.",
+            text: "I've started practicing this outside of work too. For me, subtraction isn't about having less for the sake of less. It's about making room for what actually matters.",
           },
+        ],
+      },
+      {
+        id: "progressive-disclosure",
+        title: "Progressive disclosure",
+        blocks: [
           {
             type: "paragraph",
-            text: 'I want that kind of clarity in my design work. Before asking *“What should we build?”*, I want to understand *“What are we actually trying to accomplish?”*',
-          },
-          { type: "paragraph", text: "**Progressive disclosure.**" },
-          {
-            type: "paragraph",
-            text: "I'm still figuring out a better name for this one. But the idea is simple:",
+            text: "The second idea goes hand in hand with the first:",
           },
           { type: "callout", text: "don't reveal everything at once." },
           {
             type: "paragraph",
-            text: "Interfaces do this. Good products don't make users understand the entire system before they can accomplish one task. They give people what they need, when they need it, and let the complexity reveal itself over time.",
+            text: "Good products don't make you understand the whole system before you can do one thing. They give you what you need, when you need it. On Knool, that meant paying attention to how attorneys think. They see a case as a timeline: pleadings, discovery, depositions, trial. So instead of showing every shortcut at once, the assistant now offers what's useful for the stage the case is in, and the next layer shows up when it's needed.",
           },
           {
             type: "paragraph",
-            text: "I think life works the same way. I don't need to figure everything out at once. I can learn something when it becomes relevant, go deeper when I need to, and let the next layer reveal itself.",
+            text: "One small detail matters a lot here, too. Shortcuts now fill in the prompt instead of sending it straight away. The attorney gets to look it over first, so they're still in control before the agent does anything.",
           },
-          {
-            type: "paragraph",
-            text: "These principles are still evolving. They're less like rules and more like a compass for how I want to think.",
-          },
-          {
-            type: "paragraph",
-            text: "And professionally, that thinking is pulling me toward the intersection of **design, product, and technology**.",
-          },
-          {
-            type: "paragraph",
-            text: "I want to work on problems where the answer isn't sitting neatly inside a design file. I want to understand the product, question the problem, shape the interaction, and use technology to explore the idea quickly. AI has made it possible for me to prototype experiences directly in code, test ideas faster, and get closer to the thing I'm imagining.",
-          },
-          {
-            type: "paragraph",
-            text: "I don't know exactly what my contribution will look like yet.",
-          },
-          {
-            type: "paragraph",
-            text: "But I know I want to be close to the problem, close to the product, and close enough to the technology to build the thing I'm imagining.",
-          },
-          {
-            type: "paragraph",
-            text: "Maybe that's the stride forward:",
-          },
-          {
-            type: "callout",
-            text: "I don't have the destination figured out yet. But I have a direction, a few principles, and plenty of things I still want to explore.",
-          },
+        ],
+      },
+      {
+        id: "where-im-headed",
+        title: "Where I'm headed",
+        paragraphs: [
+          "I'll be honest, these ideas are still taking shape. They feel less like rules and more like a compass.",
+          "Right now, that compass is pointing me toward AI agents, agent tools, and developer tools, at the scale of products used by millions of people. So far, I've mostly designed for small groups of power users. But as agents take on more of our work, that question from kar-no-key gets a lot bigger: what happens to the person in the room? That's the question I want to work on, at scale, while staying close enough to the technology to build what I'm imagining.",
+          "Do I have the destination figured out? Not yet. But I've made peace with that. Like a good interface, the next layer tends to show up when it's relevant. For now, I've got a direction, two ideas I believe in, and plenty of questions I still want to ask.",
         ],
       },
     ],

@@ -90,6 +90,11 @@
   grid-template-rows: 1fr;
 }
 
+/* Set while a row closes off-screen above the viewport (see ListItem.tsx) */
+.list-item-shell[data-instant-close] .list-item-panel-collapse {
+  transition: none;
+}
+
 .list-item-panel-collapse-inner {
   /* Clip vertically only, so breakout media isn't cut off at the sides */
   clip-path: inset(0 -100vw);
