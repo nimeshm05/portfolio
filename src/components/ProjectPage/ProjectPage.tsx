@@ -121,6 +121,7 @@ function ExpandableItemMedia({ item }: { item: ExpandableItemContent }) {
             src={entry.src}
             alt={entry.alt}
             type={entry.type}
+            aspectRatio={entry.aspectRatio}
             showBackground={entry.showBackground}
           />
         ),
@@ -191,6 +192,7 @@ export function ProjectPage({ project }: ProjectPageProps) {
               src={project.bannerSrc}
               alt={project.bannerAlt}
               type={project.bannerType}
+              aspectRatio={project.bannerAspectRatio}
               showBackground={project.bannerType !== "video"}
             />
           </PageEnterItem>
@@ -330,6 +332,7 @@ export function ProjectPage({ project }: ProjectPageProps) {
                 src={entry.src}
                 alt={entry.alt}
                 type={entry.type}
+                aspectRatio={entry.aspectRatio}
                 showBackground={entry.showBackground ?? false}
               />
             ))}

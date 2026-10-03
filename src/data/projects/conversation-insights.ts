@@ -13,6 +13,7 @@ export const conversationInsights: ProjectPageData = {
   bannerSrc: asset("conversation-insights-preview.mp4"),
   bannerAlt: "Conversation Insights dashboard preview",
   bannerType: "video",
+  bannerAspectRatio: "3212 / 2160",
   listItemsAlwaysExpanded: true,
   nav: [
     { id: "overview", label: "Overview", href: "#overview" },
@@ -377,6 +378,7 @@ export const conversationInsights: ProjectPageData = {
             src: asset("final-solution/filter.mp4"),
             alt: "Filter pattern interaction in the table view",
             type: "video",
+            aspectRatio: "3208 / 2160",
           },
         ],
       },

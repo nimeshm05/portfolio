@@ -13,4 +13,5 @@ export const connectPromptCard: ProjectCardData = {
   bannerSrc: asset("connect-prompt-preview.mp4"),
   bannerAlt: "Connect Prompt component preview",
   bannerType: "video",
+  bannerAspectRatio: "3840 / 1242",
 };

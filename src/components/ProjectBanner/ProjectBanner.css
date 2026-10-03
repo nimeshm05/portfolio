@@ -55,12 +55,99 @@
 }
 
 .project-banner-media img,
-.project-banner-media video,
-.project-banner-media .project-banner-video-wrap,
-.project-banner-media .project-banner-video-wrap video {
+.project-banner-media video {
   display: block;
   width: 100%;
   height: auto;
+}
+
+/* Sized by aspect-ratio (see LazyBannerVideo) so the placeholder matches the video */
+.project-banner-media .project-banner-video-wrap {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+}
+
+.project-banner-media .project-banner-video-wrap video {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  filter: blur(12px);
+  transition:
+    opacity 600ms ease-out,
+    filter 600ms ease-out;
+}
+
+.project-banner-video-wrap.is-ready video {
+  opacity: 1;
+  filter: blur(0);
+}
+
+.banner-video-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #262626;
+  transition:
+    opacity 600ms ease-out,
+    filter 600ms ease-out;
+}
+
+.project-banner-video-wrap.is-ready .banner-video-placeholder {
+  opacity: 0;
+  filter: blur(12px);
+  pointer-events: none;
+}
+
+.banner-video-placeholder-graphic {
+  width: min(40%, 18rem);
+  height: auto;
+  overflow: visible;
+}
+
+.banner-video-placeholder-frame {
+  stroke: rgb(255 255 255 / 0.55);
+  stroke-width: 0.8;
+}
+
+.banner-video-placeholder-tile {
+  stroke: rgb(255 255 255 / 0.4);
+  stroke-width: 0.8;
+}
+
+/* Tiles slide right to left; one pattern width per loop keeps it seamless */
+.banner-video-placeholder-strip {
+  animation: banner-video-placeholder-slide 4s linear infinite;
+}
+
+/* Stop animating once the video has taken over */
+.project-banner-video-wrap.is-ready .banner-video-placeholder-strip {
+  animation-play-state: paused;
+}
+
+@keyframes banner-video-placeholder-slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(var(--strip-shift));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .banner-video-placeholder-strip {
+    animation: none;
+  }
+
+  .project-banner-media .project-banner-video-wrap video,
+  .banner-video-placeholder {
+    filter: none;
+  }
 }
 
 

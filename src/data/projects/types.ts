@@ -14,6 +14,8 @@ export type ProjectMedia = {
   src: string;
   alt: string;
   type?: "image" | "video";
+  /** Video width / height, e.g. "1920 / 1080"; reserves its box while loading */
+  aspectRatio?: string;
   showBackground?: boolean;
   frame?: "section";
   /** When false, section media keeps the outer container and omits the inner frame. */
@@ -110,6 +112,8 @@ export type ProjectCardData = {
   bannerSrc: string;
   bannerAlt: string;
   bannerType?: "image" | "video";
+  /** Video width / height, e.g. "1920 / 1080"; reserves its box while loading */
+  bannerAspectRatio?: string;
 };
 
 export type ProjectPageData = {
@@ -121,6 +125,8 @@ export type ProjectPageData = {
   bannerSrc: string;
   bannerAlt: string;
   bannerType?: "image" | "video";
+  /** Video width / height, e.g. "1920 / 1080"; reserves its box while loading */
+  bannerAspectRatio?: string;
   liveHref?: string;
   listItemsAlwaysExpanded?: boolean;
   nav?: ProjectNavItem[];

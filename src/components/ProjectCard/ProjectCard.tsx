@@ -16,6 +16,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
         src={project.bannerSrc}
         alt={project.bannerAlt}
         type={project.bannerType}
+        aspectRatio={project.bannerAspectRatio}
         variant="card"
       />
       <div className="project-card-footer">
