@@ -387,7 +387,7 @@ export const workStamps: readonly WorkStampData[] = [
   {
     id: "knool",
     company: "Knool",
-    role: "Product Designer",
+    role: "Product Intern",
     dates: "Mar 2026 - Jun 2026",
     tone: "green",
     emblem: "drafting",
