@@ -16,6 +16,8 @@ type HeaderProps = {
   avatarSrc: string;
   avatarAlt: string;
   children?: ReactNode;
+  /** Rendered directly below the bio, e.g. the work stamps */
+  afterBio?: ReactNode;
   bottom?: ReactNode;
 };
 
@@ -25,6 +27,7 @@ export function Header({
   avatarSrc,
   avatarAlt,
   children,
+  afterBio,
   bottom,
 }: HeaderProps) {
   return (
@@ -55,6 +58,11 @@ export function Header({
                   </p>
                 ))}
               </div>
+              {afterBio ? (
+                <PageEnterItem className="site-header-after-bio">
+                  {afterBio}
+                </PageEnterItem>
+              ) : null}
             </div>
             {children ? (
               <div className="home-prompts">

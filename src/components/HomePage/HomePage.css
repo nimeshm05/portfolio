@@ -102,6 +102,71 @@ html:has(.home-page) body {
   color: var(--color-text-primary);
 }
 
+/* Focus mode: while a row is expanded or a project card is hovered, dim
+   everything else. Card wrappers carry Motion's inline opacity, so the card
+   inside is dimmed instead. */
+.home-page
+  :is(
+    .site-header,
+    .home-sidebar .sidebar-nav-links,
+    .home-footer,
+    .content-section-divider,
+    .content-section,
+    .content-section-label-wrap,
+    .list-item-shell,
+    .content-section-card > .project-card
+  ) {
+  transition: opacity var(--transition-expand);
+}
+
+.home-page:has(.list-item.is-open:not(.list-item--static))
+  :is(
+    .site-header,
+    .home-sidebar .sidebar-nav-links,
+    .home-footer,
+    .content-section-divider,
+    .content-section:not(:has(.list-item.is-open)),
+    .content-section:has(.list-item.is-open) .content-section-label-wrap,
+    .content-section:has(.list-item.is-open)
+      .list-item-shell:not(:has(.list-item.is-open))
+  ) {
+  opacity: var(--opacity-home-dimmed);
+}
+
+@media (hover: hover) {
+  .home-page:has(.content-section-card:hover)
+    :is(
+      .site-header,
+      .home-sidebar .sidebar-nav-links,
+      .home-footer,
+      .content-section-divider,
+      .content-section:not(:has(.content-section-card:hover)),
+      .content-section:has(.content-section-card:hover)
+        .content-section-label-wrap,
+      .content-section:has(.content-section-card:hover)
+        .content-section-card:not(:hover)
+        > .project-card
+    ) {
+    opacity: var(--opacity-home-dimmed);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-page
+    :is(
+      .site-header,
+      .home-sidebar .sidebar-nav-links,
+      .home-footer,
+      .content-section-divider,
+      .content-section,
+      .content-section-label-wrap,
+      .list-item-shell,
+      .content-section-card > .project-card
+    ) {
+    transition: none;
+  }
+}
+
 @media (max-width: 68.6875rem) {
   html:has(.home-page) {
     scroll-snap-type: none;

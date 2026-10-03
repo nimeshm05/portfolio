@@ -1,0 +1,237 @@
+/*
+  Work stamps: stacked postage stamps that fan out into a row on hover.
+  Values mirror the "Work Stamp" frame in Figma (Portfolio, node 658:3760) and
+  live in the token files (--*-work-stamp-* in semantics.css).
+  Keep the stamp width a whole multiple of --work-stamp-perf-x and the height
+  a whole multiple of --work-stamp-perf-y, or the perforations land unevenly.
+*/
+.work-stamps {
+  /* Derived from --work-stamp-count, which is set inline per stack */
+  --work-stamps-stacked-width: calc(
+    var(--width-work-stamp) + (var(--work-stamp-count) - 1) * var(--offset-work-stamp-peek)
+  );
+  --work-stamps-fanned-width: calc(
+    var(--work-stamp-count) * var(--width-work-stamp) +
+      (var(--work-stamp-count) - 1) * var(--gap-work-stamps)
+  );
+
+  position: relative;
+  width: var(--work-stamps-stacked-width);
+  height: var(--height-work-stamp);
+  list-style: none;
+  outline: none;
+  transition: width var(--transition-work-stamp);
+}
+
+.work-stamps:focus-visible {
+  outline: var(--border-width) solid var(--color-text-subtle);
+  outline-offset: var(--offset-work-stamps-focus);
+  border-radius: var(--radius-work-stamps-focus);
+}
+
+/* Tones */
+.work-stamp--green {
+  --color-work-stamp-surface: var(--color-work-stamp-green-surface);
+  --color-work-stamp-engraving: var(--color-work-stamp-green-engraving);
+  --color-work-stamp-meta: var(--color-work-stamp-green-meta);
+}
+
+.work-stamp--lime {
+  --color-work-stamp-surface: var(--color-work-stamp-lime-surface);
+  --color-work-stamp-engraving: var(--color-work-stamp-lime-engraving);
+  --color-work-stamp-meta: var(--color-work-stamp-lime-meta);
+}
+
+.work-stamp--teal {
+  --color-work-stamp-surface: var(--color-work-stamp-teal-surface);
+  --color-work-stamp-engraving: var(--color-work-stamp-teal-engraving);
+  --color-work-stamp-meta: var(--color-work-stamp-teal-meta);
+}
+
+.work-stamp {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: calc(var(--work-stamp-count) - var(--work-stamp-index));
+  width: var(--width-work-stamp);
+  height: var(--height-work-stamp);
+  filter: var(--shadow-work-stamp);
+  /* --work-stamp-drag(-progress) are set inline while the front stamp is swiped */
+  transform: translateX(
+      calc(
+        var(--work-stamp-index) * var(--offset-work-stamp-peek) +
+          var(--work-stamp-drag, 0px)
+      )
+    )
+    rotate(calc(var(--work-stamp-drag-progress, 0) * var(--rotate-work-stamp-drag)));
+  transition: transform var(--transition-work-stamp);
+  transition-delay: calc(var(--work-stamp-index) * var(--delay-work-stamp-stagger));
+  /* Horizontal drags swipe the stack; vertical ones still scroll the page */
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.work-stamp[data-dragging] {
+  transition: none;
+}
+
+/* The paper carries the mask, the wrapper above carries the shadow, so the
+   shadow follows the perforated edge and the page shows through the holes. */
+.work-stamp-paper {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  padding: var(--padding-work-stamp-paper);
+  /* Stamp paper stays white in both themes, like the real thing */
+  background: var(--color-work-stamp-paper);
+  -webkit-mask-image:
+    radial-gradient(circle var(--work-stamp-hole) at center, transparent 98%, #000 100%),
+    linear-gradient(#000 0 0);
+  mask-image:
+    radial-gradient(circle var(--work-stamp-hole) at center, transparent 98%, #000 100%),
+    linear-gradient(#000 0 0);
+  -webkit-mask-size:
+    var(--work-stamp-perf-x) var(--work-stamp-perf-y),
+    calc(100% - var(--work-stamp-perf-x)) calc(100% - var(--work-stamp-perf-y));
+  mask-size:
+    var(--work-stamp-perf-x) var(--work-stamp-perf-y),
+    calc(100% - var(--work-stamp-perf-x)) calc(100% - var(--work-stamp-perf-y));
+  -webkit-mask-position:
+    calc(var(--work-stamp-perf-x) / -2) calc(var(--work-stamp-perf-y) / -2),
+    center;
+  mask-position:
+    calc(var(--work-stamp-perf-x) / -2) calc(var(--work-stamp-perf-y) / -2),
+    center;
+  -webkit-mask-repeat: repeat, no-repeat;
+  mask-repeat: repeat, no-repeat;
+}
+
+/* The coloured artwork, inset from the perforated edge */
+.work-stamp-print {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: var(--gap-work-stamp-print);
+  min-width: 0;
+  padding: var(--padding-work-stamp-print);
+  color: var(--color-work-stamp-ink);
+  background: var(--color-work-stamp-surface);
+  border-radius: var(--radius-work-stamp-print);
+}
+
+.work-stamp-panel {
+  display: flex;
+  flex: 0 0 var(--width-work-stamp-panel);
+  align-self: stretch;
+  overflow: hidden;
+}
+
+.work-stamp-copy {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--gap-work-stamp-copy);
+  min-width: 0;
+}
+
+.work-stamp-name {
+  font-size: var(--text-work-stamp-name-size);
+  font-weight: var(--text-work-stamp-name-weight);
+  line-height: var(--text-work-stamp-name-line-height);
+  letter-spacing: var(--letter-spacing-work-stamp);
+}
+
+.work-stamp-meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-work-stamp-meta);
+  color: var(--color-work-stamp-meta);
+  font-size: var(--text-work-stamp-meta-size);
+  font-weight: var(--text-work-stamp-meta-weight);
+  line-height: var(--text-work-stamp-meta-line-height);
+  letter-spacing: var(--letter-spacing-work-stamp);
+  opacity: var(--opacity-work-stamp-meta);
+}
+
+/* ---------- Panel patterns ---------- */
+
+.work-stamp-pattern {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: var(--color-work-stamp-engraving);
+}
+
+/* Drafting: each row retracts and re-types from the left, top to bottom */
+.pattern-draft-row {
+  transform-box: fill-box;
+  transform-origin: left center;
+  animation: pattern-draft var(--animation-work-stamp-draft) infinite;
+  animation-delay: var(--pattern-delay);
+}
+
+/* Ripple: dots swell outward from the centre */
+.pattern-ripple-dot {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pattern-ripple var(--animation-work-stamp-ripple) infinite;
+  animation-delay: var(--pattern-delay);
+}
+
+/* Tiles: each column drifts upward and loops seamlessly */
+.pattern-tile-column {
+  transform-box: view-box;
+  animation: pattern-tiles var(--pattern-duration) linear infinite;
+}
+
+@keyframes pattern-draft {
+  0%, 100% { transform: scaleX(1); }
+  35% { transform: scaleX(0.15); }
+  70% { transform: scaleX(1); }
+}
+
+@keyframes pattern-ripple {
+  0%, 100% { transform: scale(1); }
+  40% { transform: scale(1.6); }
+}
+
+@keyframes pattern-tiles {
+  from { transform: translateY(0); }
+  to { transform: translateY(var(--pattern-loop)); }
+}
+
+/* Fan out only where there's a pointer that hovers and room for the row
+   (the wide home column starts at 68.75rem). Patterns always play. */
+@media (hover: hover) and (min-width: 68.75rem) {
+  .work-stamps:is(:hover, :focus-visible) {
+    width: var(--work-stamps-fanned-width);
+  }
+
+  .work-stamps:is(:hover, :focus-visible) .work-stamp {
+    transform: translateX(
+      calc(var(--work-stamp-index) * (var(--width-work-stamp) + var(--gap-work-stamps)))
+    );
+  }
+}
+
+/* Swiping reorders the stack, so stamps move together rather than staggered */
+@media (hover: none), (max-width: 68.6875rem) {
+  .work-stamp {
+    transition-delay: 0s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work-stamps,
+  .work-stamp {
+    transition: none;
+  }
+
+  .work-stamps .pattern-draft-row,
+  .work-stamps .pattern-ripple-dot,
+  .work-stamps .pattern-tile-column {
+    animation: none !important;
+  }
+}

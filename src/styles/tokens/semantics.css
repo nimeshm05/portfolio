@@ -88,6 +88,7 @@
   --scroll-margin-section: var(--gap-page);
   --padding-list-indent: var(--space-24);
   --opacity-control-inactive: var(--opacity-subtle);
+  --opacity-home-dimmed: var(--opacity-dim);
 
   /* Site controls */
   --inset-site-controls: var(--space-24);
@@ -130,6 +131,49 @@
   --connect-excitement-word-scale: var(--scale-110);
   --prompt-label-min-width: 4ch;
 
+  /* Work stamps */
+  --color-work-stamp-paper: var(--color-stamp-paper);
+  --color-work-stamp-ink: var(--color-white);
+  --color-work-stamp-green-surface: var(--color-stamp-green-600);
+  --color-work-stamp-green-engraving: var(--color-stamp-green-300);
+  --color-work-stamp-green-meta: var(--color-stamp-green-100);
+  --color-work-stamp-lime-surface: var(--color-stamp-lime-600);
+  --color-work-stamp-lime-engraving: var(--color-stamp-lime-300);
+  --color-work-stamp-lime-meta: var(--color-stamp-lime-100);
+  --color-work-stamp-teal-surface: var(--color-stamp-teal-600);
+  --color-work-stamp-teal-engraving: var(--color-stamp-teal-300);
+  --color-work-stamp-teal-meta: var(--color-stamp-teal-100);
+  --width-work-stamp: var(--size-work-stamp-width);
+  --height-work-stamp: var(--size-work-stamp-height);
+  --width-work-stamp-panel: var(--size-work-stamp-panel);
+  --work-stamp-perf-x: var(--size-work-stamp-perf-x);
+  --work-stamp-perf-y: var(--size-work-stamp-perf-y);
+  --work-stamp-hole: var(--size-work-stamp-hole);
+  --gap-work-stamps: var(--space-20);
+  --offset-work-stamp-peek: var(--space-8);
+  --offset-work-stamps-focus: var(--space-8);
+  --padding-work-stamp-paper: var(--space-8);
+  --padding-work-stamp-print: var(--space-8);
+  --gap-work-stamp-print: var(--gap-md);
+  --gap-work-stamp-copy: var(--gap-md);
+  --gap-work-stamp-meta: var(--gap-xs);
+  --radius-work-stamp-print: var(--radius-xs);
+  --radius-work-stamps-focus: var(--radius-sm);
+  --shadow-work-stamp: var(--shadow-stamp);
+  --transition-work-stamp: var(--transition-expand);
+  --delay-work-stamp-stagger: var(--duration-stagger);
+  --rotate-work-stamp-drag: var(--rotate-3);
+  --animation-work-stamp-draft: var(--duration-pattern-draft) var(--ease-expand);
+  --animation-work-stamp-ripple: var(--duration-pattern-ripple) var(--ease-in-out);
+  --text-work-stamp-name-size: var(--font-size-18);
+  --text-work-stamp-name-weight: var(--font-weight-semibold);
+  --text-work-stamp-name-line-height: var(--line-height-15);
+  --text-work-stamp-meta-size: var(--font-size-16);
+  --text-work-stamp-meta-weight: var(--font-weight-regular);
+  --text-work-stamp-meta-line-height: var(--line-height-none);
+  --letter-spacing-work-stamp: var(--letter-spacing-tighter);
+  --opacity-work-stamp-meta: var(--opacity-subtle);
+
   /* Blur roles */
   --blur-layer-1: var(--blur-1);
   --blur-layer-2: var(--blur-2);
@@ -163,6 +207,7 @@
   --scale-connect-sure-pulse: var(--scale-101);
 
   /* Radius */
+  --radius-xs: var(--radius-2);
   --radius-sm: var(--radius-4);
   --radius-md: var(--radius-6);
   --radius-lg: var(--radius-8);

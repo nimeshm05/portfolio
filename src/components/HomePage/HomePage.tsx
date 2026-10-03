@@ -15,7 +15,8 @@ import {
 import { LinkCue } from "@/components/LinkCue/LinkCue";
 import { SocialIconRow } from "@/components/SocialIconRow/SocialIconRow";
 import { ViewportEdgeBlur } from "@/components/ViewportEdgeBlur/ViewportEdgeBlur";
-import { homeSections, profile, resume } from "@/data/home";
+import { WorkStamps } from "@/components/WorkStamps/WorkStamps";
+import { homeSections, profile, resume, workStamps } from "@/data/home";
 import { useHomeSectionSnap } from "@/motion/homeSectionSnap";
 import { useHomeSidebarVisibility } from "@/motion/homeSidebarVisibility";
 import "./HomePage.css";
@@ -44,6 +45,7 @@ export function HomePage() {
           bio={profile.bio}
           avatarSrc={profile.avatarSrc}
           avatarAlt={profile.avatarAlt}
+          afterBio={<WorkStamps stamps={workStamps} />}
         >
           <ConnectPrompt />
           <SocialIconRow />

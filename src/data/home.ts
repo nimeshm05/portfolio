@@ -368,3 +368,43 @@ export const homeSections: ContentSectionData[] = [
   ...workSections,
   ...aboutSections,
 ];
+
+export type WorkStampTone = "green" | "lime" | "teal";
+export type WorkStampEmblem = "drafting" | "ripple" | "tiles";
+
+export type WorkStampData = {
+  id: string;
+  company: string;
+  role: string;
+  dates: string;
+  tone: WorkStampTone;
+  emblem: WorkStampEmblem;
+};
+
+/** The stamp stack under the header bio; the first stamp sits on top */
+export const workStamps: readonly WorkStampData[] = [
+  {
+    id: "knool",
+    company: "Knool",
+    role: "Product Designer",
+    dates: "Mar 2026 - Jun 2026",
+    tone: "green",
+    emblem: "drafting",
+  },
+  {
+    id: "rozieai",
+    company: "RozieAI",
+    role: "Product Designer",
+    dates: "Mar 2023 - Aug 2025",
+    tone: "lime",
+    emblem: "ripple",
+  },
+  {
+    id: "brane",
+    company: "Brane",
+    role: "SDE Intern",
+    dates: "Jun 2021 - Nov 2021",
+    tone: "teal",
+    emblem: "tiles",
+  },
+];
