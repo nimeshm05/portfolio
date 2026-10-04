@@ -150,9 +150,9 @@
   --work-stamp-perf-y: var(--size-work-stamp-perf-y);
   --work-stamp-hole: var(--size-work-stamp-hole);
   --gap-work-stamps: var(--space-20);
-  --offset-work-stamp-peek: var(--space-8);
+  --offset-work-stamp-peek: var(--space-16);
   --offset-work-stamps-focus: var(--space-8);
-  --padding-work-stamp-paper: var(--space-8);
+  --padding-work-stamp-paper: var(--space-12); /* white border, wide enough to take the perforation bites */
   --padding-work-stamp-print: var(--space-8);
   --gap-work-stamp-print: var(--gap-md);
   --gap-work-stamp-copy: var(--gap-md);
@@ -194,6 +194,21 @@
   --amount-work-stamp-halftone-darken: 45%; /* black mixed into the stamp colour for the dots */
   --amount-work-stamp-halftone-ink: 45%; /* dot opacity */
   --offset-work-stamp-misregistration: 0.5px;
+  /* Expanded stamp: lifted out of the stack into the middle of the page */
+  --width-work-stamp-expanded: var(--size-work-stamp-expanded-width);
+  --width-work-stamp-panel-expanded: var(--size-work-stamp-panel-expanded);
+  --share-work-stamp-panel-expanded: 28cqi; /* caps the panel on narrow cards, leaving room for the copy */
+  --inset-work-stamp-expanded: var(--space-16); /* keeps the stamp off the viewport edges */
+  --text-work-stamp-name-size-expanded: var(--font-size-26);
+  --text-work-stamp-meta-size-expanded: var(--font-size-18);
+  --text-work-stamp-description-size: var(--font-size-16);
+  --text-work-stamp-description-line-height: var(--line-height-tight);
+  --gap-work-stamp-description: var(--space-8); /* extra room between the meta and the description */
+  --blur-work-stamp-description: var(--blur-4); /* the description comes into focus as it fades in */
+  --shadow-work-stamp-expanded: var(--shadow-stamp-lifted);
+  --color-work-stamp-backdrop: color-mix(in oklch, var(--color-bg-page) 72%, transparent);
+  --blur-work-stamp-backdrop: var(--blur-4);
+  --z-work-stamp-expanded: var(--z-index-30);
 
   /* Blur roles */
   --blur-layer-1: var(--blur-1);

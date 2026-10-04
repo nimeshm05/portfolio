@@ -41,10 +41,27 @@
   transition: width var(--transition-work-stamp);
 }
 
-.work-stamps:focus-visible {
+/* Each stamp is a button laid over its face, so the stamp opens on click */
+.work-stamp-trigger {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.work-stamp-trigger:focus-visible {
   outline: var(--border-width) solid var(--color-text-subtle);
   outline-offset: var(--offset-work-stamps-focus);
   border-radius: var(--radius-work-stamps-focus);
+}
+
+/* Its slot stays empty while the stamp is out of the stack */
+.work-stamp[data-lifted] {
+  visibility: hidden;
 }
 
 /* Tones */
@@ -168,6 +185,7 @@
 }
 
 .work-stamp-panel {
+  position: relative;
   display: flex;
   flex: 0 0 var(--width-work-stamp-panel);
   align-self: stretch;
@@ -204,16 +222,24 @@
 .work-stamp-imprint {
   position: absolute;
   inset-inline: var(--padding-work-stamp-paper);
-  bottom: 0;
+  /* Centred in the strip between the print and the perforation bites */
+  bottom: var(--work-stamp-hole);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: var(--padding-work-stamp-paper-bottom);
+  height: calc(var(--padding-work-stamp-paper-bottom) - var(--work-stamp-hole));
   color: var(--color-work-stamp-imprint);
   font-size: var(--text-work-stamp-imprint-size);
   font-weight: var(--font-weight-medium);
   line-height: 1;
   letter-spacing: 0.02em;
+  transition: opacity var(--transition-fast);
+}
+
+/* Stacked, only a sliver of each stamp behind shows, and its imprint would
+   peek out as a clipped word; it returns once the row fans out */
+.work-stamp[data-behind] .work-stamp-imprint {
+  opacity: 0;
 }
 
 /* ---------- Texture ----------
@@ -323,7 +349,11 @@
 
 /* ---------- Panel patterns ---------- */
 
+/* Out of the flow: the tall canvas would otherwise set the panel's height,
+   and the panel should take its height from the copy beside it */
 .work-stamp-pattern {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
   height: 100%;
@@ -368,6 +398,116 @@
   to { transform: translateY(var(--pattern-loop)); }
 }
 
+/* ---------- Expanded stamp ----------
+   Lifted out of the stack into the middle of the page (see ExpandedCard).
+   Motion animates the box (left/top/width/height) and --work-stamp-expand
+   (0 → 1) on the same spring; the type and description follow that value. */
+
+.work-stamp-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-work-stamp-expanded);
+  background: var(--color-work-stamp-backdrop);
+  -webkit-backdrop-filter: blur(var(--blur-work-stamp-backdrop));
+  backdrop-filter: blur(var(--blur-work-stamp-backdrop));
+}
+
+.work-stamp-expanded {
+  --work-stamp-expand: 0;
+  /* The description waits for the second half of the motion, then comes into focus */
+  --work-stamp-reveal: clamp(0, (var(--work-stamp-expand) - 0.45) / 0.55, 1);
+
+  position: fixed;
+  z-index: var(--z-work-stamp-expanded);
+  filter: var(--shadow-work-stamp-expanded);
+  outline: none;
+  cursor: pointer;
+}
+
+/* Hidden, fully open copy that the card is sized from: the width snaps down
+   to the top perforation step, the height is the content's */
+.work-stamp-expanded--measure {
+  --work-stamp-expand: 1;
+
+  top: 0;
+  left: 0;
+  width: round(
+    down,
+    min(var(--width-work-stamp-expanded), 100vw - 2 * var(--inset-work-stamp-expanded)),
+    var(--work-stamp-perf-x)
+  );
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.work-stamp-perf-probe {
+  position: absolute;
+  width: 0;
+  height: var(--work-stamp-perf-y);
+}
+
+/* A size container, so the panel can claim a share of the card's width */
+.work-stamp-expanded {
+  container-type: inline-size;
+}
+
+/* The panel widens with the card, so the pattern grows rather than cropping */
+.work-stamp-expanded .work-stamp-panel {
+  flex-basis: calc(
+    var(--width-work-stamp-panel) +
+      (min(var(--width-work-stamp-panel-expanded), var(--share-work-stamp-panel-expanded)) -
+        var(--width-work-stamp-panel)) * var(--work-stamp-expand)
+  );
+}
+
+.work-stamp-expanded .work-stamp-name {
+  font-size: calc(
+    var(--text-work-stamp-name-size) +
+      (var(--text-work-stamp-name-size-expanded) - var(--text-work-stamp-name-size)) *
+      var(--work-stamp-expand)
+  );
+}
+
+.work-stamp-expanded .work-stamp-meta {
+  font-size: calc(
+    var(--text-work-stamp-meta-size) +
+      (var(--text-work-stamp-meta-size-expanded) - var(--text-work-stamp-meta-size)) *
+      var(--work-stamp-expand)
+  );
+}
+
+/* The value is pinned to the corner, so the description (in the flow but not
+   yet visible) can't push it off the card mid-animation */
+.work-stamp-expanded .work-stamp-copy {
+  position: relative;
+  justify-content: flex-start;
+}
+
+.work-stamp-expanded .work-stamp-details {
+  padding-bottom: calc(var(--text-work-stamp-value-size) + var(--gap-work-stamp-copy));
+}
+
+.work-stamp-expanded .work-stamp-value {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.work-stamp-description {
+  margin-top: var(--gap-work-stamp-description);
+  color: var(--color-work-stamp-meta);
+  font-size: var(--text-work-stamp-description-size);
+  line-height: var(--text-work-stamp-description-line-height);
+  letter-spacing: var(--letter-spacing-work-stamp);
+  opacity: var(--work-stamp-reveal);
+  filter: blur(calc((1 - var(--work-stamp-reveal)) * var(--blur-work-stamp-description)));
+}
+
+/* Held at its final width, so it doesn't re-wrap while the card grows */
+.work-stamp-expanded:not(.work-stamp-expanded--measure) .work-stamp-description {
+  width: var(--work-stamp-description-width);
+}
+
 /* Fan out only where there's a pointer that hovers and room for the row
    (the wide home column starts at 68.75rem). Patterns always play. */
 @media (hover: hover) and (min-width: 68.75rem) {
@@ -380,11 +520,15 @@
     );
   }
 
-  .work-stamps:is(:hover, :focus-visible) {
+  .work-stamps:is(:hover, :has(:focus-visible), [data-fanned]) {
     width: var(--work-stamps-fanned-width);
   }
 
-  .work-stamps:is(:hover, :focus-visible) .work-stamp {
+  .work-stamps:is(:hover, :has(:focus-visible), [data-fanned]) .work-stamp-imprint {
+    opacity: 1;
+  }
+
+  .work-stamps:is(:hover, :has(:focus-visible), [data-fanned]) .work-stamp {
     transform: translateX(
       calc(var(--work-stamp-index) * (var(--width-work-stamp) + var(--gap-work-stamps)))
     );
@@ -404,9 +548,9 @@
     transition: none;
   }
 
-  .work-stamps .pattern-draft-row,
-  .work-stamps .pattern-ripple-dot,
-  .work-stamps .pattern-tile-column {
+  :is(.work-stamps, .work-stamp-expanded) .pattern-draft-row,
+  :is(.work-stamps, .work-stamp-expanded) .pattern-ripple-dot,
+  :is(.work-stamps, .work-stamp-expanded) .pattern-tile-column {
     animation: none !important;
   }
 }

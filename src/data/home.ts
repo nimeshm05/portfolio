@@ -384,6 +384,8 @@ export type WorkStampData = {
   value: string;
   /** Where the work happened: the imprint line and the postmark's bottom arc */
   location: string;
+  /** Shown under the meta when the stamp is opened */
+  description: string;
   /** The circular cancellation mark inked over the stamp */
   postmark: {
     /** Runs around the top arc; keep it to ~14 characters */
@@ -405,6 +407,8 @@ export const workStamps: readonly WorkStampData[] = [
     emblem: "drafting",
     value: "26¢",
     location: "Seattle",
+    description:
+      "Currently on the AI workspace team, leading feature improvements to increase usage metrics. Doing bit of design, strategic work, & product analytics - start-up life :)",
     postmark: { label: "LEGAL × AI", year: "2026", rotate: -12 },
   },
   {
@@ -416,6 +420,8 @@ export const workStamps: readonly WorkStampData[] = [
     emblem: "ripple",
     value: "25¢",
     location: "Bangalore",
+    description:
+      "Led end-to-end design for a couple of internal tools like conversation insights and experience studio, which was used by clients like Air Canada.",
     postmark: { label: "DEV → DESIGN", year: "2025", rotate: 8 },
   },
   {
@@ -427,6 +433,8 @@ export const workStamps: readonly WorkStampData[] = [
     emblem: "tiles",
     value: "21¢",
     location: "Bangalore",
+    description:
+      "Learned Flutter, software testing, and state management by building and shipping three core features and fixing 20+ bugs.",
     postmark: { label: "FIRST COMMIT", year: "2021", rotate: -5 },
   },
 ];
