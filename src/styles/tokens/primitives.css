@@ -181,7 +181,7 @@
   /* Media widths grow with wide viewports: floor = laptop size, ceiling caps ultra-wide */
   --layout-project-banner-width: clamp(59rem, 50vw, 108rem);
   --layout-section-media-width: clamp(34rem, 52vw, 84rem);
-  --layout-home-cards-width: clamp(52rem, 44vw, 64rem);
+  --layout-home-cards-width: clamp(54rem, 44vw, 64rem);
   --layout-data-attribute-cards-width: clamp(63.75rem, 64vw, 100rem);
   --layout-prose-width: 34rem;
   --layout-text-width: 37.5rem; /* 600px at the 16px base */
