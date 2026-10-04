@@ -146,6 +146,9 @@
   --size-work-stamp-perf-x: 0.5rem; /* 8px between holes along the top and bottom */
   --size-work-stamp-perf-y: 0.4375rem; /* 7px between holes along the sides */
   --size-work-stamp-hole: 0.1875rem; /* perforation hole radius */
+  --size-work-stamp-halftone-pitch: 0.25rem; /* 4px screen, ~2.8px between dots on the 45° grid */
+  --size-work-stamp-halftone-dot: 0.05rem; /* 0.8px solid dot radius */
+  --size-work-stamp-halftone-soften: 0.01875rem; /* 0.3px feathered dot edge */
   --size-work-stamp-postmark: 4.25rem; /* 68px */
   --size-work-stamp-imprint-margin: 0.875rem; /* 14px bottom margin that holds the imprint */
   --scale-101: 1.01;

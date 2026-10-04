@@ -188,6 +188,11 @@
   --amount-work-stamp-ink: 90%; /* how much surface colour survives the muting */
   --opacity-work-stamp-print-texture: 0.3;
   --opacity-work-stamp-paper-texture: 0.3;
+  --work-stamp-halftone-pitch: var(--size-work-stamp-halftone-pitch);
+  --work-stamp-halftone-dot: var(--size-work-stamp-halftone-dot);
+  --work-stamp-halftone-soften: var(--size-work-stamp-halftone-soften);
+  --amount-work-stamp-halftone-darken: 45%; /* black mixed into the stamp colour for the dots */
+  --amount-work-stamp-halftone-ink: 45%; /* dot opacity */
   --offset-work-stamp-misregistration: 0.5px;
 
   /* Blur roles */
