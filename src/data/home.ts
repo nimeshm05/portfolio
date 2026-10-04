@@ -37,7 +37,7 @@ export const profile = {
       "Product designer in Seattle,",
       "with 2+ years designing B2B software in early stage startups.",
       "I use thoughtful reduction to bring clarity to the complexity,",
-      "And I design in code to turn ideas into reality."
+      "And I prototype in code to turn ideas into reality."
     ],
     [
       "Currently pursuing MS in Human Centered Design & Engineering,",
