@@ -1,5 +1,5 @@
 .jelly-avatar {
-  /* Room around the 80px body for stretching and jumping; the layout box stays 80px. */
+  /* Room around the avatar body for stretching and jumping; the layout box stays --avatar-size. */
   --jelly-overflow: 70px;
 
   position: relative;

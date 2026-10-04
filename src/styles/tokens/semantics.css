@@ -143,7 +143,7 @@
   --color-work-stamp-teal-surface: var(--color-stamp-teal-600);
   --color-work-stamp-teal-engraving: var(--color-stamp-teal-300);
   --color-work-stamp-teal-meta: var(--color-stamp-teal-100);
-  --width-work-stamp: var(--size-work-stamp-width);
+  --width-work-stamp-max: var(--size-work-stamp-width-max);
   --height-work-stamp: var(--size-work-stamp-height);
   --width-work-stamp-panel: var(--size-work-stamp-panel);
   --work-stamp-perf-x: var(--size-work-stamp-perf-x);
@@ -156,6 +156,7 @@
   --padding-work-stamp-print: var(--space-8);
   --gap-work-stamp-print: var(--gap-md);
   --gap-work-stamp-copy: var(--gap-md);
+  --padding-work-stamp-details-top: var(--space-20); /* nudges the name and meta down from the top edge */
   --gap-work-stamp-meta: var(--gap-xs);
   --radius-work-stamp-print: var(--radius-xs);
   --radius-work-stamps-focus: var(--radius-sm);
@@ -173,6 +174,21 @@
   --text-work-stamp-meta-line-height: var(--line-height-none);
   --letter-spacing-work-stamp: var(--letter-spacing-tighter);
   --opacity-work-stamp-meta: var(--opacity-subtle);
+  --width-work-stamp-postmark: var(--size-work-stamp-postmark);
+  --inset-work-stamp-postmark-top: var(--space-4);
+  --inset-work-stamp-postmark-right: var(--space-4);
+  --opacity-work-stamp-postmark: 1;
+  --amount-work-stamp-postmark-darken: 35%; /* black mixed into the stamp colour for the ink */
+  --padding-work-stamp-paper-bottom: var(--size-work-stamp-imprint-margin);
+  --text-work-stamp-value-size: var(--font-size-18);
+  --text-work-stamp-value-weight: var(--font-weight-bold);
+  --text-work-stamp-imprint-size: var(--font-size-6);
+  --color-work-stamp-imprint: var(--color-neutral-600);
+  /* Print & paper texture: kept very quiet, a well-kept stamp not a distressed one */
+  --amount-work-stamp-ink: 90%; /* how much surface colour survives the muting */
+  --opacity-work-stamp-print-texture: 0.3;
+  --opacity-work-stamp-paper-texture: 0.3;
+  --offset-work-stamp-misregistration: 0.5px;
 
   /* Blur roles */
   --blur-layer-1: var(--blur-1);

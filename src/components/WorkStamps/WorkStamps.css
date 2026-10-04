@@ -5,7 +5,25 @@
   Keep the stamp width a whole multiple of --work-stamp-perf-x and the height
   a whole multiple of --work-stamp-perf-y, or the perforations land unevenly.
 */
+/* The frame is a size container, so the stamps can be sized off the column
+   width while they stay absolutely positioned for the stack/fan motion. */
+.work-stamps-frame {
+  width: 100%;
+  container-type: inline-size;
+}
+
 .work-stamps {
+  /* Stacked only (touch, narrow screens): one stamp spans the column, capped.
+     Widths snap down to the perforation step so the holes stay even. */
+  --width-work-stamp: round(
+    down,
+    min(
+      100cqi - (var(--work-stamp-count) - 1) * var(--offset-work-stamp-peek),
+      var(--width-work-stamp-max)
+    ),
+    var(--work-stamp-perf-x)
+  );
+
   /* Derived from --work-stamp-count, which is set inline per stack */
   --work-stamps-stacked-width: calc(
     var(--width-work-stamp) + (var(--work-stamp-count) - 1) * var(--offset-work-stamp-peek)
@@ -79,12 +97,15 @@
 /* The paper carries the mask, the wrapper above carries the shadow, so the
    shadow follows the perforated edge and the page shows through the holes. */
 .work-stamp-paper {
+  position: relative;
   display: flex;
   width: 100%;
   height: 100%;
   padding: var(--padding-work-stamp-paper);
+  padding-bottom: var(--padding-work-stamp-paper-bottom);
   /* Stamp paper stays white in both themes, like the real thing */
-  background: var(--color-work-stamp-paper);
+  background-color: var(--color-work-stamp-paper);
+  isolation: isolate;
   -webkit-mask-image:
     radial-gradient(circle var(--work-stamp-hole) at center, transparent 98%, #000 100%),
     linear-gradient(#000 0 0);
@@ -109,6 +130,7 @@
 
 /* The coloured artwork, inset from the perforated edge */
 .work-stamp-print {
+  position: relative;
   display: flex;
   flex: 1 1 auto;
   align-items: center;
@@ -116,7 +138,12 @@
   min-width: 0;
   padding: var(--padding-work-stamp-print);
   color: var(--color-work-stamp-ink);
-  background: var(--color-work-stamp-surface);
+  /* Printed ink is never as saturated as a screen colour */
+  background: color-mix(
+    in oklch,
+    var(--color-work-stamp-surface) var(--amount-work-stamp-ink),
+    var(--color-work-stamp-paper)
+  );
   border-radius: var(--radius-work-stamp-print);
 }
 
@@ -131,9 +158,88 @@
   display: flex;
   flex: 1 1 0;
   flex-direction: column;
-  justify-content: center;
-  gap: var(--gap-work-stamp-copy);
+  align-self: stretch;
+  justify-content: space-between;
   min-width: 0;
+}
+
+.work-stamp-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-work-stamp-copy);
+  padding-top: var(--padding-work-stamp-details-top);
+}
+
+/* Face value, bottom-right of the artwork */
+.work-stamp-value {
+  align-self: flex-end;
+  line-height: 1;
+  font-size: var(--text-work-stamp-value-size);
+  font-weight: var(--text-work-stamp-value-weight);
+  letter-spacing: var(--letter-spacing-work-stamp);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Printer's imprint in the bottom margin: designer, year, place */
+.work-stamp-imprint {
+  position: absolute;
+  inset-inline: var(--padding-work-stamp-paper);
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--padding-work-stamp-paper-bottom);
+  color: var(--color-work-stamp-imprint);
+  font-size: var(--text-work-stamp-imprint-size);
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+/* ---------- Texture ----------
+   Paper: faint warm fibres over the white stock.
+   Print: a fine ink grain, a 2px halftone screen and soft pale patches where
+   the ink thinned, multiplied over the artwork (text included, as printed).
+   The panel pattern sits half a pixel off, like a slightly misaligned plate. */
+
+.work-stamp-paper::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75 0.25' numOctaves='3' seed='9' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.42  0 0 0 0 0.36  0 0 0 0 0.26  1.3 0 0 0 -0.66'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+  opacity: var(--opacity-work-stamp-paper-texture);
+  content: "";
+  pointer-events: none;
+}
+
+.work-stamp-print::after {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1.4 0 0 0 -0.62'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    radial-gradient(circle, oklch(0 0 0 / 0.14) 0.45px, transparent 0.75px);
+  background-size: auto, 2px 2px;
+  mix-blend-mode: multiply;
+  opacity: var(--opacity-work-stamp-print-texture);
+  content: "";
+  pointer-events: none;
+}
+
+.work-stamp-print::before {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='b'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.018' numOctaves='2' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  1.2 0 0 0 -0.5'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23b)'/%3E%3C/svg%3E");
+  mix-blend-mode: soft-light;
+  opacity: var(--opacity-work-stamp-print-texture);
+  content: "";
+  pointer-events: none;
+}
+
+.work-stamp-panel svg {
+  translate: var(--offset-work-stamp-misregistration) calc(var(--offset-work-stamp-misregistration) * -1);
 }
 
 .work-stamp-name {
@@ -153,6 +259,48 @@
   line-height: var(--text-work-stamp-meta-line-height);
   letter-spacing: var(--letter-spacing-work-stamp);
   opacity: var(--opacity-work-stamp-meta);
+}
+
+/* ---------- Postmark ---------- */
+
+/* Inked in the stamp's own colour. Multiply lets it darken over the coloured
+   print and stay true on the white paper, like real ink. The paper's
+   perforation mask clips it too. */
+.work-stamp-postmark {
+  position: absolute;
+  top: var(--inset-work-stamp-postmark-top);
+  right: var(--inset-work-stamp-postmark-right);
+  width: var(--width-work-stamp-postmark);
+  height: var(--width-work-stamp-postmark);
+  overflow: visible;
+  /* A darker shade of the stamp's own colour, so the mark reads over the print */
+  color: color-mix(
+    in oklch,
+    var(--color-work-stamp-surface),
+    var(--color-black) var(--amount-work-stamp-postmark-darken)
+  );
+  opacity: var(--opacity-work-stamp-postmark);
+  mix-blend-mode: multiply;
+  transform: rotate(var(--work-stamp-postmark-rotate, 0deg));
+  pointer-events: none;
+}
+
+.work-stamp-postmark text {
+  font-family: var(--font-family-sans);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+}
+
+.work-stamp-postmark-arc {
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+}
+
+.work-stamp-postmark-year {
+  font-size: 17px;
+  letter-spacing: 0.02em;
+  text-anchor: middle;
+  dominant-baseline: central;
 }
 
 /* ---------- Panel patterns ---------- */
@@ -205,6 +353,15 @@
 /* Fan out only where there's a pointer that hovers and room for the row
    (the wide home column starts at 68.75rem). Patterns always play. */
 @media (hover: hover) and (min-width: 68.75rem) {
+  /* Where the stamps fan out, they share the column equally (like flex: 1) */
+  .work-stamps {
+    --width-work-stamp: round(
+      down,
+      (100cqi - (var(--work-stamp-count) - 1) * var(--gap-work-stamps)) / var(--work-stamp-count),
+      var(--work-stamp-perf-x)
+    );
+  }
+
   .work-stamps:is(:hover, :focus-visible) {
     width: var(--work-stamps-fanned-width);
   }

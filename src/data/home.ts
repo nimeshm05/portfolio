@@ -380,6 +380,18 @@ export type WorkStampData = {
   dates: string;
   tone: WorkStampTone;
   emblem: WorkStampEmblem;
+  /** Face value printed in the corner, e.g. "26¢" */
+  value: string;
+  /** Where the work happened: the imprint line and the postmark's bottom arc */
+  location: string;
+  /** The circular cancellation mark inked over the stamp */
+  postmark: {
+    /** Runs around the top arc; keep it to ~14 characters */
+    label: string;
+    year: string;
+    /** Tilt in degrees, so the marks don't look copy-pasted */
+    rotate: number;
+  };
 };
 
 /** The stamp stack under the header bio; the first stamp sits on top */
@@ -391,6 +403,9 @@ export const workStamps: readonly WorkStampData[] = [
     dates: "Mar 2026 - Jun 2026",
     tone: "green",
     emblem: "drafting",
+    value: "26¢",
+    location: "Seattle",
+    postmark: { label: "LEGAL × AI", year: "2026", rotate: -12 },
   },
   {
     id: "rozieai",
@@ -399,6 +414,9 @@ export const workStamps: readonly WorkStampData[] = [
     dates: "Mar 2023 - Aug 2025",
     tone: "lime",
     emblem: "ripple",
+    value: "25¢",
+    location: "Bangalore",
+    postmark: { label: "DEV → DESIGN", year: "2025", rotate: 8 },
   },
   {
     id: "brane",
@@ -407,5 +425,8 @@ export const workStamps: readonly WorkStampData[] = [
     dates: "Jun 2021 - Nov 2021",
     tone: "teal",
     emblem: "tiles",
+    value: "21¢",
+    location: "Bangalore",
+    postmark: { label: "FIRST COMMIT", year: "2021", rotate: -5 },
   },
 ];

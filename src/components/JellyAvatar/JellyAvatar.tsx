@@ -220,7 +220,7 @@ export function JellyAvatar({ src, alt }: JellyAvatarProps) {
       onKeyDown={onKeyDown}
       onAnimationEnd={() => setHopping(false)}
     >
-      <Image className="jelly-avatar-still" src={src} alt="" width={80} height={80} priority draggable={false} />
+      <Image className="jelly-avatar-still" src={src} alt="" width={72} height={72} priority draggable={false} />
       <canvas ref={canvasRef} className="jelly-avatar-canvas" aria-hidden="true" />
     </button>
   );

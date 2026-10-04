@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useId, useRef, useState } from "react";
 import type { CSSProperties, PointerEvent } from "react";
 import type { WorkStampData, WorkStampEmblem } from "@/data/home";
 import "./WorkStamps.css";
@@ -65,43 +65,136 @@ export function WorkStamps({ stamps }: WorkStampsProps) {
   };
 
   return (
-    <ul
-      className="work-stamps"
-      aria-label="Experience"
-      tabIndex={0}
-      style={{ "--work-stamp-count": stamps.length } as CSSProperties}
-    >
-      {stamps.map((stamp, index) => {
-        const position = order.indexOf(index);
-        const isFront = position === 0;
-        return (
-          <li
-            key={stamp.id}
-            className={`work-stamp work-stamp--${stamp.tone}`}
-            style={{ "--work-stamp-index": position } as CSSProperties}
-            onPointerDown={isFront ? onPointerDown : undefined}
-            onPointerMove={isFront ? onPointerMove : undefined}
-            onPointerUp={isFront ? endSwipe : undefined}
-            onPointerCancel={isFront ? endSwipe : undefined}
-          >
-            <div className="work-stamp-paper">
-              <div className="work-stamp-print">
-                <div className="work-stamp-panel">
-                  <StampPattern emblem={stamp.emblem} />
-                </div>
-                <div className="work-stamp-copy">
-                  <p className="work-stamp-name">{stamp.company}</p>
-                  <div className="work-stamp-meta">
-                    <p>{stamp.role}</p>
-                    <p>{stamp.dates}</p>
+    <div className="work-stamps-frame">
+      <ul
+        className="work-stamps"
+        aria-label="Experience"
+        tabIndex={0}
+        style={{ "--work-stamp-count": stamps.length } as CSSProperties}
+      >
+        {stamps.map((stamp, index) => {
+          const position = order.indexOf(index);
+          const isFront = position === 0;
+          return (
+            <li
+              key={stamp.id}
+              className={`work-stamp work-stamp--${stamp.tone}`}
+              style={{ "--work-stamp-index": position } as CSSProperties}
+              onPointerDown={isFront ? onPointerDown : undefined}
+              onPointerMove={isFront ? onPointerMove : undefined}
+              onPointerUp={isFront ? endSwipe : undefined}
+              onPointerCancel={isFront ? endSwipe : undefined}
+            >
+              <div className="work-stamp-paper">
+                <div className="work-stamp-print">
+                  <div className="work-stamp-panel">
+                    <StampPattern emblem={stamp.emblem} />
+                  </div>
+                  <div className="work-stamp-copy">
+                    <div className="work-stamp-details">
+                      <p className="work-stamp-name">{stamp.company}</p>
+                      <div className="work-stamp-meta">
+                        <p>{stamp.role}</p>
+                        <p>{stamp.dates}</p>
+                      </div>
+                    </div>
+                    <span className="work-stamp-value" aria-hidden="true">
+                      {stamp.value}
+                    </span>
                   </div>
                 </div>
+                <p className="work-stamp-imprint" aria-hidden="true">
+                  <span>{STAMP_IMPRINT_DESIGN}</span>
+                  <span>{stamp.postmark.year}</span>
+                  <span>{stamp.location}</span>
+                </p>
+                <Postmark {...stamp.postmark} location={stamp.location} seed={index + 1} />
               </div>
-            </div>
-          </li>
-        );
-      })}
-    </ul>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
+}
+
+/* ---------- Stamp conventions ----------
+   The small print that makes a card read as a stamp: a face value on the
+   artwork, and a printer's imprint (designer, year, place) in the bottom margin. */
+
+const STAMP_IMPRINT_DESIGN = "Design N. Mohanakrishnan";
+
+/* ---------- Postmark ----------
+   A circular cancellation mark in the stamp's own ink. The distress filter
+   knocks out fine specks and fades broad patches, so it reads as hand-inked
+   rather than vector-perfect. `seed` keeps each stamp's wear different. */
+
+function Postmark({
+  label,
+  year,
+  rotate,
+  location,
+  seed,
+}: WorkStampData["postmark"] & { location: string; seed: number }) {
+  const id = useId();
+  const top = `${id}-top`;
+  const bottom = `${id}-bottom`;
+  const wear = `${id}-wear`;
+  const star = "M0 -3.4 1 -1 3.4 -1 1.5 0.5 2.2 3 0 1.5 -2.2 3 -1.5 0.5 -3.4 -1 -1 -1Z";
+
+  return (
+    <svg
+      className="work-stamp-postmark"
+      viewBox="0 0 100 100"
+      style={{ "--work-stamp-postmark-rotate": `${rotate}deg` } as CSSProperties}
+      aria-hidden="true"
+    >
+      <defs>
+        <path id={top} d="M 16 50 A 34 34 0 0 1 84 50" />
+        <path id={bottom} d="M 8 50 A 42 42 0 0 0 92 50" />
+        <filter id={wear} x="-5%" y="-5%" width="110%" height="110%">
+          {/* fine grain: tiny gaps where the ink didn't take */}
+          <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves={2} seed={seed} result="grain" />
+          <feColorMatrix
+            in="grain"
+            type="matrix"
+            values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -4 0 0 0 2.65"
+            result="specks"
+          />
+          {/* broad patches: uneven pressure across the stamp */}
+          <feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves={1} seed={seed + 11} result="pressure" />
+          <feColorMatrix
+            in="pressure"
+            type="matrix"
+            values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -2.6 0 0 0 2.05"
+            result="patches"
+          />
+          <feComposite in="SourceGraphic" in2="specks" operator="in" result="specked" />
+          <feComposite in="specked" in2="patches" operator="in" result="worn" />
+          {/* slightly rough edges */}
+          <feDisplacementMap in="worn" in2="grain" scale="1.6" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+      </defs>
+      <g filter={`url(#${wear})`} fill="currentColor" stroke="currentColor">
+        <circle cx="50" cy="50" r="47" fill="none" strokeWidth="3" />
+        <circle cx="50" cy="50" r="31" fill="none" strokeWidth="1.5" />
+        <text className="work-stamp-postmark-arc" stroke="none">
+          <textPath href={`#${top}`} startOffset="50%" textAnchor="middle">
+            {label}
+          </textPath>
+        </text>
+        <text className="work-stamp-postmark-arc" stroke="none">
+          <textPath href={`#${bottom}`} startOffset="50%" textAnchor="middle">
+            {location}
+          </textPath>
+        </text>
+        <path d={star} transform="translate(11 50)" stroke="none" />
+        <path d={star} transform="translate(89 50)" stroke="none" />
+        <text className="work-stamp-postmark-year" x="50" y="50" stroke="none">
+          {year}
+        </text>
+      </g>
+    </svg>
   );
 }
 
