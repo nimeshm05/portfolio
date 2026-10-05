@@ -100,6 +100,8 @@ export function WorkStamps({ stamps }: WorkStampsProps) {
     }
     const item = itemRefs.current[index];
     if (!item) return;
+    // The slot shows again when the stamp lands back, so it should be flat
+    tiltReset(item);
     window.clearTimeout(fanTimer.current);
     setOpened({ index, rect: toRect(item.getBoundingClientRect()) });
     setLifted(index);
@@ -137,7 +139,11 @@ export function WorkStamps({ stamps }: WorkStampsProps) {
               data-lifted={lifted === index ? "" : undefined}
               data-behind={isFront ? undefined : ""}
               onPointerDown={isFront ? onPointerDown : undefined}
-              onPointerMove={isFront ? onPointerMove : undefined}
+              onPointerMove={(event) => {
+                if (isFront) onPointerMove(event);
+                tiltFollow(event);
+              }}
+              onPointerLeave={tiltRelease}
               onPointerUp={isFront ? endSwipe : undefined}
               onPointerCancel={isFront ? endSwipe : undefined}
             >
@@ -216,6 +222,7 @@ function StampFace({
         <span>{stamp.location}</span>
       </p>
       <Postmark {...stamp.postmark} location={stamp.location} seed={seed} />
+      <span className="work-stamp-shine" aria-hidden="true" />
     </div>
   );
 }
@@ -379,11 +386,94 @@ function ExpandedCard({
         animate={target ? "expanded" : "collapsed"}
         exit="collapsed"
         onClick={onClose}
+        onPointerMove={tiltFollow}
+        onPointerLeave={tiltRelease}
       >
         <StampFace stamp={stamp} seed={seed} showDescription titleId={titleId} />
       </motion.div>
     </>
   );
+}
+
+/* ---------- Hover tilt ----------
+   Under a mouse, a stamp tilts so the point under the cursor sinks back, lifts
+   a touch, and a highlight follows the cursor. This only tracks the pointer
+   and eases a few unitless values each frame (written as CSS variables on the
+   hovered element, no React renders); the CSS turns them into the transform
+   and the shine, scaled by tokens. */
+
+type Tilt = {
+  /* eased values; x/y run -1..1 across the stamp, hover 0..1 */
+  x: number;
+  y: number;
+  hover: number;
+  target: { x: number; y: number; hover: number };
+  frame: number;
+};
+
+const TILT_EASE = 0.14; // share of the remaining distance covered per frame
+const tilts = new WeakMap<HTMLElement, Tilt>();
+
+const prefersReducedMotion = () =>
+  typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function tiltStep(el: HTMLElement, tilt: Tilt) {
+  const { target } = tilt;
+  tilt.x += (target.x - tilt.x) * TILT_EASE;
+  tilt.y += (target.y - tilt.y) * TILT_EASE;
+  tilt.hover += (target.hover - tilt.hover) * TILT_EASE;
+  el.style.setProperty("--work-stamp-tilt-x", tilt.x.toFixed(4));
+  el.style.setProperty("--work-stamp-tilt-y", tilt.y.toFixed(4));
+  el.style.setProperty("--work-stamp-hover", tilt.hover.toFixed(4));
+
+  const settled =
+    Math.abs(target.x - tilt.x) < 0.001 &&
+    Math.abs(target.y - tilt.y) < 0.001 &&
+    Math.abs(target.hover - tilt.hover) < 0.001;
+  if (settled) {
+    // Rest until the pointer moves again; once released, drop the variables
+    tilt.frame = 0;
+    if (target.hover === 0) tiltReset(el);
+    return;
+  }
+  tilt.frame = requestAnimationFrame(() => tiltStep(el, tilt));
+}
+
+/** Snap a stamp back to flat, e.g. as it's lifted out of its slot */
+function tiltReset(el: HTMLElement) {
+  const tilt = tilts.get(el);
+  if (tilt?.frame) cancelAnimationFrame(tilt.frame);
+  tilts.delete(el);
+  for (const name of ["--work-stamp-tilt-x", "--work-stamp-tilt-y", "--work-stamp-hover"]) {
+    el.style.removeProperty(name);
+  }
+}
+
+function tiltTowards(el: HTMLElement, target: Tilt["target"]) {
+  let tilt = tilts.get(el);
+  if (!tilt) {
+    tilt = { x: 0, y: 0, hover: 0, target, frame: 0 };
+    tilts.set(el, tilt);
+  }
+  tilt.target = target;
+  if (!tilt.frame) tilt.frame = requestAnimationFrame(() => tiltStep(el, tilt));
+}
+
+function tiltFollow(event: PointerEvent<HTMLElement>) {
+  if (event.pointerType !== "mouse" || prefersReducedMotion()) return;
+  const el = event.currentTarget;
+  const rect = el.getBoundingClientRect();
+  const clamp = (value: number) => Math.max(-1, Math.min(1, value));
+  tiltTowards(el, {
+    x: clamp(((event.clientX - rect.left) / rect.width) * 2 - 1),
+    y: clamp(((event.clientY - rect.top) / rect.height) * 2 - 1),
+    hover: 1,
+  });
+}
+
+function tiltRelease(event: PointerEvent<HTMLElement>) {
+  const tilt = tilts.get(event.currentTarget);
+  if (tilt) tiltTowards(event.currentTarget, { x: 0, y: 0, hover: 0 });
 }
 
 /* ---------- Stamp conventions ----------

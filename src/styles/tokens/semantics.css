@@ -164,6 +164,13 @@
   --transition-work-stamp: var(--transition-expand);
   --delay-work-stamp-stagger: var(--duration-stagger);
   --rotate-work-stamp-drag: var(--rotate-3);
+  /* Hover tilt: the point under the cursor sinks back, and light follows it */
+  --perspective-work-stamp: var(--perspective-700);
+  --rotate-work-stamp-tilt: var(--rotate-7); /* at the stamp's edge */
+  --rotate-work-stamp-tilt-expanded: var(--rotate-3); /* gentler on the large open stamp */
+  --scale-work-stamp-hover: var(--scale-104);
+  --opacity-work-stamp-glare: 0.55; /* the soft highlight under the cursor */
+  --opacity-work-stamp-sheen: 0.22; /* the diagonal foil band sweeping across */
   --animation-work-stamp-draft: var(--duration-pattern-draft) var(--ease-expand);
   --animation-work-stamp-ripple: var(--duration-pattern-ripple) var(--ease-in-out);
   --text-work-stamp-name-size: var(--font-size-18);

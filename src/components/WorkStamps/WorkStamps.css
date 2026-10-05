@@ -114,6 +114,10 @@
 /* The paper carries the mask, the wrapper above carries the shadow, so the
    shadow follows the perforated edge and the page shows through the holes. */
 .work-stamp-paper {
+  /* Hover tilt (see tiltFollow): --work-stamp-tilt-x/-y run -1..1 with the
+     cursor, --work-stamp-hover 0..1. The side under the cursor sinks back. */
+  --work-stamp-tilt-max: var(--rotate-work-stamp-tilt);
+
   position: relative;
   display: flex;
   width: 100%;
@@ -173,6 +177,47 @@
 
 .work-stamp-copy {
   position: relative;
+}
+
+.work-stamp-paper {
+  transform: perspective(var(--perspective-work-stamp))
+    rotateX(calc(var(--work-stamp-tilt-y, 0) * -1 * var(--work-stamp-tilt-max)))
+    rotateY(calc(var(--work-stamp-tilt-x, 0) * var(--work-stamp-tilt-max)))
+    scale(calc(1 + (var(--scale-work-stamp-hover) - 1) * var(--work-stamp-hover, 0)));
+}
+
+.work-stamp-expanded .work-stamp-paper {
+  --work-stamp-tilt-max: var(--rotate-work-stamp-tilt-expanded);
+}
+
+/* Light on the paper: a soft highlight under the cursor and a diagonal foil
+   band that sweeps across as the stamp tilts. Inside the paper, so the
+   perforation mask clips it too. */
+.work-stamp-shine {
+  --work-stamp-glare-x: calc(50% + var(--work-stamp-tilt-x, 0) * 50%);
+  --work-stamp-glare-y: calc(50% + var(--work-stamp-tilt-y, 0) * 50%);
+
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      circle at var(--work-stamp-glare-x) var(--work-stamp-glare-y),
+      color-mix(in oklch, var(--color-white) calc(var(--opacity-work-stamp-glare) * 100%), transparent),
+      transparent 60%
+    ),
+    linear-gradient(
+      115deg,
+      transparent 35%,
+      color-mix(in oklch, var(--color-white) calc(var(--opacity-work-stamp-sheen) * 100%), transparent) 50%,
+      transparent 65%
+    );
+  background-size: 100% 100%, 300% 300%;
+  background-position:
+    0 0,
+    calc(50% + var(--work-stamp-tilt-x, 0) * 50%) calc(50% + var(--work-stamp-tilt-y, 0) * 50%);
+  mix-blend-mode: overlay;
+  opacity: var(--work-stamp-hover, 0);
+  pointer-events: none;
 }
 
 /* ---------- Wash ----------
