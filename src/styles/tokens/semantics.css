@@ -209,12 +209,13 @@
   --opacity-work-stamp-wash-vein: 0.28;
   /* Expanded stamp: lifted out of the stack into the middle of the page */
   --width-work-stamp-expanded: var(--size-work-stamp-expanded-width);
+  --width-work-stamp-postmark-expanded: var(--size-work-stamp-postmark-expanded);
   --width-work-stamp-panel-expanded: var(--size-work-stamp-panel-expanded);
   --share-work-stamp-panel-expanded: 28cqi; /* caps the panel on narrow cards, leaving room for the copy */
   --inset-work-stamp-expanded: var(--space-16); /* keeps the stamp off the viewport edges */
-  --text-work-stamp-name-size-expanded: var(--font-size-26);
-  --text-work-stamp-meta-size-expanded: var(--font-size-18);
-  --text-work-stamp-description-size: var(--font-size-16);
+  --text-work-stamp-name-size-expanded: var(--font-size-32);
+  --text-work-stamp-meta-size-expanded: var(--font-size-20);
+  --text-work-stamp-description-size: var(--font-size-18);
   --text-work-stamp-description-line-height: var(--line-height-tight);
   --gap-work-stamp-description: var(--space-8); /* extra room between the meta and the description */
   --blur-work-stamp-description: var(--blur-4); /* the description comes into focus as it fades in */

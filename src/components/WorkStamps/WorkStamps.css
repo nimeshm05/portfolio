@@ -571,6 +571,17 @@
   );
 }
 
+.work-stamp-expanded .work-stamp-postmark {
+  --work-stamp-postmark-size: calc(
+    var(--width-work-stamp-postmark) +
+      (var(--width-work-stamp-postmark-expanded) - var(--width-work-stamp-postmark)) *
+      var(--work-stamp-expand)
+  );
+
+  width: var(--work-stamp-postmark-size);
+  height: var(--work-stamp-postmark-size);
+}
+
 .work-stamp-expanded .work-stamp-name {
   font-size: calc(
     var(--text-work-stamp-name-size) +

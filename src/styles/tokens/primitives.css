@@ -144,7 +144,7 @@
   --size-work-stamp-width-max: 24rem; /* cap for the single stacked stamp on tablet/mobile */
   --size-work-stamp-height: 10.5rem; /* 168px, a whole multiple of the 14px perforation */
   --size-work-stamp-panel: 3.5rem; /* 56px */
-  --size-work-stamp-panel-expanded: 7.5rem; /* 120px */
+  --size-work-stamp-panel-expanded: 9rem; /* 144px */
   --size-work-stamp-perf-x: 0.875rem; /* 14px between holes along the top and bottom */
   --size-work-stamp-perf-y: 0.875rem; /* 14px between holes along the sides */
   --size-work-stamp-hole: 0.3125rem; /* 5px perforation hole radius: deep, round bites; keep under half the perf step */
@@ -152,7 +152,8 @@
   --size-work-stamp-halftone-dot: 0.05rem; /* 0.8px solid dot radius */
   --size-work-stamp-halftone-soften: 0.01875rem; /* 0.3px feathered dot edge */
   --size-work-stamp-postmark: 4.25rem; /* 68px */
-  --size-work-stamp-expanded-width: 34rem; /* 544px cap; the open stamp snaps down to the perforation step */
+  --size-work-stamp-postmark-expanded: 6.5rem; /* 104px */
+  --size-work-stamp-expanded-width: 40rem; /* 640px cap; the open stamp snaps down to the perforation step */
   --size-work-stamp-imprint-margin: 1.125rem; /* 18px bottom margin that holds the imprint above the perforation bites */
   --scale-101: 1.01;
   --scale-110: 1.1;
