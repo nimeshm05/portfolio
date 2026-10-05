@@ -188,6 +188,7 @@ function StampFace({
   return (
     <div className="work-stamp-paper">
       <div className="work-stamp-print">
+        <StampWash seed={seed} />
         <div className="work-stamp-panel">
           <StampPattern emblem={stamp.emblem} />
         </div>
@@ -390,6 +391,98 @@ function ExpandedCard({
    artwork, and a printer's imprint (designer, year, place) in the bottom margin. */
 
 const STAMP_IMPRINT_DESIGN = "Design N. Mohanakrishnan";
+
+/* ---------- Wash ----------
+   The print's abstract ground: soft pools and washes in the stamp's own
+   palette, displaced by noise and blurred so they read as watercolour, with a
+   few faint leafy strokes. Each stamp's seed gives it its own composition.
+   The canvas stretches to the print (preserveAspectRatio="none"), which suits
+   the soft shapes and keeps the wash continuous as an opening stamp grows.
+   Deep pools favour the copy side so the white type stays readable; pale
+   washes gather on the artwork side and in the corners. */
+
+const WASH_W = 200;
+const WASH_H = 100;
+
+function StampWash({ seed }: { seed: number }) {
+  const id = useId();
+  const flow = `${id}-flow`;
+  const soft = `${id}-soft`;
+  const rand = seeded(seed * 97 + 13);
+  const range = (min: number, max: number) => min + rand() * (max - min);
+
+  const blob = () => ({ rx: range(28, 62), ry: range(20, 42), rotate: range(-40, 40) });
+  const deep = Array.from({ length: 3 }, () => ({
+    cx: range(80, 210),
+    cy: range(5, 95),
+    ...blob(),
+  }));
+  const light = Array.from({ length: 3 }, (_, i) => ({
+    // one on the artwork side, the others drifting into a corner
+    cx: i === 0 ? range(-5, 45) : range(-10, 210),
+    cy: i === 0 ? range(20, 80) : rand() > 0.5 ? range(-15, 10) : range(90, 115),
+    ...blob(),
+  }));
+  const glow = Array.from({ length: 2 }, () => ({
+    cx: range(0, 200),
+    cy: range(0, 100),
+    rx: range(8, 18),
+    ry: range(6, 14),
+    rotate: 0,
+  }));
+  const veins = Array.from({ length: 3 }, () => {
+    const x0 = range(-10, 120);
+    const y0 = range(70, 110);
+    const x1 = x0 + range(50, 110);
+    const y1 = range(-10, 40);
+    return {
+      d: `M${x0} ${y0} Q${range(x0, x1)} ${range(-20, 120)} ${x1} ${y1}`,
+      width: range(2.5, 6),
+    };
+  });
+
+  const ellipse = (shape: { cx: number; cy: number; rx: number; ry: number; rotate: number }, key: string, className: string) => (
+    <ellipse
+      key={key}
+      className={className}
+      cx={shape.cx}
+      cy={shape.cy}
+      rx={shape.rx}
+      ry={shape.ry}
+      transform={`rotate(${shape.rotate} ${shape.cx} ${shape.cy})`}
+    />
+  );
+
+  return (
+    <div className="work-stamp-wash" aria-hidden="true">
+      <svg viewBox={`0 0 ${WASH_W} ${WASH_H}`} preserveAspectRatio="none">
+        <defs>
+          {/* Noise pushes the edges around like pigment spreading in water */}
+          <filter id={flow} x="-30%" y="-30%" width="160%" height="160%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.025" numOctaves={2} seed={seed} result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="36" xChannelSelector="R" yChannelSelector="G" result="spread" />
+            <feGaussianBlur in="spread" stdDeviation="5" />
+          </filter>
+          <filter id={soft} x="-20%" y="-20%" width="140%" height="140%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves={1} seed={seed + 5} result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="10" xChannelSelector="R" yChannelSelector="G" result="wobble" />
+            <feGaussianBlur in="wobble" stdDeviation="1.2" />
+          </filter>
+        </defs>
+        <g filter={`url(#${flow})`}>
+          {deep.map((shape, i) => ellipse(shape, `deep-${i}`, "work-stamp-wash-deep"))}
+          {light.map((shape, i) => ellipse(shape, `light-${i}`, "work-stamp-wash-light"))}
+          {glow.map((shape, i) => ellipse(shape, `glow-${i}`, "work-stamp-wash-glow"))}
+        </g>
+        <g filter={`url(#${soft})`}>
+          {veins.map((vein, i) => (
+            <path key={i} className="work-stamp-wash-vein" d={vein.d} strokeWidth={vein.width} />
+          ))}
+        </g>
+      </svg>
+    </div>
+  );
+}
 
 /* ---------- Postmark ----------
    A circular cancellation mark in the stamp's own ink. The distress filter
