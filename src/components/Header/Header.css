@@ -81,7 +81,7 @@
   align-items: flex-start;
   gap: var(--text-body-paragraph-gap);
   max-width: var(--max-width-text);
-  color: var(--color-text-subtle);
+  color: var(--color-text-label);
   font-size: var(--text-subtitle-display-size);
   font-weight: var(--text-subtitle-display-weight);
   line-height: var(--line-height-body);
