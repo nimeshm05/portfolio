@@ -371,7 +371,7 @@ export const homeSections: ContentSectionData[] = [
 ];
 
 export type WorkStampTone = "green" | "lime" | "teal";
-export type WorkStampEmblem = "drafting" | "ripple" | "tiles";
+export type WorkStampEmblem = "spirals" | "waves" | "checker";
 
 export type WorkStampData = {
   id: string;
@@ -404,7 +404,7 @@ export const workStamps: readonly WorkStampData[] = [
     role: "Product Intern",
     dates: "Mar 2026 - Jun 2026",
     tone: "green",
-    emblem: "drafting",
+    emblem: "spirals",
     value: "26¢",
     location: "Seattle",
     description:
@@ -417,7 +417,7 @@ export const workStamps: readonly WorkStampData[] = [
     role: "Product Designer",
     dates: "Mar 2023 - Aug 2025",
     tone: "lime",
-    emblem: "ripple",
+    emblem: "waves",
     value: "25¢",
     location: "Bangalore",
     description:
@@ -430,7 +430,7 @@ export const workStamps: readonly WorkStampData[] = [
     role: "SDE Intern",
     dates: "Jun 2021 - Nov 2021",
     tone: "teal",
-    emblem: "tiles",
+    emblem: "checker",
     value: "21¢",
     location: "Bangalore",
     description:

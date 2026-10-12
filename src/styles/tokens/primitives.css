@@ -117,8 +117,7 @@
   --duration-expand: 500ms;
   --duration-sure-pulse: 3s;
   --duration-stagger: 30ms;
-  --duration-pattern-draft: 2.6s;
-  --duration-pattern-ripple: 1.8s;
+  --duration-pattern-checker: 3.2s;
   --ease-default: ease;
   --ease-in-out: ease-in-out;
   --ease-expand: cubic-bezier(0.22, 1, 0.36, 1);

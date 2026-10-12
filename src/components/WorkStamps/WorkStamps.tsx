@@ -674,113 +674,107 @@ function StampPattern({ emblem }: { emblem: WorkStampEmblem }) {
       preserveAspectRatio="xMidYMid slice"
       aria-hidden="true"
     >
-      {emblem === "drafting" ? <DraftingPattern /> : null}
-      {emblem === "ripple" ? <RipplePattern /> : null}
-      {emblem === "tiles" ? <TilesPattern /> : null}
+      {emblem === "spirals" ? <SpiralsPattern /> : null}
+      {emblem === "waves" ? <WavesPattern /> : null}
+      {emblem === "checker" ? <CheckerPattern /> : null}
     </svg>
   );
 }
 
-/** Knool: rows of text-like bars that re-type themselves in a slow ripple */
-function DraftingPattern() {
-  const rand = seeded(7);
-  const rows = [];
-  const bar = 1.5;
-  const count = Math.round(PANEL_H / 6.3) + 1; // a row every ~6.3 units
-  for (let row = 0; row < count; row += 1) {
-    const y = row * ((PANEL_H - bar) / (count - 1));
-    const first = PANEL_W * (0.25 + rand() * 0.42);
-    const hasSecond = rand() > 0.45;
-    const second = hasSecond ? 6 + rand() * (PANEL_W - first - 4 - 6) : 0;
-    rows.push(
-      <g
-        key={row}
-        className="pattern-draft-row"
-        style={{ "--pattern-delay": `${row * 0.09}s` } as CSSProperties}
-      >
-        <rect x={0} y={y} width={first} height={bar} rx={bar / 2} />
-        {hasSecond ? (
-          <rect x={first + 4} y={y} width={Math.max(second, 4)} height={bar} rx={bar / 2} />
-        ) : null}
-      </g>,
-    );
-  }
-  return <g fill="currentColor">{rows}</g>;
-}
-
-/** RozieAI: a dot matrix whose dots swell outward from the centre, like a voice */
-function RipplePattern() {
-  const cols = 5;
-  const rows = Math.round((PANEL_H - 4) / 10.2) + 1; // a row every ~10 units
-  const cx = PANEL_W / 2;
-  const cy = PANEL_H / 2;
-  const maxRadius = 3.4;
-  const dots = [];
-  for (let r = 0; r < rows; r += 1) {
-    for (let c = 0; c < cols; c += 1) {
-      // Inset by the largest dot, so the outer columns aren't sliced by the edge
-      const x = maxRadius + c * ((PANEL_W - maxRadius * 2) / (cols - 1));
-      const y = 2 + r * ((PANEL_H - 4) / (rows - 1));
-      const distance = Math.hypot(x - cx, y - cy);
-      const radius = Math.max(1.1, maxRadius - distance / 18);
-      dots.push(
-        <circle
-          key={`${r}-${c}`}
-          className="pattern-ripple-dot"
-          cx={x}
-          cy={y}
-          r={radius}
-          style={{ "--pattern-delay": `${(distance / 40).toFixed(2)}s` } as CSSProperties}
-        />,
+/** Knool: a grid of carved spirals, each turning at its own pace */
+function SpiralsPattern() {
+  const rows = 9;
+  const cell = PANEL_H / rows; // 24 units
+  const turns = 4.2 * Math.PI;
+  const spirals = [];
+  for (let row = 0; row < rows; row += 1) {
+    for (let col = 0; col < 2; col += 1) {
+      // Alternate rows sit a little off-centre, like hand-set carvings
+      const cx = 11 + col * 22 + (row % 2) * 4;
+      const cy = cell / 2 + row * cell;
+      let d = "";
+      for (let t = 0; t <= turns; t += 0.2) {
+        const r = 0.75 * t;
+        d += `${d ? "L" : "M"}${(cx + Math.cos(t) * r).toFixed(2)} ${(cy + Math.sin(t) * r).toFixed(2)}`;
+      }
+      const index = row * 2 + col;
+      spirals.push(
+        <path
+          key={index}
+          className="pattern-spiral"
+          d={d}
+          style={
+            {
+              transformOrigin: `${cx}px ${cy}px`,
+              "--pattern-duration": `${5 + (index % 4) * 2}s`,
+              "--pattern-direction": (row + col) % 2 ? "reverse" : "normal",
+            } as CSSProperties
+          }
+        />
       );
     }
   }
-  return <g fill="currentColor">{dots}</g>;
-}
-
-/** Brane: three columns of layout tiles drifting upward at different speeds */
-function TilesPattern() {
-  const rand = seeded(21);
-  const gap = 4;
-  const columnWidth = (PANEL_W - gap) / 2;
-  const columns = [0, 1].map((i) => i * (columnWidth + gap));
   return (
-    <g fill="none" stroke="currentColor" strokeWidth={1}>
-      {columns.map((x, index) => {
-        const tiles: { y: number; h: number }[] = [];
-        let y = 0.5 + rand() * 6;
-        while (y < PANEL_H + gap) {
-          const h = 8 + Math.round(rand() * 14);
-          tiles.push({ y, h });
-          y += h + gap;
-        }
-        const loop = y; // the column repeats every `loop` units, so the scroll is seamless
-        return (
-          <g
-            key={x}
-            className="pattern-tile-column"
-            style={
-              {
-                "--pattern-loop": `${-loop}px`,
-                "--pattern-duration": `${7 + index * 2.5}s`,
-              } as CSSProperties
-            }
-          >
-            {[0, loop].map((offset) =>
-              tiles.map((tile) => (
-                <rect
-                  key={`${offset}-${tile.y}`}
-                  x={x + 0.5}
-                  y={tile.y + offset}
-                  width={columnWidth - 1}
-                  height={tile.h}
-                  rx={2}
-                />
-              )),
-            )}
-          </g>
-        );
-      })}
+    <g fill="none" stroke="currentColor" strokeWidth={1.4} strokeLinecap="round">
+      {spirals}
     </g>
   );
+}
+
+/** RozieAI: stacked wavy grooves flowing in alternate directions, like turns in a conversation */
+function WavesPattern() {
+  const wavelength = 24;
+  const amplitude = 3;
+  const spacing = 9;
+  const rows = [];
+  for (let y = spacing / 2, row = 0; y < PANEL_H; y += spacing, row += 1) {
+    // Long enough to slide a full wavelength either way and still cover the panel
+    let d = `M${-wavelength * 2} ${y}`;
+    for (let x = -wavelength * 2; x < PANEL_W + wavelength * 2; x += wavelength) {
+      d += ` q${wavelength / 4} ${-amplitude} ${wavelength / 2} 0 t${wavelength / 2} 0`;
+    }
+    rows.push(
+      <path
+        key={row}
+        className="pattern-wave"
+        d={d}
+        style={
+          {
+            "--pattern-loop": `${row % 2 ? wavelength : -wavelength}px`,
+            "--pattern-duration": `${3 + (row % 3)}s`,
+          } as CSSProperties
+        }
+      />
+    );
+  }
+  return (
+    <g fill="none" stroke="currentColor" strokeWidth={1.2} strokeLinecap="round">
+      {rows}
+    </g>
+  );
+}
+
+/** Brane: a carved checkerboard whose cells flip in a diagonal wave */
+function CheckerPattern() {
+  const size = 8;
+  const inset = 0.8;
+  const cells = [];
+  for (let row = 0; row < PANEL_H / size; row += 1) {
+    for (let col = 0; col < PANEL_W / size; col += 1) {
+      if ((row + col) % 2) continue;
+      cells.push(
+        <rect
+          key={`${row}-${col}`}
+          className="pattern-checker-cell"
+          x={col * size + inset}
+          y={row * size + inset}
+          width={size - inset * 2}
+          height={size - inset * 2}
+          rx={0.6}
+          style={{ "--pattern-delay": `${((row + col) * 0.09).toFixed(2)}s` } as CSSProperties}
+        />
+      );
+    }
+  }
+  return <g fill="currentColor">{cells}</g>;
 }

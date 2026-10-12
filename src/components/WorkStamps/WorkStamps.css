@@ -471,42 +471,37 @@
   color: var(--color-work-stamp-engraving);
 }
 
-/* Drafting: each row retracts and re-types from the left, top to bottom */
-.pattern-draft-row {
-  transform-box: fill-box;
-  transform-origin: left center;
-  animation: pattern-draft var(--animation-work-stamp-draft) infinite;
-  animation-delay: var(--pattern-delay);
+/* Spirals: each turns about its own centre, at its own pace and direction */
+.pattern-spiral {
+  transform-box: view-box;
+  animation: pattern-spin var(--pattern-duration) linear infinite var(--pattern-direction, normal);
 }
 
-/* Ripple: dots swell outward from the centre */
-.pattern-ripple-dot {
+/* Waves: each row slides one wavelength and loops seamlessly */
+.pattern-wave {
+  transform-box: view-box;
+  animation: pattern-flow var(--pattern-duration) linear infinite;
+}
+
+/* Checker: cells flip edge-on and back, in a diagonal wave */
+.pattern-checker-cell {
   transform-box: fill-box;
   transform-origin: center;
-  animation: pattern-ripple var(--animation-work-stamp-ripple) infinite;
+  animation: pattern-flip var(--animation-work-stamp-checker) infinite;
   animation-delay: var(--pattern-delay);
 }
 
-/* Tiles: each column drifts upward and loops seamlessly */
-.pattern-tile-column {
-  transform-box: view-box;
-  animation: pattern-tiles var(--pattern-duration) linear infinite;
+@keyframes pattern-spin {
+  to { transform: rotate(360deg); }
 }
 
-@keyframes pattern-draft {
-  0%, 100% { transform: scaleX(1); }
-  35% { transform: scaleX(0.15); }
-  70% { transform: scaleX(1); }
+@keyframes pattern-flow {
+  to { transform: translateX(var(--pattern-loop)); }
 }
 
-@keyframes pattern-ripple {
-  0%, 100% { transform: scale(1); }
-  40% { transform: scale(1.6); }
-}
-
-@keyframes pattern-tiles {
-  from { transform: translateY(0); }
-  to { transform: translateY(var(--pattern-loop)); }
+@keyframes pattern-flip {
+  0%, 30%, 100% { transform: scaleX(1); }
+  15% { transform: scaleX(0); }
 }
 
 /* ---------- Expanded stamp ----------
@@ -670,9 +665,9 @@
     transition: none;
   }
 
-  :is(.work-stamps, .work-stamp-expanded) .pattern-draft-row,
-  :is(.work-stamps, .work-stamp-expanded) .pattern-ripple-dot,
-  :is(.work-stamps, .work-stamp-expanded) .pattern-tile-column {
+  :is(.work-stamps, .work-stamp-expanded) .pattern-spiral,
+  :is(.work-stamps, .work-stamp-expanded) .pattern-wave,
+  :is(.work-stamps, .work-stamp-expanded) .pattern-checker-cell {
     animation: none !important;
   }
 }
