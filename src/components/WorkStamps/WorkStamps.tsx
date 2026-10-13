@@ -50,6 +50,18 @@ export function WorkStamps({ stamps }: WorkStampsProps) {
 
   useEffect(() => () => window.clearTimeout(fanTimer.current), []);
 
+  // Patterns pause while the stamps are scrolled out of view (see the CSS)
+  const frameRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const frame = frameRef.current;
+    if (!frame) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      frame.toggleAttribute("data-offscreen", !entry.isIntersecting);
+    });
+    observer.observe(frame);
+    return () => observer.disconnect();
+  }, []);
+
   const setDrag = (el: HTMLElement, dx: number | null) => {
     if (dx === null) {
       el.removeAttribute("data-dragging");
@@ -117,7 +129,7 @@ export function WorkStamps({ stamps }: WorkStampsProps) {
   }, [opened]);
 
   return (
-    <div className="work-stamps-frame">
+    <div ref={frameRef} className="work-stamps-frame">
       <ul
         className="work-stamps"
         aria-label="Experience"
@@ -185,18 +197,22 @@ function StampFace({
   seed,
   showDescription = false,
   titleId,
+  layoutOnly = false,
 }: {
   stamp: WorkStampData;
   seed: number;
   showDescription?: boolean;
   titleId?: string;
+  /** For the hidden sizing copy: the artwork is absolutely positioned and
+      doesn't affect size, so its SVGs and filters are skipped */
+  layoutOnly?: boolean;
 }) {
   return (
     <div className="work-stamp-paper">
       <div className="work-stamp-print">
-        <StampWash seed={seed} />
+        {layoutOnly ? null : <StampWash seed={seed} />}
         <div className="work-stamp-panel">
-          <StampPattern emblem={stamp.emblem} />
+          {layoutOnly ? null : <StampPattern emblem={stamp.emblem} />}
         </div>
         <div className="work-stamp-copy">
           <div className="work-stamp-details">
@@ -221,8 +237,12 @@ function StampFace({
         <span>{stamp.postmark.year}</span>
         <span>{stamp.location}</span>
       </p>
-      <Postmark {...stamp.postmark} location={stamp.location} seed={seed} />
-      <span className="work-stamp-shine" aria-hidden="true" />
+      {layoutOnly ? null : (
+        <>
+          <Postmark {...stamp.postmark} location={stamp.location} seed={seed} />
+          <span className="work-stamp-shine" aria-hidden="true" />
+        </>
+      )}
     </div>
   );
 }
@@ -365,7 +385,7 @@ function ExpandedCard({
         className={`work-stamp-expanded work-stamp-expanded--measure work-stamp--${stamp.tone}`}
         aria-hidden="true"
       >
-        <StampFace stamp={stamp} seed={seed} showDescription />
+        <StampFace stamp={stamp} seed={seed} showDescription layoutOnly />
         <span ref={perfRef} className="work-stamp-perf-probe" />
       </div>
       <motion.div
@@ -385,6 +405,9 @@ function ExpandedCard({
         initial="collapsed"
         animate={target ? "expanded" : "collapsed"}
         exit="collapsed"
+        // Patterns pause while the card is resizing, so each frame stays cheap
+        onAnimationStart={() => cardRef.current?.setAttribute("data-moving", "")}
+        onAnimationComplete={() => cardRef.current?.removeAttribute("data-moving")}
         onClick={onClose}
         onPointerMove={tiltFollow}
         onPointerLeave={tiltRelease}
@@ -726,30 +749,39 @@ function WavesPattern() {
   const wavelength = 24;
   const amplitude = 3;
   const spacing = 9;
-  const rows = [];
+  // Rows that share a direction and speed slide as one group: 6 animations, not one per row
+  const groups = new Map<string, { loop: number; duration: number; paths: string[] }>();
   for (let y = spacing / 2, row = 0; y < PANEL_H; y += spacing, row += 1) {
     // Long enough to slide a full wavelength either way and still cover the panel
     let d = `M${-wavelength * 2} ${y}`;
     for (let x = -wavelength * 2; x < PANEL_W + wavelength * 2; x += wavelength) {
       d += ` q${wavelength / 4} ${-amplitude} ${wavelength / 2} 0 t${wavelength / 2} 0`;
     }
-    rows.push(
-      <path
-        key={row}
-        className="pattern-wave"
-        d={d}
-        style={
-          {
-            "--pattern-loop": `${row % 2 ? wavelength : -wavelength}px`,
-            "--pattern-duration": `${3 + (row % 3)}s`,
-          } as CSSProperties
-        }
-      />
-    );
+    const loop = row % 2 ? wavelength : -wavelength;
+    const duration = 3 + (row % 3);
+    const key = `${loop}/${duration}`;
+    const group = groups.get(key) ?? { loop, duration, paths: [] };
+    group.paths.push(d);
+    groups.set(key, group);
   }
   return (
     <g fill="none" stroke="currentColor" strokeWidth={1.2} strokeLinecap="round">
-      {rows}
+      {[...groups.entries()].map(([key, group]) => (
+        <g
+          key={key}
+          className="pattern-wave"
+          style={
+            {
+              "--pattern-loop": `${group.loop}px`,
+              "--pattern-duration": `${group.duration}s`,
+            } as CSSProperties
+          }
+        >
+          {group.paths.map((d, i) => (
+            <path key={i} d={d} />
+          ))}
+        </g>
+      ))}
     </g>
   );
 }

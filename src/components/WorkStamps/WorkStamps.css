@@ -5,6 +5,20 @@
   Keep the stamp width a whole multiple of --work-stamp-perf-x and the height
   a whole multiple of --work-stamp-perf-y, or the perforations land unevenly.
 */
+/* Swipe offsets are set on the stamp on every pointer move. Registered as
+   non-inheriting, so a change restyles the stamp alone, not everything in it. */
+@property --work-stamp-drag {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+@property --work-stamp-drag-progress {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 /* The frame is a size container, so the stamps can be sized off the column
    width while they stay absolutely positioned for the stack/fan motion. */
 .work-stamps-frame {
@@ -300,6 +314,8 @@
   flex: 0 0 var(--width-work-stamp-panel);
   align-self: stretch;
   overflow: hidden;
+  /* The pattern animates constantly; keep its layout and repaints inside the panel */
+  contain: layout paint;
 }
 
 .work-stamp-copy {
@@ -504,6 +520,16 @@
   15% { transform: scaleX(0); }
 }
 
+/* Patterns only animate where they can be seen. Paused: stamps behind the
+   front one in the stack, a stamp's empty slot while it's open, the whole
+   stack once it's scrolled away, and the open card while it's resizing. The
+   fanned row (desktop) plays all three again, below. */
+.work-stamps-frame[data-offscreen] .work-stamp-pattern *,
+.work-stamp:is([data-behind], [data-lifted]) .work-stamp-pattern *,
+.work-stamp-expanded[data-moving] .work-stamp-pattern * {
+  animation-play-state: paused;
+}
+
 /* ---------- Expanded stamp ----------
    Lifted out of the stack into the middle of the page (see ExpandedCard).
    Motion animates the box (left/top/width/height) and --work-stamp-expand
@@ -516,6 +542,16 @@
   background: var(--color-work-stamp-backdrop);
   -webkit-backdrop-filter: blur(var(--blur-work-stamp-backdrop));
   backdrop-filter: blur(var(--blur-work-stamp-backdrop));
+}
+
+/* A full-screen blur is costly on phone GPUs while the card animates over it;
+   touch screens get a plain, slightly more opaque scrim instead */
+@media (hover: none) {
+  .work-stamp-backdrop {
+    background: var(--color-work-stamp-backdrop-touch);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
 }
 
 .work-stamp-expanded {
@@ -643,6 +679,14 @@
 
   .work-stamps:is(:hover, :has(:focus-visible), [data-fanned]) .work-stamp-imprint {
     opacity: 1;
+  }
+
+  .work-stamps-frame:not([data-offscreen])
+    .work-stamps:is(:hover, :has(:focus-visible), [data-fanned])
+    .work-stamp:not([data-lifted])
+    .work-stamp-pattern
+    * {
+    animation-play-state: running;
   }
 
   .work-stamps:is(:hover, :has(:focus-visible), [data-fanned]) .work-stamp {

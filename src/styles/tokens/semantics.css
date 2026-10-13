@@ -219,6 +219,7 @@
   --blur-work-stamp-description: var(--blur-4); /* the description comes into focus as it fades in */
   --shadow-work-stamp-expanded: var(--shadow-stamp-lifted);
   --color-work-stamp-backdrop: color-mix(in oklch, var(--color-bg-page) 72%, transparent);
+  --color-work-stamp-backdrop-touch: color-mix(in oklch, var(--color-bg-page) 88%, transparent); /* no blur behind it on touch, so less see-through */
   --blur-work-stamp-backdrop: var(--blur-4);
   --z-work-stamp-expanded: var(--z-index-30);
 
