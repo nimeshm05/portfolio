@@ -14,7 +14,30 @@ export type SidebarNavItem = {
   id: string;
   label: string;
   href?: string;
+  /** Category heading; consecutive items with the same group share one */
+  group?: string;
 };
+
+type SidebarNavGroup = {
+  label?: string;
+  items: SidebarNavItem[];
+};
+
+function groupItems(items: SidebarNavItem[]): SidebarNavGroup[] {
+  const groups: SidebarNavGroup[] = [];
+
+  for (const item of items) {
+    const last = groups.at(-1);
+
+    if (last && last.label === item.group) {
+      last.items.push(item);
+    } else {
+      groups.push({ label: item.group, items: [item] });
+    }
+  }
+
+  return groups;
+}
 
 type SidebarNavProps = {
   items: SidebarNavItem[];
@@ -58,27 +81,28 @@ export function SidebarNav({
     </Link>
   ) : null;
 
-  const navLinks = items.map((item) => {
+  const renderLink = (item: SidebarNavItem) => {
     const isActive = item.id === activeId;
-    const className = ["sidebar-nav-link", isActive ? "is-active" : ""]
+    const linkClassName = ["sidebar-nav-link", isActive ? "is-active" : ""]
       .filter(Boolean)
       .join(" ");
 
     return item.href ? (
       <a
-        key={item.id}
-        className={className}
+        className={linkClassName}
         href={item.href}
         onClick={(event) => onItemClick?.(event, item)}
       >
         <NavItemContent label={item.label} />
       </a>
     ) : (
-      <span key={item.id} className={className}>
+      <span className={linkClassName}>
         <NavItemContent label={item.label} />
       </span>
     );
-  });
+  };
+
+  const groups = groupItems(items);
 
   if (!animate) {
     const Root = rootElement;
@@ -86,7 +110,20 @@ export function SidebarNav({
     return (
       <Root className={rootClassName} aria-label={ariaLabel}>
         {backLink}
-        <nav className="sidebar-nav-links">{navLinks}</nav>
+        <nav className="sidebar-nav-links">
+          {groups.map((group, index) => (
+            <div key={group.label ?? index} className="sidebar-nav-group">
+              {group.label ? (
+                <span className="sidebar-nav-group-label">{group.label}</span>
+              ) : null}
+              {group.items.map((item) => (
+                <div key={item.id} className="sidebar-nav-item">
+                  {renderLink(item)}
+                </div>
+              ))}
+            </div>
+          ))}
+        </nav>
       </Root>
     );
   }
@@ -108,34 +145,27 @@ export function SidebarNav({
         </motion.div>
       ) : null}
       <nav className="sidebar-nav-links">
-        {items.map((item) => {
-          const isActive = item.id === activeId;
-          const linkClassName = ["sidebar-nav-link", isActive ? "is-active" : ""]
-            .filter(Boolean)
-            .join(" ");
-
-          return (
-            <motion.div
-              key={item.id}
-              className="sidebar-nav-motion-item"
-              variants={itemVariants}
-            >
-              {item.href ? (
-                <a
-                  className={linkClassName}
-                  href={item.href}
-                  onClick={(event) => onItemClick?.(event, item)}
-                >
-                  <NavItemContent label={item.label} />
-                </a>
-              ) : (
-                <span className={linkClassName}>
-                  <NavItemContent label={item.label} />
-                </span>
-              )}
-            </motion.div>
-          );
-        })}
+        {groups.map((group, index) => (
+          <div key={group.label ?? index} className="sidebar-nav-group">
+            {group.label ? (
+              <motion.span
+                className="sidebar-nav-group-label sidebar-nav-motion-item"
+                variants={itemVariants}
+              >
+                {group.label}
+              </motion.span>
+            ) : null}
+            {group.items.map((item) => (
+              <motion.div
+                key={item.id}
+                className="sidebar-nav-motion-item"
+                variants={itemVariants}
+              >
+                {renderLink(item)}
+              </motion.div>
+            ))}
+          </div>
+        ))}
       </nav>
     </MotionRoot>
   );

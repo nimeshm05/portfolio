@@ -44,8 +44,30 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  gap: var(--gap-2xl);
   padding-left: var(--inset-x);
   width: 100%;
+}
+
+.sidebar-nav-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.sidebar-nav-item {
+  width: 100%;
+}
+
+.sidebar-nav-group-label {
+  display: block;
+  padding: var(--gap-sm) var(--inset-x);
+  color: var(--color-text-muted);
+  font-size: var(--text-sidebar-size);
+  font-weight: var(--text-sidebar-weight);
+  line-height: var(--text-sidebar-line-height);
+  white-space: nowrap;
 }
 
 .sidebar-nav-link.is-active {

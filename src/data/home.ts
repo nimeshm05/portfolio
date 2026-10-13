@@ -107,7 +107,7 @@ export const footerLinks = [
 export const workSections: ContentSectionData[] = [
   {
     id: "industry-projects",
-    label: "Work",
+    label: "Industry",
     heading: "Things I got paid for",
     supportsCardView: true,
     items: [
@@ -133,7 +133,7 @@ export const workSections: ContentSectionData[] = [
   },
   {
     id: "personal-projects",
-    label: "Play",
+    label: "Personal",
     heading: "Just for fun, honestly",
     supportsCardView: true,
     items: [
@@ -364,11 +364,22 @@ export const aboutSections: ContentSectionData[] = [
   },
 ];
 
-/** Work, then everything about me, in one continuous scroll */
-export const homeSections: ContentSectionData[] = [
-  ...workSections,
-  ...aboutSections,
+export type ContentSectionGroup = {
+  id: string;
+  /** Category heading shown above its sections in the sidebar */
+  label: string;
+  sections: ContentSectionData[];
+};
+
+export const homeSectionGroups: ContentSectionGroup[] = [
+  { id: "work", label: "Work", sections: workSections },
+  { id: "about", label: "About", sections: aboutSections },
 ];
+
+/** Work, then everything about me, in one continuous scroll */
+export const homeSections: ContentSectionData[] = homeSectionGroups.flatMap(
+  (group) => group.sections,
+);
 
 export type WorkStampTone = "green" | "lime" | "teal";
 export type WorkStampEmblem = "spirals" | "waves" | "checker";

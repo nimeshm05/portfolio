@@ -3,13 +3,13 @@
 import { useEffect, useMemo, useState, type MouseEvent } from "react";
 import { AnimatePresence, useReducedMotion } from "motion/react";
 import { SidebarNav, type SidebarNavItem } from "@/components/SidebarNav/SidebarNav";
-import type { ContentSectionData } from "@/data/home";
+import type { ContentSectionGroup } from "@/data/home";
 import { useProjectScrollSpy } from "@/motion/projectScrollSpy";
 import "./HomeSidebar.css";
 
 type HomeSidebarProps = {
   visible: boolean;
-  sections: ContentSectionData[];
+  groups: ContentSectionGroup[];
 };
 
 function scrollToHomeSection(
@@ -40,12 +40,21 @@ function scrollToHomeSection(
   history.pushState(null, "", href);
 }
 
-export function HomeSidebar({ visible, sections }: HomeSidebarProps) {
+export function HomeSidebar({ visible, groups }: HomeSidebarProps) {
   const reduceMotion = useReducedMotion() ?? false;
-  const sectionIds = useMemo(
-    () => sections.map((section) => section.id),
-    [sections],
+  const items = useMemo<SidebarNavItem[]>(
+    () =>
+      groups.flatMap((group) =>
+        group.sections.map((section) => ({
+          id: section.id,
+          label: section.label,
+          href: `#${section.id}`,
+          group: group.label,
+        })),
+      ),
+    [groups],
   );
+  const sectionIds = useMemo(() => items.map((item) => item.id), [items]);
 
   const spyActiveId = useProjectScrollSpy({
     sectionIds,
@@ -74,16 +83,6 @@ export function HomeSidebar({ visible, sections }: HomeSidebarProps) {
   }, [clickedId]);
 
   const activeId = clickedId ?? spyActiveId;
-
-  const items = useMemo(
-    () =>
-      sections.map((section) => ({
-        id: section.id,
-        label: section.label,
-        href: `#${section.id}`,
-      })),
-    [sections],
-  );
 
   return (
     <AnimatePresence>

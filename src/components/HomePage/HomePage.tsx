@@ -16,7 +16,13 @@ import { LinkCue } from "@/components/LinkCue/LinkCue";
 import { SocialIconRow } from "@/components/SocialIconRow/SocialIconRow";
 import { ViewportEdgeBlur } from "@/components/ViewportEdgeBlur/ViewportEdgeBlur";
 import { WorkStamps } from "@/components/WorkStamps/WorkStamps";
-import { homeSections, profile, resume, workStamps } from "@/data/home";
+import {
+  homeSectionGroups,
+  homeSections,
+  profile,
+  resume,
+  workStamps,
+} from "@/data/home";
 import { useHomeSectionSnap } from "@/motion/homeSectionSnap";
 import { useHomeSidebarVisibility } from "@/motion/homeSidebarVisibility";
 import "./HomePage.css";
@@ -38,7 +44,7 @@ export function HomePage() {
   return (
     <div className="home-page" ref={setPageEl}>
       <ViewportEdgeBlur />
-      <HomeSidebar visible={homeSidebarVisible} sections={homeSections} />
+      <HomeSidebar visible={homeSidebarVisible} groups={homeSectionGroups} />
       <PageEnter as="main" className="home-body">
         <Header
           name={profile.name}
