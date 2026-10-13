@@ -347,7 +347,7 @@
   --color-bg-muted: var(--color-neutral-900);
   --color-banner-bg: var(--color-bg-surface);
   --color-card-chip-bg: var(--color-bg-surface);
-  --color-card-chip-bg-hover: var(--color-neutral-900);
+  --color-card-chip-bg-hover: var(--color-neutral-750);
   --color-divider: var(--color-neutral-800);
 
   /* Text */
