@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Banner Loading Label</title>
+<style>
+  :root { --bg: #f4f4f2; --fg: #1a1a1a; --muted: #777; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 32px 16px; background: var(--bg); color: var(--fg);
+    font-family: "Open Runde", "Google Sans", Inter, system-ui, sans-serif;
+  }
+  .wrap { max-width: 960px; margin: 0 auto; display: grid; gap: 20px; }
+  h1 { font-size: 15px; font-weight: 600; margin: 0; }
+  p.note { margin: 0; color: var(--muted); font-size: 14px; }
+  .controls { display: flex; flex-wrap: wrap; gap: 8px; }
+  .controls button {
+    font: inherit; font-size: 13px; padding: 6px 12px; border-radius: 999px;
+    border: 1px solid #ccc; background: #fff; cursor: pointer;
+  }
+  .controls button[aria-pressed="true"] { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
+
+  /* ---- Replica of the existing placeholder ---- */
+  .video-wrap { position: relative; width: 100%; aspect-ratio: 3292 / 2160; overflow: hidden; border-radius: 6px; }
+  .banner-video-placeholder {
+    position: absolute; inset: 0; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; background-color: #262626;
+  }
+  .banner-video-placeholder-graphic { width: min(40%, 18rem); height: auto; overflow: visible; }
+  .banner-video-placeholder-frame { stroke: rgb(255 255 255 / 0.3); stroke-width: 0.8; }
+  .banner-video-placeholder-tile { stroke: rgb(255 255 255 / 0.4); stroke-width: 0.8; }
+  .banner-video-placeholder-strip { animation: slide 4s linear infinite; }
+  @keyframes slide { from { transform: translateX(0); } to { transform: translateX(var(--strip-shift)); } }
+
+  /* ---- New: rotating label ---- */
+  .banner-video-placeholder-label {
+    position: relative;
+    margin-top: 0.75rem;
+    height: 1.5em;
+    width: 100%;
+    font-size: clamp(0.75rem, 0.6rem + 0.5vw, 0.875rem);
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: rgb(255 255 255 / 0.6);
+  }
+  .label-message {
+    position: absolute; inset: 0;
+    display: flex; justify-content: center; gap: 0.3em;
+    white-space: nowrap;
+  }
+  .label-word { display: inline-block; opacity: 0; will-change: transform, opacity, filter; }
+
+  /* Style A — blur rise */
+  [data-style="blur"] .is-in .label-word  { animation: blur-in 520ms cubic-bezier(.2,.7,.2,1) both; animation-delay: calc(var(--i) * 70ms); }
+  [data-style="blur"] .is-out .label-word { animation: blur-out 360ms ease-in both; animation-delay: calc(var(--i) * 40ms); }
+  @keyframes blur-in  { from { opacity: 0; transform: translateY(6px); filter: blur(4px); } to { opacity: 1; transform: none; filter: blur(0); } }
+  @keyframes blur-out { from { opacity: 1; transform: none; filter: blur(0); } to { opacity: 0; transform: translateY(-6px); filter: blur(4px); } }
+
+  /* Style B — slot roll (words rise up through a mask) */
+  [data-style="slot"] .label-message { overflow: hidden; }
+  [data-style="slot"] .is-in .label-word  { animation: slot-in 560ms cubic-bezier(.22,1,.36,1) both; animation-delay: calc(var(--i) * 60ms); }
+  [data-style="slot"] .is-out .label-word { animation: slot-out 380ms cubic-bezier(.55,0,.8,.3) both; animation-delay: calc(var(--i) * 45ms); }
+  @keyframes slot-in  { from { opacity: 1; transform: translateY(110%); } to { opacity: 1; transform: none; } }
+  @keyframes slot-out { from { opacity: 1; transform: none; } to { opacity: 1; transform: translateY(-110%); } }
+
+  /* Style C — soft fade + slight scale */
+  [data-style="fade"] .is-in .label-word  { animation: fade-in 600ms ease-out both; animation-delay: calc(var(--i) * 90ms); }
+  [data-style="fade"] .is-out .label-word { animation: fade-out 300ms ease-in both; animation-delay: calc(var(--i) * 30ms); }
+  @keyframes fade-in  { from { opacity: 0; transform: scale(0.92); } to { opacity: 1; transform: none; } }
+  @keyframes fade-out { from { opacity: 1; } to { opacity: 0; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .banner-video-placeholder-strip { animation: none; }
+    .label-word { animation: none !important; opacity: 1; }
+    .is-out { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap" data-style="blur" id="root">
+  <h1>Banner video loading — rotating label preview</h1>
+  <p class="note">Blur rise · each message holds ~2.2s, words stagger in, then out. Order is shuffled on each load.</p>
+
+  <div class="video-wrap">
+    <div class="banner-video-placeholder">
+      <svg class="banner-video-placeholder-graphic" viewBox="0 0 160 96" fill="none" id="svg"></svg>
+      <div class="banner-video-placeholder-label" id="label" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <p class="note">Smaller card-width preview:</p>
+  <div class="video-wrap" style="max-width: 420px">
+    <div class="banner-video-placeholder">
+      <svg class="banner-video-placeholder-graphic" viewBox="0 0 160 96" fill="none" id="svg2"></svg>
+      <div class="banner-video-placeholder-label" id="label2"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Rebuild the existing SVG exactly as BannerVideoPlaceholder.tsx renders it
+  const TILE_Y = 20, TILE_HEIGHT = 56, TILE_GAP = 8, TILE_WIDTHS = [34, 22, 46, 28], STRIP_START = 20;
+  const PATTERN_WIDTH = TILE_WIDTHS.reduce((t, w) => t + w + TILE_GAP, 0);
+  function buildSvg(svg, id) {
+    let tiles = "";
+    for (let r = 0; r < 2; r++) {
+      let x = STRIP_START + r * PATTERN_WIDTH;
+      for (const w of TILE_WIDTHS) {
+        tiles += `<rect class="banner-video-placeholder-tile" x="${x}" y="${TILE_Y}" width="${w}" height="${TILE_HEIGHT}" rx="5"/>`;
+        x += w + TILE_GAP;
+      }
+    }
+    svg.innerHTML = `
+      <defs>
+        <clipPath id="${id}c"><rect x="14" y="14" width="132" height="68" rx="7"/></clipPath>
+        <linearGradient id="${id}f" x1="14" x2="146" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="0.2" stop-color="#fff"/>
+          <stop offset="0.8" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+        </linearGradient>
+        <mask id="${id}m"><rect x="0" y="0" width="160" height="96" fill="url(#${id}f)"/></mask>
+      </defs>
+      <rect class="banner-video-placeholder-frame" x="8" y="8" width="144" height="80" rx="11"/>
+      <g clip-path="url(#${id}c)" mask="url(#${id}m)">
+        <g class="banner-video-placeholder-strip" style="--strip-shift:${-PATTERN_WIDTH}px">${tiles}</g>
+      </g>`;
+  }
+  buildSvg(document.getElementById("svg"), "a");
+  buildSvg(document.getElementById("svg2"), "b");
+
+  const MESSAGES = [
+    "Bribing the pixels",
+    "Herding stray frames",
+    "Convincing the codec",
+    "Rewinding the VHS",
+    "Microwaving the render",
+    "Asking the frames nicely",
+    "Feeding the hamsters",
+    "Untangling the timeline",
+    "Dusting off the projector",
+    "Adding extra sparkle",
+  ];
+  // Shuffle once so every visit starts somewhere new, then loop
+  for (let k = MESSAGES.length - 1; k > 0; k--) {
+    const j = Math.floor(Math.random() * (k + 1));
+    [MESSAGES[k], MESSAGES[j]] = [MESSAGES[j], MESSAGES[k]];
+  }
+  const HOLD = 2200;
+
+  function rotator(el, start = 0) {
+    let i = start, current = null;
+    function make(text) {
+      const m = document.createElement("span");
+      m.className = "label-message is-in";
+      text.split(" ").forEach((w, idx) => {
+        const s = document.createElement("span");
+        s.className = "label-word"; s.style.setProperty("--i", idx); s.textContent = w;
+        m.appendChild(s);
+      });
+      return m;
+    }
+    function next() {
+      if (current) {
+        const old = current;
+        old.classList.replace("is-in", "is-out");
+        const words = old.children.length;
+        setTimeout(() => old.remove(), 380 + words * 45);
+        // let the old message mostly clear before the new one starts
+        setTimeout(show, 220);
+      } else show();
+    }
+    function show() {
+      current = make(MESSAGES[i % MESSAGES.length]);
+      el.appendChild(current);
+      i++;
+    }
+    next();
+    return setInterval(next, HOLD);
+  }
+  let timers = [rotator(document.getElementById("label")), rotator(document.getElementById("label2"), 3)];
+
+</script>
+</body>
+</html>
