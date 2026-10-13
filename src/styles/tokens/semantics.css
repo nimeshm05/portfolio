@@ -12,7 +12,6 @@
   --color-text-subtle: var(--color-neutral-500);
   --color-text-label: var(--color-neutral-600);
   --color-text-muted: var(--color-neutral-400);
-  --color-connect-sure-pulse: var(--color-text-primary);
   --color-accent: var(--color-green-500);
   --color-connect-prompt-follow-up: var(--color-accent);
   --color-selection-text: var(--color-accent);
@@ -252,8 +251,6 @@
   /* Motion */
   --transition-fast: var(--duration-fast) var(--ease-default);
   --transition-expand: var(--duration-expand) var(--ease-expand);
-  --duration-connect-sure-pulse: var(--duration-sure-pulse);
-  --scale-connect-sure-pulse: var(--scale-101);
 
   /* Radius */
   --radius-xs: var(--radius-2);

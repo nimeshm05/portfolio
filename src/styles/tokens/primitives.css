@@ -115,7 +115,6 @@
   /* Motion */
   --duration-fast: 160ms;
   --duration-expand: 500ms;
-  --duration-sure-pulse: 3s;
   --duration-stagger: 30ms;
   --duration-pattern-checker: 3.2s;
   --ease-default: ease;
@@ -154,7 +153,6 @@
   --size-work-stamp-postmark-expanded: 6.5rem; /* 104px */
   --size-work-stamp-expanded-width: 40rem; /* 640px cap; the open stamp snaps down to the perforation step */
   --size-work-stamp-imprint-margin: 1.125rem; /* 18px bottom margin that holds the imprint above the perforation bites */
-  --scale-101: 1.01;
   --scale-110: 1.1;
   --rotate-3: 3deg;
   --rotate-7: 7deg;

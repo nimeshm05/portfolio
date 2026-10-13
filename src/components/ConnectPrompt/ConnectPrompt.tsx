@@ -44,7 +44,6 @@ function PromptAction({
   onMouseLeave,
   onFocus,
   onBlur,
-  pulse = false,
 }: {
   children: ReactNode;
   onClick: () => void;
@@ -52,7 +51,6 @@ function PromptAction({
   onMouseLeave?: () => void;
   onFocus?: () => void;
   onBlur?: () => void;
-  pulse?: boolean;
 }) {
   return (
     <button
@@ -65,11 +63,7 @@ function PromptAction({
       onFocus={onFocus}
       onBlur={onBlur}
     >
-      {pulse ? (
-        <span className="connect-prompt-action-pulse">{children}</span>
-      ) : (
-        children
-      )}
+      {children}
     </button>
   );
 }
@@ -384,7 +378,6 @@ export function ConnectPrompt() {
                 key: "yes",
                 node: (
                   <PromptAction
-                    pulse
                     onMouseEnter={() => {
                       if (
                         smokingRef.current ||
