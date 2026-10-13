@@ -93,7 +93,7 @@ export function LazyBannerVideo({
         }}
         onLoadedData={() => setIsReady(true)}
       />
-      <BannerVideoPlaceholder />
+      <BannerVideoPlaceholder isActive={!isReady} />
     </div>
   );
 }

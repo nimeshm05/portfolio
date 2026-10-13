@@ -1,4 +1,5 @@
 import { useId, type CSSProperties } from "react";
+import { BannerLoadingLabel } from "./BannerLoadingLabel";
 
 const TILE_Y = 20;
 const TILE_HEIGHT = 56;
@@ -21,8 +22,15 @@ const tiles = [0, 1].flatMap((repeat) => {
   });
 });
 
+type BannerVideoPlaceholderProps = {
+  /** False once the video has taken over, so the label stops rotating */
+  isActive: boolean;
+};
+
 /** Stand-in for a banner video until its first frame is ready */
-export function BannerVideoPlaceholder() {
+export function BannerVideoPlaceholder({
+  isActive,
+}: BannerVideoPlaceholderProps) {
   const id = useId();
   const clipId = `${id}-clip`;
   const fadeId = `${id}-fade`;
@@ -77,6 +85,7 @@ export function BannerVideoPlaceholder() {
           </g>
         </g>
       </svg>
+      <BannerLoadingLabel isActive={isActive} />
     </div>
   );
 }
