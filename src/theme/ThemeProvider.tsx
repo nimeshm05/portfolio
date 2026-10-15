@@ -13,8 +13,6 @@ import {
   applyTheme,
   isTheme,
   persistTheme,
-  readStoredTheme,
-  readSystemTheme,
   resolveInitialTheme,
   type Theme,
 } from "./theme";
@@ -54,18 +52,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   useLayoutEffect(() => {
     applyTheme(readDocumentTheme());
-
-    const media = window.matchMedia("(prefers-color-scheme: dark)");
-    const onSystemThemeChange = () => {
-      if (readStoredTheme()) {
-        return;
-      }
-
-      applyTheme(readSystemTheme());
-    };
-
-    media.addEventListener("change", onSystemThemeChange);
-    return () => media.removeEventListener("change", onSystemThemeChange);
   }, []);
 
   const toggleTheme = useCallback(() => {

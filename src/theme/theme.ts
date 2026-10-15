@@ -15,18 +15,11 @@ export function readStoredTheme(): Theme | null {
   return isTheme(stored) ? stored : null;
 }
 
-export function readSystemTheme(): Theme {
-  if (typeof window === "undefined") {
-    return "light";
-  }
-
-  return window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? "dark"
-    : "light";
-}
+/** Visitors start in light mode until they pick a theme with the toggle. */
+export const DEFAULT_THEME: Theme = "light";
 
 export function resolveInitialTheme(): Theme {
-  return readStoredTheme() ?? readSystemTheme();
+  return readStoredTheme() ?? DEFAULT_THEME;
 }
 
 export function applyTheme(theme: Theme) {
@@ -38,4 +31,4 @@ export function persistTheme(theme: Theme) {
 }
 
 /** Inline script run before paint to avoid a flash of the wrong theme. */
-export const themeInitScript = `(function(){try{var k=${JSON.stringify(THEME_STORAGE_KEY)};var s=localStorage.getItem(k);var t=s==="light"||s==="dark"?s:(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.dataset.theme=t;}catch(e){try{document.documentElement.dataset.theme=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}catch(e2){document.documentElement.dataset.theme="light";}}})();`;
+export const themeInitScript = `(function(){var t=${JSON.stringify(DEFAULT_THEME)};try{var s=localStorage.getItem(${JSON.stringify(THEME_STORAGE_KEY)});if(s==="light"||s==="dark"){t=s;}}catch(e){}document.documentElement.dataset.theme=t;})();`;
