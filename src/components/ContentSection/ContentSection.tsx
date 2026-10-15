@@ -7,6 +7,7 @@ import {
   ListItem,
   type ChevronOrientation,
 } from "@/components/ListItem/ListItem";
+import { MediaSamples } from "@/components/MediaSamples/MediaSamples";
 import { ProjectCard } from "@/components/ProjectCard/ProjectCard";
 import { RichText } from "@/components/RichText/RichText";
 import type {
@@ -145,8 +146,11 @@ export function ContentSection({
 
   const cardProjects = showCardView
     ? section.items
-        .map((item) => getProjectCard(item.id))
-        .filter((project) => project != null)
+        .map((item) => {
+          const project = getProjectCard(item.id);
+          return project ? { project, samples: item.samples } : null;
+        })
+        .filter((card) => card != null)
     : [];
 
   const listContent = section.items.map((item) => (
@@ -226,7 +230,7 @@ export function ContentSection({
                 animate="animate"
                 exit="exit"
               >
-                {cardProjects.map((project) => (
+                {cardProjects.map(({ project, samples }) => (
                   <motion.div
                     key={project.slug}
                     className="content-section-card"
@@ -234,6 +238,9 @@ export function ContentSection({
                     transition={workViewTransition}
                   >
                     <ProjectCard project={project} />
+                    {samples?.length ? (
+                      <MediaSamples samples={samples} />
+                    ) : null}
                   </motion.div>
                 ))}
               </motion.div>

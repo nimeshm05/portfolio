@@ -1,0 +1,48 @@
+/* Two up on wider screens, stacked on phones */
+.media-samples {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--gap-2xl) var(--gap-xl);
+  width: 100%;
+  margin: 0;
+  /* Same block padding as .project-card, so the gaps around this row match
+     the gaps between cards */
+  padding: var(--padding-card-block) 0;
+  list-style: none;
+}
+
+@media (max-width: 39.9375rem) {
+  .media-samples {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.media-sample {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-md);
+  min-width: 0;
+}
+
+.media-sample-copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-card-copy);
+}
+
+.media-sample-title {
+  color: var(--color-text-primary);
+  font-size: var(--text-body-size);
+  font-weight: var(--text-list-weight);
+  line-height: var(--text-body-line-height-fixed);
+  letter-spacing: var(--letter-spacing-body);
+}
+
+.media-sample-caption {
+  margin: 0;
+  color: var(--color-text-subtle);
+  font-size: var(--text-body-size);
+  font-weight: var(--text-body-weight);
+  line-height: var(--text-body-line-height-fixed);
+  letter-spacing: var(--letter-spacing-body);
+}

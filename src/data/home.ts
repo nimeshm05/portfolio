@@ -16,6 +16,17 @@ export type ListItemData = {
   dates?: string;
   paragraphs?: string[];
   blocks?: ListItemBlock[];
+  /** Videos shown below this item's project card */
+  samples?: MediaSampleData[];
+};
+
+export type MediaSampleData = {
+  id: string;
+  title: string;
+  caption: string;
+  videoSrc: string;
+  /** Video width / height, reserves the box before it loads */
+  aspectRatio: string;
 };
 
 export type ContentSectionData = {
@@ -104,6 +115,25 @@ export const footerLinks = [
   { id: "resume", label: "Resume", href: resume.href },
 ] as const;
 
+/** Hidden from the home page for now; add `samples: knoolInteractionSamples`
+   to the knool-2 item to show them under its card again. */
+export const knoolInteractionSamples: MediaSampleData[] = [
+  {
+    id: "document-view",
+    title: "Document View",
+    caption: "Concept work for Knool",
+    videoSrc: "/assets/projects/interaction-design-samples/documents-preview.mp4",
+    aspectRatio: "2424 / 2160",
+  },
+  {
+    id: "sidebar-navigation",
+    title: "Sidebar Navigation",
+    caption: "Implemented for Knool",
+    videoSrc: "/assets/projects/interaction-design-samples/sidebar-preview.mp4",
+    aspectRatio: "2422 / 2160",
+  },
+];
+
 export const workSections: ContentSectionData[] = [
   {
     id: "industry-projects",
@@ -154,6 +184,12 @@ export const workSections: ContentSectionData[] = [
         title: "Connect Prompt",
         icon: "notebook-pen",
         href: "/work/connect-prompt",
+      },
+      {
+        id: "chat-composer",
+        title: "Chat Composer",
+        icon: "message-square",
+        href: "/work/chat-composer",
       },
     ],
   },
