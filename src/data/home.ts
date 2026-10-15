@@ -232,7 +232,7 @@ export const aboutSections: ContentSectionData[] = [
         meta: "RozieAI",
         description:
           "Led end-to-end design for a couple of internal tools like conversation insights and experience studio, which was used by clients like Air Canada.",
-        dates: "August 2023 – August 2025",
+        dates: "August 2023 – July 2025",
       },
       {
         id: "rozieai-intern",
@@ -248,7 +248,7 @@ export const aboutSections: ContentSectionData[] = [
         meta: "Brane Enterprises",
         description:
           "Learned Flutter, software testing, and state management by building and shipping three core features and fixing 20+ bugs.",
-        dates: "June 2021 – November 2021",
+        dates: "May 2021 – January 2022",
       },
       {
         id: "stanford",
@@ -455,33 +455,33 @@ export const workStamps: readonly WorkStampData[] = [
     value: "26¢",
     location: "Seattle",
     description:
-      "Currently on the AI workspace team, leading feature improvements to increase usage metrics. Doing bit of design, strategic work, & product analytics - start-up life :)",
+      "Redesigning how attorneys work with an AI case assistant, from digging into the data to shipping parts of it myself in React.",
     postmark: { label: "LEGAL × AI", year: "2026", rotate: -12 },
   },
   {
     id: "rozieai",
     company: "RozieAI",
     role: "Product Designer",
-    dates: "Mar 2023 - Aug 2025",
+    dates: "Aug 2023 - Jul 2025",
     tone: "lime",
     emblem: "waves",
     value: "25¢",
     location: "Bangalore",
     description:
-      "Led end-to-end design for a couple of internal tools like conversation insights and experience studio, which was used by clients like Air Canada.",
+      "Joined as an intern, went full-time in 3 months. Spent most of it on Conversation Insights, helping Air Canada's managers find the right conversations in a lot of data.",
     postmark: { label: "DEV → DESIGN", year: "2025", rotate: 8 },
   },
   {
     id: "brane",
     company: "Brane",
     role: "SDE Intern",
-    dates: "Jun 2021 - Nov 2021",
+    dates: "May 2021 - Jan 2022",
     tone: "teal",
     emblem: "checker",
     value: "21¢",
     location: "Bangalore",
     description:
-      "Learned Flutter, software testing, and state management by building and shipping three core features and fixing 20+ bugs.",
+      "Wrote Flutter code for a no-code platform in the pre-COVID era. This is where a designer first asked me “is a modal even right here?”",
     postmark: { label: "FIRST COMMIT", year: "2021", rotate: -5 },
   },
 ];
