@@ -22,6 +22,7 @@ import {
   LayoutGrid,
   Lightbulb,
   List,
+  MessageSquare,
   Moon,
   Music2,
   NotebookPen,
@@ -55,6 +56,7 @@ export type IconName =
   | "workflow"
   | "settings"
   | "notebook-pen"
+  | "message-square"
   | "list"
   | "layout-grid"
   | "summary"
@@ -95,6 +97,7 @@ const icons: Record<IconName, LucideIcon> = {
   workflow: Workflow,
   settings: Settings,
   "notebook-pen": NotebookPen,
+  "message-square": MessageSquare,
   list: List,
   "layout-grid": LayoutGrid,
   summary: Summary,
