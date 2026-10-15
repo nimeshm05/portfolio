@@ -133,6 +133,16 @@ export type ProjectPageData = {
   meta?: {
     items: ProjectMetaItem[];
   };
+  /** Unquoted callout shown above the first section, e.g. an NDA note. */
+  notice?: string;
+  /** Plain heading + paragraph sections, rendered in order after the intro. */
+  sections?: Array<{
+    id: string;
+    heading: string;
+    paragraphs?: string[];
+    items?: ExpandableItemContent[];
+    media?: ProjectMedia[];
+  }>;
   overview?: {
     eyebrow: string;
     heading: string;

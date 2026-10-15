@@ -1,12 +1,33 @@
+import { Fragment } from "react";
 import "./Callout.css";
 
 type CalloutProps = {
   children: string;
   attribution?: string;
   source?: string;
+  quoted?: boolean;
 };
 
-function CalloutText({ children }: { children: string }) {
+function CalloutText({
+  children,
+  quoted,
+}: {
+  children: string;
+  quoted: boolean;
+}) {
+  if (!quoted) {
+    return (
+      <p className="callout-text">
+        {children.split("\n").map((line, index) => (
+          <Fragment key={line}>
+            {index > 0 ? <br /> : null}
+            {line}
+          </Fragment>
+        ))}
+      </p>
+    );
+  }
+
   return (
     <p className="callout-text">
       <span className="callout-quote">“</span>
@@ -19,8 +40,9 @@ export function Callout({
   children,
   attribution,
   source,
+  quoted = true,
 }: CalloutProps) {
-  const text = <CalloutText>{children}</CalloutText>;
+  const text = <CalloutText quoted={quoted}>{children}</CalloutText>;
   const className = [
     "callout",
     attribution ? "callout--quoted" : "",

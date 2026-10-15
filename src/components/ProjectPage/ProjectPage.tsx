@@ -202,6 +202,52 @@ export function ProjectPage({ project }: ProjectPageProps) {
         </div>
         <PageEnterItems>
 
+        {project.notice ? (
+          <Callout quoted={false}>{project.notice}</Callout>
+        ) : null}
+
+        {project.sections?.map((section) => (
+          <ProjectSection
+            key={section.id}
+            id={section.id}
+            heading={section.heading}
+          >
+            {section.paragraphs?.length ? (
+              <div className="project-section-body">
+                {section.paragraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+            ) : null}
+            {section.items?.length ? (
+              <div className="project-section-list">
+                {section.items.map((item) => (
+                  <ListItem
+                    key={item.id}
+                    title={item.title}
+                    defaultOpen
+                    alwaysExpanded={project.listItemsAlwaysExpanded}
+                  >
+                    {hasExpandableItemBody(item) ? (
+                      <ExpandableItemBody item={item} />
+                    ) : null}
+                  </ListItem>
+                ))}
+              </div>
+            ) : null}
+            {section.media?.map((entry) => (
+              <ProjectBanner
+                key={entry.src}
+                src={entry.src}
+                alt={entry.alt}
+                type={entry.type}
+                aspectRatio={entry.aspectRatio}
+                showBackground={entry.showBackground}
+              />
+            ))}
+          </ProjectSection>
+        ))}
+
         {project.overview ? (
           <ProjectSection
             id="overview"
