@@ -7,7 +7,8 @@
   scroll-margin-top: var(--scroll-margin-section);
 }
 
-.content-section:has(.content-section-cards) {
+.content-section:has(.content-section-cards),
+.content-section:has(.list-item-shell.is-open .photo-stamps) {
   overflow-x: visible;
 }
 

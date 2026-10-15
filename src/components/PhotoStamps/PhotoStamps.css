@@ -10,6 +10,7 @@
   flex-wrap: wrap;
   align-items: flex-end;
   gap: var(--gap-photo-stamps);
+  margin-top: var(--margin-photo-stamps-top);
   list-style: none;
 }
 
@@ -18,15 +19,23 @@
 }
 
 .photo-stamp {
-  /* --photo-stamp-ratio (width / height) is set inline per photo */
+  /* --photo-stamp-ratio (width / height) is set inline per photo. The longer
+     side is fixed and the shorter follows the photo's own proportions, so
+     portrait photos stand taller than landscape ones. Both sides snap to the
+     perforation step. */
+  --photo-stamp-image: calc(var(--size-photo-stamp) - 2 * var(--padding-photo-stamp));
+
   display: block;
   width: round(
     nearest,
-    (var(--height-photo-stamp) - 2 * var(--padding-photo-stamp)) * var(--photo-stamp-ratio) +
-      2 * var(--padding-photo-stamp),
+    var(--photo-stamp-image) * min(var(--photo-stamp-ratio), 1) + 2 * var(--padding-photo-stamp),
     var(--work-stamp-perf-x)
   );
-  height: var(--height-photo-stamp);
+  height: round(
+    nearest,
+    var(--photo-stamp-image) * min(1 / var(--photo-stamp-ratio), 1) + 2 * var(--padding-photo-stamp),
+    var(--work-stamp-perf-y)
+  );
   padding: 0;
   border: 0;
   background: none;

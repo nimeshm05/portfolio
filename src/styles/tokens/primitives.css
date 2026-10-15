@@ -154,8 +154,8 @@
   --size-work-stamp-postmark-expanded: 6.5rem; /* 104px */
   --size-work-stamp-expanded-width: 40rem; /* 640px cap; the open stamp snaps down to the perforation step */
   --size-work-stamp-imprint-margin: 1.125rem; /* 18px bottom margin that holds the imprint above the perforation bites */
-  --size-photo-stamp-height: 6.125rem; /* 98px, a whole multiple of the 14px perforation */
-  --size-photo-stamp-expanded-max: 60rem; /* 960px cap for the open photo; snapped down to the perforation step */
+  --size-photo-stamp-long-side: 7.875rem; /* 126px, a whole multiple of the 14px perforation */
+  --size-photo-stamp-expanded-max: 40rem; /* 640px cap on the open photo's longer side; snapped down to the perforation step */
   --scale-110: 1.1;
   --rotate-3: 3deg;
   --rotate-7: 7deg;

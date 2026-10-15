@@ -224,7 +224,8 @@
   --z-work-stamp-expanded: var(--z-index-30);
 
   /* Photo stamps: photos printed on the work stamps' perforated paper */
-  --height-photo-stamp: var(--size-photo-stamp-height);
+  --size-photo-stamp: var(--size-photo-stamp-long-side); /* the longer side; the shorter follows the photo */
+  --margin-photo-stamps-top: var(--space-16); /* extra room between the copy and the photos */
   --padding-photo-stamp: var(--space-12); /* white border, wide enough to take the perforation bites */
   --padding-photo-stamp-expanded: var(--space-20);
   --gap-photo-stamps: var(--space-12);

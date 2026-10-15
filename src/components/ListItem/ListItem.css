@@ -146,7 +146,8 @@
     overflow-x: clip;
   }
 
-  .list-item-panel:has(.project-section-media) {
+  .list-item-panel:has(.project-section-media),
+  .list-item-panel:has(.photo-stamps) {
     overflow-x: visible;
   }
 }

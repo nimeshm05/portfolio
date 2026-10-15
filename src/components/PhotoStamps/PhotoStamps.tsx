@@ -171,8 +171,9 @@ function ExpandedCard({
       const cap = parseFloat(style.marginRight);
       const snap = (value: number) => Math.max(step, Math.floor(value / step) * step);
 
+      // The cap applies to whichever side is longer
       const maxWidth = Math.min(window.innerWidth - inset * 2, cap);
-      const maxHeight = window.innerHeight - inset * 2;
+      const maxHeight = Math.min(window.innerHeight - inset * 2, cap);
       const ratio = photo.width / photo.height;
       let imageWidth = maxWidth - pad * 2;
       let imageHeight = imageWidth / ratio;
