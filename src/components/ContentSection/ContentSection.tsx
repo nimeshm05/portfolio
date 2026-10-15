@@ -8,6 +8,7 @@ import {
   type ChevronOrientation,
 } from "@/components/ListItem/ListItem";
 import { MediaSamples } from "@/components/MediaSamples/MediaSamples";
+import { PhotoStamps } from "@/components/PhotoStamps/PhotoStamps";
 import { ProjectCard } from "@/components/ProjectCard/ProjectCard";
 import { RichText } from "@/components/RichText/RichText";
 import type {
@@ -87,13 +88,14 @@ function ListItemCopy({ item }: { item: ListItemData }) {
     );
   }
 
-  if (item.description || item.dates) {
+  if (item.description || item.dates || item.photos?.length) {
     return (
       <div className="list-item-entry">
         {item.description ? (
           <p className="list-item-description">{item.description}</p>
         ) : null}
         {item.dates ? <ListItemDates dates={item.dates} /> : null}
+        {item.photos?.length ? <PhotoStamps photos={item.photos} /> : null}
       </div>
     );
   }
@@ -166,7 +168,8 @@ export function ContentSection({
       {item.blocks?.length ||
       item.paragraphs?.length ||
       item.description ||
-      item.dates ? (
+      item.dates ||
+      item.photos?.length ? (
         <ListItemCopy item={item} />
       ) : null}
     </ListItem>

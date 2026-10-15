@@ -18,6 +18,16 @@ export type ListItemData = {
   blocks?: ListItemBlock[];
   /** Videos shown below this item's project card */
   samples?: MediaSampleData[];
+  /** Photos shown as small stamps when the row is expanded */
+  photos?: PhotoStampData[];
+};
+
+export type PhotoStampData = {
+  src: string;
+  alt: string;
+  /** Pixel size as displayed (after EXIF rotation), for the aspect ratio */
+  width: number;
+  height: number;
 };
 
 export type MediaSampleData = {
@@ -257,6 +267,20 @@ export const aboutSections: ContentSectionData[] = [
         description:
           "Announced as innovation fellow by the UIF community at Stanford d.school, also where I was trained in design thinking.",
         dates: "2019",
+        photos: [
+          {
+            src: "/assets/images/innovation-fellows/IMG_20220322_142049_Original.JPG",
+            alt: "Five University Innovation Fellows smiling together outside a sandstone building",
+            width: 4623,
+            height: 3460,
+          },
+          {
+            src: "/assets/images/innovation-fellows/IMG_20220322_134407_Original.JPG",
+            alt: "A group selfie of University Innovation Fellows in a hotel hallway",
+            width: 4623,
+            height: 3460,
+          },
+        ],
       },
     ],
   },
@@ -271,6 +295,38 @@ export const aboutSections: ContentSectionData[] = [
         meta: "Univeristy of Washington",
         description: "Mastering my skills in systems thinking, prototyping, and interaction design at the University of Washington.",
         dates: "September 2025 – July 2027 (Expected)",
+        photos: [
+          {
+            src: "/assets/images/udub/IMG_2539.jpeg",
+            alt: "Students studying under the vaulted ceiling of Suzzallo Library's reading room",
+            width: 4032,
+            height: 3024,
+          },
+          {
+            src: "/assets/images/udub/IMG_3564.jpeg",
+            alt: "Mount Rainier at sunset over the Drumheller Fountain, framed by evergreens",
+            width: 3024,
+            height: 3024,
+          },
+          {
+            src: "/assets/images/udub/IMG_2976.jpeg",
+            alt: "A selfie with classmates in a green-walled studio classroom",
+            width: 4032,
+            height: 3024,
+          },
+          {
+            src: "/assets/images/udub/IMG_2978.jpeg",
+            alt: "Standing with a professor in a classroom, holding a card",
+            width: 4284,
+            height: 5712,
+          },
+          {
+            src: "/assets/images/udub/IMG_3340.jpeg",
+            alt: "A long open studio space with pendant lights and event boards",
+            width: 3024,
+            height: 4032,
+          },
+        ],
       },
       {
         id: "beng-cse",

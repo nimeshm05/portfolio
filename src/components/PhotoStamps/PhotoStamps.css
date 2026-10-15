@@ -1,0 +1,164 @@
+/*
+  Photo stamps: small photos printed on the same perforated paper as the work
+  stamps (see WorkStamps.css), opening into the middle of the page on click.
+  The paper snaps to the perforation step (--work-stamp-perf-x/-y) so the holes
+  land evenly; the photo inside fills what's left and keeps its aspect ratio.
+*/
+
+.photo-stamps {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--gap-photo-stamps);
+  list-style: none;
+}
+
+.photo-stamp-slot {
+  display: flex;
+}
+
+.photo-stamp {
+  /* --photo-stamp-ratio (width / height) is set inline per photo */
+  display: block;
+  width: round(
+    nearest,
+    (var(--height-photo-stamp) - 2 * var(--padding-photo-stamp)) * var(--photo-stamp-ratio) +
+      2 * var(--padding-photo-stamp),
+    var(--work-stamp-perf-x)
+  );
+  height: var(--height-photo-stamp);
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+  /* The wrapper carries the shadow, the paper the mask, so the shadow follows the holes */
+  filter: var(--shadow-work-stamp);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.photo-stamp:focus-visible {
+  outline: var(--border-width) solid var(--color-text-subtle);
+  outline-offset: var(--offset-work-stamps-focus);
+  border-radius: var(--radius-work-stamps-focus);
+}
+
+/* Its slot stays empty while the photo is open */
+.photo-stamp[data-lifted] {
+  visibility: hidden;
+}
+
+.photo-stamp .photo-stamp-paper {
+  transition: scale var(--transition-fast);
+}
+
+@media (hover: hover) {
+  .photo-stamp:hover .photo-stamp-paper {
+    scale: var(--scale-photo-stamp-hover);
+  }
+}
+
+/* White stamp paper with a perforated edge: holes are punched on a grid
+   offset by half a step, and a solid block keeps the middle opaque */
+.photo-stamp-paper {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  padding: var(--photo-stamp-padding, var(--padding-photo-stamp));
+  /* Stamp paper stays white in both themes, like the real thing */
+  background-color: var(--color-work-stamp-paper);
+  -webkit-mask-image:
+    radial-gradient(circle var(--work-stamp-hole) at center, transparent 98%, #000 100%),
+    linear-gradient(#000 0 0);
+  mask-image:
+    radial-gradient(circle var(--work-stamp-hole) at center, transparent 98%, #000 100%),
+    linear-gradient(#000 0 0);
+  -webkit-mask-size:
+    var(--work-stamp-perf-x) var(--work-stamp-perf-y),
+    calc(100% - var(--work-stamp-perf-x)) calc(100% - var(--work-stamp-perf-y));
+  mask-size:
+    var(--work-stamp-perf-x) var(--work-stamp-perf-y),
+    calc(100% - var(--work-stamp-perf-x)) calc(100% - var(--work-stamp-perf-y));
+  -webkit-mask-position:
+    calc(var(--work-stamp-perf-x) / -2) calc(var(--work-stamp-perf-y) / -2),
+    center;
+  mask-position:
+    calc(var(--work-stamp-perf-x) / -2) calc(var(--work-stamp-perf-y) / -2),
+    center;
+  -webkit-mask-repeat: repeat, no-repeat;
+  mask-repeat: repeat, no-repeat;
+}
+
+.photo-stamp-print {
+  position: relative;
+  flex: 1 1 auto;
+  overflow: hidden;
+  border-radius: var(--radius-photo-stamp-print);
+}
+
+.photo-stamp-print img {
+  object-fit: cover;
+}
+
+/* ---------- Expanded photo ---------- */
+
+.photo-stamp-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-work-stamp-expanded);
+  background: var(--color-work-stamp-backdrop);
+  -webkit-backdrop-filter: blur(var(--blur-work-stamp-backdrop));
+  backdrop-filter: blur(var(--blur-work-stamp-backdrop));
+}
+
+/* A full-screen blur is costly on phone GPUs while the photo animates over it */
+@media (hover: none) {
+  .photo-stamp-backdrop {
+    background: var(--color-work-stamp-backdrop-touch);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+.photo-stamp-expanded {
+  --photo-stamp-expand: 0;
+  /* The border widens with the photo as it opens */
+  --photo-stamp-padding: calc(
+    var(--padding-photo-stamp) +
+      (var(--padding-photo-stamp-expanded) - var(--padding-photo-stamp)) * var(--photo-stamp-expand)
+  );
+
+  position: fixed;
+  z-index: var(--z-work-stamp-expanded);
+  filter: var(--shadow-work-stamp-expanded);
+  outline: none;
+  cursor: zoom-out;
+}
+
+.photo-stamp-full {
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.photo-stamp-full[data-loaded] {
+  opacity: 1;
+}
+
+/* Resolves the sizing tokens to pixels for ExpandedCard */
+.photo-stamp-probe {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--work-stamp-perf-x);
+  height: var(--padding-photo-stamp-expanded);
+  margin-left: var(--inset-work-stamp-expanded);
+  margin-right: var(--width-photo-stamp-expanded-max);
+  visibility: hidden;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo-stamp .photo-stamp-paper,
+  .photo-stamp-full {
+    transition: none;
+  }
+}
