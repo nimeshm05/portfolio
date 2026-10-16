@@ -1,4 +1,6 @@
-export const THEME_STORAGE_KEY = "theme";
+/** Versioned so choices saved before light became the default (e.g. a stale
+   "dark") are ignored and every visitor starts in light mode. */
+export const THEME_STORAGE_KEY = "theme-v2";
 
 export type Theme = "light" | "dark";
 
