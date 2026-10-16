@@ -5,6 +5,8 @@ type SocialHoverLinkProps = {
   href: string;
   children: ReactNode;
   iconSrc?: string;
+  /** Inline mark, for icons that animate on hover; takes precedence over iconSrc. */
+  icon?: ReactNode;
   className?: string;
 } & Omit<
   AnchorHTMLAttributes<HTMLAnchorElement>,
@@ -15,6 +17,7 @@ export function SocialHoverLink({
   href,
   children,
   iconSrc,
+  icon,
   className,
   ...anchorProps
 }: SocialHoverLinkProps) {
@@ -30,7 +33,11 @@ export function SocialHoverLink({
         : {})}
       {...anchorProps}
     >
-      {iconSrc ? (
+      {icon ? (
+        <span className="social-hover-mark" aria-hidden="true">
+          {icon}
+        </span>
+      ) : iconSrc ? (
         <span className="social-hover-mark" aria-hidden="true">
           {/* eslint-disable-next-line @next/next/no-img-element -- small decorative icon */}
           <img className="social-hover-mark-image" src={iconSrc} alt="" />

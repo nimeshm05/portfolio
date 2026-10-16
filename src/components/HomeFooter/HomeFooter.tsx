@@ -2,6 +2,7 @@
 
 import { Fragment, useEffect, useRef, useState } from "react";
 import { motion, useInView, useReducedMotion } from "motion/react";
+import { ResumeHoverIcon } from "@/components/ResumeHoverIcon/ResumeHoverIcon";
 import { SocialHoverLink } from "@/components/SocialHoverLink/SocialHoverLink";
 import { footerLinks } from "@/data/home";
 import "./HomeFooter.css";
@@ -111,6 +112,7 @@ export function HomeFooter() {
                 className="home-footer-link"
                 href={link.href}
                 iconSrc={"iconSrc" in link ? link.iconSrc : undefined}
+                icon={link.id === "resume" ? <ResumeHoverIcon /> : undefined}
               >
                 {link.label}
               </SocialHoverLink>
