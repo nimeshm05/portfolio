@@ -17,7 +17,7 @@ export const smartPromptSuggestions: ProjectPageData = {
       { label: "Project Type", value: "Personal" },
       { label: "Intent", value: "Placeholder" },
       { label: "Timeline", value: "October 2026" },
-      { label: "Tools", value: "Placeholder" },
+      { label: "Tools", value: "Claude Code, NextJS, Figma, my brain" },
     ],
   },
 };

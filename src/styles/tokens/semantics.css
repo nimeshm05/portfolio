@@ -314,7 +314,7 @@
   /* Typography: label (section label / eyebrow) */
   --text-label-size: var(--font-size-16);
   --text-label-line-height: var(--line-height-16);
-  --text-label-weight: var(--font-weight-medium);
+  --text-label-weight: var(--font-weight-regular);
 
   /* Typography: list item */
   --text-list-size: var(--font-size-18);
