@@ -1,19 +1,25 @@
 .project-meta {
-  display: grid;
-  /* Columns hug their content and the block sits centred under the banner */
-  grid-template-columns: repeat(2, minmax(0, max-content));
-  justify-content: center;
-  column-gap: var(--gap-3xl);
-  row-gap: var(--gap-callout-copy);
+  /* One meta block per row: label column on the left, value beside it,
+     hairline rules between rows */
+  display: flex;
+  flex-direction: column;
   width: 100%;
+  margin: 0;
   padding-inline: var(--inset-x);
 }
 
 .project-meta-item {
-  display: flex;
-  flex-direction: column;
-  gap: var(--gap-xs);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  column-gap: var(--gap-2xl);
+  align-items: baseline;
   min-width: 0;
+  padding-block: var(--gap-xl);
+  border-top: var(--border-width-thin) solid var(--color-table-row-border);
+}
+
+.project-meta-item:last-child {
+  border-bottom: var(--border-width-thin) solid var(--color-table-row-border);
 }
 
 .project-meta-label {

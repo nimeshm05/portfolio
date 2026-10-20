@@ -35,6 +35,7 @@
   --color-border: var(--color-neutral-200);
   --color-table-row-border: var(--color-neutral-150);
   --border-width: var(--size-hairline);
+  --border-width-thin: 0.5px;
   --border-card-width: var(--size-border-card);
   --border-card: var(--border-card-width) solid var(--color-border);
 
