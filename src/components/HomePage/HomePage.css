@@ -92,6 +92,15 @@ html:has(.home-page) body {
   padding-inline: 0;
 }
 
+/* Journey callouts sit inline with the story, so they follow its left edge */
+.home-content #my-journey :is(.callout, .callout-body, .callout-attribution) {
+  align-items: flex-start;
+}
+
+.home-content #my-journey :is(.callout-text, .callout-attribution) {
+  text-align: left;
+}
+
 /* Link rows (notes) match the expandable rows: subtle tone, chevron hugs the title */
 .home-content .list-item:not(.list-item--expandable) .list-item-title {
   flex: 0 1 auto;
