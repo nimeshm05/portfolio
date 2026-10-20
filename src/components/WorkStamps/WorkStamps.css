@@ -664,11 +664,14 @@
 /* Fan out only where there's a pointer that hovers and room for the row
    (the wide home column starts at 68.75rem). Patterns always play. */
 @media (hover: hover) and (min-width: 68.75rem) {
-  /* Where the stamps fan out, they share the column equally (like flex: 1) */
+  /* Where the stamps fan out, they share the column equally (like flex: 1), capped */
   .work-stamps {
     --width-work-stamp: round(
       down,
-      (100cqi - (var(--work-stamp-count) - 1) * var(--gap-work-stamps)) / var(--work-stamp-count),
+      min(
+        (100cqi - (var(--work-stamp-count) - 1) * var(--gap-work-stamps)) / var(--work-stamp-count),
+        var(--width-work-stamp-fanned-max)
+      ),
       var(--work-stamp-perf-x)
     );
   }

@@ -141,6 +141,7 @@
   --size-connect-excitement-width: 5.625rem;
   --size-connect-excitement-height: 3.75rem;
   --size-work-stamp-width-max: 24rem; /* cap for the single stacked stamp on tablet/mobile */
+  --size-work-stamp-fanned-width-max: 16.625rem; /* 266px cap per stamp in the fanned row, a whole multiple of the 14px perforation */
   --size-work-stamp-height: 10.5rem; /* 168px, a whole multiple of the 14px perforation */
   --size-work-stamp-panel: 3.5rem; /* 56px */
   --size-work-stamp-panel-expanded: 9rem; /* 144px */
