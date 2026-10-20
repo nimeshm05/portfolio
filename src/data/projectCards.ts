@@ -1,6 +1,6 @@
 import { architectureAgentCard } from "@/data/projects/architecture-agent.card";
 import { connectPromptCard } from "@/data/projects/connect-prompt.card";
-import { chatComposerCard } from "@/data/projects/chat-composer.card";
+import { smartPromptSuggestionsCard } from "@/data/projects/smart-prompt-suggestions.card";
 import { conversationInsightsCard } from "@/data/projects/conversation-insights.card";
 import { gzLangCard } from "@/data/projects/gz-lang.card";
 import { knool2Card } from "@/data/projects/knool-2.card";
@@ -14,7 +14,7 @@ const projectCards: Record<string, ProjectCardData> = {
   [karNoKeyCard.slug]: karNoKeyCard,
   [gzLangCard.slug]: gzLangCard,
   [connectPromptCard.slug]: connectPromptCard,
-  [chatComposerCard.slug]: chatComposerCard,
+  [smartPromptSuggestionsCard.slug]: smartPromptSuggestionsCard,
 };
 
 export function getProjectCard(slug: string): ProjectCardData | undefined {

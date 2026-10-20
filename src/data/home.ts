@@ -196,10 +196,10 @@ export const workSections: ContentSectionData[] = [
         href: "/work/connect-prompt",
       },
       {
-        id: "chat-composer",
-        title: "Chat Composer",
+        id: "smart-prompt-suggestions",
+        title: "Smart Prompt Suggestions",
         icon: "message-square",
-        href: "/work/chat-composer",
+        href: "/work/smart-prompt-suggestions",
       },
     ],
   },

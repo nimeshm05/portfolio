@@ -1,5 +1,5 @@
 import { architectureAgent } from "./architecture-agent";
-import { chatComposer } from "./chat-composer";
+import { smartPromptSuggestions } from "./smart-prompt-suggestions";
 import { connectPrompt } from "./connect-prompt";
 import { conversationInsights } from "./conversation-insights";
 import { gzLang } from "./gz-lang";
@@ -14,7 +14,7 @@ const projects: Record<string, ProjectPageData> = {
   [karNoKey.slug]: karNoKey,
   [gzLang.slug]: gzLang,
   [connectPrompt.slug]: connectPrompt,
-  [chatComposer.slug]: chatComposer,
+  [smartPromptSuggestions.slug]: smartPromptSuggestions,
 };
 
 export function getProject(slug: string): ProjectPageData | undefined {
