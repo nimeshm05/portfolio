@@ -448,7 +448,7 @@ export const aboutSections: ContentSectionData[] = [
         title: "Where I'm headed",
         paragraphs: [
           "I'll be honest, these ideas are still taking shape. They feel less like rules and more like a compass.",
-          "Right now, that compass is pointing me toward AI agents, agent tools, and developer tools, at the scale of products used by millions of people. So far, I've mostly designed for small groups of power users. But as agents take on more of our work, that question from kar-no-key gets a lot bigger: what happens to the person in the room? That's the question I want to work on, at scale, while staying close enough to the technology to build what I'm imagining.",
+          "Right now, that compass is pointing me toward designing products used by millions of people. So far, I've mostly designed for small groups of power users. But that question from kar-no-key gets a lot bigger when the room holds millions of people, each with their own needs: how do you make sure no one gets left behind? That's what I want to design for next, while staying close enough to the technology to build what I'm imagining.",
           "Do I have the destination figured out? Not yet. But I've made peace with that. Like a good interface, the next layer tends to show up when it's relevant. For now, I've got a direction, two ideas I believe in, and plenty of questions I still want to ask.",
         ],
       },
