@@ -114,18 +114,17 @@
   }
 }
 
-/* social icons stand in for the connect prompt on mobile */
 .home-prompt-enter:has(.social-icon-row) {
   display: none;
 }
 
+/* no prompts, socials or resume at the top on mobile */
 @media (max-width: 39.9375rem) {
-  .home-prompt-enter:has(.social-icon-row) {
-    display: block;
+  .home-prompts {
+    display: none;
   }
 
-  .home-prompt-enter:has(.connect-prompt),
-  .home-prompt-enter:has(.link-cue--mobile-hidden) {
-    display: none;
+  .site-header-bio {
+    font-size: var(--font-size-16);
   }
 }

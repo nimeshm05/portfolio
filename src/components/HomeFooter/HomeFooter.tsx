@@ -22,31 +22,30 @@ type FooterChar = {
   key: string;
   char: string;
   delay: number;
-  isSpace: boolean;
+};
+
+type FooterWord = {
+  key: string;
+  chars: FooterChar[];
 };
 
 function buildLines() {
   let letterIndex = 0;
 
   return LINES.map((line, lineIndex) => {
-    const chars: FooterChar[] = Array.from(line).map((char, charIndex) => {
-      const isSpace = char === " ";
-      const delay =
-        letterIndex * (LETTER_DURATION + LETTER_GAP) + lineIndex * LINE_GAP;
-
-      if (!isSpace) {
+    // letters are grouped per word so a line only ever wraps between words
+    const words: FooterWord[] = line.split(" ").map((word, wordIndex) => ({
+      key: `${lineIndex}-${wordIndex}-${word}`,
+      chars: Array.from(word).map((char, charIndex) => {
+        const delay =
+          letterIndex * (LETTER_DURATION + LETTER_GAP) + lineIndex * LINE_GAP;
         letterIndex += 1;
-      }
 
-      return {
-        key: `${lineIndex}-${charIndex}-${char}`,
-        char: isSpace ? "\u00A0" : char,
-        delay,
-        isSpace,
-      };
-    });
+        return { key: `${charIndex}-${char}`, char, delay };
+      }),
+    }));
 
-    return { key: `line-${lineIndex}`, chars };
+    return { key: `line-${lineIndex}`, words };
   });
 }
 
@@ -54,7 +53,7 @@ const FOOTER_LINES = buildLines();
 
 const MAX_LETTER_DELAY = Math.max(
   ...FOOTER_LINES.flatMap((line) =>
-    line.chars.filter((item) => !item.isSpace).map((item) => item.delay),
+    line.words.flatMap((word) => word.chars.map((item) => item.delay)),
   ),
 );
 
@@ -123,39 +122,36 @@ export function HomeFooter() {
       <p className="home-footer-credit" aria-hidden="true">
         {FOOTER_LINES.map((line) => (
           <span key={line.key} className="home-footer-line">
-            {line.chars.map((item) => {
-              if (item.isSpace) {
-                return (
-                  <span key={item.key} className="home-footer-space">
-                    {item.char}
-                  </span>
-                );
-              }
-
-              return (
-                <motion.span
-                  key={item.key}
-                  className="home-footer-letter"
-                  initial={false}
-                  animate={
-                    revealed
-                      ? { clipPath: "inset(-0.2em 0% -0.25em 0)" }
-                      : { clipPath: "inset(-0.2em 100% -0.25em 0)" }
-                  }
-                  transition={
-                    reduceMotion || animationPhase !== "playing"
-                      ? { duration: 0 }
-                      : {
-                          duration: LETTER_DURATION,
-                          delay: item.delay,
-                          ease: "easeOut",
-                        }
-                  }
-                >
-                  {item.char}
-                </motion.span>
-              );
-            })}
+            {line.words.map((word, wordIndex) => (
+              <Fragment key={word.key}>
+                {wordIndex > 0 ? " " : null}
+                <span className="home-footer-word">
+                  {word.chars.map((item) => (
+                    <motion.span
+                      key={item.key}
+                      className="home-footer-letter"
+                      initial={false}
+                      animate={
+                        revealed
+                          ? { clipPath: "inset(-0.2em 0% -0.25em 0)" }
+                          : { clipPath: "inset(-0.2em 100% -0.25em 0)" }
+                      }
+                      transition={
+                        reduceMotion || animationPhase !== "playing"
+                          ? { duration: 0 }
+                          : {
+                              duration: LETTER_DURATION,
+                              delay: item.delay,
+                              ease: "easeOut",
+                            }
+                      }
+                    >
+                      {item.char}
+                    </motion.span>
+                  ))}
+                </span>
+              </Fragment>
+            ))}
           </span>
         ))}
       </p>

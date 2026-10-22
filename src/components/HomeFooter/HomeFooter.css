@@ -59,11 +59,13 @@
 
 .home-footer-line {
   display: block;
-  white-space: pre-wrap;
 }
 
-.home-footer-letter,
-.home-footer-space {
+.home-footer-word {
+  white-space: nowrap;
+}
+
+.home-footer-letter {
   display: inline-block;
 }
 
