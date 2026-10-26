@@ -19,6 +19,14 @@
   initial-value: 0;
 }
 
+/* Entrance progress: 1 off-screen, 0 in the slot. One eased value drives the
+   whole path, so x and y stay on the same arc whatever the easing. */
+@property --work-stamp-fly {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 /* The frame is a size container, so the stamps can be sized off the column
    width while they stay absolutely positioned for the stack/fan motion. */
 .work-stamps-frame {
@@ -123,6 +131,30 @@
 
 .work-stamp[data-dragging] {
   transition: none;
+}
+
+/* Page-load entrance. Rides the individual translate/rotate properties, which
+   apply on top of `transform`, so the stack, fan and swipe offsets stay as they
+   are. The path is a parabola: x shrinks linearly with progress, y starts below
+   the slot, bows up past it, then settles. The back stamp is dealt first, so
+   the front one lands last, on top. */
+.work-stamp {
+  translate: calc(var(--work-stamp-fly) * var(--offset-work-stamp-fly-in-x))
+    calc(
+      var(--work-stamp-fly) * var(--offset-work-stamp-fly-in-drop) -
+        4 * var(--work-stamp-fly) * (1 - var(--work-stamp-fly)) * var(--offset-work-stamp-fly-in-rise)
+    );
+  rotate: calc(var(--work-stamp-fly) * var(--rotate-work-stamp-fly-in));
+  animation: work-stamp-fly-in var(--duration-work-stamp-fly-in) var(--ease-work-stamp-fly-in) backwards;
+  animation-delay: calc(
+    var(--delay-work-stamp-fly-in) +
+      (var(--work-stamp-count) - 1 - var(--work-stamp-index)) * var(--delay-work-stamp-fly-in-stagger)
+  );
+}
+
+@keyframes work-stamp-fly-in {
+  from { --work-stamp-fly: 1; }
+  to { --work-stamp-fly: 0; }
 }
 
 /* The paper carries the mask, the wrapper above carries the shadow, so the
@@ -710,6 +742,10 @@
   .work-stamps,
   .work-stamp {
     transition: none;
+  }
+
+  .work-stamp {
+    animation: none;
   }
 
   :is(.work-stamps, .work-stamp-expanded) .pattern-spiral,

@@ -118,9 +118,13 @@
   --duration-expand: 500ms;
   --duration-stagger: 30ms;
   --duration-pattern-checker: 3.2s;
+  --duration-fly-in: 1600ms;
+  --duration-fly-in-stagger: 220ms;
+  --duration-fly-in-lead: 300ms;
   --ease-default: ease;
   --ease-in-out: ease-in-out;
   --ease-expand: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-fly-in: cubic-bezier(0.33, 1, 0.68, 1);
 
   /* Sizes */
   --size-icon: 1.25rem;
@@ -160,6 +164,7 @@
   --scale-110: 1.1;
   --rotate-3: 3deg;
   --rotate-7: 7deg;
+  --rotate-28: 28deg;
   --scale-104: 1.04;
   --perspective-700: 700px;
 

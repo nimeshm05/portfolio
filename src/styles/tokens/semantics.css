@@ -165,6 +165,15 @@
   --transition-work-stamp: var(--transition-expand);
   --delay-work-stamp-stagger: var(--duration-stagger);
   --rotate-work-stamp-drag: var(--rotate-3);
+  /* Page-load entrance: each stamp is tossed in from off the right edge along an arc */
+  --duration-work-stamp-fly-in: var(--duration-fly-in);
+  --delay-work-stamp-fly-in: var(--duration-fly-in-lead);
+  --delay-work-stamp-fly-in-stagger: var(--duration-fly-in-stagger);
+  --ease-work-stamp-fly-in: var(--ease-fly-in);
+  --offset-work-stamp-fly-in-x: 100vw; /* clears the right edge from anywhere in the column */
+  --offset-work-stamp-fly-in-drop: 18vh; /* how far below its slot the stamp starts */
+  --offset-work-stamp-fly-in-rise: 26vh; /* how high the arc bows above the straight line */
+  --rotate-work-stamp-fly-in: var(--rotate-28);
   /* Hover tilt: the point under the cursor sinks back, and light follows it */
   --perspective-work-stamp: var(--perspective-700);
   --rotate-work-stamp-tilt: var(--rotate-7); /* at the stamp's edge */
