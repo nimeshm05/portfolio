@@ -511,7 +511,7 @@ export const workStamps: readonly WorkStampData[] = [
     value: "26¢",
     location: "Seattle",
     description:
-      "Redesigning how attorneys work with an AI case assistant, from digging into the data to shipping parts of it myself in React.",
+      "Led the redesign of Knool’s AI case assistant, from research and concept exploration through to shipping it in code with engineers.",
     postmark: { label: "LEGAL × AI", year: "2026", rotate: -12 },
   },
   {
