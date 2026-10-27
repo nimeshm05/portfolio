@@ -8,36 +8,51 @@ export type PhotoBookSpread = {
 
 export const photoBookTitle = "Designed by Nature, Shot by Me";
 
-// Placeholder spreads until the real photo book is curated.
 export const photoBookSpreads: PhotoBookSpread[] = [
   {
-    image: "/assets/images/udub/IMG_3564.jpeg",
-    alt: "Mount Rainier at sunset over the Drumheller Fountain, framed by evergreens",
-    caption: "Rainier shows up maybe once a week. Everyone stops walking when it does.",
+    image: "/assets/images/photo-book/udub-rainier.jpg",
+    alt: "Mount Rainier glowing at sunset beyond Drumheller Fountain, framed by dark evergreens",
+    caption:
+      "Rainier ghosts Seattle for weeks, then shows up like nothing happened. Rude, but gorgeous.",
   },
   {
-    image: "/assets/images/udub/IMG_2539.jpeg",
-    alt: "Students studying under the vaulted ceiling of Suzzallo Library's reading room",
-    caption: "Suzzallo's reading room, where it is very hard to feel productive enough.",
+    image: "/assets/images/photo-book/suzz.jpg",
+    alt: "Students studying at long wooden tables under the vaulted ceiling of Suzzallo Library's reading room",
+    caption:
+      "My study spot. Ten percent studying, ninety percent feeling like a wizard.",
   },
   {
-    image: "/assets/images/udub/IMG_3340.jpeg",
-    alt: "A long open studio space with pendant lights and event boards",
-    caption: "The studio after everyone left. Quiet enough to hear the lights.",
+    image: "/assets/images/photo-book/sunset-gasworks.jpg",
+    alt: "Seattle's skyline and the Space Needle at dusk, reflected in Lake Union",
+    caption:
+      "A classic Seattle evening. The sky did all the work, I just held the phone.",
   },
   {
-    image: "/assets/images/innovation-fellows/IMG_20220322_134407_Original.JPG",
-    alt: "Innovation Fellows program, March 2022",
-    caption: "Innovation Fellows, Bengaluru. The week I started asking why.",
+    image: "/assets/images/photo-book/sunset-discovery-park.jpg",
+    alt: "A streaked orange and grey sunset over a dark field and a lone house at Discovery Park",
+    caption: "I chased this sunset across Seattle. It won, but I got the photo.",
   },
   {
-    image: "/assets/images/udub/IMG_2978.jpeg",
-    alt: "Standing with a professor in a classroom, holding a card",
-    caption: "A card from a professor. I still keep it on my desk.",
+    image: "/assets/images/photo-book/lil-birdie.jpg",
+    alt: "A fluffy black baby bird napping on a rock in the grass",
+    caption:
+      "Met this little one on a walk. Too busy napping to care about my photography career.",
   },
   {
-    image: "/assets/images/udub/IMG_2976.jpeg",
-    alt: "A selfie with classmates in a green-walled studio classroom",
-    caption: "The green room, and the people who made the year.",
+    image: "/assets/images/photo-book/dubai-frame.jpg",
+    alt: "The gold Dubai Frame seen from below against a blue sky",
+    caption: "Dubai built a giant golden picture frame. So naturally, I framed it.",
+  },
+  {
+    image: "/assets/images/photo-book/abstract-contrast.jpg",
+    alt: "A towering wall of blue, green and yellow vertical stripes in a grey concrete courtyard in Dubai",
+    caption:
+      "Found on a random street in Dubai. Nobody asked this wall to go this hard.",
+  },
+  {
+    image: "/assets/images/photo-book/ma-homies.jpg",
+    alt: "Three polaroids of grad school friends squeezed into selfies, on a Japanese Garden card with a beaded bracelet",
+    caption:
+      "Grad school taught me research methods. These people taught me everything else.",
   },
 ];
