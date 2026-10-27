@@ -21,6 +21,7 @@ import {
   PHOTO_BOOK_FADE_MS,
   PHOTO_BOOK_PAN_MS,
   PHOTO_BOOK_PEEK_MS,
+  PHOTO_BOOK_SHIFT_OPEN_EASE,
   PHOTO_BOOK_SPIN_DELAY_MS,
   PHOTO_BOOK_SPIN_EASE,
   PHOTO_BOOK_SPIN_MS,
@@ -107,50 +108,12 @@ function Face({
   );
 }
 
-/*
- * Cover art, in a 100×136 box (the page's shape): pen-tool curves with their
- * anchor handles ("designed") and viewfinder corners around the title ("shot").
- */
-const coverCurves = [
-  { tone: "sun", d: "M14 20 C30 50 66 -2 88 26", ends: [[14, 20], [88, 26]] },
-  { tone: "coral", d: "M58 9 C90 8 66 42 91 46", ends: [[58, 9], [91, 46]] },
-  { tone: "sky", d: "M17 114 C40 92 62 134 86 104", ends: [[17, 114], [86, 104]] },
-] as const;
-
-function CoverArt() {
-  return (
-    <svg
-      className="photo-book-cover-art"
-      viewBox="0 0 100 136"
-      preserveAspectRatio="xMidYMid slice"
-    >
-      <path
-        className="photo-book-cover-frame"
-        d="M14 60 V54 H20 M84 54 H90 V60 M90 76 V82 H84 M20 82 H14 V76"
-      />
-      {coverCurves.map((curve) => (
-        <g key={curve.tone} className={`photo-book-cover-curve--${curve.tone}`}>
-          <path className="photo-book-cover-curve" d={curve.d} />
-          {curve.ends.map(([cx, cy]) => (
-            <circle
-              key={`${cx}-${cy}`}
-              className="photo-book-cover-handle"
-              cx={cx}
-              cy={cy}
-              r={1.7}
-            />
-          ))}
-        </g>
-      ))}
-    </svg>
-  );
-}
-
+/* Felt-paper cover: a hinge groove by the spine and a gold title in
+   viewfinder brackets. Texture, light and brackets are all CSS. */
 function Cover({ title }: { title?: string }) {
   return (
     <div className="photo-book-cover">
-      <span className="photo-book-cover-binding" />
-      <CoverArt />
+      <span className="photo-book-cover-hinge" />
       {title ? <span className="photo-book-cover-title">{title}</span> : null}
     </div>
   );
@@ -528,6 +491,7 @@ export function PhotoBook({ title, coverColor, spreads }: PhotoBookProps) {
   const style = {
     "--pb-turn-duration": `${PHOTO_BOOK_TURN_MS}ms`,
     "--pb-turn-ease": PHOTO_BOOK_TURN_EASE,
+    "--pb-shift-open-ease": PHOTO_BOOK_SHIFT_OPEN_EASE,
     "--pb-peek-duration": `${PHOTO_BOOK_PEEK_MS}ms`,
     "--pb-pan-duration": `${PHOTO_BOOK_PAN_MS}ms`,
     "--pb-tilt-duration": `${PHOTO_BOOK_TILT_MS}ms`,

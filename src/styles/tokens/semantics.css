@@ -138,16 +138,19 @@
   --color-photo-book-caption: var(--color-paper-ink);
   --color-photo-book-folio: var(--color-paper-ink-muted);
   --color-photo-book-cover: var(--color-cloth-forest);
-  --color-photo-book-cover-title: oklch(0.95 0.02 90 / 0.85);
-  --color-photo-book-cover-sun: var(--color-print-sun);
-  --color-photo-book-cover-coral: var(--color-print-coral);
-  --color-photo-book-cover-sky: var(--color-print-sky);
-  --color-photo-book-cover-handle-ring: var(--color-cloth-ink);
+  --color-photo-book-cover-title: var(--color-foil-gold);
+  --color-photo-book-cover-light: oklch(0.9 0.1 140 / 0.26);
+  --color-photo-book-cover-shade: oklch(0.15 0.03 152 / 0.4);
   --color-photo-book-gutter: oklch(0.35 0.03 70 / 0.14);
   --color-photo-book-turn-shade: oklch(0.3 0.03 70 / 0.22);
-  --color-photo-book-ground: oklch(0.3 0.03 60 / 0.22);
+  --shadow-photo-book-ground:
+    1px 2px 3px oklch(0.25 0.03 60 / 0.35),
+    8px 16px 20px oklch(0.25 0.03 60 / 0.26),
+    24px 40px 60px oklch(0.25 0.03 60 / 0.24),
+    48px 72px 110px oklch(0.25 0.03 60 / 0.18);
   --opacity-photo-book-grain: 0.05;
-  --opacity-photo-book-cloth: 0.12;
+  --opacity-photo-book-felt-dark: 0.42;
+  --opacity-photo-book-felt-light: 0.17;
   --filter-photo-book-image: none;
 
   /* Work stamps */
@@ -412,7 +415,11 @@
   --color-photo-book-folio: var(--color-neutral-600);
   --color-photo-book-gutter: oklch(0.2 0.02 70 / 0.22);
   --color-photo-book-turn-shade: oklch(0.15 0.02 70 / 0.35);
-  --color-photo-book-ground: oklch(0 0 0 / 0.6);
+  --shadow-photo-book-ground:
+    1px 2px 3px oklch(0 0 0 / 0.65),
+    8px 16px 20px oklch(0 0 0 / 0.5),
+    24px 40px 60px oklch(0 0 0 / 0.45),
+    48px 72px 110px oklch(0 0 0 / 0.35);
   --opacity-photo-book-grain: 0.07;
   --filter-photo-book-image: brightness(0.92);
 

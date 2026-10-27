@@ -16,6 +16,9 @@
   --pb-thickness: var(--pb-block);
   --pb-perspective: 1800px;
   --pb-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  /* Felt fibres for the cover: dark and light flecks */
+  --pb-felt-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='4' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.4 0 0 0 1.3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+  --pb-felt-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='4' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 2.4 0 0 0 -1.1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
 }
 
 /* The open spread fits the column; cqi resolves against .photo-book.
@@ -86,13 +89,18 @@
 /* Closed, the cover (the book's right half) slides to the left edge of the
    frame; opening moves the book right so the whole spread shows */
 .photo-book-book {
+  --pb-shift-ease: var(--pb-shift-open-ease);
+
   position: absolute;
   inset: 0;
   transform: translateX(0);
-  transition: transform var(--pb-turn-duration) var(--pb-turn-ease);
+  transition: transform var(--pb-turn-duration) var(--pb-shift-ease);
 }
 
+/* Opening leads with the slide; closing slides back once the cover lands */
 .photo-book-book[data-closed] {
+  --pb-shift-ease: var(--pb-turn-ease);
+
   transform: translateX(-50%);
 }
 
@@ -101,21 +109,29 @@
 }
 
 /* Soft ground shadow: under the cover when closed, the spread when open */
+/* Grounded shadow: a tight contact shadow and a long soft one falling
+   down and to the right, as if lit from the upper left */
 .photo-book-ground {
   position: absolute;
-  inset: 4% 3% -2%;
-  border-radius: var(--radius-8);
-  background: var(--color-photo-book-ground);
-  filter: blur(var(--space-16));
+  inset: 0;
+  border-radius: var(--radius-2);
+  box-shadow: var(--shadow-photo-book-ground);
   transform: translateZ(-2px);
   transform-origin: right center;
+  /* Opening: reach left only in the second half of the turn, as the cover
+     lands there. Earlier, its empty middle reads as a blank white page. */
   transition:
-    transform var(--pb-turn-duration) var(--pb-turn-ease),
+    transform calc(var(--pb-turn-duration) * 0.5) var(--ease-expand)
+      calc(var(--pb-turn-duration) * 0.45),
     opacity var(--pb-peek-duration) var(--ease-in-out);
 }
 
+/* Closing: pull back in the first half, as the cover leaves the left */
 .photo-book-book[data-closed] .photo-book-ground {
   transform: translateZ(-2px) scaleX(0.5);
+  transition:
+    transform calc(var(--pb-turn-duration) * 0.5) var(--ease-in-out),
+    opacity var(--pb-peek-duration) var(--ease-in-out);
 }
 
 .photo-book-book[data-spinning] .photo-book-ground {
@@ -445,94 +461,101 @@
   background: var(--pb-cover-color);
 }
 
+/* Felt paper in window light: a soft diagonal band of sun across the
+   lower left, falling off into shade toward the top right */
 .photo-book-cover {
   position: absolute;
   inset: 0;
+  overflow: hidden;
   background:
+    radial-gradient(
+      ellipse 90% 70% at 0% 92%,
+      var(--color-photo-book-cover-light),
+      transparent 70%
+    ),
     linear-gradient(
-      115deg,
-      oklch(1 0 0 / 0.08),
-      transparent 45%,
-      oklch(0 0 0 / 0.12)
+      118deg,
+      transparent 20%,
+      var(--color-photo-book-cover-light) 34%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse 100% 80% at 100% 0%,
+      var(--color-photo-book-cover-shade),
+      transparent 70%
     ),
     var(--pb-cover-color);
 }
 
-/* Woven cloth */
+/* Fibres: dark and light flecks from two noise fields */
+.photo-book-cover::before,
 .photo-book-cover::after {
   content: "";
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background-image: var(--pb-grain);
-  opacity: var(--opacity-photo-book-cloth);
 }
 
-.photo-book-cover-binding {
+.photo-book-cover::before {
+  background-image: var(--pb-felt-dark);
+  opacity: var(--opacity-photo-book-felt-dark);
+}
+
+.photo-book-cover::after {
+  background-image: var(--pb-felt-light);
+  opacity: var(--opacity-photo-book-felt-light);
+}
+
+/* The hinge where the board meets the spine */
+.photo-book-cover-hinge {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 5%;
-  width: 2.5%;
-  background: color-mix(in oklch, var(--pb-cover-color), black 18%);
-  box-shadow: 1px 0 0 oklch(1 0 0 / 0.08);
+  left: 0;
+  width: 9%;
+  background: linear-gradient(
+    90deg,
+    oklch(0 0 0 / 0.3),
+    oklch(0 0 0 / 0.08) 22%,
+    oklch(1 0 0 / 0.1) 38%,
+    oklch(0 0 0 / 0.24) 52%,
+    oklch(1 0 0 / 0.06) 64%,
+    transparent
+  );
 }
 
-.photo-book-cover-art {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-}
-
-.photo-book-cover-curve,
-.photo-book-cover-frame {
-  fill: none;
-  stroke-linecap: round;
-}
-
-.photo-book-cover-curve {
-  stroke: var(--pb-curve);
-  stroke-width: 1;
-}
-
-.photo-book-cover-handle {
-  fill: var(--pb-curve);
-  stroke: var(--color-photo-book-cover-handle-ring);
-  stroke-width: 0.5;
-}
-
-.photo-book-cover-curve--sun {
-  --pb-curve: var(--color-photo-book-cover-sun);
-}
-
-.photo-book-cover-curve--coral {
-  --pb-curve: var(--color-photo-book-cover-coral);
-}
-
-.photo-book-cover-curve--sky {
-  --pb-curve: var(--color-photo-book-cover-sky);
-}
-
-.photo-book-cover-frame {
-  stroke: var(--color-photo-book-cover-title);
-  stroke-width: 0.45;
-  opacity: 0.6;
-}
-
+/* Gold title, centred vertically and set like a list row title, held in
+   viewfinder brackets that hug the text */
 .photo-book-cover-title {
+  --pb-bracket: 0.6em;
+  --pb-bracket-weight: 1.5px;
+  --pb-ink: linear-gradient(
+    var(--color-photo-book-cover-title),
+    var(--color-photo-book-cover-title)
+  );
+
   position: absolute;
+  z-index: 1;
   top: 50%;
-  left: 18%;
-  right: 12%;
+  left: 14%;
+  max-width: 74%;
+  padding: 0.55em 0.8em;
   translate: 0 -50%;
-  /* Set like a list row title; light ink so it reads on the cloth */
   color: var(--color-photo-book-cover-title);
   font-size: var(--text-list-size);
   font-weight: var(--text-list-weight);
   line-height: var(--text-list-line-height);
   text-wrap: var(--text-wrap-balance);
+  background:
+    var(--pb-ink) left top / var(--pb-bracket) var(--pb-bracket-weight),
+    var(--pb-ink) left top / var(--pb-bracket-weight) var(--pb-bracket),
+    var(--pb-ink) right top / var(--pb-bracket) var(--pb-bracket-weight),
+    var(--pb-ink) right top / var(--pb-bracket-weight) var(--pb-bracket),
+    var(--pb-ink) left bottom / var(--pb-bracket) var(--pb-bracket-weight),
+    var(--pb-ink) left bottom / var(--pb-bracket-weight) var(--pb-bracket),
+    var(--pb-ink) right bottom / var(--pb-bracket) var(--pb-bracket-weight),
+    var(--pb-ink) right bottom / var(--pb-bracket-weight) var(--pb-bracket);
+  background-repeat: no-repeat;
 }
 
 /* ── Hit areas (flat, over the book) ──────────────────────── */

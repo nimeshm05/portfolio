@@ -10,6 +10,13 @@ export const PHOTO_BOOK_TURN_MS = 950;
 /** Weighty ease-in-out: the page lifts slowly, swings, then settles. */
 export const PHOTO_BOOK_TURN_EASE = "cubic-bezier(0.42, 0.02, 0.18, 1)";
 
+/**
+ * Sliding the book right as it opens: fast out of the gate, so the pages move
+ * with the lifting cover instead of being uncovered where the closed book sat.
+ * Closing keeps the turn ease, so the book slides back after the cover lands.
+ */
+export const PHOTO_BOOK_SHIFT_OPEN_EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
+
 /** Closing from the last spread: each leaf trails the one above it by this. */
 export const PHOTO_BOOK_CLOSE_STAGGER_MS = 60;
 
