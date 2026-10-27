@@ -84,7 +84,10 @@ export function HomePage() {
                     viewMode="card"
                   />
                 ))}
-                <PhotoBook title={photoBookTitle} spreads={photoBookSpreads} />
+                <hr className="content-section-divider" />
+                <section className="home-photo-book" aria-label={photoBookTitle}>
+                  <PhotoBook title={photoBookTitle} spreads={photoBookSpreads} />
+                </section>
               </div>
             </PageEnterItem>
           </PageEnterGroup>

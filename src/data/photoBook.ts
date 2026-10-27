@@ -6,7 +6,7 @@ export type PhotoBookSpread = {
   caption: string;
 };
 
-export const photoBookTitle = "Photographs";
+export const photoBookTitle = "Designed by Nature, Shot by Me";
 
 // Placeholder spreads until the real photo book is curated.
 export const photoBookSpreads: PhotoBookSpread[] = [

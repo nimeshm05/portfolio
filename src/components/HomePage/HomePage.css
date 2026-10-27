@@ -80,6 +80,11 @@ html:has(.home-page) body {
   width: 100%;
 }
 
+/* Photo book: its own section, without a heading or a sidebar entry */
+.home-photo-book {
+  width: 100%;
+}
+
 /* Expandable sections (experience, education, journey) read as text, so they
    share the text measure; cards, notes and the footer keep the full column. */
 .home-content .content-section-list {

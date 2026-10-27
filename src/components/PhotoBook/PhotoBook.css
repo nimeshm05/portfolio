@@ -452,15 +452,61 @@
   box-shadow: 1px 0 0 oklch(1 0 0 / 0.08);
 }
 
+.photo-book-cover-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.photo-book-cover-curve,
+.photo-book-cover-frame {
+  fill: none;
+  stroke-linecap: round;
+}
+
+.photo-book-cover-curve {
+  stroke: var(--pb-curve);
+  stroke-width: 1;
+}
+
+.photo-book-cover-handle {
+  fill: var(--pb-curve);
+  stroke: var(--color-photo-book-cover-handle-ring);
+  stroke-width: 0.5;
+}
+
+.photo-book-cover-curve--sun {
+  --pb-curve: var(--color-photo-book-cover-sun);
+}
+
+.photo-book-cover-curve--coral {
+  --pb-curve: var(--color-photo-book-cover-coral);
+}
+
+.photo-book-cover-curve--sky {
+  --pb-curve: var(--color-photo-book-cover-sky);
+}
+
+.photo-book-cover-frame {
+  stroke: var(--color-photo-book-cover-title);
+  stroke-width: 0.45;
+  opacity: 0.6;
+}
+
 .photo-book-cover-title {
   position: absolute;
-  top: 12%;
+  top: 50%;
   left: 18%;
   right: 12%;
+  translate: 0 -50%;
+  /* Set like a list row title; light ink so it reads on the cloth */
   color: var(--color-photo-book-cover-title);
-  font-size: var(--pb-text-size);
-  font-weight: var(--font-weight-medium);
-  letter-spacing: 0.02em;
+  font-size: var(--text-list-size);
+  font-weight: var(--text-list-weight);
+  line-height: var(--text-list-line-height);
+  text-wrap: var(--text-wrap-balance);
 }
 
 /* ── Hit areas (flat, over the book) ──────────────────────── */

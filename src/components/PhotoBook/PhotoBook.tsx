@@ -107,10 +107,50 @@ function Face({
   );
 }
 
+/*
+ * Cover art, in a 100×136 box (the page's shape): pen-tool curves with their
+ * anchor handles ("designed") and viewfinder corners around the title ("shot").
+ */
+const coverCurves = [
+  { tone: "sun", d: "M14 20 C30 50 66 -2 88 26", ends: [[14, 20], [88, 26]] },
+  { tone: "coral", d: "M58 9 C90 8 66 42 91 46", ends: [[58, 9], [91, 46]] },
+  { tone: "sky", d: "M17 114 C40 92 62 134 86 104", ends: [[17, 114], [86, 104]] },
+] as const;
+
+function CoverArt() {
+  return (
+    <svg
+      className="photo-book-cover-art"
+      viewBox="0 0 100 136"
+      preserveAspectRatio="xMidYMid slice"
+    >
+      <path
+        className="photo-book-cover-frame"
+        d="M14 60 V54 H20 M84 54 H90 V60 M90 76 V82 H84 M20 82 H14 V76"
+      />
+      {coverCurves.map((curve) => (
+        <g key={curve.tone} className={`photo-book-cover-curve--${curve.tone}`}>
+          <path className="photo-book-cover-curve" d={curve.d} />
+          {curve.ends.map(([cx, cy]) => (
+            <circle
+              key={`${cx}-${cy}`}
+              className="photo-book-cover-handle"
+              cx={cx}
+              cy={cy}
+              r={1.7}
+            />
+          ))}
+        </g>
+      ))}
+    </svg>
+  );
+}
+
 function Cover({ title }: { title?: string }) {
   return (
     <div className="photo-book-cover">
       <span className="photo-book-cover-binding" />
+      <CoverArt />
       {title ? <span className="photo-book-cover-title">{title}</span> : null}
     </div>
   );
@@ -183,6 +223,7 @@ export function PhotoBook({ title, coverColor, spreads }: PhotoBookProps) {
   const timeoutsRef = useRef<number[]>([]);
   const spinRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
+  const frameRef = useRef<HTMLDivElement>(null);
   const runRef = useRef<(intent: Intent) => void>(() => {});
   const pointerStartRef = useRef<{ x: number; y: number } | null>(null);
   const swipedRef = useRef(false);
@@ -310,6 +351,19 @@ export function PhotoBook({ title, coverColor, spreads }: PhotoBookProps) {
   useEffect(() => {
     runRef.current = run;
   }, [run]);
+
+  // While open, a click anywhere outside the book closes it.
+  const isOpen = flipped > 0;
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleOutside = (event: globalThis.PointerEvent) => {
+      if (!frameRef.current?.contains(event.target as Node)) {
+        runRef.current("close");
+      }
+    };
+    document.addEventListener("pointerdown", handleOutside);
+    return () => document.removeEventListener("pointerdown", handleOutside);
+  }, [isOpen]);
 
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     switch (event.key) {
@@ -491,6 +545,7 @@ export function PhotoBook({ title, coverColor, spreads }: PhotoBookProps) {
       data-open={!closed || undefined}
     >
       <div
+        ref={frameRef}
         className="photo-book-frame"
         role="group"
         aria-roledescription="photo book"

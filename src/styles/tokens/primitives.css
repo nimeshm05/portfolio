@@ -45,6 +45,10 @@
   --color-paper-ink: oklch(0.42 0.01 70);
   --color-paper-ink-muted: oklch(0.6 0.01 70);
   --color-cloth-forest: oklch(0.43 0.06 152);
+  --color-cloth-ink: oklch(0.28 0.04 152);
+  --color-print-sun: oklch(0.86 0.15 92);
+  --color-print-coral: oklch(0.7 0.15 35);
+  --color-print-sky: oklch(0.78 0.09 235);
   --color-stamp-teal-600: oklch(60% 0.118 184.704);
   --color-stamp-teal-300: oklch(85.5% 0.138 181.071);
   --color-stamp-teal-100: oklch(95.3% 0.051 180.801);

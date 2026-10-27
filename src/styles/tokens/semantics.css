@@ -139,6 +139,10 @@
   --color-photo-book-folio: var(--color-paper-ink-muted);
   --color-photo-book-cover: var(--color-cloth-forest);
   --color-photo-book-cover-title: oklch(0.95 0.02 90 / 0.85);
+  --color-photo-book-cover-sun: var(--color-print-sun);
+  --color-photo-book-cover-coral: var(--color-print-coral);
+  --color-photo-book-cover-sky: var(--color-print-sky);
+  --color-photo-book-cover-handle-ring: var(--color-cloth-ink);
   --color-photo-book-gutter: oklch(0.35 0.03 70 / 0.14);
   --color-photo-book-turn-shade: oklch(0.3 0.03 70 / 0.22);
   --color-photo-book-ground: oklch(0.3 0.03 60 / 0.22);
