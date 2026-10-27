@@ -1,0 +1,299 @@
+.gallery-walk {
+  --gallery-wall: #3a3a3d;
+  --gallery-wall-shade: #29292c;
+  --gallery-dark: #050505;
+  --gallery-light: 255 244 226;
+
+  /* Full bleed out of the centered home column */
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
+}
+
+.gallery-walk-track {
+  position: relative;
+  height: calc(var(--gallery-scroll-vh) * 100svh);
+}
+
+.gallery-walk-stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.gallery-walk-invite {
+  position: absolute;
+  bottom: calc(50% + var(--space-80, 5rem));
+  left: 50%;
+  width: max-content;
+  max-width: calc(100vw - 2 * var(--inset-x));
+  margin: 0;
+  color: var(--color-footer);
+  font-family: var(--font-family-hand);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.15;
+  letter-spacing: var(--text-footer-letter-spacing);
+  text-align: center;
+  transform: translate(-50%, 0);
+}
+
+.gallery-walk-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  width: 0;
+  height: 0;
+  border: 1px solid color-mix(in oklch, var(--color-text-primary) 18%, transparent);
+  border-radius: 50%;
+  box-shadow: 0 0.75rem 2.5rem -0.5rem rgb(0 0 0 / 0.45);
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.gallery-walk-portal {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--gallery-dark);
+  clip-path: circle(0 at 50% 50%);
+}
+
+.gallery-walk-lens {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  overflow: hidden;
+  background: var(--gallery-dark);
+  transform: translate(-50%, -50%);
+  transform-origin: 50% 50%;
+}
+
+.gallery-walk-viewport {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  perspective-origin: 50% 50%;
+}
+
+.gallery-walk-world {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform-style: preserve-3d;
+}
+
+.gallery-walk-plane {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Shell. Each gradient runs from the near end into darkness, which doubles as fog. */
+.gallery-walk-wall--right {
+  background:
+    linear-gradient(
+      to bottom,
+      rgb(var(--gallery-light) / 0.035),
+      transparent 35%,
+      rgb(0 0 0 / 0.35)
+    ),
+    linear-gradient(
+      to left,
+      var(--gallery-wall) 0%,
+      var(--gallery-wall-shade) 22%,
+      #141415 55%,
+      var(--gallery-dark) 82%
+    );
+}
+
+.gallery-walk-wall--left {
+  background:
+    linear-gradient(to bottom, transparent 40%, rgb(0 0 0 / 0.4)),
+    linear-gradient(
+      to right,
+      #1f1f21 0%,
+      #18181a 20%,
+      #0d0d0e 50%,
+      var(--gallery-dark) 78%
+    );
+}
+
+.gallery-walk-floor {
+  background:
+    linear-gradient(
+      to top,
+      transparent 0%,
+      rgb(5 5 5 / 0.55) 40%,
+      var(--gallery-dark) 80%
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0 358px,
+      rgb(255 255 255 / 0.05) 358px 360px
+    ),
+    linear-gradient(to left, rgb(var(--gallery-light) / 0.06), transparent 35%),
+    #262628;
+  background-size: 100% 100%, 100% 360px, 100% 100%;
+}
+
+.gallery-walk-ceiling {
+  background:
+    linear-gradient(to bottom, transparent 0%, var(--gallery-dark) 70%),
+    linear-gradient(
+      to right,
+      transparent 82%,
+      rgb(255 255 255 / 0.07) 82% 83%,
+      transparent 83%
+    ),
+    #111112;
+}
+
+/* A hung piece: wall wash + frame + placard, laid flat against the right wall */
+.gallery-walk-hang {
+  pointer-events: none;
+}
+
+.gallery-walk-wash {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 900px;
+  height: 1000px;
+  background: radial-gradient(
+    ellipse 50% 52% at 50% 58%,
+    rgb(var(--gallery-light) / 0.2),
+    rgb(var(--gallery-light) / 0.07) 55%,
+    transparent 75%
+  );
+  opacity: calc(1 - var(--gallery-fog, 0));
+  transform: translateX(-50%);
+}
+
+.gallery-walk-frame {
+  position: absolute;
+  left: 50%;
+  margin: 0;
+  border: 12px solid #0b0b0b;
+  background: #f3f1ec;
+  box-shadow:
+    -28px 22px 36px rgb(0 0 0 / 0.55),
+    -6px 6px 10px rgb(0 0 0 / 0.4);
+  transform: translate(-50%, -50%);
+}
+
+.gallery-walk-mat {
+  padding: 44px;
+}
+
+.gallery-walk-photo {
+  position: relative;
+  overflow: hidden;
+  background: #222;
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.2);
+}
+
+.gallery-walk-photo img {
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.08);
+}
+
+.gallery-walk-frame--landscape .gallery-walk-photo {
+  width: 520px;
+  height: 380px;
+}
+
+.gallery-walk-frame--portrait .gallery-walk-photo {
+  width: 340px;
+  height: 460px;
+}
+
+.gallery-walk-frame--square .gallery-walk-photo {
+  width: 420px;
+  height: 420px;
+}
+
+.gallery-walk-placard {
+  position: absolute;
+  top: calc(100% + 40px);
+  left: -12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 120px;
+  padding: 10px 12px 14px;
+  background: #0c0c0c;
+  color: rgb(255 255 255 / 0.82);
+  font-family: var(--font-family-sans);
+  box-shadow: -6px 6px 12px rgb(0 0 0 / 0.5);
+}
+
+.gallery-walk-placard-title {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.gallery-walk-placard-caption {
+  font-size: 11px;
+  color: rgb(255 255 255 / 0.55);
+}
+
+.gallery-walk-fog {
+  position: absolute;
+  inset: -60px -12px -120px;
+  background: var(--gallery-dark);
+  opacity: var(--gallery-fog, 0);
+  pointer-events: none;
+}
+
+.gallery-walk-end {
+  display: grid;
+  place-items: center;
+  background: #1b1b1d;
+}
+
+.gallery-walk-end .gallery-walk-fog {
+  inset: 0;
+}
+
+.gallery-walk-end-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 40% 35% at 50% 58%,
+    rgb(var(--gallery-light) / 0.16),
+    transparent 70%
+  );
+}
+
+.gallery-walk-end-text {
+  position: relative;
+  margin: 0;
+  margin-top: 120px;
+  color: rgb(255 255 255 / 0.85);
+  font-family: var(--font-family-hand);
+  font-size: 56px;
+  font-weight: var(--font-weight-medium);
+}
+
+.gallery-walk-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 75% 70% at 50% 50%,
+    transparent 55%,
+    rgb(0 0 0 / 0.55)
+  );
+  pointer-events: none;
+}
+
+/* While inside the corridor, step page chrome out of the way */
+html.gallery-walk-immersed .viewport-edge-blur,
+html.gallery-walk-immersed .sidebar-nav.home-sidebar {
+  visibility: hidden;
+  opacity: 0;
+}
