@@ -579,6 +579,7 @@ export function PhotoBook({ title, coverColor, spreads }: PhotoBookProps) {
                 <div className="photo-book-edge photo-book-edge--spine" />
                 <div className="photo-book-edge photo-book-edge--fore" />
                 <div className="photo-book-edge photo-book-edge--top" />
+                <div className="photo-book-edge photo-book-edge--bottom" />
                 {leaves}
               </div>
             </div>

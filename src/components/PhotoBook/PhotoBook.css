@@ -4,10 +4,16 @@
   padding-block: var(--gap-lg);
 
   --pb-cover-color: var(--pb-cover, var(--color-photo-book-cover));
-  --pb-leaf-gap: 1px;
+  /* How fat the closed book is; the leaves spread evenly through it */
+  --pb-block: 1.75rem;
+  --pb-leaf-gap: calc(var(--pb-block) / var(--pb-leaves));
+  /* Cover boards, seen as cloth bands on the page-block edges */
+  --pb-board: 2px;
+  --pb-edge-line-gap: 1.5px;
   /* Overlap of the two page halves, so their joint never shows */
   --pb-seam: 1.5px;
-  --pb-thickness: calc((var(--pb-leaves) + 1) * var(--pb-leaf-gap));
+  /* Base to cover: the cover leaf sits at z = leaves × gap = block */
+  --pb-thickness: var(--pb-block);
   --pb-perspective: 1800px;
   --pb-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
@@ -16,7 +22,7 @@
    The frame sits on the column's left edge, like the rest of the content. */
 .photo-book-frame {
   --pb-aspect: 1.36;
-  --pb-page-w: min(50cqi, 22rem);
+  --pb-page-w: min(50cqi, 25rem);
   --pb-page-h: calc(var(--pb-page-w) * var(--pb-aspect));
   --pb-text-size: max(0.625rem, calc(var(--pb-page-w) * 0.036));
 
@@ -148,34 +154,54 @@
   transform: rotateY(-90deg);
 }
 
+/* Page edges: fine paper lines between a cloth board on each side */
+.photo-book-edge--fore,
+.photo-book-edge--top,
+.photo-book-edge--bottom {
+  --pb-edge-angle: 90deg;
+
+  background:
+    linear-gradient(
+      var(--pb-edge-angle),
+      var(--pb-cover-color) 0 var(--pb-board),
+      transparent var(--pb-board) calc(100% - var(--pb-board)),
+      var(--pb-cover-color) calc(100% - var(--pb-board))
+    ),
+    repeating-linear-gradient(
+      var(--pb-edge-angle),
+      var(--color-photo-book-edge-line) 0 0.5px,
+      var(--color-photo-book-edge) 0.5px var(--pb-edge-line-gap)
+    );
+}
+
+.photo-book-edge--top,
+.photo-book-edge--bottom {
+  --pb-edge-angle: 0deg;
+
+  left: 50%;
+  width: var(--pb-page-w);
+  height: var(--pb-thickness);
+}
+
 .photo-book-edge--fore {
   top: 0;
   right: 0;
   width: var(--pb-thickness);
   height: 100%;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      var(--color-photo-book-edge-line) 0 0.5px,
-      var(--color-photo-book-edge) 0.5px var(--pb-leaf-gap)
-    );
   transform-origin: right center;
   transform: rotateY(90deg);
 }
 
 .photo-book-edge--top {
   top: 0;
-  left: 50%;
-  width: var(--pb-page-w);
-  height: var(--pb-thickness);
-  background:
-    repeating-linear-gradient(
-      0deg,
-      var(--color-photo-book-edge-line) 0 0.5px,
-      var(--color-photo-book-edge) 0.5px var(--pb-leaf-gap)
-    );
   transform-origin: center top;
   transform: rotateX(90deg);
+}
+
+.photo-book-edge--bottom {
+  bottom: 0;
+  transform-origin: center bottom;
+  transform: rotateX(-90deg);
 }
 
 /* ── Leaves ───────────────────────────────────────────────── */
@@ -555,7 +581,7 @@
 @media (max-width: 39.9375rem) {
   /* The frame is one page wide; the book behind it is still a full spread */
   .photo-book-frame {
-    --pb-page-w: min(100cqi, 22rem);
+    --pb-page-w: min(100cqi, 25rem);
     --pb-text-size: max(0.75rem, calc(var(--pb-page-w) * 0.042));
 
     width: var(--pb-page-w);
