@@ -37,6 +37,14 @@
   --color-stamp-lime-600: oklch(64.8% 0.2 131.684);
   --color-stamp-lime-300: oklch(89.7% 0.196 126.665);
   --color-stamp-lime-100: oklch(96.7% 0.067 122.328);
+  /* Photo book paper: warm, matte off-whites */
+  --color-paper-50: oklch(0.982 0.006 85);
+  --color-paper-200: oklch(0.93 0.012 82);
+  --color-paper-400: oklch(0.84 0.014 80);
+  --color-paper-600: oklch(0.72 0.016 78);
+  --color-paper-ink: oklch(0.42 0.01 70);
+  --color-paper-ink-muted: oklch(0.6 0.01 70);
+  --color-cloth-forest: oklch(0.43 0.06 152);
   --color-stamp-teal-600: oklch(60% 0.118 184.704);
   --color-stamp-teal-300: oklch(85.5% 0.138 181.071);
   --color-stamp-teal-100: oklch(95.3% 0.051 180.801);

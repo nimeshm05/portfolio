@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useReducedMotion } from "motion/react";
 import { ConnectPrompt } from "@/components/ConnectPrompt/ConnectPrompt";
 import { ContentSection } from "@/components/ContentSection/ContentSection";
-import { GalleryWalk } from "@/components/GalleryWalk/GalleryWalk";
 import { Header } from "@/components/Header/Header";
 import { HomeFooter } from "@/components/HomeFooter/HomeFooter";
 import { HomeSidebar } from "@/components/HomeSidebar/HomeSidebar";
@@ -14,10 +13,11 @@ import {
   PageEnterItem,
 } from "@/components/PageEnter/PageEnter";
 import { LinkCue } from "@/components/LinkCue/LinkCue";
+import { PhotoBook } from "@/components/PhotoBook/PhotoBook";
 import { SocialIconRow } from "@/components/SocialIconRow/SocialIconRow";
 import { ViewportEdgeBlur } from "@/components/ViewportEdgeBlur/ViewportEdgeBlur";
 import { WorkStamps } from "@/components/WorkStamps/WorkStamps";
-import { galleryFrames, galleryInvite } from "@/data/gallery";
+import { photoBookSpreads, photoBookTitle } from "@/data/photoBook";
 import {
   homeSectionGroups,
   homeSections,
@@ -84,6 +84,7 @@ export function HomePage() {
                     viewMode="card"
                   />
                 ))}
+                <PhotoBook title={photoBookTitle} spreads={photoBookSpreads} />
               </div>
             </PageEnterItem>
           </PageEnterGroup>
@@ -91,7 +92,6 @@ export function HomePage() {
             <HomeFooter />
           </PageEnterItem>
         </PageEnterGroup>
-        <GalleryWalk invite={galleryInvite} frames={galleryFrames} />
       </PageEnter>
     </div>
   );

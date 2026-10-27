@@ -1,0 +1,551 @@
+.photo-book {
+  container-type: inline-size;
+  width: 100%;
+  padding-block: var(--gap-lg);
+
+  --pb-cover-color: var(--pb-cover, var(--color-photo-book-cover));
+  --pb-leaf-gap: 1px;
+  /* Overlap of the two page halves, so their joint never shows */
+  --pb-seam: 1.5px;
+  --pb-thickness: calc((var(--pb-leaves) + 1) * var(--pb-leaf-gap));
+  --pb-perspective: 1800px;
+  --pb-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* The open spread fits the column; cqi resolves against .photo-book.
+   The frame sits on the column's left edge, like the rest of the content. */
+.photo-book-frame {
+  --pb-aspect: 1.36;
+  --pb-page-w: min(50cqi, 22rem);
+  --pb-page-h: calc(var(--pb-page-w) * var(--pb-aspect));
+  --pb-text-size: max(0.625rem, calc(var(--pb-page-w) * 0.036));
+
+  position: relative;
+  width: calc(var(--pb-page-w) * 2);
+  height: var(--pb-page-h);
+  border-radius: var(--radius-4);
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.photo-book-frame:focus-visible {
+  outline: var(--size-hairline, 1px) solid var(--color-text-muted);
+  outline-offset: var(--space-16);
+}
+
+/* ── 3D scene ─────────────────────────────────────────────── */
+
+.photo-book-viewport {
+  position: absolute;
+  inset: 0;
+  perspective: var(--pb-perspective);
+  transition: opacity var(--pb-fade-duration) var(--ease-in-out);
+}
+
+.photo-book-viewport[data-fading] {
+  opacity: 0;
+}
+
+.photo-book-stage,
+.photo-book-spin,
+.photo-book-book,
+.photo-book-leaf,
+.photo-book-seg,
+.photo-book-base {
+  transform-style: preserve-3d;
+}
+
+.photo-book-stage,
+.photo-book-spin {
+  position: absolute;
+  inset: 0;
+}
+
+/* Spin around the closed book's middle (the cover sits on the left half) */
+.photo-book-spin {
+  transform-origin: 25% 50%;
+}
+
+/* Flat at rest; on hover it tilts toward the cursor (set from JS) */
+.photo-book-stage {
+  transform: rotateX(var(--pb-tilt-x, 0deg)) rotateY(var(--pb-tilt-y, 0deg));
+  transition: transform var(--pb-tilt-duration) var(--ease-expand);
+}
+
+/* Closed, tilt around the cover rather than the empty half of the frame */
+.photo-book-frame[data-closed] .photo-book-stage {
+  transform-origin: 25% 50%;
+}
+
+/* Closed, the cover (the book's right half) slides to the left edge of the
+   frame; opening moves the book right so the whole spread shows */
+.photo-book-book {
+  position: absolute;
+  inset: 0;
+  transform: translateX(0);
+  transition: transform var(--pb-turn-duration) var(--pb-turn-ease);
+}
+
+.photo-book-book[data-closed] {
+  transform: translateX(-50%);
+}
+
+.photo-book-book[data-panning] {
+  transition-duration: var(--pb-pan-duration);
+}
+
+/* Soft ground shadow: under the cover when closed, the spread when open */
+.photo-book-ground {
+  position: absolute;
+  inset: 4% 3% -2%;
+  border-radius: var(--radius-8);
+  background: var(--color-photo-book-ground);
+  filter: blur(var(--space-16));
+  transform: translateZ(-2px);
+  transform-origin: right center;
+  transition:
+    transform var(--pb-turn-duration) var(--pb-turn-ease),
+    opacity var(--pb-peek-duration) var(--ease-in-out);
+}
+
+.photo-book-book[data-closed] .photo-book-ground {
+  transform: translateZ(-2px) scaleX(0.5);
+}
+
+.photo-book-book[data-spinning] .photo-book-ground {
+  opacity: 0;
+}
+
+/* Back board: paper inside, cloth outside */
+.photo-book-base {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: var(--pb-page-w);
+  height: 100%;
+}
+
+/* Page-block edges, seen only while the book is shut (and spinning) */
+.photo-book-edge {
+  position: absolute;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  opacity: 0;
+  transition: opacity var(--duration-fast) var(--ease-default);
+}
+
+.photo-book-book[data-settled] .photo-book-edge {
+  opacity: 1;
+}
+
+.photo-book-edge--spine {
+  top: 0;
+  left: 50%;
+  width: var(--pb-thickness);
+  height: 100%;
+  background: color-mix(in oklch, var(--pb-cover-color), black 22%);
+  transform-origin: left center;
+  transform: rotateY(-90deg);
+}
+
+.photo-book-edge--fore {
+  top: 0;
+  right: 0;
+  width: var(--pb-thickness);
+  height: 100%;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      var(--color-photo-book-edge-line) 0 0.5px,
+      var(--color-photo-book-edge) 0.5px var(--pb-leaf-gap)
+    );
+  transform-origin: right center;
+  transform: rotateY(90deg);
+}
+
+.photo-book-edge--top {
+  top: 0;
+  left: 50%;
+  width: var(--pb-page-w);
+  height: var(--pb-thickness);
+  background:
+    repeating-linear-gradient(
+      0deg,
+      var(--color-photo-book-edge-line) 0 0.5px,
+      var(--color-photo-book-edge) 0.5px var(--pb-leaf-gap)
+    );
+  transform-origin: center top;
+  transform: rotateX(90deg);
+}
+
+/* ── Leaves ───────────────────────────────────────────────── */
+
+.photo-book-leaf {
+  --pb-angle: 0deg;
+  --pb-leaf-duration: var(--pb-turn-duration);
+
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: var(--pb-page-w);
+  height: 100%;
+  transform-origin: left center;
+  transform: translateZ(calc(var(--pb-z) * var(--pb-leaf-gap)))
+    rotateY(var(--pb-angle));
+  transition: transform var(--pb-leaf-duration) var(--pb-turn-ease)
+    var(--pb-leaf-delay, 0ms);
+  will-change: transform;
+}
+
+.photo-book-leaf[data-flipped] {
+  --pb-angle: -180deg;
+}
+
+.photo-book-leaf[data-peek] {
+  --pb-angle: -9deg;
+  --pb-leaf-duration: var(--pb-peek-duration);
+}
+
+.photo-book-leaf[data-flipped][data-peek] {
+  --pb-angle: -171deg;
+}
+
+/* Spine half and outer half, hinged at the middle of the page */
+.photo-book-seg {
+  position: absolute;
+  top: 0;
+  height: 100%;
+}
+
+.photo-book-seg-a {
+  left: 0;
+  width: calc(var(--pb-page-w) / 2);
+}
+
+.photo-book-seg-b {
+  left: calc(100% - var(--pb-seam));
+  width: calc(var(--pb-page-w) / 2 + var(--pb-seam));
+  transform-origin: left center;
+}
+
+/* The outer half trails the turn, then catches up as the page lands */
+.photo-book-leaf[data-turn="forward"] .photo-book-seg-b {
+  animation: photo-book-bend-forward var(--pb-turn-duration)
+    var(--ease-in-out) var(--pb-leaf-delay, 0ms) both;
+}
+
+.photo-book-leaf[data-turn="back"] .photo-book-seg-b {
+  animation: photo-book-bend-back var(--pb-turn-duration) var(--ease-in-out)
+    var(--pb-leaf-delay, 0ms) both;
+}
+
+@keyframes photo-book-bend-forward {
+  0% {
+    transform: rotateY(0deg);
+  }
+  45% {
+    transform: rotateY(26deg);
+  }
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes photo-book-bend-back {
+  0% {
+    transform: rotateY(0deg);
+  }
+  45% {
+    transform: rotateY(-26deg);
+  }
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+/* ── Faces ────────────────────────────────────────────────── */
+
+.photo-book-face {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--color-photo-book-paper);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.photo-book-face--back {
+  transform: rotateY(180deg);
+}
+
+/* Each half shows its slice of a full-width page */
+.photo-book-face-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--pb-page-w);
+  height: 100%;
+}
+
+.photo-book-seg-a > .photo-book-face--back > .photo-book-face-content {
+  left: calc(var(--pb-page-w) / -2);
+}
+
+.photo-book-seg-b > .photo-book-face--front > .photo-book-face-content {
+  left: calc(var(--pb-page-w) / -2 + var(--pb-seam));
+}
+
+/* Rounded outer corners only */
+.photo-book-seg-b > .photo-book-face--front,
+.photo-book-base > .photo-book-face--front {
+  border-radius: 0 var(--radius-2) var(--radius-2) 0;
+}
+
+.photo-book-seg-b > .photo-book-face--back,
+.photo-book-base > .photo-book-face--back {
+  border-radius: var(--radius-2) 0 0 var(--radius-2);
+}
+
+/* Gutter shadow on the spine half */
+.photo-book-seg-a > .photo-book-face::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    var(--color-photo-book-gutter),
+    transparent 22%
+  );
+}
+
+.photo-book-seg-a > .photo-book-face--back::before {
+  background: linear-gradient(
+    270deg,
+    var(--color-photo-book-gutter),
+    transparent 22%
+  );
+}
+
+.photo-book-seg-a > .photo-book-face--cover::before {
+  content: none;
+}
+
+/* The page darkens as it turns away from the light */
+.photo-book-face::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: var(--color-photo-book-turn-shade);
+  opacity: 0;
+}
+
+.photo-book-leaf[data-turn] .photo-book-face::after {
+  animation: photo-book-turn-shade var(--pb-turn-duration) var(--ease-in-out)
+    var(--pb-leaf-delay, 0ms) both;
+}
+
+@keyframes photo-book-turn-shade {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ── Page content ─────────────────────────────────────────── */
+
+.photo-book-page {
+  position: absolute;
+  inset: 0;
+  font-size: var(--pb-text-size);
+  user-select: none;
+}
+
+.photo-book-page::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: var(--pb-grain);
+  opacity: var(--opacity-photo-book-grain);
+}
+
+.photo-book-photo {
+  position: absolute;
+  inset: 14% 13% 22%;
+}
+
+.photo-book-photo img {
+  object-fit: contain;
+  filter: var(--filter-photo-book-image);
+}
+
+.photo-book-page--caption {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 14% 18% 22% 13%;
+}
+
+.photo-book-caption {
+  max-width: 22ch;
+  color: var(--color-photo-book-caption);
+  font-size: 1em;
+  line-height: var(--line-height-body);
+  letter-spacing: var(--letter-spacing-tight);
+  text-wrap: pretty;
+}
+
+.photo-book-folio {
+  position: absolute;
+  bottom: 8%;
+  left: 0;
+  right: 0;
+  color: var(--color-photo-book-folio);
+  font-size: 0.8em;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+/* ── Cover ────────────────────────────────────────────────── */
+
+.photo-book-face--cover {
+  background: var(--pb-cover-color);
+}
+
+.photo-book-cover {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      115deg,
+      oklch(1 0 0 / 0.08),
+      transparent 45%,
+      oklch(0 0 0 / 0.12)
+    ),
+    var(--pb-cover-color);
+}
+
+/* Woven cloth */
+.photo-book-cover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: var(--pb-grain);
+  opacity: var(--opacity-photo-book-cloth);
+}
+
+.photo-book-cover-binding {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 5%;
+  width: 2.5%;
+  background: color-mix(in oklch, var(--pb-cover-color), black 18%);
+  box-shadow: 1px 0 0 oklch(1 0 0 / 0.08);
+}
+
+.photo-book-cover-title {
+  position: absolute;
+  top: 12%;
+  left: 18%;
+  right: 12%;
+  color: var(--color-photo-book-cover-title);
+  font-size: var(--pb-text-size);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.02em;
+}
+
+/* ── Hit areas (flat, over the book) ──────────────────────── */
+
+.photo-book-hit {
+  position: absolute;
+  inset: 0;
+  touch-action: pan-y;
+}
+
+.photo-book-zone {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.photo-book-zone--cover {
+  left: 0;
+  width: 50%;
+  cursor: pointer;
+}
+
+.photo-book-zone--prev {
+  left: 0;
+  width: 50%;
+  cursor: w-resize;
+}
+
+.photo-book-zone--next {
+  left: 50%;
+  width: 50%;
+  cursor: e-resize;
+}
+
+.photo-book-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ── One page at a time (narrow screens) ─────────────────── */
+
+@media (max-width: 39.9375rem) {
+  /* The frame is one page wide; the book behind it is still a full spread */
+  .photo-book-frame {
+    --pb-page-w: min(100cqi, 22rem);
+    --pb-text-size: max(0.75rem, calc(var(--pb-page-w) * 0.042));
+
+    width: var(--pb-page-w);
+    overflow-x: clip;
+  }
+
+  .photo-book-viewport {
+    right: auto;
+    width: calc(var(--pb-page-w) * 2);
+  }
+
+  .photo-book-zone--cover {
+    left: 0;
+    width: 100%;
+  }
+
+  .photo-book-zone--prev,
+  .photo-book-zone--next {
+    cursor: pointer;
+  }
+}
+
+/* Pan so the page in view sits in the frame (the left page needs no shift) */
+.photo-book[data-narrow] .photo-book-book[data-side="right"]:not([data-closed]) {
+  transform: translateX(-50%);
+}
+
+/* Reduced motion: no turns or spin, just a crossfade between states */
+.photo-book[data-reduced] .photo-book-book,
+.photo-book[data-reduced] .photo-book-ground,
+.photo-book[data-reduced] .photo-book-leaf,
+.photo-book[data-reduced] .photo-book-edge {
+  transition: none;
+}
+
+.photo-book[data-reduced] .photo-book-seg-b,
+.photo-book[data-reduced] .photo-book-face::after {
+  animation: none;
+}

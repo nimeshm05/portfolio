@@ -131,6 +131,21 @@
   --connect-excitement-word-scale: var(--scale-110);
   --prompt-label-min-width: 4ch;
 
+  /* Photo book */
+  --color-photo-book-paper: var(--color-paper-50);
+  --color-photo-book-edge: var(--color-paper-400);
+  --color-photo-book-edge-line: var(--color-paper-600);
+  --color-photo-book-caption: var(--color-paper-ink);
+  --color-photo-book-folio: var(--color-paper-ink-muted);
+  --color-photo-book-cover: var(--color-cloth-forest);
+  --color-photo-book-cover-title: oklch(0.95 0.02 90 / 0.85);
+  --color-photo-book-gutter: oklch(0.35 0.03 70 / 0.14);
+  --color-photo-book-turn-shade: oklch(0.3 0.03 70 / 0.22);
+  --color-photo-book-ground: oklch(0.3 0.03 60 / 0.22);
+  --opacity-photo-book-grain: 0.05;
+  --opacity-photo-book-cloth: 0.12;
+  --filter-photo-book-image: none;
+
   /* Work stamps */
   --color-work-stamp-paper: var(--color-stamp-paper);
   --color-work-stamp-ink: var(--color-white);
@@ -384,6 +399,18 @@
   /* Borders */
   --color-border: var(--color-neutral-900);
   --color-table-row-border: var(--color-neutral-850);
+
+  /* Photo book: paper stays warm but dims so it doesn't glare */
+  --color-photo-book-paper: var(--color-paper-400);
+  --color-photo-book-edge: var(--color-paper-600);
+  --color-photo-book-edge-line: var(--color-paper-ink-muted);
+  --color-photo-book-caption: var(--color-neutral-750);
+  --color-photo-book-folio: var(--color-neutral-600);
+  --color-photo-book-gutter: oklch(0.2 0.02 70 / 0.22);
+  --color-photo-book-turn-shade: oklch(0.15 0.02 70 / 0.35);
+  --color-photo-book-ground: oklch(0 0 0 / 0.6);
+  --opacity-photo-book-grain: 0.07;
+  --filter-photo-book-image: brightness(0.92);
 
   /* Shadows */
   --shadow-card: var(--shadow-elevation-dark);

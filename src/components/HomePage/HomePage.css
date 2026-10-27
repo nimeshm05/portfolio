@@ -160,6 +160,18 @@ html:has(.home-page) body {
   }
 }
 
+/* Reading the photo book (open, or hovering a page) dims everything else */
+.home-page:has(.photo-book[data-open], .photo-book-zone:hover)
+  :is(
+    .site-header,
+    .home-sidebar .sidebar-nav-links,
+    .home-footer,
+    .content-section-divider,
+    .content-section
+  ) {
+  opacity: var(--opacity-home-dimmed);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .home-page
     :is(
