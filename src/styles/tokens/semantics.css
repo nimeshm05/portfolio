@@ -137,11 +137,15 @@
   --color-photo-book-edge-line: var(--color-paper-600);
   --color-photo-book-caption: var(--color-paper-ink);
   --color-photo-book-folio: var(--color-paper-ink-muted);
+  --color-photo-book-ink-wet: oklch(0.3 0.04 250);
   --color-photo-book-cover: var(--color-cloth-forest);
   --color-photo-book-cover-title: var(--color-foil-gold);
   --color-photo-book-cover-light: oklch(0.9 0.1 140 / 0.26);
   --color-photo-book-cover-shade: oklch(0.15 0.03 152 / 0.4);
-  --color-photo-book-gutter: oklch(0.35 0.03 70 / 0.14);
+  --color-photo-book-gutter-crease: oklch(0.25 0.03 70 / 0.5);
+  --color-photo-book-gutter: oklch(0.3 0.03 70 / 0.28);
+  --color-photo-book-gutter-mid: oklch(0.32 0.03 70 / 0.13);
+  --color-photo-book-gutter-soft: oklch(0.35 0.03 70 / 0.05);
   --color-photo-book-turn-shade: oklch(0.3 0.03 70 / 0.22);
   --shadow-photo-book-ground:
     1px 2px 3px oklch(0.25 0.03 60 / 0.35),
@@ -413,7 +417,11 @@
   --color-photo-book-edge-line: var(--color-paper-ink-muted);
   --color-photo-book-caption: var(--color-neutral-750);
   --color-photo-book-folio: var(--color-neutral-600);
-  --color-photo-book-gutter: oklch(0.2 0.02 70 / 0.22);
+  --color-photo-book-ink-wet: oklch(0.22 0.04 250);
+  --color-photo-book-gutter-crease: oklch(0.12 0.02 70 / 0.65);
+  --color-photo-book-gutter: oklch(0.15 0.02 70 / 0.4);
+  --color-photo-book-gutter-mid: oklch(0.18 0.02 70 / 0.2);
+  --color-photo-book-gutter-soft: oklch(0.2 0.02 70 / 0.08);
   --color-photo-book-turn-shade: oklch(0.15 0.02 70 / 0.35);
   --shadow-photo-book-ground:
     1px 2px 3px oklch(0 0 0 / 0.65),

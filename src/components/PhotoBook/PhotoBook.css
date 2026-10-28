@@ -348,26 +348,29 @@
   border-radius: var(--radius-2) 0 0 var(--radius-2);
 }
 
-/* Gutter shadow on the spine half */
+/* Gutter: each page curves down into the binding, so it falls into shadow
+   over its inner fifth, with a crisp crease right at the fold. Stops are
+   measured across the spine half of the page. */
 .photo-book-seg-a > .photo-book-face::before {
+  --pb-gutter-angle: 90deg;
+
   content: "";
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
   background: linear-gradient(
-    90deg,
-    var(--color-photo-book-gutter),
-    transparent 22%
+    var(--pb-gutter-angle),
+    var(--color-photo-book-gutter-crease) 0,
+    var(--color-photo-book-gutter) 1.2%,
+    var(--color-photo-book-gutter-mid) 7%,
+    var(--color-photo-book-gutter-soft) 18%,
+    transparent 40%
   );
 }
 
 .photo-book-seg-a > .photo-book-face--back::before {
-  background: linear-gradient(
-    270deg,
-    var(--color-photo-book-gutter),
-    transparent 22%
-  );
+  --pb-gutter-angle: 270deg;
 }
 
 .photo-book-seg-a > .photo-book-face--cover::before {
@@ -442,6 +445,43 @@
   line-height: var(--line-height-body);
   letter-spacing: var(--letter-spacing-tight);
   text-wrap: pretty;
+}
+
+/* Ink reveal: a caption prints only once its page has landed. Each word
+   bleeds in from a soft blot to crisp ink, a beat after the last. */
+.photo-book-caption-word {
+  display: inline-block;
+  white-space: pre;
+  opacity: 0;
+}
+
+.photo-book-leaf[data-ink] .photo-book-caption-word {
+  animation: photo-book-ink var(--pb-ink-duration) var(--ease-expand)
+    calc(var(--pb-ink-delay) + var(--pb-word) * var(--pb-ink-stagger)) both;
+}
+
+.photo-book[data-reduced] .photo-book-caption-word {
+  opacity: 1;
+  animation: none;
+}
+
+@keyframes photo-book-ink {
+  0% {
+    opacity: 0;
+    filter: blur(0.25em);
+    transform: scale(1.06);
+    color: var(--color-photo-book-ink-wet);
+  }
+  55% {
+    opacity: 0.9;
+    filter: blur(0.04em);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1);
+    color: var(--color-photo-book-caption);
+  }
 }
 
 .photo-book-folio {

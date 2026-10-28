@@ -19,6 +19,9 @@ import type { PhotoBookSpread } from "@/data/photoBook";
 import {
   PHOTO_BOOK_CLOSE_STAGGER_MS,
   PHOTO_BOOK_FADE_MS,
+  PHOTO_BOOK_INK_DELAY_MS,
+  PHOTO_BOOK_INK_MS,
+  PHOTO_BOOK_INK_STAGGER_MS,
   PHOTO_BOOK_PAN_MS,
   PHOTO_BOOK_PEEK_MS,
   PHOTO_BOOK_SHIFT_OPEN_EASE,
@@ -153,9 +156,22 @@ function CaptionPage({
   spread: PhotoBookSpread;
   folio: number;
 }) {
+  // Each word inks in on its own, a beat after the one before it.
+  const words = spread.caption.split(" ");
   return (
     <div className="photo-book-page photo-book-page--caption">
-      <p className="photo-book-caption">{spread.caption}</p>
+      <p className="photo-book-caption">
+        {words.map((word, index) => (
+          <span
+            key={index}
+            className="photo-book-caption-word"
+            style={{ "--pb-word": index } as CSSProperties}
+          >
+            {word}
+            {index < words.length - 1 ? " " : null}
+          </span>
+        ))}
+      </p>
       <span className="photo-book-folio">{folio}</span>
     </div>
   );
@@ -176,6 +192,12 @@ export function PhotoBook({ title, coverColor, spreads }: PhotoBookProps) {
   /** The page in view on narrow screens; ignored on wide ones. */
   const [side, setSide] = useState<Side>("right");
   const [panning, setPanning] = useState(false);
+  /**
+   * The leaf whose caption is printed. It inks in once its page has landed
+   * (or, one page at a time, once the reader pans to it), and stays printed
+   * while that leaf turns away.
+   */
+  const [inkLeaf, setInkLeaf] = useState<number | null>(null);
   /** Highest spread whose photo has been mounted; photos stay once loaded. */
   const [reach, setReach] = useState(1);
 
@@ -245,6 +267,7 @@ export function PhotoBook({ title, coverColor, spreads }: PhotoBookProps) {
         setPanning(true);
         wait(PHOTO_BOOK_PAN_MS, () => {
           setPanning(false);
+          if (panTo === "right") setInkLeaf(flippedRef.current);
           finish();
         });
         return;
@@ -285,6 +308,9 @@ export function PhotoBook({ title, coverColor, spreads }: PhotoBookProps) {
         (Math.abs(to - from) - 1) * PHOTO_BOOK_CLOSE_STAGGER_MS;
       wait(turnMs, () => {
         setTurn(null);
+        // On narrow screens a forward turn lands on the photo; the caption
+        // inks when the reader pans to it.
+        setInkLeaf(to > 0 && (!narrow || toSide === "right") ? to : null);
         if (!finale) {
           finish();
           return;
@@ -465,6 +491,7 @@ export function PhotoBook({ title, coverColor, spreads }: PhotoBookProps) {
         data-flipped={isFlipped || undefined}
         data-turn={isTurning ? turn.direction : undefined}
         data-peek={isPeeking || undefined}
+        data-ink={inkLeaf === index || undefined}
         style={
           {
             "--pb-z": isFlipped ? index + 1 : count - index + 1,
@@ -494,6 +521,9 @@ export function PhotoBook({ title, coverColor, spreads }: PhotoBookProps) {
     "--pb-shift-open-ease": PHOTO_BOOK_SHIFT_OPEN_EASE,
     "--pb-peek-duration": `${PHOTO_BOOK_PEEK_MS}ms`,
     "--pb-pan-duration": `${PHOTO_BOOK_PAN_MS}ms`,
+    "--pb-ink-duration": `${PHOTO_BOOK_INK_MS}ms`,
+    "--pb-ink-stagger": `${PHOTO_BOOK_INK_STAGGER_MS}ms`,
+    "--pb-ink-delay": `${PHOTO_BOOK_INK_DELAY_MS}ms`,
     "--pb-tilt-duration": `${PHOTO_BOOK_TILT_MS}ms`,
     "--pb-fade-duration": `${PHOTO_BOOK_FADE_MS}ms`,
     "--pb-leaves": count + 1,

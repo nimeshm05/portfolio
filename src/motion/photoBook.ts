@@ -37,6 +37,12 @@ export const PHOTO_BOOK_PEEK_MS = 450;
 export const PHOTO_BOOK_TILT_DEG = 6;
 export const PHOTO_BOOK_TILT_MS = 500;
 
+/** Caption ink reveal: each word's bleed, the gap between words, and the
+    pause after a page lands before the first word prints. */
+export const PHOTO_BOOK_INK_MS = 700;
+export const PHOTO_BOOK_INK_STAGGER_MS = 55;
+export const PHOTO_BOOK_INK_DELAY_MS = 80;
+
 /** Reduced motion: each half of the crossfade. */
 export const PHOTO_BOOK_FADE_MS = 160;
 
