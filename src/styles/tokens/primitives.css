@@ -125,7 +125,6 @@
   --duration-fast: 160ms;
   --duration-expand: 500ms;
   --duration-stagger: 30ms;
-  --duration-pattern-checker: 3.2s;
   --duration-fly-in: 1600ms;
   --duration-fly-in-stagger: 220ms;
   --duration-fly-in-lead: 300ms;
@@ -155,8 +154,6 @@
   --size-work-stamp-width-max: 24rem; /* cap for the single stacked stamp on tablet/mobile */
   --size-work-stamp-fanned-width-max: 16.625rem; /* 266px cap per stamp in the fanned row, a whole multiple of the 14px perforation */
   --size-work-stamp-height: 10.5rem; /* 168px, a whole multiple of the 14px perforation */
-  --size-work-stamp-panel: 3.5rem; /* 56px */
-  --size-work-stamp-panel-expanded: 9rem; /* 144px */
   --size-work-stamp-perf-x: 0.875rem; /* 14px between holes along the top and bottom */
   --size-work-stamp-perf-y: 0.875rem; /* 14px between holes along the sides */
   --size-work-stamp-hole: 0.3125rem; /* 5px perforation hole radius: deep, round bites; keep under half the perf step */
@@ -165,7 +162,7 @@
   --size-work-stamp-halftone-soften: 0.01875rem; /* 0.3px feathered dot edge */
   --size-work-stamp-postmark: 4.25rem; /* 68px */
   --size-work-stamp-postmark-expanded: 6.5rem; /* 104px */
-  --size-work-stamp-expanded-width: 40rem; /* 640px cap; the open stamp snaps down to the perforation step */
+  --size-work-stamp-expanded-width: 30rem; /* 480px cap; the open stamp snaps down to the perforation step */
   --size-work-stamp-imprint-margin: 1.125rem; /* 18px bottom margin that holds the imprint above the perforation bites */
   --size-photo-stamp-long-side: 7.875rem; /* 126px, a whole multiple of the 14px perforation */
   --size-photo-stamp-expanded-max: 40rem; /* 640px cap on the open photo's longer side; snapped down to the perforation step */

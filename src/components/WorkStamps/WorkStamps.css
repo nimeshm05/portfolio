@@ -212,17 +212,13 @@
     var(--color-work-stamp-paper)
   );
   border-radius: var(--radius-work-stamp-print);
-  /* Own stacking order: wash (0) < artwork and copy (1) < print textures (2) */
+  /* Own stacking order: wash (0) < copy (1) < print textures (2) */
   isolation: isolate;
-}
-
-.work-stamp-panel,
-.work-stamp-copy {
-  z-index: 1;
 }
 
 .work-stamp-copy {
   position: relative;
+  z-index: 1;
 }
 
 .work-stamp-paper {
@@ -340,16 +336,6 @@
   content: "";
 }
 
-.work-stamp-panel {
-  position: relative;
-  display: flex;
-  flex: 0 0 var(--width-work-stamp-panel);
-  align-self: stretch;
-  overflow: hidden;
-  /* The pattern animates constantly; keep its layout and repaints inside the panel */
-  contain: layout paint;
-}
-
 .work-stamp-copy {
   display: flex;
   flex: 1 1 0;
@@ -364,6 +350,7 @@
   flex-direction: column;
   gap: var(--gap-work-stamp-copy);
   padding-top: var(--padding-work-stamp-details-top);
+  padding-inline-start: var(--padding-work-stamp-details-start);
 }
 
 /* Face value, bottom-right of the artwork */
@@ -404,8 +391,7 @@
    Paper: faint warm fibres over the white stock.
    Print: a halftone screen over the wash (see .work-stamp-wash), then a fine
    ink grain and soft pale patches where the ink thinned, over the artwork
-   (text included, as printed).
-   The panel pattern sits half a pixel off, like a slightly misaligned plate. */
+   (text included, as printed). */
 
 .work-stamp-paper::before {
   position: absolute;
@@ -439,10 +425,6 @@
   opacity: var(--opacity-work-stamp-print-texture);
   content: "";
   pointer-events: none;
-}
-
-.work-stamp-panel svg {
-  translate: var(--offset-work-stamp-misregistration) calc(var(--offset-work-stamp-misregistration) * -1);
 }
 
 .work-stamp-name {
@@ -506,62 +488,6 @@
   dominant-baseline: central;
 }
 
-/* ---------- Panel patterns ---------- */
-
-/* Out of the flow: the tall canvas would otherwise set the panel's height,
-   and the panel should take its height from the copy beside it */
-.work-stamp-pattern {
-  position: absolute;
-  inset: 0;
-  display: block;
-  width: 100%;
-  height: 100%;
-  color: var(--color-work-stamp-engraving);
-}
-
-/* Spirals: each turns about its own centre, at its own pace and direction */
-.pattern-spiral {
-  transform-box: view-box;
-  animation: pattern-spin var(--pattern-duration) linear infinite var(--pattern-direction, normal);
-}
-
-/* Waves: each row slides one wavelength and loops seamlessly */
-.pattern-wave {
-  transform-box: view-box;
-  animation: pattern-flow var(--pattern-duration) linear infinite;
-}
-
-/* Checker: cells flip edge-on and back, in a diagonal wave */
-.pattern-checker-cell {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: pattern-flip var(--animation-work-stamp-checker) infinite;
-  animation-delay: var(--pattern-delay);
-}
-
-@keyframes pattern-spin {
-  to { transform: rotate(360deg); }
-}
-
-@keyframes pattern-flow {
-  to { transform: translateX(var(--pattern-loop)); }
-}
-
-@keyframes pattern-flip {
-  0%, 30%, 100% { transform: scaleX(1); }
-  15% { transform: scaleX(0); }
-}
-
-/* Patterns only animate where they can be seen. Paused: stamps behind the
-   front one in the stack, a stamp's empty slot while it's open, the whole
-   stack once it's scrolled away, and the open card while it's resizing. The
-   fanned row (desktop) plays all three again, below. */
-.work-stamps-frame[data-offscreen] .work-stamp-pattern *,
-.work-stamp:is([data-behind], [data-lifted]) .work-stamp-pattern *,
-.work-stamp-expanded[data-moving] .work-stamp-pattern * {
-  animation-play-state: paused;
-}
-
 /* ---------- Expanded stamp ----------
    Lifted out of the stack into the middle of the page (see ExpandedCard).
    Motion animates the box (left/top/width/height) and --work-stamp-expand
@@ -618,20 +544,6 @@
   position: absolute;
   width: 0;
   height: var(--work-stamp-perf-y);
-}
-
-/* A size container, so the panel can claim a share of the card's width */
-.work-stamp-expanded {
-  container-type: inline-size;
-}
-
-/* The panel widens with the card, so the pattern grows rather than cropping */
-.work-stamp-expanded .work-stamp-panel {
-  flex-basis: calc(
-    var(--width-work-stamp-panel) +
-      (min(var(--width-work-stamp-panel-expanded), var(--share-work-stamp-panel-expanded)) -
-        var(--width-work-stamp-panel)) * var(--work-stamp-expand)
-  );
 }
 
 .work-stamp-expanded .work-stamp-postmark {
@@ -716,14 +628,6 @@
     opacity: 1;
   }
 
-  .work-stamps-frame:not([data-offscreen])
-    .work-stamps:is(:hover, :has(:focus-visible), [data-fanned])
-    .work-stamp:not([data-lifted])
-    .work-stamp-pattern
-    * {
-    animation-play-state: running;
-  }
-
   .work-stamps:is(:hover, :has(:focus-visible), [data-fanned]) .work-stamp {
     transform: translateX(
       calc(var(--work-stamp-index) * (var(--width-work-stamp) + var(--gap-work-stamps)))
@@ -746,11 +650,5 @@
 
   .work-stamp {
     animation: none;
-  }
-
-  :is(.work-stamps, .work-stamp-expanded) .pattern-spiral,
-  :is(.work-stamps, .work-stamp-expanded) .pattern-wave,
-  :is(.work-stamps, .work-stamp-expanded) .pattern-checker-cell {
-    animation: none !important;
   }
 }

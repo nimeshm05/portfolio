@@ -172,7 +172,6 @@
   --width-work-stamp-max: var(--size-work-stamp-width-max);
   --width-work-stamp-fanned-max: var(--size-work-stamp-fanned-width-max);
   --height-work-stamp: var(--size-work-stamp-height);
-  --width-work-stamp-panel: var(--size-work-stamp-panel);
   --work-stamp-perf-x: var(--size-work-stamp-perf-x);
   --work-stamp-perf-y: var(--size-work-stamp-perf-y);
   --work-stamp-hole: var(--size-work-stamp-hole);
@@ -184,6 +183,7 @@
   --gap-work-stamp-print: var(--gap-md);
   --gap-work-stamp-copy: var(--gap-md);
   --padding-work-stamp-details-top: var(--space-20); /* nudges the name and meta down from the top edge */
+  --padding-work-stamp-details-start: var(--space-16); /* keeps the name and meta off the left edge */
   --gap-work-stamp-meta: var(--gap-xs);
   --radius-work-stamp-print: var(--radius-xs);
   --radius-work-stamps-focus: var(--radius-sm);
@@ -207,7 +207,6 @@
   --scale-work-stamp-hover: var(--scale-104);
   --opacity-work-stamp-glare: 0.55; /* the soft highlight under the cursor */
   --opacity-work-stamp-sheen: 0.22; /* the diagonal foil band sweeping across */
-  --animation-work-stamp-checker: var(--duration-pattern-checker) var(--ease-in-out);
   --text-work-stamp-name-size: var(--font-size-18);
   --text-work-stamp-name-weight: var(--font-weight-semibold);
   --text-work-stamp-name-line-height: var(--line-height-15);
@@ -235,7 +234,6 @@
   --work-stamp-halftone-soften: var(--size-work-stamp-halftone-soften);
   --amount-work-stamp-halftone-darken: 45%; /* black mixed into the stamp colour for the dots */
   --amount-work-stamp-halftone-ink: 45%; /* dot opacity */
-  --offset-work-stamp-misregistration: 0.5px;
   /* Wash: the abstract watercolour ground behind each stamp's artwork */
   --amount-work-stamp-wash-deepen: 32%; /* black mixed into the stamp colour for the deep pools */
   --opacity-work-stamp-wash-deep: 0.7;
@@ -245,8 +243,6 @@
   /* Expanded stamp: lifted out of the stack into the middle of the page */
   --width-work-stamp-expanded: var(--size-work-stamp-expanded-width);
   --width-work-stamp-postmark-expanded: var(--size-work-stamp-postmark-expanded);
-  --width-work-stamp-panel-expanded: var(--size-work-stamp-panel-expanded);
-  --share-work-stamp-panel-expanded: 28cqi; /* caps the panel on narrow cards, leaving room for the copy */
   --inset-work-stamp-expanded: var(--space-16); /* keeps the stamp off the viewport edges */
   --text-work-stamp-name-size-expanded: var(--font-size-32);
   --text-work-stamp-meta-size-expanded: var(--font-size-20);

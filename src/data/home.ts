@@ -474,7 +474,6 @@ export const homeSections: ContentSectionData[] = homeSectionGroups.flatMap(
 );
 
 export type WorkStampTone = "green" | "lime" | "teal";
-export type WorkStampEmblem = "spirals" | "waves" | "checker";
 
 export type WorkStampData = {
   id: string;
@@ -482,7 +481,6 @@ export type WorkStampData = {
   role: string;
   dates: string;
   tone: WorkStampTone;
-  emblem: WorkStampEmblem;
   /** Face value printed in the corner, e.g. "26¢" */
   value: string;
   /** Where the work happened: the imprint line and the postmark's bottom arc */
@@ -507,7 +505,6 @@ export const workStamps: readonly WorkStampData[] = [
     role: "Product Intern",
     dates: "Mar 2026 - Jun 2026",
     tone: "green",
-    emblem: "spirals",
     value: "26¢",
     location: "Seattle",
     description:
@@ -520,7 +517,6 @@ export const workStamps: readonly WorkStampData[] = [
     role: "Product Designer",
     dates: "Aug 2023 - Jul 2025",
     tone: "lime",
-    emblem: "waves",
     value: "25¢",
     location: "Bangalore",
     description:
@@ -533,7 +529,6 @@ export const workStamps: readonly WorkStampData[] = [
     role: "SDE Intern",
     dates: "May 2021 - Jan 2022",
     tone: "teal",
-    emblem: "checker",
     value: "21¢",
     location: "Bangalore",
     description:

@@ -4,7 +4,7 @@ import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState } from
 import type { CSSProperties, PointerEvent } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion, useReducedMotion, type Transition, type Variants } from "motion/react";
-import type { WorkStampData, WorkStampEmblem } from "@/data/home";
+import type { WorkStampData } from "@/data/home";
 import "./WorkStamps.css";
 
 type WorkStampsProps = {
@@ -28,7 +28,7 @@ const toRect = ({ left, top, width, height }: DOMRect): Rect => ({ left, top, wi
 
 /**
  * A stack of postage stamps, one per role. Stacked by default; hovering (or
- * focusing) the stack fans the stamps out into a row and plays each pattern.
+ * focusing) the stack fans the stamps out into a row.
  * On touch, the front stamp can be swiped sideways and tucks behind the stack.
  * Clicking a stamp lifts it into the middle of the page with its description.
  */
@@ -49,18 +49,6 @@ export function WorkStamps({ stamps }: WorkStampsProps) {
   const fanTimer = useRef<number | undefined>(undefined);
 
   useEffect(() => () => window.clearTimeout(fanTimer.current), []);
-
-  // Patterns pause while the stamps are scrolled out of view (see the CSS)
-  const frameRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const frame = frameRef.current;
-    if (!frame) return;
-    const observer = new IntersectionObserver(([entry]) => {
-      frame.toggleAttribute("data-offscreen", !entry.isIntersecting);
-    });
-    observer.observe(frame);
-    return () => observer.disconnect();
-  }, []);
 
   const setDrag = (el: HTMLElement, dx: number | null) => {
     if (dx === null) {
@@ -129,7 +117,7 @@ export function WorkStamps({ stamps }: WorkStampsProps) {
   }, [opened]);
 
   return (
-    <div ref={frameRef} className="work-stamps-frame">
+    <div className="work-stamps-frame">
       <ul
         className="work-stamps"
         aria-label="Experience"
@@ -211,9 +199,6 @@ function StampFace({
     <div className="work-stamp-paper">
       <div className="work-stamp-print">
         {layoutOnly ? null : <StampWash seed={seed} />}
-        <div className="work-stamp-panel">
-          {layoutOnly ? null : <StampPattern emblem={stamp.emblem} />}
-        </div>
         <div className="work-stamp-copy">
           <div className="work-stamp-details">
             <p className="work-stamp-name" id={titleId}>
@@ -405,9 +390,6 @@ function ExpandedCard({
         initial="collapsed"
         animate={target ? "expanded" : "collapsed"}
         exit="collapsed"
-        // Patterns pause while the card is resizing, so each frame stays cheap
-        onAnimationStart={() => cardRef.current?.setAttribute("data-moving", "")}
-        onAnimationComplete={() => cardRef.current?.removeAttribute("data-moving")}
         onClick={onClose}
         onPointerMove={tiltFollow}
         onPointerLeave={tiltRelease}
@@ -671,142 +653,10 @@ function Postmark({
   );
 }
 
-/* ---------- Panel patterns ----------
-   Abstract, generative fills that run edge to edge across the panel. Shapes
-   come from a seeded generator, so server and client render the same SVG.
-   The canvas is tall and narrow, so it always spans the panel's full width
-   and only trims top and bottom: the stack shows its middle, and the taller
-   expanded panel simply reveals more of it. */
-
-const PANEL_W = 48;
-const PANEL_H = 216;
-
 function seeded(seed: number) {
   let state = seed;
   return () => {
     state = (state * 1664525 + 1013904223) % 4294967296;
     return state / 4294967296;
   };
-}
-
-function StampPattern({ emblem }: { emblem: WorkStampEmblem }) {
-  return (
-    <svg
-      className={`work-stamp-pattern work-stamp-pattern--${emblem}`}
-      viewBox={`0 0 ${PANEL_W} ${PANEL_H}`}
-      preserveAspectRatio="xMidYMid slice"
-      aria-hidden="true"
-    >
-      {emblem === "spirals" ? <SpiralsPattern /> : null}
-      {emblem === "waves" ? <WavesPattern /> : null}
-      {emblem === "checker" ? <CheckerPattern /> : null}
-    </svg>
-  );
-}
-
-/** Knool: a grid of carved spirals, each turning at its own pace */
-function SpiralsPattern() {
-  const rows = 9;
-  const cell = PANEL_H / rows; // 24 units
-  const turns = 4.2 * Math.PI;
-  const spirals = [];
-  for (let row = 0; row < rows; row += 1) {
-    for (let col = 0; col < 2; col += 1) {
-      // Alternate rows sit a little off-centre, like hand-set carvings
-      const cx = 11 + col * 22 + (row % 2) * 4;
-      const cy = cell / 2 + row * cell;
-      let d = "";
-      for (let t = 0; t <= turns; t += 0.2) {
-        const r = 0.75 * t;
-        d += `${d ? "L" : "M"}${(cx + Math.cos(t) * r).toFixed(2)} ${(cy + Math.sin(t) * r).toFixed(2)}`;
-      }
-      const index = row * 2 + col;
-      spirals.push(
-        <path
-          key={index}
-          className="pattern-spiral"
-          d={d}
-          style={
-            {
-              transformOrigin: `${cx}px ${cy}px`,
-              "--pattern-duration": `${5 + (index % 4) * 2}s`,
-              "--pattern-direction": (row + col) % 2 ? "reverse" : "normal",
-            } as CSSProperties
-          }
-        />
-      );
-    }
-  }
-  return (
-    <g fill="none" stroke="currentColor" strokeWidth={1.4} strokeLinecap="round">
-      {spirals}
-    </g>
-  );
-}
-
-/** RozieAI: stacked wavy grooves flowing in alternate directions, like turns in a conversation */
-function WavesPattern() {
-  const wavelength = 24;
-  const amplitude = 3;
-  const spacing = 9;
-  // Rows that share a direction and speed slide as one group: 6 animations, not one per row
-  const groups = new Map<string, { loop: number; duration: number; paths: string[] }>();
-  for (let y = spacing / 2, row = 0; y < PANEL_H; y += spacing, row += 1) {
-    // Long enough to slide a full wavelength either way and still cover the panel
-    let d = `M${-wavelength * 2} ${y}`;
-    for (let x = -wavelength * 2; x < PANEL_W + wavelength * 2; x += wavelength) {
-      d += ` q${wavelength / 4} ${-amplitude} ${wavelength / 2} 0 t${wavelength / 2} 0`;
-    }
-    const loop = row % 2 ? wavelength : -wavelength;
-    const duration = 3 + (row % 3);
-    const key = `${loop}/${duration}`;
-    const group = groups.get(key) ?? { loop, duration, paths: [] };
-    group.paths.push(d);
-    groups.set(key, group);
-  }
-  return (
-    <g fill="none" stroke="currentColor" strokeWidth={1.2} strokeLinecap="round">
-      {[...groups.entries()].map(([key, group]) => (
-        <g
-          key={key}
-          className="pattern-wave"
-          style={
-            {
-              "--pattern-loop": `${group.loop}px`,
-              "--pattern-duration": `${group.duration}s`,
-            } as CSSProperties
-          }
-        >
-          {group.paths.map((d, i) => (
-            <path key={i} d={d} />
-          ))}
-        </g>
-      ))}
-    </g>
-  );
-}
-
-/** Brane: a carved checkerboard whose cells flip in a diagonal wave */
-function CheckerPattern() {
-  const size = 8;
-  const inset = 0.8;
-  const cells = [];
-  for (let row = 0; row < PANEL_H / size; row += 1) {
-    for (let col = 0; col < PANEL_W / size; col += 1) {
-      if ((row + col) % 2) continue;
-      cells.push(
-        <rect
-          key={`${row}-${col}`}
-          className="pattern-checker-cell"
-          x={col * size + inset}
-          y={row * size + inset}
-          width={size - inset * 2}
-          height={size - inset * 2}
-          rx={0.6}
-          style={{ "--pattern-delay": `${((row + col) * 0.09).toFixed(2)}s` } as CSSProperties}
-        />
-      );
-    }
-  }
-  return <g fill="currentColor">{cells}</g>;
 }
