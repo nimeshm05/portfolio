@@ -81,6 +81,7 @@ type Turn = {
 };
 
 type PhotoBookProps = {
+  /** Line breaks (\n) set the cover's lines; elsewhere they read as spaces */
   title?: string;
   /** Any CSS color; defaults to the theme's cloth token */
   coverColor?: string;
@@ -111,13 +112,21 @@ function Face({
   );
 }
 
-/* Felt-paper cover: a hinge groove by the spine and a gold title in
+/* Felt-paper cover: a hinge groove by the spine and a white title in
    viewfinder brackets. Texture, light and brackets are all CSS. */
 function Cover({ title }: { title?: string }) {
   return (
     <div className="photo-book-cover">
       <span className="photo-book-cover-hinge" />
-      {title ? <span className="photo-book-cover-title">{title}</span> : null}
+      {title ? (
+        <span className="photo-book-cover-title">
+          {title.split("\n").map((line) => (
+            <span key={line} className="photo-book-cover-title-line">
+              {line}
+            </span>
+          ))}
+        </span>
+      ) : null}
     </div>
   );
 }
@@ -226,6 +235,7 @@ function CaptionPage({
 }
 
 export function PhotoBook({ title, coverColor, spreads }: PhotoBookProps) {
+  const name = title?.replace(/\s*\n\s*/g, " ") ?? "Photo book";
   const reduceMotion = useReducedMotion() ?? false;
   const hintId = useId();
   const narrow = useNarrow();
@@ -493,7 +503,7 @@ export function PhotoBook({ title, coverColor, spreads }: PhotoBookProps) {
   const settledClosed = closed && turn == null;
   const currentSpread = closed ? null : spreads[flipped - 1];
   const announcement = closed
-    ? `${title ?? "Photo book"}, closed`
+    ? `${name}, closed`
     : narrow
       ? `Page ${side === "left" ? flipped * 2 - 1 : flipped * 2} of ${count * 2}`
       : `Pages ${flipped * 2 - 1} and ${flipped * 2} of ${count * 2}`;
@@ -602,7 +612,7 @@ export function PhotoBook({ title, coverColor, spreads }: PhotoBookProps) {
         className="photo-book-frame"
         role="group"
         aria-roledescription="photo book"
-        aria-label={title ?? "Photo book"}
+        aria-label={name}
         aria-describedby={hintId}
         tabIndex={0}
         onKeyDown={handleKeyDown}

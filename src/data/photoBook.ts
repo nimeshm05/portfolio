@@ -8,7 +8,8 @@ export type PhotoBookSpread = {
   caption: string;
 };
 
-export const photoBookTitle = "Designed by Nature, Shot by Me";
+/** Line breaks (\n) carry over to the cover */
+export const photoBookTitle = "Designed by Nature\nShot by Me";
 
 export const photoBookSpreads: PhotoBookSpread[] = [
   {

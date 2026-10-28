@@ -625,6 +625,10 @@
   background-repeat: no-repeat;
 }
 
+.photo-book-cover-title-line {
+  display: block;
+}
+
 /* ── Hit areas (flat, over the book) ──────────────────────── */
 
 .photo-book-hit {
