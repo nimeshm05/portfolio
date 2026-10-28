@@ -44,6 +44,12 @@ export const PHOTO_BOOK_INK_MS = 900;
 export const PHOTO_BOOK_INK_STAGGER_MS = 60;
 export const PHOTO_BOOK_INK_DELAY_MS = 150;
 
+/** Footsteps above the caption: the pause after a page lands, the beat
+    between prints, and how long each print stays before fading behind. */
+export const PHOTO_BOOK_WALK_DELAY_MS = 150;
+export const PHOTO_BOOK_STEP_GAP_MS = 130;
+export const PHOTO_BOOK_STEP_LIFE_MS = 1600;
+
 /** Reduced motion: each half of the crossfade. */
 export const PHOTO_BOOK_FADE_MS = 160;
 

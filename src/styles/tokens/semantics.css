@@ -138,6 +138,9 @@
   --color-photo-book-caption: var(--color-paper-ink);
   --color-photo-book-folio: var(--color-paper-ink-muted);
   --color-photo-book-ink-wet: oklch(0.3 0.04 250);
+  /* Sepia, like map ink */
+  --color-photo-book-footstep: oklch(0.45 0.06 60);
+  --opacity-photo-book-footstep: 0.75;
   --color-photo-book-cover: var(--color-cloth-forest);
   --color-photo-book-cover-title: var(--color-white);
   --color-photo-book-cover-light: oklch(0.9 0.1 140 / 0.26);
@@ -418,6 +421,7 @@
   --color-photo-book-caption: var(--color-neutral-750);
   --color-photo-book-folio: var(--color-neutral-600);
   --color-photo-book-ink-wet: oklch(0.22 0.04 250);
+  --color-photo-book-footstep: oklch(0.36 0.05 60);
   --color-photo-book-gutter-crease: oklch(0.12 0.02 70 / 0.65);
   --color-photo-book-gutter: oklch(0.15 0.02 70 / 0.4);
   --color-photo-book-gutter-mid: oklch(0.18 0.02 70 / 0.2);

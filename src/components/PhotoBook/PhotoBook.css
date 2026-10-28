@@ -471,6 +471,114 @@
   text-wrap: pretty;
 }
 
+/* Footsteps in the white space above the caption. Once the page lands, a
+   trail walks to the photo's spot, each print fading behind the next; the
+   last two stay, and the place's name inks in where they stop. */
+.photo-book-walk {
+  position: absolute;
+  top: 10%;
+  left: 13%;
+  width: 74%;
+  aspect-ratio: 100 / 77;
+  pointer-events: none;
+}
+
+.photo-book-walk-map {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.photo-book-step {
+  fill: var(--color-photo-book-footstep);
+  opacity: 0;
+}
+
+.photo-book-leaf[data-ink] .photo-book-step {
+  animation: photo-book-step var(--pb-step-life) var(--ease-default)
+    calc(var(--pb-walk-delay) + var(--pb-step) * var(--pb-step-gap)) both;
+}
+
+.photo-book-leaf[data-ink] .photo-book-step--rest {
+  animation-name: photo-book-step-rest;
+}
+
+@keyframes photo-book-step {
+  0% {
+    opacity: 0;
+  }
+  10%,
+  45% {
+    opacity: var(--opacity-photo-book-footstep);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes photo-book-step-rest {
+  0% {
+    opacity: 0;
+  }
+  15%,
+  100% {
+    opacity: var(--opacity-photo-book-footstep);
+  }
+}
+
+.photo-book-place-mark {
+  fill: none;
+  stroke: var(--color-photo-book-footstep);
+  stroke-width: 0.35;
+  opacity: 0;
+}
+
+.photo-book-place-dot {
+  fill: var(--color-photo-book-footstep);
+  stroke: none;
+}
+
+.photo-book-place {
+  position: absolute;
+  translate: 0.7em -50%;
+  color: var(--color-photo-book-caption);
+  font-size: 0.85em;
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  opacity: 0;
+}
+
+/* Near the right edge, the name sits to the left of its marker */
+.photo-book-place[data-flip] {
+  translate: calc(-100% - 0.7em) -50%;
+}
+
+.photo-book-leaf[data-ink] :is(.photo-book-place-mark, .photo-book-place) {
+  animation: photo-book-arrive var(--pb-ink-duration) var(--ease-expand)
+    calc(var(--pb-walk-delay) + var(--pb-steps) * var(--pb-step-gap)) both;
+}
+
+@keyframes photo-book-arrive {
+  0% {
+    opacity: 0;
+    filter: blur(0.1em);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+.photo-book[data-reduced] :is(.photo-book-step--rest, .photo-book-place-mark, .photo-book-place) {
+  opacity: 1;
+  animation: none;
+}
+
+.photo-book[data-reduced] .photo-book-step--rest {
+  opacity: var(--opacity-photo-book-footstep);
+}
+
 /* Ink reveal: a caption prints only once its page has landed. Word after
    word, each rises a touch into place as its ink sets, just behind the
    word before it, so the line reads as one soft wave. */

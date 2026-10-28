@@ -20,6 +20,9 @@ import {
   PHOTO_BOOK_CLOSE_STAGGER_MS,
   PHOTO_BOOK_FADE_MS,
   PHOTO_BOOK_INK_DELAY_MS,
+  PHOTO_BOOK_STEP_GAP_MS,
+  PHOTO_BOOK_STEP_LIFE_MS,
+  PHOTO_BOOK_WALK_DELAY_MS,
   PHOTO_BOOK_INK_MS,
   PHOTO_BOOK_INK_STAGGER_MS,
   PHOTO_BOOK_PAN_MS,
@@ -197,17 +200,119 @@ function VideoFace({
   );
 }
 
+/*
+ * Footsteps across the white space above a caption, after the Marauder's
+ * Map: a trail walks from the previous photo's spot to this one, each print
+ * fading behind, and the place's name appears where it stops. Spots live in a
+ * 100 × 77 box, the shape of that space.
+ */
+const WALK_BOX = { width: 100, height: 77 };
+/** Where the first walk sets off from: the map's lower-left corner. */
+const WALK_START: [number, number] = [8, 70];
+/** Ground covered per footprint, in map units, and each print's size. */
+const STEP_LENGTH = 5.6;
+const FOOT_SCALE = 1.45;
+/** How far each foot sits off the path, and how much it turns out. */
+const STRIDE_WIDTH = 1.4;
+const TOE_OUT_DEG = 6;
+
+function walkSteps(
+  [x0, y0]: [number, number],
+  [x1, y1]: [number, number],
+) {
+  const dx = x1 - x0;
+  const dy = y1 - y0;
+  const distance = Math.hypot(dx, dy) || 1;
+  const count = Math.max(4, Math.round(distance / STEP_LENGTH));
+  // Bow the route a little to one side, as people walk.
+  const bow = distance * 0.18;
+  const cx = (x0 + x1) / 2 - (dy / distance) * bow;
+  const cy = (y0 + y1) / 2 + (dx / distance) * bow;
+
+  return Array.from({ length: count }, (_, index) => {
+    // Stop one stride short, so the last prints don't cover the marker.
+    const t = (index + 1) / (count + 1);
+    const u = 1 - t;
+    const x = u * u * x0 + 2 * u * t * cx + t * t * x1;
+    const y = u * u * y0 + 2 * u * t * cy + t * t * y1;
+    const tx = 2 * u * (cx - x0) + 2 * t * (x1 - cx);
+    const ty = 2 * u * (cy - y0) + 2 * t * (y1 - cy);
+    const length = Math.hypot(tx, ty) || 1;
+    const side = index % 2 === 0 ? 1 : -1;
+    return {
+      x: x - (ty / length) * side * STRIDE_WIDTH,
+      y: y + (tx / length) * side * STRIDE_WIDTH,
+      angle: (Math.atan2(ty, tx) * 180) / Math.PI + 90 + side * TOE_OUT_DEG,
+    };
+  });
+}
+
+function FootstepWalk({
+  from,
+  to,
+  place,
+}: {
+  from: [number, number];
+  to: [number, number];
+  place: string;
+}) {
+  const steps = walkSteps(from, to);
+  const [x, y] = to;
+
+  return (
+    <div
+      className="photo-book-walk"
+      style={{ "--pb-steps": steps.length } as CSSProperties}
+    >
+      <svg
+        className="photo-book-walk-map"
+        viewBox={`0 0 ${WALK_BOX.width} ${WALK_BOX.height}`}
+      >
+        {steps.map((step, index) => (
+          <g
+            key={index}
+            className={`photo-book-step${index >= steps.length - 2 ? " photo-book-step--rest" : ""}`}
+            style={{ "--pb-step": index } as CSSProperties}
+            transform={`translate(${step.x.toFixed(2)} ${step.y.toFixed(2)}) rotate(${step.angle.toFixed(1)}) scale(${FOOT_SCALE})`}
+          >
+            <ellipse cx={0} cy={-0.95} rx={0.8} ry={1.3} />
+            <ellipse cx={0} cy={1.3} rx={0.6} ry={0.62} />
+          </g>
+        ))}
+        <g className="photo-book-place-mark">
+          <circle cx={x} cy={y} r={1.9} />
+          <circle className="photo-book-place-dot" cx={x} cy={y} r={0.6} />
+        </g>
+      </svg>
+      <span
+        className="photo-book-place"
+        data-flip={x > 60 || undefined}
+        style={{
+          left: `${(x / WALK_BOX.width) * 100}%`,
+          top: `${(y / WALK_BOX.height) * 100}%`,
+        }}
+      >
+        {place}
+      </span>
+    </div>
+  );
+}
+
 function CaptionPage({
   spread,
+  from,
   folio,
 }: {
   spread: PhotoBookSpread;
+  /** Where this page's footsteps set off from */
+  from: [number, number];
   folio: number;
 }) {
   // Each word rises into place just after the one before it.
   const words = spread.caption.split(" ");
   return (
     <div className="photo-book-page photo-book-page--caption">
+      <FootstepWalk from={from} to={spread.spot} place={spread.place} />
       <p className="photo-book-caption">
         {words.map((word, index) => (
           <span
@@ -518,7 +623,11 @@ export function PhotoBook({ title, coverColor, spreads }: PhotoBookProps) {
       index === 0 ? (
         <Cover title={title} />
       ) : (
-        <CaptionPage spread={spreads[index - 1]} folio={index * 2} />
+        <CaptionPage
+          spread={spreads[index - 1]}
+          from={index > 1 ? spreads[index - 2].spot : WALK_START}
+          folio={index * 2}
+        />
       );
     const back =
       index < count ? (
@@ -583,6 +692,9 @@ export function PhotoBook({ title, coverColor, spreads }: PhotoBookProps) {
     "--pb-ink-duration": `${PHOTO_BOOK_INK_MS}ms`,
     "--pb-ink-stagger": `${PHOTO_BOOK_INK_STAGGER_MS}ms`,
     "--pb-ink-delay": `${PHOTO_BOOK_INK_DELAY_MS}ms`,
+    "--pb-walk-delay": `${PHOTO_BOOK_WALK_DELAY_MS}ms`,
+    "--pb-step-gap": `${PHOTO_BOOK_STEP_GAP_MS}ms`,
+    "--pb-step-life": `${PHOTO_BOOK_STEP_LIFE_MS}ms`,
     "--pb-tilt-duration": `${PHOTO_BOOK_TILT_MS}ms`,
     "--pb-fade-duration": `${PHOTO_BOOK_FADE_MS}ms`,
     "--pb-leaves": count + 1,
@@ -670,6 +782,7 @@ export function PhotoBook({ title, coverColor, spreads }: PhotoBookProps) {
             <>
               <div role="img" aria-label={currentSpread.alt} />
               <p>{currentSpread.caption}</p>
+              <p>Taken at {currentSpread.place}.</p>
             </>
           ) : null}
           <p aria-live="polite">{announcement}</p>
