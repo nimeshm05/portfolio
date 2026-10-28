@@ -447,9 +447,12 @@
   text-wrap: pretty;
 }
 
-/* Ink reveal: a caption prints only once its page has landed. Each word
-   bleeds in from a soft blot to crisp ink, a beat after the last. */
+/* Ink reveal: a caption prints only once its page has landed. Word after
+   word, each rises a touch into place as its ink sets, just behind the
+   word before it, so the line reads as one soft wave. */
 .photo-book-caption-word {
+  --pb-ink-rise: 0.6em;
+
   display: inline-block;
   white-space: pre;
   opacity: 0;
@@ -468,18 +471,18 @@
 @keyframes photo-book-ink {
   0% {
     opacity: 0;
-    filter: blur(0.25em);
-    transform: scale(1.06);
+    filter: blur(0.12em);
+    transform: translateY(var(--pb-ink-rise));
     color: var(--color-photo-book-ink-wet);
   }
-  55% {
+  60% {
     opacity: 0.9;
-    filter: blur(0.04em);
+    filter: blur(0);
   }
   100% {
     opacity: 1;
     filter: blur(0);
-    transform: scale(1);
+    transform: translateY(0);
     color: var(--color-photo-book-caption);
   }
 }

@@ -156,7 +156,7 @@ function CaptionPage({
   spread: PhotoBookSpread;
   folio: number;
 }) {
-  // Each word inks in on its own, a beat after the one before it.
+  // Each word rises into place just after the one before it.
   const words = spread.caption.split(" ");
   return (
     <div className="photo-book-page photo-book-page--caption">

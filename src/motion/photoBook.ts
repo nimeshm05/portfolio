@@ -37,11 +37,12 @@ export const PHOTO_BOOK_PEEK_MS = 450;
 export const PHOTO_BOOK_TILT_DEG = 6;
 export const PHOTO_BOOK_TILT_MS = 500;
 
-/** Caption ink reveal: each word's bleed, the gap between words, and the
-    pause after a page lands before the first word prints. */
-export const PHOTO_BOOK_INK_MS = 700;
-export const PHOTO_BOOK_INK_STAGGER_MS = 55;
-export const PHOTO_BOOK_INK_DELAY_MS = 80;
+/** Caption ink reveal, word by word: how long each word takes to rise and
+    set, the gap before the next word starts, and the pause after a page
+    lands. Long rises with a short gap overlap into one wave. */
+export const PHOTO_BOOK_INK_MS = 900;
+export const PHOTO_BOOK_INK_STAGGER_MS = 60;
+export const PHOTO_BOOK_INK_DELAY_MS = 150;
 
 /** Reduced motion: each half of the crossfade. */
 export const PHOTO_BOOK_FADE_MS = 160;
