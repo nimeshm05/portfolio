@@ -431,6 +431,30 @@
   filter: var(--filter-photo-book-image);
 }
 
+/* A video spread's clip: one flat face over the whole back of the leaf,
+   a hair in front of the split halves, shown only while the clip plays */
+.photo-book-video-face {
+  position: absolute;
+  inset: 0;
+  transform: translateZ(-0.4px) rotateY(180deg);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-fast) var(--ease-default);
+}
+
+.photo-book-video-face[data-live] {
+  opacity: 1;
+}
+
+.photo-book-photo video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: var(--filter-photo-book-image);
+}
+
 .photo-book-page--caption {
   display: flex;
   flex-direction: column;

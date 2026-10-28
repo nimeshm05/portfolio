@@ -149,6 +149,54 @@ function PhotoPage({
   );
 }
 
+/*
+ * A video spread's clip. The split page halves show its first frame (they
+ * bend while turning); this one flat face over the whole back of the leaf
+ * plays the clip once the spread has landed, starting from that same frame.
+ */
+function VideoFace({
+  spread,
+  load,
+  live,
+}: {
+  spread: PhotoBookSpread;
+  load: boolean;
+  live: boolean;
+}) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (live) {
+      video.currentTime = 0;
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
+  }, [live]);
+
+  return (
+    <div className="photo-book-video-face" data-live={live || undefined}>
+      <div className="photo-book-page photo-book-page--photo">
+        <div className="photo-book-photo">
+          {load ? (
+            <video
+              ref={videoRef}
+              src={spread.video}
+              poster={spread.image}
+              muted
+              loop
+              playsInline
+              preload="auto"
+            />
+          ) : null}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function CaptionPage({
   spread,
   folio,
@@ -483,6 +531,14 @@ export function PhotoBook({ title, coverColor, spreads }: PhotoBookProps) {
         <div className="photo-book-page" />
       );
     const frontClass = index === 0 ? "photo-book-face--cover" : undefined;
+    const video = index < count && spreads[index].video ? spreads[index] : null;
+    // Its page is the open left page, at rest (and, one page at a time, in view).
+    const videoLive =
+      video != null &&
+      !reduceMotion &&
+      turn == null &&
+      index === flipped - 1 &&
+      (!narrow || side === "left");
 
     return (
       <div
@@ -511,6 +567,9 @@ export function PhotoBook({ title, coverColor, spreads }: PhotoBookProps) {
             <Face side="back">{back}</Face>
           </div>
         </div>
+        {video ? (
+          <VideoFace spread={video} load={index <= reach} live={videoLive} />
+        ) : null}
       </div>
     );
   });

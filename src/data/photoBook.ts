@@ -1,6 +1,8 @@
 export type PhotoBookSpread = {
-  /** Path or URL, shown on the left page */
+  /** Path or URL, shown on the left page; for a video, its first frame */
   image: string;
+  /** Optional silent clip that loops on the left page once the spread lands */
+  video?: string;
   alt: string;
   /** 1–2 lines, set on the right page */
   caption: string;
@@ -48,6 +50,13 @@ export const photoBookSpreads: PhotoBookSpread[] = [
     alt: "A towering wall of blue, green and yellow vertical stripes in a grey concrete courtyard in Dubai",
     caption:
       "Found on a random street in Dubai. Nobody asked this wall to go this hard.",
+  },
+  {
+    image: "/assets/images/photo-book/golf-swing.jpg",
+    video: "/assets/images/photo-book/golf-swing.mp4",
+    alt: "Video of me swinging a golf club at a driving range under a cloudy Seattle sky",
+    caption:
+      "Driving range therapy. The ball went somewhere. I'm choosing to believe it was far.",
   },
   {
     image: "/assets/images/photo-book/ma-homies.jpg",
