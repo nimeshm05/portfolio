@@ -80,7 +80,7 @@
   --font-size-14: 0.875rem;
   --font-size-15: 0.9375rem;
   --font-size-16: 1rem;
-  --font-size-18: 1.125rem;
+  --font-size-17-6: 1.1rem;
   --font-size-20: 1.25rem;
   --font-size-22: 1.375rem;
   --font-size-26: 1.625rem;
@@ -96,6 +96,7 @@
   --line-height-28: 1.625;
   --line-height-tight: 1.4;
   --line-height-body: 1.55;
+  --line-height-prose: 1.65;
 
   /* Font weights */
   --font-weight-regular: 400;
@@ -104,6 +105,7 @@
   --font-weight-bold: 700;
 
   /* Letter spacing */
+  --letter-spacing-normal: 0;
   --letter-spacing-tight: -0.01em;
   --letter-spacing-tighter: -0.02em;
   --letter-spacing-footer: 0.01em;

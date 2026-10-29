@@ -1,9 +1,10 @@
 .rich-text p,
 .rich-text li {
-  color: var(--color-text-body);
-  font-size: var(--text-body-size);
+  color: var(--color-text-prose);
+  font-size: var(--text-prose-size);
   font-weight: var(--text-body-weight);
-  line-height: var(--text-body-line-height);
+  line-height: var(--text-prose-line-height);
+  letter-spacing: var(--text-prose-letter-spacing);
   margin-bottom: var(--text-list-item-gap);
 }
 
@@ -20,8 +21,8 @@
 }
 
 .rich-text p + p {
-  margin-top: var(--text-body-paragraph-gap);
-  margin-bottom: var(--text-body-paragraph-gap);
+  margin-top: var(--text-prose-paragraph-gap);
+  margin-bottom: 0;
 }
 
 .rich-text ol {
