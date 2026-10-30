@@ -208,7 +208,7 @@
   --scale-work-stamp-hover: var(--scale-104);
   --opacity-work-stamp-glare: 0.55; /* the soft highlight under the cursor */
   --opacity-work-stamp-sheen: 0.22; /* the diagonal foil band sweeping across */
-  --text-work-stamp-name-size: var(--font-size-17-6);
+  --text-work-stamp-name-size: var(--font-size-17-2);
   --text-work-stamp-name-weight: var(--font-weight-semibold);
   --text-work-stamp-name-line-height: var(--line-height-15);
   --text-work-stamp-meta-size: var(--font-size-16);
@@ -222,7 +222,7 @@
   --opacity-work-stamp-postmark: 1;
   --amount-work-stamp-postmark-darken: 35%; /* black mixed into the stamp colour for the ink */
   --padding-work-stamp-paper-bottom: var(--size-work-stamp-imprint-margin);
-  --text-work-stamp-value-size: var(--font-size-17-6);
+  --text-work-stamp-value-size: var(--font-size-17-2);
   --text-work-stamp-value-weight: var(--font-weight-bold);
   --text-work-stamp-imprint-size: var(--font-size-6);
   --color-work-stamp-imprint: var(--color-neutral-600);
@@ -247,7 +247,7 @@
   --inset-work-stamp-expanded: var(--space-16); /* keeps the stamp off the viewport edges */
   --text-work-stamp-name-size-expanded: var(--font-size-32);
   --text-work-stamp-meta-size-expanded: var(--font-size-20);
-  --text-work-stamp-description-size: var(--font-size-17-6);
+  --text-work-stamp-description-size: var(--font-size-17-2);
   --text-work-stamp-description-line-height: var(--line-height-tight);
   --gap-work-stamp-description: var(--space-8); /* extra room between the meta and the description */
   --blur-work-stamp-description: var(--blur-4); /* the description comes into focus as it fades in */
@@ -315,7 +315,7 @@
   --text-display-line-height: var(--line-height-28);
   --text-display-weight: var(--font-weight-semibold);
   --text-subtitle-display-weight: var(--font-weight-regular);
-  --text-subtitle-display-size: var(--font-size-17-6);
+  --text-subtitle-display-size: var(--font-size-17-2);
 
   /* Typography: title (project header) */
   --text-title-family: var(--font-family-serif);
@@ -349,7 +349,7 @@
   --text-label-weight: var(--font-weight-regular);
 
   /* Typography: list item */
-  --text-list-size: var(--font-size-17-6);
+  --text-list-size: var(--font-size-17-2);
   --text-list-line-height: var(--line-height-24);
   --text-list-weight: var(--font-weight-semibold);
 
