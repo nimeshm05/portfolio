@@ -169,3 +169,13 @@
   );
   mask-image: linear-gradient(to top, black 0%, black 4%, transparent 18%);
 }
+
+/* Phones re-blur every layer on each scroll frame; keep the widest, a middle and
+   the strongest layer so the fade still reads at half the cost. */
+@media (hover: none) and (pointer: coarse) {
+  .viewport-edge-blur-layer:nth-child(2),
+  .viewport-edge-blur-layer:nth-child(3),
+  .viewport-edge-blur-layer:nth-child(5) {
+    display: none;
+  }
+}

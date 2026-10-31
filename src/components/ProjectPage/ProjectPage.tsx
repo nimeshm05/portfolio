@@ -2,6 +2,7 @@ import { ArchitectureWorkflow } from "@/components/ArchitectureWorkflow/Architec
 import { Callout } from "@/components/Callout/Callout";
 import { ContentTable } from "@/components/ContentTable/ContentTable";
 import { DataAttributeCards } from "@/components/DataAttributeCards/DataAttributeCards";
+import { InViewVideo } from "@/components/InViewVideo/InViewVideo";
 import { ListItem } from "@/components/ListItem/ListItem";
 import {
   PageEnter,
@@ -71,7 +72,7 @@ function SectionMedia({
   const type = resolveSectionMediaType(src, imageType);
   const media =
     type === "video" ? (
-      <video src={src} aria-label={alt} autoPlay loop muted playsInline />
+      <InViewVideo src={src} alt={alt} />
     ) : (
       // eslint-disable-next-line @next/next/no-img-element
       <img src={src} alt={alt} loading="lazy" decoding="async" />

@@ -24,14 +24,13 @@ export function LazyBannerVideo({
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [shouldLoad, setShouldLoad] = useState(eager);
+  const [inView, setInView] = useState(eager);
   const [isReady, setIsReady] = useState(false);
   const [intrinsicRatio, setIntrinsicRatio] = useState<string | null>(null);
 
+  // Keep watching after the first load: phones can only decode a few videos at
+  // once, so banners scrolled off-screen pause instead of playing on unseen.
   useEffect(() => {
-    if (eager) {
-      return;
-    }
-
     const container = containerRef.current;
     if (!container) {
       return;
@@ -39,9 +38,9 @@ export function LazyBannerVideo({
 
     const observer = new IntersectionObserver(
       ([entry]) => {
+        setInView(entry.isIntersecting);
         if (entry.isIntersecting) {
           setShouldLoad(true);
-          observer.disconnect();
         }
       },
       { rootMargin: "200px" },
@@ -50,7 +49,7 @@ export function LazyBannerVideo({
     observer.observe(container);
 
     return () => observer.disconnect();
-  }, [eager]);
+  }, []);
 
   useEffect(() => {
     if (!shouldLoad) {
@@ -67,8 +66,12 @@ export function LazyBannerVideo({
       setIsReady(true);
     }
 
-    video.play().catch(() => {});
-  }, [shouldLoad]);
+    if (inView) {
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
+  }, [shouldLoad, inView]);
 
   return (
     <div
