@@ -1,0 +1,51 @@
+.gem-avatar {
+  /* Green glass, lightest where the light gathers inside, deepest at the rim. */
+  --gem-glow: oklch(0.96 0.1 162);
+  --gem-light: oklch(0.84 0.17 160);
+  --gem-mid: oklch(0.62 0.16 165);
+  --gem-deep: oklch(0.4 0.11 170);
+  --gem-edge: oklch(0.26 0.08 175);
+  --gem-eye: oklch(0.24 0.06 172);
+  --gem-shadow: oklch(0.3 0.05 170 / 0.32);
+  --gem-caustic: oklch(0.85 0.16 160 / 0.55);
+
+  position: relative;
+  display: block;
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  flex-shrink: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+[data-theme="dark"] .gem-avatar {
+  --gem-shadow: oklch(0 0 0 / 0.6);
+  --gem-caustic: oklch(0.75 0.17 160 / 0.45);
+}
+
+.gem-avatar:focus-visible {
+  outline: var(--border-width) solid var(--color-text-subtle);
+  outline-offset: var(--space-4);
+}
+
+.gem-avatar-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  /* hops and the entrance drop draw outside the layout box; layout never shifts */
+  overflow: visible;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 160ms ease-out;
+}
+
+.gem-avatar[data-view="shown"] .gem-avatar-svg {
+  opacity: 1;
+}

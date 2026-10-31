@@ -51,8 +51,7 @@ export function HomePage() {
         <Header
           name={profile.name}
           bio={profile.bio}
-          avatarSrc={profile.avatarSrc}
-          avatarAlt={profile.avatarAlt}
+          avatarLabel={profile.avatarLabel}
           afterBio={<WorkStamps stamps={workStamps} />}
         >
           <ConnectPrompt />

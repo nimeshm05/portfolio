@@ -32,7 +32,7 @@
 
 .site-header-avatar-enter {
   position: relative;
-  z-index: 1; /* the jelly may stretch over the name below it */
+  z-index: 1; /* the gem may hop over the name below it */
   width: auto;
 }
 
