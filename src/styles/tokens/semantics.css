@@ -139,10 +139,10 @@
   --color-photo-book-caption: var(--color-paper-ink);
   --color-photo-book-folio: var(--color-paper-ink-muted);
   --color-photo-book-ink-wet: oklch(0.3 0.04 250);
-  --color-photo-book-cover: var(--color-cloth-forest);
+  --color-photo-book-cover: var(--color-cloth-ink);
   --color-photo-book-cover-title: var(--color-white);
-  --color-photo-book-cover-light: oklch(0.9 0.1 140 / 0.26);
-  --color-photo-book-cover-shade: oklch(0.15 0.03 152 / 0.4);
+  --color-photo-book-cover-light: oklch(0.9 0.01 80 / 0.16);
+  --color-photo-book-cover-shade: oklch(0.08 0 0 / 0.5);
   --color-photo-book-gutter-crease: oklch(0.25 0.03 70 / 0.5);
   --color-photo-book-gutter: oklch(0.3 0.03 70 / 0.28);
   --color-photo-book-gutter-mid: oklch(0.32 0.03 70 / 0.13);
