@@ -642,6 +642,15 @@
   }
 }
 
+/* Each stamp's shadows, perforation mask and SVG noise filters are slow to
+   paint on phones. Keep every stamp on its own GPU layer so swipes, reorders
+   and the fly-in move the painted stamp instead of repainting it each frame. */
+@media (hover: none) {
+  .work-stamp {
+    will-change: transform;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .work-stamps,
   .work-stamp {

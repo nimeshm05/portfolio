@@ -196,8 +196,9 @@
   }
 }
 
-/* Stop animating once the video has taken over */
-.project-banner-video-wrap.is-ready .banner-video-placeholder-strip {
+/* Stop animating once the video has taken over, or while it's off-screen */
+.project-banner-video-wrap.is-ready .banner-video-placeholder-strip,
+.project-banner-video-wrap.is-offscreen .banner-video-placeholder-strip {
   animation-play-state: paused;
 }
 

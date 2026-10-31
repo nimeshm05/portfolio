@@ -76,7 +76,7 @@ export function LazyBannerVideo({
   return (
     <div
       ref={containerRef}
-      className={`project-banner-video-wrap${isReady ? " is-ready" : ""}`}
+      className={`project-banner-video-wrap${isReady ? " is-ready" : ""}${inView ? "" : " is-offscreen"}`}
       style={{ aspectRatio: intrinsicRatio ?? aspectRatio }}
     >
       <video
@@ -96,7 +96,7 @@ export function LazyBannerVideo({
         }}
         onLoadedData={() => setIsReady(true)}
       />
-      <BannerVideoPlaceholder isActive={!isReady} />
+      <BannerVideoPlaceholder isActive={!isReady && inView} />
     </div>
   );
 }

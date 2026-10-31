@@ -7,3 +7,12 @@ h1.page-enter-item,
 p.page-enter-item {
   width: 100%;
 }
+
+/* The entrance blur repaints every line each frame, which phones can't keep up
+   with during page load, so the stagger stutters or skips. Touch screens keep
+   the fade and rise without it; !important beats Motion's inline filter. */
+@media (hover: none) and (pointer: coarse) {
+  .page-enter-item {
+    filter: none !important;
+  }
+}
