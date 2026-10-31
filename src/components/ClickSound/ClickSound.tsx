@@ -21,6 +21,9 @@ const CLICKABLE_SELECTOR = [
   '[role="tab"]',
 ].join(", ");
 
+/** Phones and tablets: taps there are frequent and close together, so the sounds grate. */
+const TOUCH_DEVICE_QUERY = "(hover: none) and (pointer: coarse)";
+
 function playPageTransition() {
   const sound = new Audio(PAGE_TRANSITION_SOUND_SRC);
   sound.volume = 0.4;
@@ -29,6 +32,10 @@ function playPageTransition() {
 
 export function ClickSound() {
   useEffect(() => {
+    if (window.matchMedia(TOUCH_DEVICE_QUERY).matches) {
+      return;
+    }
+
     bind();
 
     const transitionWarm = new Audio(PAGE_TRANSITION_SOUND_SRC);
