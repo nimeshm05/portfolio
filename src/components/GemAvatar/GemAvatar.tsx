@@ -163,10 +163,6 @@ export function GemAvatar({ label }: GemAvatarProps) {
             <stop offset="0.93" stopColor="var(--gem-edge)" stopOpacity="0.45" />
             <stop offset="1" stopColor="var(--gem-edge)" stopOpacity="0.8" />
           </radialGradient>
-          <radialGradient id={ref("swirl")} cx="0.5" cy="0.5" r="0.5">
-            <stop offset="0" stopColor="var(--gem-glow)" stopOpacity="0.75" />
-            <stop offset="1" stopColor="var(--gem-glow)" stopOpacity="0" />
-          </radialGradient>
           <linearGradient id={ref("shine")} x1="0" y1="0" x2="1" y2="1">
             <stop offset="0" stopColor="#fff" stopOpacity="0.95" />
             <stop offset="1" stopColor="#fff" stopOpacity="0" />
@@ -187,27 +183,18 @@ export function GemAvatar({ label }: GemAvatarProps) {
         <g ref={shadowRef} transform={`translate(0 ${SHADOW_Y})`}>
           <ellipse rx={SHADOW_RX} ry={SHADOW_RY} fill={url("shadow")} />
           {/* green light the glass throws onto the ground */}
-          <ellipse cx={26} cy={3} rx={46} ry={9} fill={url("caustic")} />
+          <ellipse cy={3} rx={46} ry={9} fill={url("caustic")} />
         </g>
 
         <g ref={bodyRef} transform={bodyTransform(REST_FRAME)}>
           <circle r={BODY_R} fill={url("body")} />
           <g clipPath={url("clip")}>
-            {/* refraction inside the glass */}
-            <ellipse cx={-14} cy={30} rx={58} ry={34} transform="rotate(-24 -14 30)" fill={url("swirl")} opacity={0.55} />
-            <path d="M-70 18 C-40 -6 6 -2 30 34 C10 18 -30 14 -70 40 Z" fill="var(--gem-glow)" opacity={0.28} />
             <circle r={BODY_R} fill={url("rim")} />
-            {/* light leaving the glass along the lower right edge */}
-            <path d="M86 30 A88 88 0 0 1 24 86" fill="none" stroke="var(--gem-glow)" strokeWidth={7} strokeLinecap="round" opacity={0.5} />
-            {/* window reflection along the upper right rim */}
-            <path d="M40 -86 A92 92 0 0 1 90 -24 L78 -22 A80 80 0 0 0 34 -74 Z" fill="var(--gem-edge)" opacity={0.35} />
             <path ref={eyeLRef} d={EYE_PATH} transform={restL.matrix} opacity={restL.opacity} fill="var(--gem-eye)" />
             <path ref={eyeRRef} d={EYE_PATH} transform={restR.matrix} opacity={restR.opacity} fill="var(--gem-eye)" />
           </g>
-          {/* specular: a soft crescent on the upper left and a sharp glint */}
+          {/* specular: a soft crescent on the upper left */}
           <path d="M-84 -30 A88 88 0 0 1 -30 -84 A96 96 0 0 0 -74 -50 A96 96 0 0 0 -84 -30 Z" fill={url("shine")} />
-          <ellipse cx={-50} cy={-56} rx={10} ry={6} transform="rotate(-40 -50 -56)" fill="#fff" opacity={0.9} />
-          <circle cx={62} cy={58} r={4} fill="#fff" opacity={0.55} />
         </g>
       </svg>
     </button>
