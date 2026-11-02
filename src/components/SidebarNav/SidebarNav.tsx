@@ -8,6 +8,7 @@ import {
   getSidebarEnterContainerVariants,
   getSidebarEnterItemVariants,
 } from "@/motion/sidebarEnter";
+import { useExitToHome } from "@/motion/pageExit";
 import "./SidebarNav.css";
 
 export type SidebarNavItem = {
@@ -68,12 +69,13 @@ export function SidebarNav({
   onItemClick,
 }: SidebarNavProps) {
   const reduceMotion = useReducedMotion() ?? false;
+  const exitToHome = useExitToHome();
   const containerVariants = getSidebarEnterContainerVariants(reduceMotion);
   const itemVariants = getSidebarEnterItemVariants(reduceMotion);
   const rootClassName = ["sidebar-nav", className].filter(Boolean).join(" ");
 
   const backLink = showBack ? (
-    <Link className="sidebar-nav-back" href="/">
+    <Link className="sidebar-nav-back" href="/" onClick={exitToHome}>
       <span className="sidebar-nav-icon" aria-hidden="true">
         <Icon name="chevron-left" size={16} />
       </span>
