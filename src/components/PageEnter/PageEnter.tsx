@@ -4,22 +4,31 @@ import {
   Children,
   createContext,
   useContext,
+  useEffect,
+  useState,
   type ReactNode,
 } from "react";
+import { usePathname } from "next/navigation";
 import { motion, useReducedMotion } from "motion/react";
 import {
   getPageEnterContainerVariants,
   getPageEnterItemVariants,
+  isReturnFromOtherPage,
+  markPageEntered,
 } from "@/motion/pageEnter";
 import "./PageEnter.css";
 
 const PageEnterContext = createContext(false);
 const PageEnterIndexContext = createContext<(() => number) | null>(null);
+/** Items settle in from above instead of rising from below. */
+const PageEnterFromAboveContext = createContext(false);
 
 type PageEnterProps = {
   children: ReactNode;
   className?: string;
   as?: "div" | "main";
+  /** When arriving from another page in the site, items come down from above instead of rising. */
+  fromAboveOnReturn?: boolean;
 };
 
 type PageEnterChildProps = {
@@ -47,24 +56,36 @@ export function PageEnter({
   children,
   className = "",
   as = "div",
+  fromAboveOnReturn = false,
 }: PageEnterProps) {
   const reduceMotion = useReducedMotion() ?? false;
   const Root = as === "main" ? motion.main : motion.div;
   const nested = useContext(PageEnterContext);
+  const pathname = usePathname();
+  // decided once per visit: a fresh load (and hydration) always rises from below
+  const [fromAbove] = useState(
+    () => fromAboveOnReturn && isReturnFromOtherPage(pathname),
+  );
+
+  useEffect(() => {
+    if (!nested) markPageEntered(pathname);
+  }, [nested, pathname]);
   let itemIndex = 0;
   const nextItemIndex = () => itemIndex++;
 
   return (
     <PageEnterContext.Provider value={true}>
       <PageEnterIndexContext.Provider value={nextItemIndex}>
-        <Root
-          className={className}
-          variants={getPageEnterContainerVariants(reduceMotion)}
-          initial={nested ? undefined : "initial"}
-          animate={nested ? undefined : "animate"}
-        >
-          {children}
-        </Root>
+        <PageEnterFromAboveContext.Provider value={fromAbove}>
+          <Root
+            className={className}
+            variants={getPageEnterContainerVariants(reduceMotion)}
+            initial={nested ? undefined : "initial"}
+            animate={nested ? undefined : "animate"}
+          >
+            {children}
+          </Root>
+        </PageEnterFromAboveContext.Provider>
       </PageEnterIndexContext.Provider>
     </PageEnterContext.Provider>
   );
@@ -82,6 +103,7 @@ export function PageEnterItem({
 }: PageEnterItemProps) {
   const reduceMotion = useReducedMotion() ?? false;
   const nextItemIndex = useContext(PageEnterIndexContext);
+  const fromAbove = useContext(PageEnterFromAboveContext);
   const index = nextItemIndex?.() ?? 0;
   const MotionTag = motionTags[as];
   const classNames = ["page-enter-item", className].filter(Boolean).join(" ");
@@ -89,7 +111,7 @@ export function PageEnterItem({
   return (
     <MotionTag
       className={classNames}
-      variants={getPageEnterItemVariants(reduceMotion)}
+      variants={getPageEnterItemVariants(reduceMotion, fromAbove)}
       custom={index}
       initial="initial"
       animate="animate"

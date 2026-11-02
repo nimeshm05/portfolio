@@ -47,7 +47,7 @@ export function HomePage() {
     <div className="home-page" ref={setPageEl}>
       <ViewportEdgeBlur />
       <HomeSidebar visible={homeSidebarVisible} groups={homeSectionGroups} />
-      <PageEnter as="main" className="home-body">
+      <PageEnter as="main" className="home-body" fromAboveOnReturn>
         <Header
           name={profile.name}
           bio={profile.bio}
