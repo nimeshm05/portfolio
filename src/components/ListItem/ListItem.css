@@ -11,6 +11,7 @@
   padding: var(--inset-x);
   border-radius: var(--radius-md);
   text-align: left;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .list-item--expandable {
@@ -68,16 +69,25 @@
   color: var(--color-text-muted);
 }
 
-.list-item:hover .list-item-title,
 .list-item-shell.is-open .list-item-title {
   color: var(--color-text-primary);
 }
 
-.list-item:hover .list-item-meta,
 .list-item-shell.is-open .list-item-meta,
-.list-item:hover .list-item-chevron,
 .list-item-shell.is-open .list-item-chevron {
   color: var(--color-accent);
+}
+
+/* Mouse and trackpad only: on touch, a tap would flash the hover colours */
+@media (hover: hover) and (pointer: fine) {
+  .list-item:hover .list-item-title {
+    color: var(--color-text-primary);
+  }
+
+  .list-item:hover .list-item-meta,
+  .list-item:hover .list-item-chevron {
+    color: var(--color-accent);
+  }
 }
 
 .list-item-panel-collapse {

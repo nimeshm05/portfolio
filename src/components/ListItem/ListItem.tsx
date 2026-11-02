@@ -1,7 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useId, useRef, useState, type ReactNode } from "react";
+import {
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  type PointerEvent,
+  type ReactNode,
+} from "react";
 import { flushSync } from "react-dom";
 import { motion } from "motion/react";
 import { AnimatedIcon } from "@/components/AnimatedIcon/AnimatedIcon";
@@ -162,8 +169,13 @@ export function ListItem({
     return () => observer.disconnect();
   }, [isExpandable, isOpen]);
 
+  // A tap fires pointerenter too; only a real hover should play the icon
   const rowHoverHandlers = {
-    onPointerEnter: () => setIsHovered(true),
+    onPointerEnter: (event: PointerEvent) => {
+      if (event.pointerType !== "touch") {
+        setIsHovered(true);
+      }
+    },
     onPointerLeave: () => setIsHovered(false),
   };
 

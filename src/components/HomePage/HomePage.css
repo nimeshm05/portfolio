@@ -112,8 +112,10 @@ html:has(.home-page) body {
   color: var(--color-text-subtle);
 }
 
-.home-content .list-item:not(.list-item--expandable):hover .list-item-title {
-  color: var(--color-text-primary);
+@media (hover: hover) and (pointer: fine) {
+  .home-content .list-item:not(.list-item--expandable):hover .list-item-title {
+    color: var(--color-text-primary);
+  }
 }
 
 /* Focus mode: while a row is expanded or a project card is hovered, dim
