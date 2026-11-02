@@ -1,7 +1,7 @@
 "use client";
 
-import { useCallback, useRef, type MouseEvent } from "react";
-import { useRouter } from "next/navigation";
+import { useCallback, useEffect, useRef, type MouseEvent } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { animate, stagger, useReducedMotion } from "motion/react";
 import { pageEnterEase } from "@/motion/pageEnter";
 
@@ -61,8 +61,15 @@ function isModifiedClick(event: MouseEvent<HTMLAnchorElement>) {
  */
 export function useExitToHome() {
   const router = useRouter();
+  const pathname = usePathname();
   const reduceMotion = useReducedMotion() ?? false;
   const leaving = useRef(false);
+
+  // The mobile Back link lives in the root layout and never remounts, so the
+  // flag has to clear once the page changes or the next exit is swallowed
+  useEffect(() => {
+    leaving.current = false;
+  }, [pathname]);
 
   return useCallback(
     (event: MouseEvent<HTMLAnchorElement>) => {

@@ -9,6 +9,7 @@
   border-radius: var(--radius-sm);
   /* background: var(--color-bg-surface); */
   text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
   /* box-shadow: var(--shadow-card); */
 }
 
@@ -72,15 +73,18 @@
   white-space: nowrap;
 }
 
-.project-card:hover .project-card-description {
-  color: var(--color-text-primary);
-}
+/* Mouse and trackpad only: on touch, a tap would flash these and shrink the card */
+@media (hover: hover) and (pointer: fine) {
+  .project-card:hover .project-card-description {
+    color: var(--color-text-primary);
+  }
 
-.project-card:hover .project-card-chip {
-  background: var(--color-card-chip-bg-hover);
-}
+  .project-card:hover .project-card-chip {
+    background: var(--color-card-chip-bg-hover);
+  }
 
-.project-card:active {
-  scale: 0.99;
-  transition: scale var(--transition-fast);
+  .project-card:active {
+    scale: 0.99;
+    transition: scale var(--transition-fast);
+  }
 }
