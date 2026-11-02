@@ -83,6 +83,24 @@
   }
 }
 
+/* Phones only (not tablets): case-study media runs edge to edge */
+@media (max-width: 39.9375rem) {
+  /* Sections inset their own copy, so the outer gutter stays narrow */
+  .project-body {
+    padding-inline: var(--space-16);
+  }
+
+  .project-page .project-section-media,
+  .project-page .list-item-panel .project-section-media,
+  .project-page .list-item-panel .project-banner:not(.project-banner--card) {
+    width: 100vw;
+    max-width: 100vw;
+    margin-inline: calc(50% - 50vw);
+    border-inline: 0;
+    border-radius: 0;
+  }
+}
+
 .project-section-media-frame {
   position: relative;
   overflow: hidden;

@@ -22,7 +22,7 @@
     --gap-intro: var(--space-48);
     --gap-page: var(--space-48);
     --scroll-margin-section: var(--space-48);
-    --inset-x: var(--space-16);
+    --inset-x: var(--space-24);
     --content-width-home: var(--layout-content-width-home);
     --content-width-project: var(--layout-content-width-project);
     --gap-callout-rule: var(--space-32);

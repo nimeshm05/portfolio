@@ -250,3 +250,16 @@
     padding: var(--gap-lg);
   }
 }
+
+/* Phones only (not tablets): the page hero and home card videos run edge to edge */
+@media (max-width: 39.9375rem) {
+  .project-intro .project-banner:not(.project-banner--card),
+  .project-card .project-banner {
+    align-self: auto;
+    width: 100vw;
+    max-width: 100vw;
+    margin-inline: calc(50% - 50vw);
+    border-inline: 0;
+    border-radius: 0;
+  }
+}
