@@ -156,6 +156,8 @@
   --opacity-photo-book-grain: 0.05;
   --opacity-photo-book-felt-dark: 0.42;
   --opacity-photo-book-felt-light: 0.17;
+  --opacity-photo-book-cover-glare: 0.12; /* the soft highlight under the cursor */
+  --opacity-photo-book-cover-sheen: 0.07; /* the diagonal band sweeping across */
   --filter-photo-book-image: none;
 
   /* Work stamps */
@@ -245,8 +247,8 @@
   --width-work-stamp-expanded: var(--size-work-stamp-expanded-width);
   --width-work-stamp-postmark-expanded: var(--size-work-stamp-postmark-expanded);
   --inset-work-stamp-expanded: var(--space-16); /* keeps the stamp off the viewport edges */
-  --text-work-stamp-name-size-expanded: var(--font-size-32);
-  --text-work-stamp-meta-size-expanded: var(--font-size-20);
+  --text-work-stamp-name-size-expanded: var(--font-size-26);
+  --text-work-stamp-meta-size-expanded: var(--text-work-stamp-description-size); /* matches the description */
   --text-work-stamp-description-size: var(--font-size-17-2);
   --text-work-stamp-description-line-height: var(--line-height-tight);
   --gap-work-stamp-description: var(--space-8); /* extra room between the meta and the description */

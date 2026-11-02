@@ -127,6 +127,7 @@ function Cover({ title }: { title?: string }) {
           ))}
         </span>
       ) : null}
+      <span className="photo-book-cover-shine" />
     </div>
   );
 }
@@ -475,6 +476,10 @@ export function PhotoBook({ title, coverColor, spreads }: PhotoBookProps) {
     const deg = (value: number) => `${(value * PHOTO_BOOK_TILT_DEG).toFixed(2)}deg`;
     stage.style.setProperty("--pb-tilt-x", point ? deg(-point.y) : "0deg");
     stage.style.setProperty("--pb-tilt-y", point ? deg(point.x) : "0deg");
+    // The cover's light follows the same point (see .photo-book-cover-shine)
+    stage.style.setProperty("--pb-glare-x", point ? point.x.toFixed(4) : "0");
+    stage.style.setProperty("--pb-glare-y", point ? point.y.toFixed(4) : "0");
+    stage.style.setProperty("--pb-glare", point ? "1" : "0");
   };
 
   const handlePointerMove = (event: PointerEvent<HTMLDivElement>) => {

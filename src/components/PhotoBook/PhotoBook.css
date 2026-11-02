@@ -75,10 +75,34 @@
   transform-origin: 25% 50%;
 }
 
+/* Cover light: -1…1 across the cover with the cursor, and 0…1 on hover.
+   Registered as numbers so they ease along with the tilt. */
+@property --pb-glare-x {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+@property --pb-glare-y {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+@property --pb-glare {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
 /* Flat at rest; on hover it tilts toward the cursor (set from JS) */
 .photo-book-stage {
   transform: rotateX(var(--pb-tilt-x, 0deg)) rotateY(var(--pb-tilt-y, 0deg));
-  transition: transform var(--pb-tilt-duration) var(--ease-expand);
+  transition:
+    transform var(--pb-tilt-duration) var(--ease-expand),
+    --pb-glare-x var(--pb-tilt-duration) var(--ease-expand),
+    --pb-glare-y var(--pb-tilt-duration) var(--ease-expand),
+    --pb-glare var(--pb-tilt-duration) var(--ease-expand);
 }
 
 /* Closed, tilt around the cover rather than the empty half of the frame */
@@ -627,6 +651,38 @@
 
 .photo-book-cover-title-line {
   display: block;
+}
+
+/* Light on the cloth, as on the work stamps: a soft highlight under the
+   cursor and a diagonal sheen that sweeps across as the book tilts */
+.photo-book-cover-shine {
+  --pb-glare-at: calc(50% + var(--pb-glare-x) * 50%)
+    calc(50% + var(--pb-glare-y) * 50%);
+
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  background:
+    radial-gradient(
+      circle at var(--pb-glare-at),
+      oklch(1 0 0 / var(--opacity-photo-book-cover-glare)),
+      transparent 60%
+    ),
+    linear-gradient(
+      115deg,
+      transparent 35%,
+      oklch(1 0 0 / var(--opacity-photo-book-cover-sheen)) 50%,
+      transparent 65%
+    );
+  background-size: 100% 100%, 300% 300%;
+  background-position: 0 0, var(--pb-glare-at);
+  opacity: var(--pb-glare);
+  pointer-events: none;
+}
+
+/* The outer half overlaps the spine half by the seam; light it once there */
+.photo-book-seg-a > .photo-book-face .photo-book-cover-shine {
+  clip-path: inset(0 calc(50% + var(--pb-seam)) 0 0);
 }
 
 /* ── Hit areas (flat, over the book) ──────────────────────── */
