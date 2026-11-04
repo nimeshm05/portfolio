@@ -127,6 +127,7 @@
   /* Motion */
   --duration-fast: 160ms;
   --duration-expand: 500ms;
+  --duration-tint: 320ms;
   --duration-stagger: 30ms;
   --duration-fly-in: 1600ms;
   --duration-fly-in-stagger: 220ms;

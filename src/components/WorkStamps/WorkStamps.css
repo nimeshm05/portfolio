@@ -27,6 +27,14 @@
   initial-value: 0;
 }
 
+/* Tint: 0 shows the blank grey stamp, 1 its own colour. Inherited, so the
+   print, type and postmark below all follow the one eased value. */
+@property --work-stamp-tint {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
 /* The frame is a size container, so the stamps can be sized off the column
    width while they stay absolutely positioned for the stack/fan motion. */
 .work-stamps-frame {
@@ -163,15 +171,31 @@
   /* Hover tilt (see tiltFollow): --work-stamp-tilt-x/-y run -1..1 with the
      cursor, --work-stamp-hover 0..1. The side under the cursor sinks back. */
   --work-stamp-tilt-max: var(--rotate-work-stamp-tilt);
+  /* Each colour eases from its blank grey to the stamp's own as the tint rises */
+  --work-stamp-tint-share: calc(var(--work-stamp-tint) * 100%);
+  --color-work-stamp-live-surface: color-mix(
+    in oklch,
+    var(--color-work-stamp-surface) var(--work-stamp-tint-share),
+    var(--color-work-stamp-blank-surface)
+  );
+  --color-work-stamp-live-ink: color-mix(
+    in oklch,
+    var(--color-work-stamp-ink) var(--work-stamp-tint-share),
+    var(--color-work-stamp-blank-ink)
+  );
+  --color-work-stamp-live-meta: color-mix(
+    in oklch,
+    var(--color-work-stamp-meta) var(--work-stamp-tint-share),
+    var(--color-work-stamp-blank-meta)
+  );
 
   position: relative;
   display: flex;
   width: 100%;
   height: 100%;
-  padding: var(--padding-work-stamp-paper);
-  padding-bottom: var(--padding-work-stamp-paper-bottom);
-  /* Stamp paper stays white in both themes, like the real thing */
-  background-color: var(--color-work-stamp-paper);
+  /* The print runs right to the perforated edge, no white border */
+  background-color: var(--color-work-stamp-live-surface);
+  transition: --work-stamp-tint var(--transition-work-stamp-tint);
   isolation: isolate;
   -webkit-mask-image:
     radial-gradient(circle var(--work-stamp-hole) at center, transparent 98%, #000 100%),
@@ -195,7 +219,8 @@
   mask-repeat: repeat, no-repeat;
 }
 
-/* The coloured artwork, inset from the perforated edge */
+/* The artwork fills the whole stamp; its padding keeps the copy where it sat
+   inside the old white border, clear of the perforation bites */
 .work-stamp-print {
   position: relative;
   display: flex;
@@ -203,15 +228,15 @@
   align-items: center;
   gap: var(--gap-work-stamp-print);
   min-width: 0;
-  padding: var(--padding-work-stamp-print);
-  color: var(--color-work-stamp-ink);
+  padding: calc(var(--padding-work-stamp-paper) + var(--padding-work-stamp-print));
+  padding-bottom: calc(var(--padding-work-stamp-paper-bottom) + var(--padding-work-stamp-print));
+  color: var(--color-work-stamp-live-ink);
   /* Printed ink is never as saturated as a screen colour */
   background: color-mix(
     in oklch,
-    var(--color-work-stamp-surface) var(--amount-work-stamp-ink),
+    var(--color-work-stamp-live-surface) var(--amount-work-stamp-ink),
     var(--color-work-stamp-paper)
   );
-  border-radius: var(--radius-work-stamp-print);
   /* Own stacking order: wash (0) < copy (1) < print textures (2) */
   isolation: isolate;
 }
@@ -230,6 +255,18 @@
 
 .work-stamp-expanded .work-stamp-paper {
   --work-stamp-tilt-max: var(--rotate-work-stamp-tilt-expanded);
+}
+
+/* Blank grey until the stamp is hovered, focused or opened, then its colour */
+.work-stamp:has(:focus-visible) .work-stamp-paper,
+.work-stamp-expanded .work-stamp-paper {
+  --work-stamp-tint: 1;
+}
+
+@media (hover: hover) {
+  .work-stamp:hover .work-stamp-paper {
+    --work-stamp-tint: 1;
+  }
 }
 
 /* Light on the paper: a soft highlight under the cursor and a diagonal foil
@@ -279,6 +316,8 @@
   z-index: 0;
   overflow: hidden;
   border-radius: inherit;
+  /* The watercolour and halftone only show once the stamp takes its colour */
+  opacity: var(--work-stamp-tint);
   pointer-events: none;
 }
 
@@ -373,7 +412,7 @@
   align-items: center;
   justify-content: space-between;
   height: calc(var(--padding-work-stamp-paper-bottom) - var(--work-stamp-hole));
-  color: var(--color-work-stamp-imprint);
+  color: var(--color-work-stamp-live-meta);
   font-size: var(--text-work-stamp-imprint-size);
   font-weight: var(--font-weight-medium);
   line-height: 1;
@@ -438,7 +477,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--gap-work-stamp-meta);
-  color: var(--color-work-stamp-meta);
+  color: var(--color-work-stamp-live-meta);
   font-size: var(--text-work-stamp-meta-size);
   font-weight: var(--text-work-stamp-meta-weight);
   line-height: var(--text-work-stamp-meta-line-height);
@@ -448,8 +487,8 @@
 
 /* ---------- Postmark ---------- */
 
-/* Inked in the stamp's own colour. Multiply lets it darken over the coloured
-   print and stay true on the white paper, like real ink. The paper's
+/* Inked in the stamp's own colour (grey while blank). Multiply lets it darken
+   over the print, like real ink. The paper's
    perforation mask clips it too. */
 .work-stamp-postmark {
   position: absolute;
@@ -461,7 +500,7 @@
   /* A darker shade of the stamp's own colour, so the mark reads over the print */
   color: color-mix(
     in oklch,
-    var(--color-work-stamp-surface),
+    var(--color-work-stamp-live-surface),
     var(--color-black) var(--amount-work-stamp-postmark-darken)
   );
   opacity: var(--opacity-work-stamp-postmark);
@@ -592,7 +631,7 @@
 
 .work-stamp-description {
   margin-top: var(--gap-work-stamp-description);
-  color: var(--color-work-stamp-meta);
+  color: var(--color-work-stamp-live-meta);
   font-size: var(--text-work-stamp-description-size);
   line-height: var(--text-work-stamp-description-line-height);
   letter-spacing: var(--letter-spacing-work-stamp);

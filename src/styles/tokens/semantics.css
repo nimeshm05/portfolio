@@ -163,6 +163,11 @@
   /* Work stamps */
   --color-work-stamp-paper: var(--color-stamp-paper);
   --color-work-stamp-ink: var(--color-white);
+  /* Blank: the plain grey stamp shown until it's hovered, focused or opened */
+  --color-work-stamp-blank-surface: var(--color-neutral-200);
+  --color-work-stamp-blank-ink: var(--color-neutral-750);
+  --color-work-stamp-blank-meta: var(--color-neutral-500);
+  --transition-work-stamp-tint: var(--duration-tint) var(--ease-default);
   --color-work-stamp-green-surface: var(--color-stamp-green-600);
   --color-work-stamp-green-engraving: var(--color-stamp-green-300);
   --color-work-stamp-green-meta: var(--color-stamp-green-100);
@@ -181,14 +186,13 @@
   --gap-work-stamps: var(--space-20);
   --offset-work-stamp-peek: var(--space-16);
   --offset-work-stamps-focus: var(--space-8);
-  --padding-work-stamp-paper: var(--space-12); /* white border, wide enough to take the perforation bites */
+  --padding-work-stamp-paper: var(--space-12); /* margin inside the perforated edge, wide enough to clear the bites */
   --padding-work-stamp-print: var(--space-8);
   --gap-work-stamp-print: var(--gap-md);
   --gap-work-stamp-copy: var(--gap-md);
   --padding-work-stamp-details-top: var(--space-20); /* nudges the name and meta down from the top edge */
-  --padding-work-stamp-details-start: var(--space-16); /* keeps the name and meta off the left edge */
+  --padding-work-stamp-details-start: var(--space-8); /* keeps the name and meta off the left edge */
   --gap-work-stamp-meta: var(--gap-xs);
-  --radius-work-stamp-print: var(--radius-xs);
   --radius-work-stamps-focus: var(--radius-sm);
   --shadow-work-stamp: var(--shadow-stamp);
   --transition-work-stamp: var(--transition-expand);
@@ -227,7 +231,6 @@
   --text-work-stamp-value-size: var(--font-size-17-2);
   --text-work-stamp-value-weight: var(--font-weight-bold);
   --text-work-stamp-imprint-size: var(--font-size-6);
-  --color-work-stamp-imprint: var(--color-neutral-600);
   /* Print & paper texture: kept very quiet, a well-kept stamp not a distressed one */
   --amount-work-stamp-ink: 90%; /* how much surface colour survives the muting */
   --opacity-work-stamp-print-texture: 0.3;
