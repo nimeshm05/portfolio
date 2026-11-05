@@ -191,6 +191,7 @@ export function ProjectPage({ project }: ProjectPageProps) {
           <PageEnterItem>
             <ProjectBanner
               src={project.bannerSrc}
+              largeSrc={project.bannerLargeSrc}
               alt={project.bannerAlt}
               type={project.bannerType}
               aspectRatio={project.bannerAspectRatio}

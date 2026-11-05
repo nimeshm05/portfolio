@@ -11,7 +11,8 @@ export const knool2Card: ProjectCardData = {
   timeline: "June 2026 – August 2026",
   description:
     "Turning a 20-option empty state into stage-aware prompts that show attorneys what the assistant can do for their case, right when they start a chat.",
-  bannerSrc: asset("knool-initial-chat-experience-preview.mp4"),
+  bannerSrc: asset("knool-initial-chat-experience-preview-2k.mp4"),
+  bannerLargeSrc: asset("knool-initial-chat-experience-preview.mp4"),
   bannerAlt: "Knool case assistant first screen preview",
   bannerType: "video",
 };

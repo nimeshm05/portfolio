@@ -14,6 +14,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
     <>
       <ProjectBanner
         src={project.bannerSrc}
+        largeSrc={project.bannerLargeSrc}
         alt={project.bannerAlt}
         type={project.bannerType}
         aspectRatio={project.bannerAspectRatio}

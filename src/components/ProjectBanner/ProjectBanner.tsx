@@ -3,6 +3,8 @@ import "./ProjectBanner.css";
 
 type ProjectBannerProps = {
   src: string;
+  /** Higher-resolution video for large Retina screens */
+  largeSrc?: string;
   alt: string;
   type?: "image" | "video";
   /** Video width / height; see LazyBannerVideo */
@@ -13,6 +15,7 @@ type ProjectBannerProps = {
 
 export function ProjectBanner({
   src,
+  largeSrc,
   alt,
   type = "image",
   aspectRatio,
@@ -36,6 +39,7 @@ export function ProjectBanner({
         {type === "video" ? (
           <LazyBannerVideo
             src={src}
+            largeSrc={largeSrc}
             alt={alt}
             eager={isHeroMedia}
             aspectRatio={aspectRatio}

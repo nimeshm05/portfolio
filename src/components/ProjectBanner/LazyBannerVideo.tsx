@@ -1,13 +1,41 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { BannerVideoPlaceholder } from "./BannerVideoPlaceholder";
+import {
+  isVideoFocused,
+  subscribeVideoFocus,
+  trackVideoFocus,
+} from "./videoFocus";
 
 /** Most banner videos are exported at this size */
 const DEFAULT_ASPECT_RATIO = "3292 / 2160";
 
+/**
+ * Screens that can actually show more than a ~2K-wide video: wide windows on
+ * Retina displays, where banners and cards span 2,000+ device pixels.
+ * Everywhere else the 2K file looks the same and is far cheaper to decode.
+ */
+const LARGE_VIDEO_MEDIA = "(min-width: 1600px) and (min-resolution: 2dppx)";
+
+// The choice is made once per page load: switching files on resize would
+// restart the video, and the smaller file already looks right at any size.
+function subscribeLargeScreen() {
+  return () => {};
+}
+
+function getLargeScreen() {
+  return window.matchMedia(LARGE_VIDEO_MEDIA).matches;
+}
+
+function getLargeScreenOnServer() {
+  return null;
+}
+
 type LazyBannerVideoProps = {
   src: string;
+  /** Higher-resolution file for large Retina screens (see LARGE_VIDEO_MEDIA). */
+  largeSrc?: string;
   alt: string;
   /** Load and play as soon as the element mounts (e.g. page hero). */
   eager?: boolean;
@@ -17,6 +45,7 @@ type LazyBannerVideoProps = {
 
 export function LazyBannerVideo({
   src,
+  largeSrc,
   alt,
   eager = false,
   aspectRatio = DEFAULT_ASPECT_RATIO,
@@ -25,11 +54,27 @@ export function LazyBannerVideo({
   const videoRef = useRef<HTMLVideoElement>(null);
   const [shouldLoad, setShouldLoad] = useState(eager);
   const [inView, setInView] = useState(eager);
+  const [isFocused, setIsFocused] = useState(eager);
   const [isReady, setIsReady] = useState(false);
   const [intrinsicRatio, setIntrinsicRatio] = useState<string | null>(null);
+  // With a large variant the file is picked once the screen size is known.
+  // The server (and hydration) sees null, so nothing loads until then and a
+  // large screen never downloads the smaller file first.
+  const isLargeScreen = useSyncExternalStore(
+    subscribeLargeScreen,
+    getLargeScreen,
+    getLargeScreenOnServer,
+  );
+  const resolvedSrc = !largeSrc
+    ? src
+    : isLargeScreen === null
+      ? null
+      : isLargeScreen
+        ? largeSrc
+        : src;
 
-  // Keep watching after the first load: phones can only decode a few videos at
-  // once, so banners scrolled off-screen pause instead of playing on unseen.
+  // Load a little ahead of the viewport, and keep watching after the first
+  // load so banners scrolled away are known to be off-screen.
   useEffect(() => {
     const container = containerRef.current;
     if (!container) {
@@ -51,8 +96,28 @@ export function LazyBannerVideo({
     return () => observer.disconnect();
   }, []);
 
+  // Only the most-visible banner video on the page plays.
   useEffect(() => {
-    if (!shouldLoad) {
+    const container = containerRef.current;
+    if (!container) {
+      return;
+    }
+
+    const update = () => setIsFocused(isVideoFocused(container));
+    const unsubscribe = subscribeVideoFocus(update);
+    const untrack = trackVideoFocus(container);
+    update();
+
+    return () => {
+      unsubscribe();
+      untrack();
+    };
+  }, []);
+
+  const shouldPlay = inView && isFocused;
+
+  useEffect(() => {
+    if (!shouldLoad || !resolvedSrc) {
       return;
     }
 
@@ -66,12 +131,12 @@ export function LazyBannerVideo({
       setIsReady(true);
     }
 
-    if (inView) {
+    if (shouldPlay) {
       video.play().catch(() => {});
     } else {
       video.pause();
     }
-  }, [shouldLoad, inView]);
+  }, [shouldLoad, resolvedSrc, shouldPlay]);
 
   return (
     <div
@@ -81,9 +146,11 @@ export function LazyBannerVideo({
     >
       <video
         ref={videoRef}
-        src={shouldLoad ? src : undefined}
+        src={shouldLoad && resolvedSrc ? resolvedSrc : undefined}
         aria-label={alt}
-        autoPlay
+        // Playback is driven by the effect above, so a video that isn't the
+        // focused one doesn't start on its own when it loads.
+        autoPlay={shouldPlay}
         loop
         muted
         playsInline

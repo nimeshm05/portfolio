@@ -112,6 +112,8 @@ export type ProjectCardData = {
   bannerSrc: string;
   bannerAlt: string;
   bannerType?: "image" | "video";
+  /** Higher-resolution banner video for large Retina screens */
+  bannerLargeSrc?: string;
   /** Video width / height, e.g. "1920 / 1080"; reserves its box while loading */
   bannerAspectRatio?: string;
 };
@@ -125,6 +127,8 @@ export type ProjectPageData = {
   bannerSrc: string;
   bannerAlt: string;
   bannerType?: "image" | "video";
+  /** Higher-resolution banner video for large Retina screens */
+  bannerLargeSrc?: string;
   /** Video width / height, e.g. "1920 / 1080"; reserves its box while loading */
   bannerAspectRatio?: string;
   liveHref?: string;
