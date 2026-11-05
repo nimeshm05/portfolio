@@ -208,7 +208,7 @@
 
   /* Layout */
   --layout-content-width-home: 46rem;
-  --layout-content-width-project: 37.5rem;
+  --layout-content-width-project: 33.75rem; /* 540px at 16px root */
   /* Media widths grow with wide viewports: floor = laptop size, ceiling caps ultra-wide */
   --layout-project-banner-width: clamp(59rem, 68vw, 116rem);
   --layout-section-media-width: clamp(34rem, 56vw, 90rem);

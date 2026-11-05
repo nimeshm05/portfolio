@@ -56,6 +56,8 @@
   font-size: var(--text-list-size);
   font-weight: var(--text-list-weight);
   line-height: var(--text-list-line-height);
+  /* Titles act as headings, so balance them like h1–h6 */
+  text-wrap: var(--text-wrap-heading);
 }
 
 .list-item--expandable .list-item-title {

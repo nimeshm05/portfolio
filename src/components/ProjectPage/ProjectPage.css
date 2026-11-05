@@ -22,6 +22,11 @@
   overflow: visible;
 }
 
+/* Tighter title-to-description gap in project lists (home keeps its own) */
+.project-body .list-item-panel {
+  padding-top: var(--gap-2xs);
+}
+
 .project-intro {
   display: flex;
   flex-direction: column;

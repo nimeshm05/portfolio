@@ -40,9 +40,18 @@ export function RichText({ content }: RichTextProps) {
       {content.intro.map((paragraph) => (
         <p key={paragraph}>{renderInline(paragraph)}</p>
       ))}
-      <ol>
-        {content.items.map((item) => (
-          <li key={item}>{renderInline(item)}</li>
+      {/* role keeps list semantics in Safari once list-style is removed */}
+      <ol className="rich-text-points" role="list">
+        {content.items.map((item, index) => (
+          <li key={item} className="rich-text-point">
+            {/* One line tall, so the circle centres on the first line of text */}
+            <span className="rich-text-point-marker" aria-hidden="true">
+              <span className="rich-text-point-circle">
+                <span className="rich-text-point-number">{index + 1}</span>
+              </span>
+            </span>
+            <span className="rich-text-point-text">{renderInline(item)}</span>
+          </li>
         ))}
       </ol>
       {content.outro?.map((paragraph) => (

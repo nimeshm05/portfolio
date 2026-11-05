@@ -5,10 +5,6 @@ type ContentTableProps = {
   table: ProjectContentTable;
 };
 
-function formatIndex(index: number) {
-  return String(index).padStart(2, "0");
-}
-
 export function ContentTable({ table }: ContentTableProps) {
   const caption = table.headers.join(" and ");
 
@@ -27,15 +23,12 @@ export function ContentTable({ table }: ContentTableProps) {
               </tr>
             </thead>
             <tbody>
-              {table.rows.map((row, rowIndex) => (
+              {table.rows.map((row) => (
                 <tr key={row.join("|")}>
                   {row.map((cell, index) => (
                     <td key={`${table.headers[index] ?? index}-${cell}`}>
                       {cell ? (
                         <span className="content-table-item">
-                          <span className="content-table-index" aria-hidden="true">
-                            {formatIndex(rowIndex)}
-                          </span>
                           <span className="content-table-item-label">{cell}</span>
                         </span>
                       ) : null}

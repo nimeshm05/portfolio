@@ -6,6 +6,7 @@ type ProjectSectionProps = {
   id: string;
   eyebrow?: string;
   heading?: string;
+  className?: string;
   children: ReactNode;
 };
 
@@ -13,11 +14,15 @@ export function ProjectSection({
   id,
   eyebrow,
   heading,
+  className,
   children,
 }: ProjectSectionProps) {
+  // "Job 1\nWhen I…" renders each line as its own block so they can be spaced
+  const headingLines = heading?.split("\n") ?? [];
+
   return (
     <section
-      className="project-section"
+      className={className ? `project-section ${className}` : "project-section"}
       id={id}
       aria-labelledby={heading || eyebrow ? `${id}-heading` : undefined}
     >
@@ -34,7 +39,15 @@ export function ProjectSection({
           ) : null} */}
           {heading ? (
             <h2 className="project-section-title" id={`${id}-heading`}>
-              {heading}
+              {headingLines.length > 1
+                ? headingLines.map((line, index) => (
+                    <span key={line} className="project-section-title-line">
+                      {line}
+                      {/* Keeps "Job 1 When…" apart for screen readers */}
+                      {index < headingLines.length - 1 ? " " : null}
+                    </span>
+                  ))
+                : heading}
             </h2>
           ) : null}
           </div>

@@ -12,6 +12,59 @@
   padding-inline-start: var(--gap-sm);
 }
 
+/* Numbered points: circled numbers on a theme-aware fill */
+.rich-text-points {
+  list-style: none;
+}
+
+/* No intro paragraph above: don't add a gap under the heading */
+.rich-text .rich-text-points:first-child {
+  margin-top: 0;
+}
+
+.rich-text .rich-text-point {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gap-md);
+  padding-inline-start: 0;
+  /* A touch more air than plain list items (0.5lh) */
+  margin-bottom: 0.75lh;
+}
+
+/* Exactly one line box tall, so the circle sits centred on the first line */
+.rich-text-point-marker {
+  flex: none;
+  display: flex;
+  align-items: center;
+  height: 1lh;
+}
+
+.rich-text-point-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: var(--color-list-marker-bg);
+  color: var(--color-list-marker-text);
+  font-size: 0.8125rem;
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Trim to cap height so the digit is optically centred, not sitting high */
+.rich-text-point-number {
+  display: block;
+  text-box: trim-both cap alphabetic;
+}
+
+.rich-text-point-text {
+  min-width: 0;
+}
+
 .rich-text strong {
   font-weight: var(--text-body-emphasis-weight);
 }
@@ -27,7 +80,7 @@
 
 .rich-text ol {
   margin-top: var(--text-body-paragraph-gap);
-  padding-left: var(--padding-list-indent);
+  padding-left: 0;
 }
 
 .rich-text li + li {

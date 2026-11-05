@@ -20,6 +20,8 @@
   --color-footer: var(--color-accent);
   --color-callout-text: var(--color-black);
   --color-callout-border: var(--color-neutral-300);
+  --color-list-marker-bg: var(--color-neutral-150);
+  --color-list-marker-text: var(--color-text-primary);
   --color-icon-coffee: var(--color-coffee-500);
   --color-workflow-accent: var(--color-green-500);
   --color-workflow-chip-bg: var(--color-agent-chip-bg);
@@ -420,6 +422,8 @@
   --color-text-muted: var(--color-neutral-700);
   --color-callout-text: var(--color-white);
   --color-callout-border: var(--color-neutral-700);
+  --color-list-marker-bg: var(--color-neutral-750);
+  --color-list-marker-text: var(--color-text-primary);
 
   /* Borders */
   --color-border: var(--color-neutral-900);

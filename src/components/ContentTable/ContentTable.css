@@ -88,16 +88,6 @@
   min-width: 0;
 }
 
-.content-table-index {
-  flex-shrink: 0;
-  min-width: var(--source-index-width);
-  color: var(--color-source-index);
-  font-size: var(--text-body-size);
-  font-weight: var(--weight-medium);
-  line-height: var(--text-body-line-height);
-  font-variant-numeric: tabular-nums;
-}
-
 .content-table-item-label {
   min-width: 0;
   color: var(--color-text-subtle);

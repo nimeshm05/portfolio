@@ -26,9 +26,19 @@
 .project-section-title {
   max-width: var(--max-width-prose);
   color: var(--color-text-primary);
-  font-size: var(--text-heading-size);
-  font-weight: var(--text-heading-weight);
-  line-height: var(--text-heading-line-height);
+  /* Section titles match list item titles (e.g. "Version 1") */
+  font-size: var(--text-list-size);
+  font-weight: var(--text-list-weight);
+  line-height: var(--text-list-line-height);
+}
+
+/* Multi-line headings, e.g. "Job 1" above its statement */
+.project-section-title-line {
+  display: block;
+}
+
+.project-section-title-line + .project-section-title-line {
+  margin-top: var(--gap-sm);
 }
 
 .project-section-heading-divider {
