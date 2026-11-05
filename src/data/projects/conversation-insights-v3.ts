@@ -33,6 +33,7 @@ export const conversationInsightsV3: ProjectPageData = {
   listItemsAlwaysExpanded: true,
   nav: [
     { id: "overview", label: "Overview", href: "#overview" },
+    { id: "role", label: "Role", href: "#role" },
     { id: "problem", label: "Problem", href: "#problem" },
     { id: "discovery", label: "Discovery", href: "#discovery" },
     { id: "insights", label: "Insights", href: "#insights" },
@@ -53,6 +54,13 @@ export const conversationInsightsV3: ProjectPageData = {
     heading: "Analytics Platform for Air Canada's Contact Centre Managers",
     paragraphs: [
       "Conversation Insights is an analytics platform developed by RozieAI for Air Canada's contact centre managers (users). The platform uses AI to analyze hundreds of thousands of customer calls, surfacing trends and operational signals that help managers understand their customer issues at scale. Although initially built to meet Air Canada's operational needs, the product was designed as a scalable solution for future enterprise customers.",
+    ],
+  },
+  role: {
+    eyebrow: "Role",
+    heading: "What I did",
+    paragraphs: [
+      "I was the first product designer on the Conversation Insights project, where I led the initial efforts of dashboard design. I conducted informal interviews with the users to understand their needs. I set the initial foundations of the dashboard by designing the insight cards and scalable filter panels for manager jobs.",
     ],
   },
   problem: {

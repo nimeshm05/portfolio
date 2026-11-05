@@ -148,6 +148,12 @@ export type ProjectPageData = {
     heading: string;
     paragraphs: string[];
   };
+  /** What the author did on the project; renders right after the overview. */
+  role?: {
+    eyebrow: string;
+    heading: string;
+    paragraphs: string[];
+  };
   product?: ProjectSectionWithMedia;
   problem?: ProjectSectionWithMedia & {
     items?: ExpandableItemContent[];

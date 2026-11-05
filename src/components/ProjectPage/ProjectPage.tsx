@@ -263,6 +263,20 @@ export function ProjectPage({ project }: ProjectPageProps) {
           </ProjectSection>
         ) : null}
 
+        {project.role ? (
+          <ProjectSection
+            id="role"
+            eyebrow={project.role.eyebrow}
+            heading={project.role.heading}
+          >
+            <div className="project-section-body">
+              {project.role.paragraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+          </ProjectSection>
+        ) : null}
+
         {project.product ? (
           <ProjectSection
             id="architecture-agent"
