@@ -56,7 +56,7 @@ function PromptAction({
     <button
       type="button"
       className="connect-prompt-action"
-      data-cuelume-press="success"
+      data-sound="button"
       onClick={onClick}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
@@ -82,7 +82,7 @@ function PromptLink({
       className="connect-prompt-action"
       href={href}
       iconSrc={iconSrc}
-      data-cuelume-press="arrival"
+      data-sound="transition_up"
     >
       {children}
     </SocialHoverLink>
@@ -627,7 +627,7 @@ export function ConnectPrompt() {
           aria-hidden={isInvite ? true : undefined}
           aria-label={isInvite ? undefined : "Start over"}
           tabIndex={isInvite ? -1 : undefined}
-          data-cuelume-press={isInvite ? undefined : "bloom"}
+          data-sound={isInvite ? undefined : "transition_down"}
         >
           <MorphingArrowRight variant={isInvite ? "right" : "left"} />
         </button>

@@ -15,7 +15,7 @@ export function SocialIconRow() {
             className="social-icon-row-link"
             href={link.href}
             aria-label={link.label}
-            data-cuelume-press={isExternal ? "arrival" : undefined}
+            data-sound={isExternal ? "transition_up" : undefined}
             {...(isExternal
               ? { target: "_blank", rel: "noopener noreferrer" }
               : {})}

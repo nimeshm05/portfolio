@@ -59,7 +59,7 @@ export function LinkCue({
       <a
         className={className}
         href={href}
-        data-cuelume-press={isExternal ? "arrival" : undefined}
+        data-sound={isExternal ? "transition_up" : undefined}
         {...(isExternal
           ? { target: "_blank", rel: "noopener noreferrer" }
           : {})}

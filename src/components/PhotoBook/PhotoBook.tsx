@@ -16,6 +16,7 @@ import {
 import Image from "next/image";
 import { useReducedMotion } from "motion/react";
 import type { PhotoBookSpread } from "@/data/photoBook";
+import { playBookSpin, playBookTurn } from "@/audio/photoBookSounds";
 import {
   PHOTO_BOOK_CLOSE_STAGGER_MS,
   PHOTO_BOOK_FADE_MS,
@@ -350,6 +351,14 @@ export function PhotoBook({ title, coverColor, spreads }: PhotoBookProps) {
       setPeek(null);
       setReach((current) => Math.max(current, to + 1));
 
+      playBookTurn({
+        from,
+        to,
+        turnMs: PHOTO_BOOK_TURN_MS,
+        staggerMs: PHOTO_BOOK_CLOSE_STAGGER_MS,
+        quick: reduceMotion,
+      });
+
       if (reduceMotion) {
         crossfade(() => {
           setFlipped(to);
@@ -388,8 +397,10 @@ export function PhotoBook({ title, coverColor, spreads }: PhotoBookProps) {
             duration: PHOTO_BOOK_SPIN_MS,
             easing: PHOTO_BOOK_SPIN_EASE,
           });
-          if (spin) spin.finished.then(done, done);
-          else done();
+          if (spin) {
+            playBookSpin(PHOTO_BOOK_SPIN_MS);
+            spin.finished.then(done, done);
+          } else done();
         });
       });
     },
