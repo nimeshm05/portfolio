@@ -14,5 +14,5 @@ export const conversationInsightsCard: ProjectCardData = {
   bannerSrc: asset("conversation-insights-preview.mp4"),
   bannerAlt: "Conversation Insights dashboard preview",
   bannerType: "video",
-  bannerAspectRatio: "3212 / 2160",
+  bannerAspectRatio: "3320 / 2160",
 };
