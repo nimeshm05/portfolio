@@ -140,10 +140,6 @@ export type ProjectPageData = {
     id: string;
     heading: string;
     paragraphs?: string[];
-    /** Numbered points shown after the paragraphs (supports **bold**). */
-    list?: string[];
-    /** Quoted callouts shown after the paragraphs, e.g. a job story. */
-    quotes?: CalloutQuote[];
     items?: ExpandableItemContent[];
     media?: ProjectMedia[];
   }>;

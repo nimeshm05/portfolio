@@ -220,26 +220,6 @@ export function ProjectPage({ project }: ProjectPageProps) {
                 ))}
               </div>
             ) : null}
-            {section.list?.length ? (
-              <div className="project-section-body">
-                <RichText
-                  content={{
-                    type: "paragraphs-with-list",
-                    intro: [],
-                    items: section.list,
-                  }}
-                />
-              </div>
-            ) : null}
-            {section.quotes?.map((quote) => (
-              <Callout
-                key={quote.text}
-                attribution={quote.attribution}
-                source={quote.source}
-              >
-                {quote.text}
-              </Callout>
-            ))}
             {section.items?.length ? (
               <div className="project-section-list">
                 {section.items.map((item) => (
