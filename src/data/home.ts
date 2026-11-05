@@ -234,7 +234,7 @@ export const aboutSections: ContentSectionData[] = [
         meta: "Knool",
         description:
           "Currently on the AI workspace team, leading feature improvements to increase usage metrics. Doing bit of design, strategic work, & product analytics - start-up life :)",
-        dates: "June 2026 – August 2026",
+        dates: "June 2026 – September 2026",
       },
       {
         id: "rozieai",
@@ -503,7 +503,7 @@ export const workStamps: readonly WorkStampData[] = [
     id: "knool",
     company: "Knool",
     role: "Product Intern",
-    dates: "Mar 2026 - Jun 2026",
+    dates: "Jun 2026 - Sep 2026",
     tone: "green",
     value: "26¢",
     location: "Seattle",
