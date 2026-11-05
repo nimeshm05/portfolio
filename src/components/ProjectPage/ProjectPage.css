@@ -65,7 +65,8 @@
   min-width: 0;
   padding: var(--padding-card-block);
   background-color: var(--color-bg-muted);
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-media);
+  corner-shape: squircle;
   border: var(--border-card);
 }
 

@@ -68,6 +68,12 @@ h6 {
   text-wrap: var(--text-wrap-heading);
 }
 
+video {
+  border-radius: var(--radius-media);
+  /* iOS-style continuous corners where supported; plain rounded elsewhere */
+  corner-shape: squircle;
+}
+
 a {
   color: inherit;
   text-decoration: none;

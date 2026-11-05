@@ -12,7 +12,8 @@
   margin-inline: 0;
   padding: var(--gap-2xl);
   border: var(--border-width) solid var(--color-border);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-media);
+  corner-shape: squircle;
   overflow: hidden;
   background-color: var(--color-banner-bg);
 }
@@ -67,6 +68,8 @@
   display: block;
   width: 100%;
   overflow: hidden;
+  border-radius: var(--radius-media);
+  corner-shape: squircle;
 }
 
 .project-banner-media .project-banner-video-wrap video {

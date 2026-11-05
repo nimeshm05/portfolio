@@ -315,6 +315,7 @@
   --radius-md: var(--radius-6);
   --radius-lg: var(--radius-8);
   --radius-xl: var(--radius-12);
+  --radius-media: var(--radius-xl); /* videos and the backgrounds behind images */
 
   /* Shadows */
   --shadow-card: var(--shadow-elevation);
