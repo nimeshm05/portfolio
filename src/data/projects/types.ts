@@ -209,6 +209,8 @@ export type ProjectPageData = {
     eyebrow: string;
     heading: string;
     paragraphs: string[];
+    /** Numbered points shown after the paragraphs (supports **bold**). */
+    list?: string[];
     items: ExpandableItemContent[];
   };
   reflection?: {

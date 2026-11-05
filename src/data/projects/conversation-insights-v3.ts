@@ -319,18 +319,13 @@ export const conversationInsightsV3: ProjectPageData = {
     eyebrow: "Outcomes",
     heading: "Beyond design...",
     paragraphs: [
-      "After shipping all the changes, we noticed significant usage within the product and the product stickiness grew as part of our users everyday workflow. Here's a few outcomes from this project.",
+      "We didn’t have usage analytics instrumentation in place, so these outcomes come from weekly feedback calls and customer conversations.",
     ],
-    items: [
-      {
-        id: "business-tie-in",
-        title: "Business tie-in",
-        icon: "users",
-        content: text(
-          "Sustained internal use and external interest supported a renewed client contract and generated new feature requests (under NDA), reinforcing the platform's long-term value beyond the initial engagement.",
-        ),
-      },
+    list: [
+      "Managers moved from weekly reports to finding issues themselves. Conversation Insights became part of their daily workflow, with 20 managers using it regularly.",
+      "Product owners no longer had to produce reports by hand every week. Steady use by the client led to a renewed contract and new feature requests (under NDA). The platform also became a product RozieAI could offer to other enterprise customers.",
     ],
+    items: [],
   },
   reflection: {
     eyebrow: "Reflection",
@@ -342,7 +337,7 @@ export const conversationInsightsV3: ProjectPageData = {
         title: "Mindset: Utility over polish",
         icon: "brain",
         content: text(
-          "Designing for power users changed how I think about “better” design. Conversation Insights served only 20–25 users, but they were power users who cared less about delight and more about having the right information and affordances to do their jobs. Throughout the project, I often saw opportunities to make the interface dramatically more polished, but I learned that improving the interface isn't automatically improving the product. In this context, the best design was often the one that gave users exactly what they needed, without adding anything they didn't.",
+          "Conversation Insights served 20 power users who cared more about having the right information than about delight. I often saw ways to polish the interface, but a more polished interface isn't automatically a better product. Here, the better design gave users exactly what they needed and nothing more.",
         ),
       },
       {
@@ -350,7 +345,7 @@ export const conversationInsightsV3: ProjectPageData = {
         title: "Tradeoffs: Designing with speed",
         icon: "gauge",
         content: text(
-          "I learned to design with business momentum, not against it. Conversation Insights had to move quickly, and development had already started before I could fully shape the experience. That was uncomfortable at first, but I learned that a rigid design process isn't always the right response to a fast-moving business. My role was to keep the product moving while creating enough space to observe, reason, and improve the experience as we went. Speed didn't mean abandoning design; it meant being more deliberate about where design effort mattered most.",
+          "Development started before the design was done. Instead of holding to a rigid process, I kept the product moving while making room to observe and improve as we went. Speed didn't mean less design, just being deliberate about where it mattered most.",
         ),
       },
       {
@@ -358,7 +353,7 @@ export const conversationInsightsV3: ProjectPageData = {
         title: "Collaboration: Engineering as part of design loop",
         icon: "handshake",
         content: text(
-          "I learned to bring engineering into the design loop early. The insight cards were a custom interaction, and I knew they would require engineering work beyond the existing component system. By keeping engineering involved early and sharing the direction before the design was finalized, I could surface technical constraints sooner and give the team time to plan for what needed to be built. The result was less handoff and more shared ownership of the experience.",
+          "The insight cards needed work beyond our existing components, so I shared the direction with engineering before it was final. That brought technical constraints up early, gave the team time to plan, and meant less handoff and more shared ownership.",
         ),
       },
     ],

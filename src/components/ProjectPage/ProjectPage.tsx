@@ -594,25 +594,40 @@ export function ProjectPage({ project }: ProjectPageProps) {
             eyebrow={project.outcome.eyebrow}
             heading={project.outcome.heading}
           >
-            <div className="project-section-body">
-              {project.outcome.paragraphs.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
-            </div>
-            <div className="project-section-list">
-              {project.outcome.items.map((item) => (
-                <ListItem
-                  key={item.id}
-                  title={item.title}
-                  defaultOpen
-                  alwaysExpanded={project.listItemsAlwaysExpanded}
-                >
-                  {hasExpandableItemBody(item) ? (
-                    <ExpandableItemBody item={item} />
-                  ) : null}
-                </ListItem>
-              ))}
-            </div>
+            {project.outcome.paragraphs.length ? (
+              <div className="project-section-body">
+                {project.outcome.paragraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+            ) : null}
+            {project.outcome.list?.length ? (
+              <div className="project-section-body">
+                <RichText
+                  content={{
+                    type: "paragraphs-with-list",
+                    intro: [],
+                    items: project.outcome.list,
+                  }}
+                />
+              </div>
+            ) : null}
+            {project.outcome.items.length ? (
+              <div className="project-section-list">
+                {project.outcome.items.map((item) => (
+                  <ListItem
+                    key={item.id}
+                    title={item.title}
+                    defaultOpen
+                    alwaysExpanded={project.listItemsAlwaysExpanded}
+                  >
+                    {hasExpandableItemBody(item) ? (
+                      <ExpandableItemBody item={item} />
+                    ) : null}
+                  </ListItem>
+                ))}
+              </div>
+            ) : null}
           </ProjectSection>
         ) : null}
 
