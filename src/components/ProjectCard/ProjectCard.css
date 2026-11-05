@@ -73,7 +73,7 @@
   white-space: nowrap;
 }
 
-/* Mouse and trackpad only: on touch, a tap would flash these and shrink the card */
+/* Mouse and trackpad only: on touch, a tap would flash these */
 @media (hover: hover) and (pointer: fine) {
   .project-card:hover .project-card-description {
     color: var(--color-text-primary);
@@ -81,10 +81,5 @@
 
   .project-card:hover .project-card-chip {
     background: var(--color-card-chip-bg-hover);
-  }
-
-  .project-card:active {
-    scale: 0.99;
-    transition: scale var(--transition-fast);
   }
 }
