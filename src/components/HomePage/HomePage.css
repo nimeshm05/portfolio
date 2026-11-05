@@ -179,6 +179,31 @@ html:has(.home-page) body {
   opacity: var(--opacity-home-dimmed);
 }
 
+/* Talking through the connect prompt dims everything but the prompt. The
+   header's own pieces are dimmed individually so the prompt can stay lit;
+   prompt rows carry Motion's inline opacity, so their content is dimmed. */
+.home-page
+  :is(
+    .site-header-avatar-enter,
+    .site-header-info,
+    .home-prompt-enter > *
+  ) {
+  transition: opacity var(--transition-expand);
+}
+
+.home-page:has(.connect-prompt--follow-up)
+  :is(
+    .site-header-avatar-enter,
+    .site-header-info,
+    .home-prompt-enter:not(:has(.connect-prompt)) > *,
+    .home-sidebar .sidebar-nav-links,
+    .home-footer,
+    .content-section-divider,
+    .content-section
+  ) {
+  opacity: var(--opacity-home-dimmed);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .home-page
     :is(
@@ -189,7 +214,10 @@ html:has(.home-page) body {
       .content-section,
       .content-section-label-wrap,
       .list-item-shell,
-      .content-section-card > .project-card
+      .content-section-card > .project-card,
+      .site-header-avatar-enter,
+      .site-header-info,
+      .home-prompt-enter > *
     ) {
     transition: none;
   }
