@@ -233,7 +233,7 @@ export const aboutSections: ContentSectionData[] = [
         title: "Product Intern,",
         meta: "Knool",
         description:
-          "Currently on the AI workspace team, leading feature improvements to increase usage metrics. Doing bit of design, strategic work, & product analytics - start-up life :)",
+          "Led a redesign of Knool’s AI case assistant, replacing 20 generic options with prompts matched to each stage of a case. Designed the information architecture and visual styleguide for Knool 2.0, and built production React components with Claude Code alongside engineers. Shared weekly product metrics from Amplitude with leadership to guide UX decisions.",
         dates: "June 2026 – September 2026",
       },
       {
