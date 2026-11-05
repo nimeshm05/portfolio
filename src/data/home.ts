@@ -292,7 +292,7 @@ export const aboutSections: ContentSectionData[] = [
       {
         id: "ms-hcde",
         title: "M.S. Human Centered Design & Engineering, ",
-        meta: "Univeristy of Washington",
+        meta: "University of Washington",
         description: "Mastering my skills in systems thinking, prototyping, and interaction design at the University of Washington.",
         dates: "September 2025 – July 2027 (Expected)",
         photos: [

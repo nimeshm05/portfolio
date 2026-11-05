@@ -56,8 +56,17 @@
   font-size: var(--text-list-size);
   font-weight: var(--text-list-weight);
   line-height: var(--text-list-line-height);
-  /* Titles act as headings, so balance them like h1–h6 */
-  text-wrap: var(--text-wrap-heading);
+}
+
+/* Chevron sitting inline at the end of an expandable title */
+.list-item-title .list-item-chevron {
+  display: inline-flex;
+  margin-block-start: 0;
+  margin-inline-start: var(--gap-md);
+  vertical-align: middle;
+  /* "middle" uses the x-height, which sits a hair low for this font */
+  position: relative;
+  top: -0.0625em;
 }
 
 .list-item--expandable .list-item-title {

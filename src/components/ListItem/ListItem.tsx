@@ -206,24 +206,6 @@ export function ListItem({
     )
   ) : null;
 
-  const titleNode = blurOnTabChange ? (
-    <motion.span
-      className="list-item-title"
-      variants={tabContentBlurVariants}
-      initial="initial"
-      animate="animate"
-      transition={tabContentTransition}
-    >
-      {title}
-      {meta ? <span className="list-item-meta"> {meta}</span> : null}
-    </motion.span>
-  ) : (
-    <span className="list-item-title">
-      {title}
-      {meta ? <span className="list-item-meta"> {meta}</span> : null}
-    </span>
-  );
-
   const chevronNode = isStaticExpanded ? null : (
     <motion.span
       className="list-item-chevron"
@@ -242,11 +224,43 @@ export function ListItem({
     </motion.span>
   );
 
+  // Expandable rows keep the chevron inline after the text, so a title that
+  // wraps carries it on its last line instead of stranding it at the row end.
+  // The word joiner stops the chevron from wrapping onto a line by itself.
+  const inlineChevron = isExpandable ? (
+    <>
+      {"⁠"}
+      {chevronNode}
+    </>
+  ) : null;
+
+  const titleText = (
+    <>
+      {title}
+      {meta ? <span className="list-item-meta"> {meta}</span> : null}
+      {inlineChevron}
+    </>
+  );
+
+  const titleNode = blurOnTabChange ? (
+    <motion.span
+      className="list-item-title"
+      variants={tabContentBlurVariants}
+      initial="initial"
+      animate="animate"
+      transition={tabContentTransition}
+    >
+      {titleText}
+    </motion.span>
+  ) : (
+    <span className="list-item-title">{titleText}</span>
+  );
+
   const content = (
     <>
       {iconNode}
       {titleNode}
-      {chevronNode}
+      {isExpandable ? null : chevronNode}
     </>
   );
 
