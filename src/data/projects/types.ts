@@ -140,6 +140,10 @@ export type ProjectPageData = {
     id: string;
     heading: string;
     paragraphs?: string[];
+    /** Numbered points shown after the paragraphs (supports **bold**). */
+    list?: string[];
+    /** Quoted callouts shown after the paragraphs, e.g. a job story. */
+    quotes?: CalloutQuote[];
     items?: ExpandableItemContent[];
     media?: ProjectMedia[];
   }>;
@@ -175,6 +179,8 @@ export type ProjectPageData = {
     eyebrow: string;
     heading: string;
     paragraphs: string[];
+    /** Numbered points shown after the paragraphs (supports **bold**). */
+    list?: string[];
     items?: ExpandableItemContent[];
   };
   calloutTwo?: string;
@@ -196,6 +202,12 @@ export type ProjectPageData = {
     heading: string;
     paragraphs: string[];
     items: ExpandableItemContent[];
+    /** When set, Solutions renders as one section per job instead. */
+    jobs?: Array<{
+      id: string;
+      heading: string;
+      items: ExpandableItemContent[];
+    }>;
   };
   outcome?: {
     eyebrow: string;

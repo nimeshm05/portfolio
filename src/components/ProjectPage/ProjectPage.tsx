@@ -220,6 +220,26 @@ export function ProjectPage({ project }: ProjectPageProps) {
                 ))}
               </div>
             ) : null}
+            {section.list?.length ? (
+              <div className="project-section-body">
+                <RichText
+                  content={{
+                    type: "paragraphs-with-list",
+                    intro: [],
+                    items: section.list,
+                  }}
+                />
+              </div>
+            ) : null}
+            {section.quotes?.map((quote) => (
+              <Callout
+                key={quote.text}
+                attribution={quote.attribution}
+                source={quote.source}
+              >
+                {quote.text}
+              </Callout>
+            ))}
             {section.items?.length ? (
               <div className="project-section-list">
                 {section.items.map((item) => (
@@ -414,13 +434,9 @@ export function ProjectPage({ project }: ProjectPageProps) {
               ))}
             </div>
             <div className="project-section-list">
+              {/* Collapsed by default and toggleable, like the home page lists. */}
               {project.discovery.items.map((item) => (
-                <ListItem
-                  key={item.id}
-                  title={item.title}
-                  defaultOpen
-                  alwaysExpanded={project.listItemsAlwaysExpanded}
-                >
+                <ListItem key={item.id} title={item.title}>
                   {hasExpandableItemBody(item) ? (
                     <ExpandableItemBody item={item} />
                   ) : null}
@@ -436,11 +452,24 @@ export function ProjectPage({ project }: ProjectPageProps) {
             eyebrow={project.insights.eyebrow}
             heading={project.insights.heading}
           >
-            <div className="project-section-body">
-              {project.insights.paragraphs.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
-            </div>
+            {project.insights.paragraphs.length ? (
+              <div className="project-section-body">
+                {project.insights.paragraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+            ) : null}
+            {project.insights.list?.length ? (
+              <div className="project-section-body">
+                <RichText
+                  content={{
+                    type: "paragraphs-with-list",
+                    intro: [],
+                    items: project.insights.list,
+                  }}
+                />
+              </div>
+            ) : null}
             {project.insights.items?.length ? (
               <div className="project-section-list">
                 {project.insights.items.map((item) => (
@@ -522,7 +551,36 @@ export function ProjectPage({ project }: ProjectPageProps) {
           </ProjectSection>
         ) : null}
 
-        {project.solutions ? (
+        {/* Solutions told as jobs: one section per job, same list styling.
+            The first job carries the "solutions" id for the sidebar. */}
+        {project.solutions?.jobs?.length
+          ? project.solutions.jobs.map((job, index) => (
+              <ProjectSection
+                key={job.id}
+                id={index === 0 ? "solutions" : job.id}
+                className="project-section--job"
+                eyebrow={project.solutions?.eyebrow}
+                heading={job.heading}
+              >
+                <div className="project-section-list">
+                  {job.items.map((item) => (
+                    <ListItem
+                      key={item.id}
+                      title={item.title}
+                      defaultOpen
+                      alwaysExpanded={project.listItemsAlwaysExpanded}
+                    >
+                      {hasExpandableItemBody(item) ? (
+                        <ExpandableItemBody item={item} />
+                      ) : null}
+                    </ListItem>
+                  ))}
+                </div>
+              </ProjectSection>
+            ))
+          : null}
+
+        {project.solutions && !project.solutions.jobs?.length ? (
           <ProjectSection
             id="solutions"
             eyebrow={project.solutions.eyebrow}

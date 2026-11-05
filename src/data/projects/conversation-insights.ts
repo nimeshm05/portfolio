@@ -160,7 +160,8 @@ export const conversationInsights: ProjectPageData = {
   insights: {
     eyebrow: "Insights",
     heading: "Insights",
-    paragraphs: [
+    paragraphs: [],
+    list: [
       "The investigation workflow revealed that insights were not endpoints, but starting points for understanding and resolving customer issues.",
       "Teams used call insights to identify issues, then combined it with operational metadata to understand causes, trace impact, and take action.",
     ],
