@@ -214,6 +214,11 @@
   --scale-work-stamp-hover: var(--scale-104);
   --opacity-work-stamp-glare: 0.55; /* the soft highlight under the cursor */
   --opacity-work-stamp-sheen: 0.22; /* the diagonal foil band sweeping across */
+  /* Ambient glow: a soft halo in the stamp's colour, cast away from the cursor */
+  --offset-work-stamp-ambient-shift: var(--size-work-stamp-ambient-shift);
+  --offset-work-stamp-ambient-drop: var(--size-work-stamp-ambient-drop);
+  --blur-work-stamp-ambient: var(--size-work-stamp-ambient-blur);
+  --amount-work-stamp-ambient: 48%; /* glow strength at full hover */
   --text-work-stamp-name-size: var(--font-size-17-2);
   --text-work-stamp-name-weight: var(--font-weight-semibold);
   --text-work-stamp-name-line-height: var(--line-height-15);

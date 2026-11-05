@@ -35,6 +35,28 @@
   initial-value: 0;
 }
 
+/* Ambient glow under a hovered stamp, in its own colour. Lit from the cursor,
+   so the glow slides to the far side as the pointer moves, and it fades with
+   the hover (see tiltFollow, which eases --work-stamp-tilt-x/-y and
+   --work-stamp-hover on the stamp itself). Sits on the wrapper with the
+   shadow, so it follows the perforated edge. */
+.work-stamp,
+.work-stamp-expanded {
+  --work-stamp-ambient: drop-shadow(
+    calc(var(--work-stamp-tilt-x, 0) * -1 * var(--offset-work-stamp-ambient-shift))
+      calc(
+        var(--offset-work-stamp-ambient-drop) - var(--work-stamp-tilt-y, 0) *
+          var(--offset-work-stamp-ambient-shift)
+      )
+      var(--blur-work-stamp-ambient)
+      color-mix(
+        in oklch,
+        var(--color-work-stamp-surface) calc(var(--work-stamp-hover, 0) * var(--amount-work-stamp-ambient)),
+        transparent
+      )
+  );
+}
+
 /* The frame is a size container, so the stamps can be sized off the column
    width while they stay absolutely positioned for the stack/fan motion. */
 .work-stamps-frame {
@@ -120,7 +142,7 @@
   z-index: calc(var(--work-stamp-count) - var(--work-stamp-index));
   width: var(--width-work-stamp);
   height: var(--height-work-stamp);
-  filter: var(--shadow-work-stamp);
+  filter: var(--shadow-work-stamp) var(--work-stamp-ambient);
   /* --work-stamp-drag(-progress) are set inline while the front stamp is swiped */
   transform: translateX(
       calc(
@@ -558,7 +580,7 @@
 
   position: fixed;
   z-index: var(--z-work-stamp-expanded);
-  filter: var(--shadow-work-stamp-expanded);
+  filter: var(--shadow-work-stamp-expanded) var(--work-stamp-ambient);
   outline: none;
   cursor: pointer;
 }
