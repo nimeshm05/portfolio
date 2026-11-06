@@ -163,3 +163,68 @@
   width: 100%;
   min-width: 0;
 }
+
+/* Unframed images side by side, tilted opposite ways, the second set lower,
+   like prints dropped on a desk (e.g. Slack messages under Outcomes) */
+.project-media-tilted {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gap-md);
+  width: 100%;
+  padding-inline: var(--inset-x);
+}
+
+.project-media-tilted > .project-banner.project-banner {
+  flex: 1 1 0;
+  align-self: flex-start;
+  width: auto;
+  max-width: none;
+  min-width: 0;
+  margin-inline: 0;
+  /* Let the screenshots' drop shadow spill past the banner box */
+  overflow: visible;
+  rotate: -3deg;
+}
+
+.project-media-tilted > .project-banner.project-banner:nth-child(2) {
+  margin-top: var(--gap-3xl);
+  rotate: 3deg;
+}
+
+.project-media-tilted img {
+  border-radius: var(--radius-2xl);
+  corner-shape: squircle;
+  /* The lifted work-stamp shadow; drop-shadow follows the rounded corners */
+  filter: var(--shadow-work-stamp-expanded);
+}
+
+/* Desktop: wider than the text column (80% of the hero banner) so the
+   messages stay legible */
+@media (min-width: 68.75rem) {
+  .project-media-tilted {
+    --project-media-tilted-width: min(
+      calc(var(--width-project-banner) * 0.8),
+      calc(100vw - 2 * var(--inset-x))
+    );
+
+    width: var(--project-media-tilted-width);
+    margin-inline: calc((100% - var(--project-media-tilted-width)) / 2);
+  }
+}
+
+/* Phones: one above the other, still tilted */
+@media (max-width: 39.9375rem) {
+  .project-media-tilted {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .project-media-tilted > .project-banner.project-banner {
+    align-self: center;
+    width: 100%;
+  }
+
+  .project-media-tilted > .project-banner.project-banner:nth-child(2) {
+    margin-top: 0;
+  }
+}

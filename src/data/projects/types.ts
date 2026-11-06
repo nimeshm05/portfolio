@@ -24,6 +24,26 @@ export type ProjectMedia = {
   contained?: boolean;
 };
 
+/** Draggable before / after comparison; both images must share one size */
+export type BeforeAfterMedia = {
+  before: { src: string; alt: string; caption: string };
+  after: { src: string; alt: string; caption: string };
+  /** Shown while neither image covers most of the frame */
+  idleCaption: string;
+};
+
+/** Wording for the round postmark on a callout (see Postmark in WorkStamps) */
+export type CalloutPostmark = {
+  /** Top arc; keep it to ~12 characters */
+  label: string;
+  /** Large text in the middle; a few characters */
+  center: string;
+  /** Bottom arc; keep it to ~16 characters */
+  bottom: string;
+  /** Tilt in degrees, so the marks don't look copy-pasted */
+  rotate: number;
+};
+
 export type SourceCard = {
   title: string;
   logoSrc: string;
@@ -144,8 +164,22 @@ export type ProjectPageData = {
     id: string;
     heading: string;
     paragraphs?: string[];
+    /** Numbered points shown after the paragraphs (supports **bold**). */
+    list?: string[];
     items?: ExpandableItemContent[];
     media?: ProjectMedia[];
+    /** Rendered right after the paragraphs */
+    beforeAfter?: BeforeAfterMedia;
+    /** Show the media right under the heading, before the copy */
+    mediaFirst?: boolean;
+    /** "tilted": unframed images side by side, rotated opposite ways and offset */
+    mediaLayout?: "tilted";
+    /** Paragraphs shown after the media */
+    closingParagraphs?: string[];
+    /** Unquoted callout shown right after the section */
+    callout?: string;
+    /** Round postmark inked on that callout */
+    calloutPostmark?: CalloutPostmark;
   }>;
   overview?: {
     eyebrow: string;

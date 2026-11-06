@@ -1,3 +1,4 @@
+import { BeforeAfterSlider } from "@/components/BeforeAfterSlider/BeforeAfterSlider";
 import { ArchitectureWorkflow } from "@/components/ArchitectureWorkflow/ArchitectureWorkflow";
 import { Callout } from "@/components/Callout/Callout";
 import { ContentTable } from "@/components/ContentTable/ContentTable";
@@ -208,12 +209,52 @@ export function ProjectPage({ project }: ProjectPageProps) {
           <Callout quoted={false}>{project.notice}</Callout>
         ) : null}
 
-        {project.sections?.map((section) => (
+        {/* Section and callout stay separate children so each gets its own
+            page-enter wrapper and the usual spacing between them */}
+        {project.sections?.flatMap((section, index) => {
+          const sectionItems = section.items?.length ? (
+            <div className="project-section-list">
+              {section.items.map((item) => (
+                <ListItem
+                  key={item.id}
+                  title={item.title}
+                  defaultOpen
+                  alwaysExpanded={project.listItemsAlwaysExpanded}
+                >
+                  {hasExpandableItemBody(item) ? (
+                    <ExpandableItemBody item={item} />
+                  ) : null}
+                </ListItem>
+              ))}
+            </div>
+          ) : null;
+          // With closing paragraphs, the media and its closing copy read as
+          // one intro before the items; otherwise items come first.
+          const itemsBeforeMedia = !section.closingParagraphs?.length;
+          const mediaEntries = section.media?.map((entry) => (
+            <ProjectBanner
+              key={entry.src}
+              src={entry.src}
+              alt={entry.alt}
+              type={entry.type}
+              aspectRatio={entry.aspectRatio}
+              showBackground={entry.showBackground}
+            />
+          ));
+          const sectionMedia =
+            section.mediaLayout === "tilted" && mediaEntries?.length ? (
+              <div className="project-media-tilted">{mediaEntries}</div>
+            ) : (
+              mediaEntries
+            );
+
+          return [
           <ProjectSection
             key={section.id}
             id={section.id}
             heading={section.heading}
           >
+            {section.mediaFirst ? sectionMedia : null}
             {section.paragraphs?.length ? (
               <div className="project-section-body">
                 {section.paragraphs.map((paragraph) => (
@@ -221,34 +262,43 @@ export function ProjectPage({ project }: ProjectPageProps) {
                 ))}
               </div>
             ) : null}
-            {section.items?.length ? (
-              <div className="project-section-list">
-                {section.items.map((item) => (
-                  <ListItem
-                    key={item.id}
-                    title={item.title}
-                    defaultOpen
-                    alwaysExpanded={project.listItemsAlwaysExpanded}
-                  >
-                    {hasExpandableItemBody(item) ? (
-                      <ExpandableItemBody item={item} />
-                    ) : null}
-                  </ListItem>
+            {section.list?.length ? (
+              <div className="project-section-body">
+                <RichText
+                  content={{
+                    type: "paragraphs-with-list",
+                    intro: [],
+                    items: section.list,
+                  }}
+                />
+              </div>
+            ) : null}
+            {section.beforeAfter ? (
+              <BeforeAfterSlider {...section.beforeAfter} />
+            ) : null}
+            {itemsBeforeMedia ? sectionItems : null}
+            {section.mediaFirst ? null : sectionMedia}
+            {section.closingParagraphs?.length ? (
+              <div className="project-section-body">
+                {section.closingParagraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
                 ))}
               </div>
             ) : null}
-            {section.media?.map((entry) => (
-              <ProjectBanner
-                key={entry.src}
-                src={entry.src}
-                alt={entry.alt}
-                type={entry.type}
-                aspectRatio={entry.aspectRatio}
-                showBackground={entry.showBackground}
-              />
-            ))}
-          </ProjectSection>
-        ))}
+            {itemsBeforeMedia ? null : sectionItems}
+          </ProjectSection>,
+          section.callout ? (
+            <Callout
+              key={`${section.id}-callout`}
+              quoted={false}
+              postmark={section.calloutPostmark}
+              postmarkSeed={index + 1}
+            >
+              {section.callout}
+            </Callout>
+          ) : null,
+          ];
+        })}
 
         {project.overview ? (
           <ProjectSection

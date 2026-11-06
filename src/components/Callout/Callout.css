@@ -22,13 +22,66 @@
   display: none;
 }
 
+/* The text sits on a coloured panel between the rules, cut like a postage
+   stamp: the same perforation mask and halftone screen as the work stamps
+   (see WorkStamps.css), sized by the same --work-stamp-* tokens. */
 .callout-body {
+  --callout-halftone-dots: radial-gradient(
+    circle,
+    color-mix(in oklch, var(--color-callout-text) 18%, transparent)
+      var(--work-stamp-halftone-dot),
+    transparent
+      calc(var(--work-stamp-halftone-dot) + var(--work-stamp-halftone-soften))
+  );
+
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: var(--gap-callout-cite);
+  box-sizing: border-box;
   width: 100%;
   min-width: 0;
+  padding: var(--gap-3xl);
+  background: var(--color-callout-bg);
+  isolation: isolate;
+  /* "round" fits a whole number of holes along each side, since the panel's
+     size follows its text rather than snapping to the perforation step */
+  -webkit-mask-image:
+    radial-gradient(circle var(--work-stamp-hole) at center, transparent 98%, #000 100%),
+    linear-gradient(#000 0 0);
+  mask-image:
+    radial-gradient(circle var(--work-stamp-hole) at center, transparent 98%, #000 100%),
+    linear-gradient(#000 0 0);
+  -webkit-mask-size:
+    var(--work-stamp-perf-x) var(--work-stamp-perf-y),
+    calc(100% - var(--work-stamp-perf-x)) calc(100% - var(--work-stamp-perf-y));
+  mask-size:
+    var(--work-stamp-perf-x) var(--work-stamp-perf-y),
+    calc(100% - var(--work-stamp-perf-x)) calc(100% - var(--work-stamp-perf-y));
+  -webkit-mask-position:
+    calc(var(--work-stamp-perf-x) / -2) calc(var(--work-stamp-perf-y) / -2),
+    center;
+  mask-position:
+    calc(var(--work-stamp-perf-x) / -2) calc(var(--work-stamp-perf-y) / -2),
+    center;
+  -webkit-mask-repeat: round, no-repeat;
+  mask-repeat: round, no-repeat;
+}
+
+/* Halftone screen over the panel, on a 45° grid like the stamps' */
+.callout-body::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    var(--callout-halftone-dots) 0 0 / var(--work-stamp-halftone-pitch)
+      var(--work-stamp-halftone-pitch),
+    var(--callout-halftone-dots) calc(var(--work-stamp-halftone-pitch) / 2)
+      calc(var(--work-stamp-halftone-pitch) / 2) / var(--work-stamp-halftone-pitch)
+      var(--work-stamp-halftone-pitch);
+  content: "";
+  pointer-events: none;
 }
 
 
@@ -66,3 +119,19 @@
   font-weight: var(--text-body-weight);
 }
 
+
+/* The work stamps' postmark, inked in the callout's text colour and set in
+   the panel's top-right corner. Faint, so the question under it still reads. */
+.callout-body .callout-postmark {
+  top: var(--space-12);
+  right: var(--space-12);
+  z-index: 0;
+  color: var(--color-callout-text);
+  opacity: 0.55;
+  mix-blend-mode: normal;
+}
+
+.callout-body > :not(.callout-postmark) {
+  position: relative;
+  z-index: 1;
+}

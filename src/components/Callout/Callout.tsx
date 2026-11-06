@@ -1,4 +1,6 @@
 import { Fragment } from "react";
+import { Postmark } from "@/components/WorkStamps/WorkStamps";
+import type { CalloutPostmark } from "@/data/projects/types";
 import "./Callout.css";
 
 type CalloutProps = {
@@ -6,6 +8,10 @@ type CalloutProps = {
   attribution?: string;
   source?: string;
   quoted?: boolean;
+  /** Round postmark inked in the panel's corner */
+  postmark?: CalloutPostmark;
+  /** Varies the postmark's ink wear between callouts */
+  postmarkSeed?: number;
 };
 
 function CalloutText({
@@ -41,6 +47,8 @@ export function Callout({
   attribution,
   source,
   quoted = true,
+  postmark,
+  postmarkSeed = 1,
 }: CalloutProps) {
   const text = <CalloutText quoted={quoted}>{children}</CalloutText>;
   const className = [
@@ -54,6 +62,16 @@ export function Callout({
     <>
       <span className="callout-rule" aria-hidden="true" />
       <div className="callout-body">
+        {postmark ? (
+          <Postmark
+            className="callout-postmark"
+            label={postmark.label}
+            year={postmark.center}
+            location={postmark.bottom}
+            rotate={postmark.rotate}
+            seed={postmarkSeed}
+          />
+        ) : null}
         {text}
         {attribution ? (
           <footer className="callout-attribution">

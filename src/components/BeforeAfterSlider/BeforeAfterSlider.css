@@ -1,0 +1,194 @@
+.before-after {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--gap-lg);
+  width: 100%;
+}
+
+/* Caption below the image; all captions share one grid cell */
+.before-after-caption {
+  display: grid;
+  padding-inline: var(--inset-x);
+  color: var(--color-text-subtle);
+  font-size: var(--text-prose-size);
+  line-height: var(--text-prose-line-height);
+  letter-spacing: var(--text-prose-letter-spacing);
+  text-align: center;
+}
+
+.before-after-caption-line {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: 0.28em;
+  margin: 0;
+}
+
+.before-after-caption-line.is-sizer {
+  visibility: hidden;
+}
+
+.before-after-caption-word {
+  display: inline-block;
+  will-change: transform, filter, opacity;
+}
+
+.before-after-caption-label {
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+/* The image itself */
+.before-after-frame .before-after-slider {
+  display: block;
+  border-radius: var(--radius-media);
+  corner-shape: squircle;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.before-after-frame .before-after-slider .after img {
+  width: 100%;
+  height: auto;
+}
+
+.before-after-frame .before-after-slider .before img {
+  width: auto;
+  max-width: none;
+}
+
+/* Divider drawn inside the clipped "before" half, flush with its edge */
+.before-after-frame .before-after-slider .before {
+  z-index: 1;
+  /* Short follow so the line trails the pointer slightly instead of snapping */
+  transition: width 140ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.before-after-frame .before-after-slider .before::after {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  right: 0;
+  width: 2px;
+  background: rgb(255 255 255 / 0.85);
+  box-shadow: 0 0 6px rgb(0 0 0 / 0.25);
+}
+
+/* The native range covers the image; only its invisible thumb is styled */
+.before-after-frame .before-after-slider input[type="range"] {
+  z-index: 3;
+  margin: 0;
+  outline: none;
+}
+
+.before-after-frame .before-after-slider input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 48px;
+  height: 48px;
+  opacity: 0;
+  cursor: grab;
+}
+
+.before-after-frame .before-after-slider input[type="range"]::-moz-range-thumb {
+  width: 48px;
+  height: 48px;
+  border: 0;
+  opacity: 0;
+  cursor: grab;
+}
+
+/* Glass handle */
+.before-after-frame .before-after-handle {
+  z-index: 2;
+  color: var(--color-black);
+  background: rgb(255 255 255 / 0.28);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.75),
+    inset 0 -1px 1px rgb(0 0 0 / 0.06),
+    0 6px 20px rgb(0 0 0 / 0.18),
+    0 1px 3px rgb(0 0 0 / 0.12);
+  -webkit-backdrop-filter: blur(10px) saturate(180%);
+  backdrop-filter: blur(10px) saturate(180%);
+  /* "scale" is separate from the library's inline translate(-50%, -50%) */
+  scale: 1;
+  transition:
+    left 140ms cubic-bezier(0.22, 1, 0.36, 1),
+    scale 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 300ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.before-after-frame .before-after-handle svg {
+  width: 20px;
+  height: 20px;
+  fill: rgb(0 0 0 / 0.75);
+  transition:
+    scale 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    fill 300ms ease-out;
+}
+
+/* Hover: lifts a touch, glass gets brighter */
+[data-handle-hover] > .before-after-slider .before-after-handle {
+  scale: 1.1;
+  background-color: rgb(255 255 255 / 0.42);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.9),
+    inset 0 -1px 1px rgb(0 0 0 / 0.06),
+    0 10px 28px rgb(0 0 0 / 0.22),
+    0 2px 6px rgb(0 0 0 / 0.12);
+}
+
+[data-handle-hover] > .before-after-slider .before-after-handle svg {
+  scale: 1.06;
+  fill: rgb(0 0 0 / 0.9);
+}
+
+/* Press: sinks in, shadow tightens; quicker so it feels immediate */
+[data-handle-pressed] > .before-after-slider .before-after-handle {
+  scale: 0.92;
+  background-color: rgb(255 255 255 / 0.5);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.7),
+    inset 0 1px 4px rgb(0 0 0 / 0.08),
+    0 3px 10px rgb(0 0 0 / 0.18),
+    0 1px 2px rgb(0 0 0 / 0.12);
+  transition-duration: 160ms;
+}
+
+[data-handle-pressed] > .before-after-slider .before-after-handle svg {
+  scale: 0.94;
+}
+
+[data-handle-pressed] > .before-after-slider,
+[data-handle-pressed] > .before-after-slider input[type="range"]::-webkit-slider-thumb {
+  cursor: grabbing;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .before-after-frame .before-after-slider .before {
+    transition: none;
+  }
+
+  .before-after-frame .before-after-handle,
+  .before-after-frame .before-after-handle svg {
+    transition-property: background-color, box-shadow, fill;
+  }
+
+  [data-handle-hover] > .before-after-slider .before-after-handle,
+  [data-handle-pressed] > .before-after-slider .before-after-handle,
+  [data-handle-hover] > .before-after-slider .before-after-handle svg,
+  [data-handle-pressed] > .before-after-slider .before-after-handle svg {
+    scale: 1;
+  }
+}
+
+.before-after-frame
+  .before-after-slider
+  input[type="range"]:focus-visible
+  + .before-after-handle {
+  outline: 2px solid var(--color-text-primary);
+  outline-offset: 3px;
+}

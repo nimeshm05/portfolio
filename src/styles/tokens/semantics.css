@@ -18,7 +18,9 @@
   --color-selection-text: var(--color-accent);
   --color-selection-bg: var(--color-lime-50);
   --color-footer: var(--color-accent);
-  --color-callout-text: var(--color-black);
+  /* Callouts sit on a black panel with white text, in both themes */
+  --color-callout-bg: var(--color-black);
+  --color-callout-text: var(--color-white);
   --color-callout-border: var(--color-neutral-300);
   --color-list-marker-bg: var(--color-neutral-150);
   --color-list-marker-text: var(--color-text-primary);
@@ -315,7 +317,8 @@
   --radius-md: var(--radius-6);
   --radius-lg: var(--radius-8);
   --radius-xl: var(--radius-12);
-  --radius-media: var(--radius-xl); /* videos and the backgrounds behind images */
+  --radius-2xl: var(--radius-20);
+  --radius-media: 0; /* videos and the backgrounds behind images */
 
   /* Shadows */
   --shadow-card: var(--shadow-elevation);
@@ -421,7 +424,6 @@
   --color-text-subtle: var(--color-neutral-500);
   --color-text-label: var(--color-neutral-400);
   --color-text-muted: var(--color-neutral-700);
-  --color-callout-text: var(--color-white);
   --color-callout-border: var(--color-neutral-700);
   --color-list-marker-bg: var(--color-neutral-750);
   --color-list-marker-text: var(--color-text-primary);

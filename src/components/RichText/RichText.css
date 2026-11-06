@@ -63,6 +63,8 @@
 
 .rich-text-point-text {
   min-width: 0;
+  /* A "\n" in a point starts a new line, e.g. a takeaway under its insight */
+  white-space: pre-line;
 }
 
 .rich-text strong {

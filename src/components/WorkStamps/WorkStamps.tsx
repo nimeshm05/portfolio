@@ -584,13 +584,19 @@ function StampWash({ seed }: { seed: number }) {
    knocks out fine specks and fades broad patches, so it reads as hand-inked
    rather than vector-perfect. `seed` keeps each stamp's wear different. */
 
-function Postmark({
+export function Postmark({
   label,
   year,
   rotate,
   location,
   seed,
-}: WorkStampData["postmark"] & { location: string; seed: number }) {
+  className,
+}: WorkStampData["postmark"] & {
+  location: string;
+  seed: number;
+  /** Extra class, e.g. to ink it in another surface's colours */
+  className?: string;
+}) {
   const id = useId();
   const top = `${id}-top`;
   const bottom = `${id}-bottom`;
@@ -599,7 +605,9 @@ function Postmark({
 
   return (
     <svg
-      className="work-stamp-postmark"
+      className={
+        className ? `work-stamp-postmark ${className}` : "work-stamp-postmark"
+      }
       viewBox="0 0 100 100"
       style={{ "--work-stamp-postmark-rotate": `${rotate}deg` } as CSSProperties}
       aria-hidden="true"
