@@ -345,24 +345,6 @@
     inset 0 -6px 14px color-mix(in oklch, var(--color-work-stamp-glass-shade) var(--work-stamp-glass-share), transparent);
 }
 
-/* A drop shadow follows the alpha of what casts it, and the glass is only
-   ~40% opaque at the perforated edge, so the stamp's own shadow comes out
-   faint. On touch screens the stamps never tint, so they always rest as
-   glass; an extra, stronger layer keeps them lifted off the page. */
-.work-stamp {
-  --shadow-work-stamp-glass:
-    drop-shadow(0 0.125rem 0.25rem oklch(0 0 0 / 0.1))
-    drop-shadow(0 0.5rem 1rem oklch(0 0 0 / 0.12));
-
-  filter: var(--shadow-work-stamp) var(--shadow-work-stamp-glass) var(--work-stamp-ambient);
-}
-
-[data-theme="dark"] .work-stamp {
-  --shadow-work-stamp-glass:
-    drop-shadow(0 0.125rem 0.25rem oklch(0 0 0 / 0.4))
-    drop-shadow(0 0.5rem 1rem oklch(0 0 0 / 0.45));
-}
-
 /* Paper fibre and ink grain belong to the print, not the glass (scoped so it
    outranks the texture rules further down) */
 :is(.work-stamp, .work-stamp-expanded) .work-stamp-paper::before {
