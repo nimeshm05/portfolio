@@ -4,6 +4,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Caveat, Google_Sans, Inter, Libre_Baskerville, Cardo } from "next/font/google";
 import localFont from "next/font/local";
 import { ClickSound } from "@/components/ClickSound/ClickSound";
+import { DeployWatcher } from "@/components/DeployWatcher/DeployWatcher";
 import { SiteControls } from "@/components/SiteControls/SiteControls";
 import { ThemeProvider } from "@/theme/ThemeProvider";
 import { themeInitScript } from "@/theme/theme";
@@ -88,6 +89,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <ThemeProvider>
           <ClickSound />
           <SiteControls />
+          <DeployWatcher />
           {children}
         </ThemeProvider>
         <Analytics />
