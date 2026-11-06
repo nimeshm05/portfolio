@@ -62,7 +62,7 @@ export const knool2: ProjectPageData = {
       heading: "A self-initiated redesign, from spotting the problem to a working prototype",
       paragraphs: [
         "No one assigned this project. I saw that the case assistant’s first screen wasn’t helping attorneys get started, so I took on the redesign myself and carried it from discovery through prototyping. I began by auditing the existing screen and found 20 clickable elements, a mode choice, and shortcuts that behaved inconsistently. To understand how attorneys actually used it, I analyzed chip-click data across 37 labels in Amplitude and interviewed Knool’s in-house attorneys about how they work through a case.",
-        "With that grounding, I framed the problem and the How Might We, set three criteria for judging ideas (relevant, first result, simple), and explored three concepts against them. The final direction paired stage-based quick actions with a key detail from another concept: prompts fill the composer instead of sending right away, so attorneys stay in control. Finally, I prototyped this direction with Claude Code and refined the styling directly in code to get the small details right.",
+        "With that grounding, I framed the problem and explored three concepts. The final direction paired stage-based quick actions with a key detail from another concept: prompts fill the composer instead of sending right away, so attorneys stay in control. Finally, I prototyped this direction with Claude Code and refined the styling directly in code to get the small details right.",
       ],
     },
     {
