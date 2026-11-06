@@ -153,7 +153,8 @@ export function BeforeAfterSlider({
             style={{ width: "100%", cursor: "ew-resize" }}
             beforeStyle={{ borderRight: 0 }}
             buttonStyle={{
-              backgroundColor: "transparent",
+              // Inline from the library, so the handle's fill is set here, not in CSS
+              backgroundColor: "var(--color-white)",
               width: 48,
               height: 48,
             }}

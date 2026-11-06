@@ -100,24 +100,19 @@
   cursor: grab;
 }
 
-/* Glass handle */
+/* Solid handle: one flat colour in every state (the white fill is set
+   inline through buttonStyle in BeforeAfterSlider.tsx) */
 .before-after-frame .before-after-handle {
   z-index: 2;
   color: var(--color-black);
-  background: rgb(255 255 255 / 0.28);
   box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 0.75),
-    inset 0 -1px 1px rgb(0 0 0 / 0.06),
     0 6px 20px rgb(0 0 0 / 0.18),
     0 1px 3px rgb(0 0 0 / 0.12);
-  -webkit-backdrop-filter: blur(10px) saturate(180%);
-  backdrop-filter: blur(10px) saturate(180%);
   /* "scale" is separate from the library's inline translate(-50%, -50%) */
   scale: 1;
   transition:
     left 140ms cubic-bezier(0.22, 1, 0.36, 1),
     scale 420ms cubic-bezier(0.22, 1, 0.36, 1),
-    background-color 300ms cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 420ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -130,13 +125,10 @@
     fill 300ms ease-out;
 }
 
-/* Hover: lifts a touch, glass gets brighter */
+/* Hover: lifts a touch */
 [data-handle-hover] > .before-after-slider .before-after-handle {
   scale: 1.1;
-  background-color: rgb(255 255 255 / 0.42);
   box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 0.9),
-    inset 0 -1px 1px rgb(0 0 0 / 0.06),
     0 10px 28px rgb(0 0 0 / 0.22),
     0 2px 6px rgb(0 0 0 / 0.12);
 }
@@ -149,10 +141,7 @@
 /* Press: sinks in, shadow tightens; quicker so it feels immediate */
 [data-handle-pressed] > .before-after-slider .before-after-handle {
   scale: 0.92;
-  background-color: rgb(255 255 255 / 0.5);
   box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 0.7),
-    inset 0 1px 4px rgb(0 0 0 / 0.08),
     0 3px 10px rgb(0 0 0 / 0.18),
     0 1px 2px rgb(0 0 0 / 0.12);
   transition-duration: 160ms;
@@ -174,7 +163,7 @@
 
   .before-after-frame .before-after-handle,
   .before-after-frame .before-after-handle svg {
-    transition-property: background-color, box-shadow, fill;
+    transition-property: box-shadow, fill;
   }
 
   [data-handle-hover] > .before-after-slider .before-after-handle,
