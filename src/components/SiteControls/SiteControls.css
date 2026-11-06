@@ -7,6 +7,16 @@
   align-items: center;
   gap: var(--gap-site-controls);
   overflow: visible;
+  transition:
+    opacity 400ms ease-out,
+    filter 400ms ease-out;
+}
+
+/* While the deploy bookmark hangs in the corner, the icons step aside */
+[data-deploy-bookmark] .site-controls {
+  opacity: 0;
+  filter: blur(4px);
+  pointer-events: none;
 }
 
 .project-back-mobile {

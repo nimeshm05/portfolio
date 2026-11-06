@@ -101,6 +101,7 @@
   --padding-site-control: var(--space-8);
   --z-viewport-edge-blur: var(--z-index-1);
   --z-site-controls: var(--z-index-20);
+  --z-deploy-bookmark: var(--z-index-30);
 
   /* Size roles */
   --icon-size: var(--size-icon);
