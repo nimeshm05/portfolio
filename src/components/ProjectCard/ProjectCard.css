@@ -49,7 +49,8 @@
 }
 
 .project-card-chips {
-  display: flex;
+  /* Chips are hidden for now; switch back to `display: flex` to show them */
+  display: none;
   flex-wrap: wrap;
   align-items: center;
   gap: var(--gap-card-chips);
@@ -58,19 +59,71 @@
   list-style: none;
 }
 
+/* Glass chip: the site-control recipe (SiteControls.css) on a small pill:
+   gradient body, a white rim all the way round, a sheen across the top half
+   and a soft, lifted shadow rather than a tight outline */
 .project-card-chip {
+  --chip-glass-top: rgb(255 255 255 / 0.85);
+  --chip-glass-bottom: rgb(255 255 255 / 0.45);
+  --chip-glass-rim: rgb(255 255 255 / 0.9);
+  --chip-glass-hairline: rgb(0 0 0 / 0.05);
+  --chip-glass-inner-glow: rgb(255 255 255 / 0.9);
+  --chip-glass-inner-shade: rgb(0 0 0 / 0.04);
+  --chip-glass-shadow-far: rgb(0 0 0 / 0.08);
+  --chip-glass-shadow-near: rgb(0 0 0 / 0.05);
+  --chip-glass-sheen: rgb(255 255 255 / 0.75);
+
+  position: relative;
+  isolation: isolate;
   display: inline-flex;
   align-items: center;
-  padding: var(--padding-card-chip-block) var(--padding-card-chip-inline);
+  /* 1px off each side for the rim, so the chip keeps its size */
+  padding: calc(var(--padding-card-chip-block) - 1px) calc(var(--padding-card-chip-inline) - 1px);
+  border: 1px solid var(--chip-glass-rim);
   border-radius: var(--radius-card-chip);
-  background: var(--color-card-chip-bg);
+  background: linear-gradient(180deg, var(--chip-glass-top), var(--chip-glass-bottom));
+  box-shadow:
+    0 0 0 0.5px var(--chip-glass-hairline),
+    inset 0 1px 1px var(--chip-glass-inner-glow),
+    inset 0 -2px 5px var(--chip-glass-inner-shade),
+    0 6px 16px var(--chip-glass-shadow-far),
+    0 1px 4px var(--chip-glass-shadow-near);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  backdrop-filter: blur(16px) saturate(180%);
   color: var(--color-card-chip-text);
-  transition: background-color var(--transition-fast);
+  transition:
+    color var(--transition-fast),
+    box-shadow var(--transition-fast);
   font-size: var(--text-card-type-size);
   font-weight: var(--text-body-weight);
   line-height: var(--text-body-line-height-fixed);
   letter-spacing: var(--letter-spacing-body);
   white-space: nowrap;
+}
+
+/* Specular sheen across the top half */
+.project-card-chip::before {
+  content: "";
+  position: absolute;
+  inset: 0 2px 50% 2px;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(180deg, var(--chip-glass-sheen), transparent);
+  opacity: 0.8;
+  pointer-events: none;
+  transition: opacity var(--transition-fast);
+}
+
+[data-theme="dark"] .project-card-chip {
+  --chip-glass-top: rgb(255 255 255 / 0.16);
+  --chip-glass-bottom: rgb(255 255 255 / 0.05);
+  --chip-glass-rim: rgb(255 255 255 / 0.16);
+  --chip-glass-hairline: rgb(0 0 0 / 0.4);
+  --chip-glass-inner-glow: rgb(255 255 255 / 0.22);
+  --chip-glass-inner-shade: rgb(0 0 0 / 0.25);
+  --chip-glass-shadow-far: rgb(0 0 0 / 0.45);
+  --chip-glass-shadow-near: rgb(0 0 0 / 0.3);
+  --chip-glass-sheen: rgb(255 255 255 / 0.14);
 }
 
 /* Mouse and trackpad only: on touch, a tap would flash these */
@@ -79,7 +132,18 @@
     color: var(--color-text-primary);
   }
 
+  /* Hover: the glass catches more light */
   .project-card:hover .project-card-chip {
-    background: var(--color-card-chip-bg-hover);
+    color: var(--color-text-primary);
+    box-shadow:
+      0 0 0 0.5px var(--chip-glass-hairline),
+      inset 0 1px 1px var(--chip-glass-inner-glow),
+      inset 0 -2px 5px var(--chip-glass-inner-shade),
+      0 9px 22px var(--chip-glass-shadow-far),
+      0 2px 6px var(--chip-glass-shadow-near);
+  }
+
+  .project-card:hover .project-card-chip::before {
+    opacity: 1;
   }
 }

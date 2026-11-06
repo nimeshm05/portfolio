@@ -291,6 +291,83 @@
   }
 }
 
+/* ---------- Glass ----------
+   At rest (tint 0) the blank stamp is a pane of frosted glass: a body that is
+   dense in the middle (so the stamps and shadows stacked behind stay hidden)
+   and clears toward the perforated edge, a bright rim and a sheen across the
+   top. As the tint rises the glass fades out and the printed stamp takes over.
+   There is no backdrop blur: the shadow filter on the wrapper and the
+   perforation mask both cut the backdrop off. */
+.work-stamp-paper {
+  --work-stamp-glass-share: calc((1 - var(--work-stamp-tint)) * 100%);
+  /* The glass body lives on the print below; the paper itself stays clear */
+  --color-work-stamp-blank-surface: transparent;
+  --color-work-stamp-glass-core: rgb(255 255 255 / 0.86);
+  --color-work-stamp-glass-edge: rgb(255 255 255 / 0.4);
+  --color-work-stamp-glass-sheen: rgb(255 255 255 / 0.75);
+  --color-work-stamp-glass-rim: rgb(255 255 255 / 0.95);
+  --color-work-stamp-glass-shade: rgb(0 0 0 / 0.05);
+}
+
+/* Smoked glass: a dark body lit by a thin rim, not a grey wash */
+[data-theme="dark"] .work-stamp-paper {
+  --color-work-stamp-blank-ink: var(--color-neutral-200);
+  --color-work-stamp-blank-meta: var(--color-neutral-400);
+  --color-work-stamp-glass-core: oklch(0.23 0 0 / 0.92);
+  --color-work-stamp-glass-edge: oklch(0.23 0 0 / 0.55);
+  --color-work-stamp-glass-sheen: rgb(255 255 255 / 0.09);
+  --color-work-stamp-glass-rim: rgb(255 255 255 / 0.16);
+  --color-work-stamp-glass-shade: rgb(0 0 0 / 0.35);
+}
+
+.work-stamp-print {
+  /* Glass layers fade out with the tint; the muted print fades in under them */
+  background:
+    linear-gradient(
+      170deg,
+      color-mix(in oklch, var(--color-work-stamp-glass-sheen) var(--work-stamp-glass-share), transparent),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 70% 85% at 50% 50%,
+      color-mix(in oklch, var(--color-work-stamp-glass-core) var(--work-stamp-glass-share), transparent) 35%,
+      color-mix(in oklch, var(--color-work-stamp-glass-edge) var(--work-stamp-glass-share), transparent)
+    ),
+    color-mix(
+      in oklch,
+      color-mix(in oklch, var(--color-work-stamp-live-surface) var(--amount-work-stamp-ink), var(--color-work-stamp-paper))
+        var(--work-stamp-tint-share),
+      transparent
+    );
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklch, var(--color-work-stamp-glass-rim) var(--work-stamp-glass-share), transparent),
+    inset 0 0 0 1px color-mix(in oklch, var(--color-work-stamp-glass-rim) calc((1 - var(--work-stamp-tint)) * 60%), transparent),
+    inset 0 -6px 14px color-mix(in oklch, var(--color-work-stamp-glass-shade) var(--work-stamp-glass-share), transparent);
+}
+
+/* Paper fibre and ink grain belong to the print, not the glass (scoped so it
+   outranks the texture rules further down) */
+:is(.work-stamp, .work-stamp-expanded) .work-stamp-paper::before {
+  opacity: calc(var(--opacity-work-stamp-paper-texture) * var(--work-stamp-tint));
+}
+
+:is(.work-stamp, .work-stamp-expanded) .work-stamp-print::before,
+:is(.work-stamp, .work-stamp-expanded) .work-stamp-print::after {
+  opacity: calc(var(--opacity-work-stamp-print-texture) * var(--work-stamp-tint));
+}
+
+/* Through the glass, the stamps stacked behind would show their copy and
+   postmark under the front one's; keep them clear until the row fans out */
+.work-stamp .work-stamp-copy,
+.work-stamp .work-stamp-postmark {
+  transition: opacity var(--transition-fast);
+}
+
+.work-stamp[data-behind] .work-stamp-copy,
+.work-stamp[data-behind] .work-stamp-postmark {
+  opacity: 0;
+}
+
 /* Light on the paper: a soft highlight under the cursor and a diagonal foil
    band that sweeps across as the stamp tilts. Inside the paper, so the
    perforation mask clips it too. */
@@ -531,6 +608,18 @@
   pointer-events: none;
 }
 
+/* On smoked glass a multiplied dark mark vanishes: at rest ink it in the
+   light meta grey instead, easing into the stamp's own shade as it tints */
+[data-theme="dark"] .work-stamp-postmark {
+  color: color-mix(
+    in oklch,
+    color-mix(in oklch, var(--color-work-stamp-live-surface), var(--color-black) var(--amount-work-stamp-postmark-darken))
+      var(--work-stamp-tint-share),
+    var(--color-work-stamp-blank-meta)
+  );
+  mix-blend-mode: normal;
+}
+
 .work-stamp-postmark text {
   font-family: var(--font-family-sans);
   font-weight: var(--font-weight-bold);
@@ -685,13 +774,100 @@
     width: var(--work-stamps-fanned-width);
   }
 
-  .work-stamps:is(:hover, :has(:focus-visible), [data-fanned]) .work-stamp-imprint {
+  /* Fanned out, nothing overlaps, so the stamps behind show their faces again */
+  .work-stamps:is(:hover, :has(:focus-visible), [data-fanned]) .work-stamp-imprint,
+  .work-stamps:is(:hover, :has(:focus-visible), [data-fanned]) .work-stamp-copy {
     opacity: 1;
+  }
+
+  .work-stamps:is(:hover, :has(:focus-visible), [data-fanned]) .work-stamp-postmark {
+    opacity: var(--opacity-work-stamp-postmark);
   }
 
   .work-stamps:is(:hover, :has(:focus-visible), [data-fanned]) .work-stamp {
     transform: translateX(
       calc(var(--work-stamp-index) * (var(--width-work-stamp) + var(--gap-work-stamps)))
+    );
+  }
+}
+
+/* ---------- Face ----------
+   The face (name, role, dates, value, imprint, postmark) shows while the
+   stamps fly in, fades as they land, and comes back with a staggered rise
+   when the row fans out. Each piece has its own --work-stamp-face-step. */
+.work-stamp-name { --work-stamp-face-step: 0; }
+.work-stamp-meta > :nth-child(1) { --work-stamp-face-step: 1; }
+.work-stamp-meta > :nth-child(2) { --work-stamp-face-step: 2; }
+.work-stamp-postmark { --work-stamp-face-step: 2; --work-stamp-face-opacity: var(--opacity-work-stamp-postmark); }
+.work-stamp-value { --work-stamp-face-step: 3; }
+.work-stamp-imprint { --work-stamp-face-step: 4; }
+
+/* In flight the face is up; once the stamp lands it eases to its resting
+   value (no `to` keyframe, so it ends on whatever the stamp shows at rest) */
+@keyframes work-stamp-face-fly {
+  from,
+  80% {
+    opacity: var(--work-stamp-face-opacity, 1);
+    translate: 0 0;
+    filter: none;
+  }
+}
+
+/* .work-stamp-copy is in the list because the stamps behind hide it whole */
+.work-stamp :is(
+    .work-stamp-copy,
+    .work-stamp-name,
+    .work-stamp-meta > *,
+    .work-stamp-value,
+    .work-stamp-imprint,
+    .work-stamp-postmark
+  ) {
+  animation: work-stamp-face-fly calc(var(--duration-work-stamp-fly-in) + 500ms) ease-out backwards;
+  animation-delay: calc(
+    var(--delay-work-stamp-fly-in) +
+      (var(--work-stamp-count) - 1 - var(--work-stamp-index)) * var(--delay-work-stamp-fly-in-stagger)
+  );
+}
+
+/* Where the row fans out, the stamps stacked behind the front one rest as
+   bare glass; the front stamp keeps its face */
+@media (hover: hover) and (min-width: 68.75rem) {
+  .work-stamp[data-behind] :is(
+      .work-stamp-name,
+      .work-stamp-meta > *,
+      .work-stamp-value,
+      .work-stamp-imprint,
+      .work-stamp-postmark
+    ) {
+    opacity: 0;
+    translate: 0 6px;
+    filter: blur(3px);
+    /* Leaving: all at once, quickly */
+    transition:
+      opacity 160ms ease-out,
+      translate 160ms ease-out,
+      filter 160ms ease-out;
+  }
+
+  /* Fanned: each piece rises in, line by line */
+  .work-stamps:is(:hover, :has(:focus-visible), [data-fanned]) .work-stamp :is(
+      .work-stamp-name,
+      .work-stamp-meta > *,
+      .work-stamp-value,
+      .work-stamp-imprint,
+      .work-stamp-postmark
+    ) {
+    opacity: var(--work-stamp-face-opacity, 1);
+    translate: 0 0;
+    filter: blur(0);
+    transition:
+      opacity 420ms cubic-bezier(0.22, 1, 0.36, 1),
+      translate 520ms cubic-bezier(0.22, 1, 0.36, 1),
+      filter 420ms cubic-bezier(0.22, 1, 0.36, 1);
+    /* The second stamp reveals first, the third a beat after it; the front
+       stamp (index 0) already shows its face. Lines within a stamp stagger. */
+    transition-delay: calc(
+      120ms + max(0ms, (var(--work-stamp-index) - 1) * 190ms) + var(--work-stamp-face-step) * 45ms
     );
   }
 }
@@ -718,7 +894,26 @@
     transition: none;
   }
 
-  .work-stamp {
+  .work-stamp,
+  .work-stamp :is(
+      .work-stamp-copy,
+      .work-stamp-name,
+      .work-stamp-meta > *,
+      .work-stamp-value,
+      .work-stamp-imprint,
+      .work-stamp-postmark
+    ) {
     animation: none;
+  }
+
+  .work-stamp :is(
+      .work-stamp-name,
+      .work-stamp-meta > *,
+      .work-stamp-value,
+      .work-stamp-imprint,
+      .work-stamp-postmark
+    ) {
+    translate: none !important;
+    filter: none !important;
   }
 }

@@ -97,7 +97,7 @@
 
   /* Site controls */
   --inset-site-controls: var(--space-24);
-  --gap-site-controls: var(--space-4);
+  --gap-site-controls: var(--space-8);
   --padding-site-control: var(--space-8);
   --z-viewport-edge-blur: var(--z-index-1);
   --z-site-controls: var(--z-index-20);
