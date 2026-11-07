@@ -275,10 +275,10 @@
   /* Photo stamps: photos printed on the work stamps' perforated paper */
   --size-photo-stamp: var(--size-photo-stamp-long-side); /* the longer side; the shorter follows the photo */
   --margin-photo-stamps-top: var(--space-16); /* extra room between the copy and the photos */
-  --padding-photo-stamp: var(--space-12); /* white border, wide enough to take the perforation bites */
-  --padding-photo-stamp-expanded: var(--space-20);
+  --padding-photo-stamp: 0px; /* the photo prints right to the perforated edge, like the work stamps */
+  --padding-photo-stamp-expanded: 0px;
   --gap-photo-stamps: var(--space-12);
-  --radius-photo-stamp-print: var(--radius-xs);
+  --radius-photo-stamp-print: 0px;
   --scale-photo-stamp-hover: var(--scale-104);
   --width-photo-stamp-expanded-max: var(--size-photo-stamp-expanded-max);
 

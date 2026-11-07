@@ -401,7 +401,7 @@
 /* ---------- Wash ----------
    An abstract, watercolour-like ground in the stamp's own palette (see
    StampWash): deep pools, pale washes and a few glows, pushed around by noise
-   and blurred. The halftone screen is printed over it. */
+   and blurred. */
 
 .work-stamp-wash {
   --color-work-stamp-wash-deep: color-mix(
@@ -415,7 +415,7 @@
   z-index: 0;
   overflow: hidden;
   border-radius: inherit;
-  /* The watercolour and halftone only show once the stamp takes its colour */
+  /* The watercolour only shows once the stamp takes its colour */
   opacity: var(--work-stamp-tint);
   pointer-events: none;
 }
@@ -446,32 +446,6 @@
   stroke: var(--color-work-stamp-meta);
   stroke-linecap: round;
   opacity: var(--opacity-work-stamp-wash-vein);
-}
-
-/* Halftone screen: dots in a deeper shade of the stamp colour, laid out on a
-   45° grid (two square grids, the second offset by half a pitch) */
-.work-stamp-wash::after {
-  --color-work-stamp-halftone: color-mix(
-    in oklch,
-    color-mix(in oklch, var(--color-work-stamp-surface), black var(--amount-work-stamp-halftone-darken))
-      var(--amount-work-stamp-halftone-ink),
-    transparent
-  );
-  --work-stamp-halftone-dots: radial-gradient(
-    circle,
-    var(--color-work-stamp-halftone) var(--work-stamp-halftone-dot),
-    transparent calc(var(--work-stamp-halftone-dot) + var(--work-stamp-halftone-soften))
-  );
-
-  position: absolute;
-  inset: 0;
-  background:
-    var(--work-stamp-halftone-dots) 0 0 / var(--work-stamp-halftone-pitch)
-      var(--work-stamp-halftone-pitch),
-    var(--work-stamp-halftone-dots) calc(var(--work-stamp-halftone-pitch) / 2)
-      calc(var(--work-stamp-halftone-pitch) / 2) / var(--work-stamp-halftone-pitch)
-      var(--work-stamp-halftone-pitch);
-  content: "";
 }
 
 .work-stamp-copy {
@@ -527,8 +501,7 @@
 
 /* ---------- Texture ----------
    Paper: faint warm fibres over the white stock.
-   Print: a halftone screen over the wash (see .work-stamp-wash), then a fine
-   ink grain and soft pale patches where the ink thinned, over the artwork
+   Print: the wash (see .work-stamp-wash), then a fine ink grain and soft pale patches where the ink thinned, over the artwork
    (text included, as printed). */
 
 .work-stamp-paper::before {
