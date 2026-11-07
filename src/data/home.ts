@@ -56,9 +56,9 @@ export const profile = {
   bio: [
     [
       "Product designer in Seattle,",
-      "with 2+ years designing B2B software in early stage startups.",
-      "I use thoughtful reduction to bring clarity to the complexity,",
-      "And I prototype in code to turn ideas into reality."
+      "with 2+ years designing software in early stage startups.",
+      "I care about craft. I love minimalism. I design by subtraction.",
+      "I prototype in code to turn ideas into reality."
     ],
     [
       "Currently pursuing MS in Human Centered Design & Engineering,",
