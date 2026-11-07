@@ -130,12 +130,12 @@ export const knool2: ProjectPageData = {
     },
     {
       id: "concept-1",
-      heading: "Document based\nRight for drafting, wrong for everything else",
+      heading: "Document chips\nRight for drafting, wrong for everything else",
       mediaFirst: true,
       media: [
         {
           src: asset("concept-document-based.mp4"),
-          alt: "Document-based concept: document types beneath the composer insert a structured drafting prompt in one click",
+          alt: "Document chips concept: document types beneath the composer insert a structured drafting prompt in one click",
           type: "video",
           aspectRatio: "3324 / 2160",
         },
@@ -147,7 +147,7 @@ export const knool2: ProjectPageData = {
         "**Why I dropped it**\nIt fit one task, not the way attorneys work. The options were the same at every stage of a case, so they were never in context. It also boxed in an agent that can do far more than draft.",
       ],
       callout: "What carried forward\nOne click from a blank screen to a strong prompt.",
-      calloutPostmark: { label: "TAKEAWAY", center: "01", bottom: "DOCUMENT BASED", rotate: 7 },
+      calloutPostmark: { label: "TAKEAWAY", center: "01", bottom: "DOCUMENT CHIPS", rotate: 7 },
     },
     {
       id: "concept-2",
@@ -172,7 +172,7 @@ export const knool2: ProjectPageData = {
     },
     {
       id: "concept-3",
-      heading: "Case stage based\nThe only concept attorneys found no drawback in",
+      heading: "Case stage accordions\nThe only concept attorneys found no drawback in",
       mediaFirst: true,
       media: [
         {
