@@ -113,7 +113,7 @@ export const knool2: ProjectPageData = {
     },
     {
       id: "foundations",
-      heading: "Three routes to a strong first prompt, judged on stage fit, prompt quality and effort",
+      heading: "Three routes to a strong first prompt",
       paragraphs: [
         "Before exploring concepts, I fixed the interface itself, alongside the new visual language for v2.0. To begin with, the greeting is gone. Attorneys open Knool to work, not to say good morning, so the screen asks “What are we working on?” The composer is the main element. Chat history lives in the navigation panel, next to the New Chat button, and everything else is a secondary action under the plus button. Once I’d ranked the actions into primary, secondary and tertiary, this decision was easy.",
       ],
@@ -125,12 +125,12 @@ export const knool2: ProjectPageData = {
         },
       ],
       closingParagraphs: [
-        "I judged each concept against the three insights: does it fit the case stage, does it hand over a strong prompt, and does it add as little effort as possible before the first answer? Each was a working prototype, tested with our in-house attorneys and reviewed by the Head of Product, the CEO and engineering.",
+        "I explored three separate directions and stress-tested each one with two in-house attorneys. I judged them on three things: does it fit the case stage, does it give a strong prompt, and does it reduce effort?",
       ],
     },
     {
       id: "concept-1",
-      heading: "Document chips\nRight for drafting, wrong for everything else",
+      heading: "Document chips\nFast for common drafts, but it doesn’t scale",
       mediaFirst: true,
       media: [
         {
@@ -140,18 +140,21 @@ export const knool2: ProjectPageData = {
           aspectRatio: "3324 / 2160",
         },
       ],
-      list: [
-        "**Why I tried it**\nMost of what attorneys asked v1.0’s chat for was document drafting. Starting from the document turns a blank composer into a ready-made prompt.",
-        "**What I designed**\nDocument types beneath the composer, each inserting a structured drafting prompt in one click. Litigation has 100 to 300+ document types, so I kept only the ones our users actually drafted.",
-        "**What testing showed**\nAttorneys pointed out that drafting is only part of the job. They also use the assistant to analyse cases, and that isn’t a document. Even the trimmed list raised a question we couldn’t answer: where do all the other documents go?",
-        "**Why I dropped it**\nIt fit one task, not the way attorneys work. The options were the same at every stage of a case, so they were never in context. It also boxed in an agent that can do far more than draft.",
+      paragraphs: [
+        "Takeaway: Recognising a document is easier than writing a prompt, but chips can’t cover every document type.",
       ],
-      callout: "What carried forward\nOne click from a blank screen to a strong prompt.",
+      list: [
+        "**Why I tried it**\nMost litigation work in Knool is drafting court documents. Attorneys struggle to write good prompts, but they recognise their documents instantly.",
+        "**What I designed**\nChips under the composer, labelled with the most-drafted document types from Amplitude. One tap inserts a well-structured drafting prompt.",
+        "**What testing showed**\nSome documents, like responses to interrogatories, take several steps, not one prompt. And attorneys work with 100 to 300 document types, far more than a row of chips can hold.",
+        "**Why I dropped it**\nIt worked for the common cases but broke on everything else.",
+      ],
+      callout: "Carried forward\nOne click from a blank screen to a strong prompt.",
       calloutPostmark: { label: "TAKEAWAY", center: "01", bottom: "DOCUMENT CHIPS", rotate: 7 },
     },
     {
       id: "concept-2",
-      heading: "Smart prompt suggestions\nWell liked, but slow and unreliable",
+      heading: "Smart prompt suggestions\nA clean screen, at the cost of speed",
       mediaFirst: true,
       media: [
         {
@@ -161,18 +164,21 @@ export const knool2: ProjectPageData = {
           aspectRatio: "3324 / 2160",
         },
       ],
-      list: [
-        "**Why I tried it**\nAttorneys rarely write strong prompts, and browsing a library takes effort. Instead, they type naturally and AI suggests a better-structured prompt.",
-        "**What I designed**\nAfter a 0.5 to 1 second pause in typing, the draft goes to a model. It reads the text, works out the intent and returns a suggested prompt based on our guidelines.",
-        "**What testing showed**\nEveryone liked the prototype. But every suggestion meant waiting for a model to read, interpret and rewrite before the attorney got anywhere near an answer.",
-        "**Why I dropped it**\nIt added a wait before the first answer, which the third insight warns against. Its output was also probabilistic: sometimes a strong prompt, sometimes not. Our in-house attorneys write good prompts, so testing never surfaced a misread, but new users are exactly the people who would hit one. In legal work, a suggestion that is sometimes wrong costs trust. I explored running it throughout the chat and alongside case stage, but the same unreliability applied everywhere.",
+      paragraphs: [
+        "Takeaway: It followed the attorney’s intent, but put a model call between them and their first answer.",
       ],
-      callout: "What carried forward\nMeet attorneys at the composer, not inside a library.",
+      list: [
+        "**Why I tried it**\nTo help with prompting while keeping the screen completely clean.",
+        "**What I designed**\nThe attorney types in their own words, and a model refines the request against our prepared prompt library.",
+        "**What testing showed**\nTesters liked the idea, but every request had to wait for the refined prompt before running. That added delay and network risk, and the results were inconsistent.",
+        "**Why I dropped it**\nEffort was the real competitor, and this added waiting time at the worst possible moment.",
+      ],
+      callout: "Carried forward\nMeet attorneys at the composer.",
       calloutPostmark: { label: "TAKEAWAY", center: "02", bottom: "SMART PROMPTS", rotate: -6 },
     },
     {
       id: "concept-3",
-      heading: "Case stage accordions\nThe only concept attorneys found no drawback in",
+      heading: "Case stage accordions\nThe only concept with no drawback in testing",
       mediaFirst: true,
       media: [
         {
@@ -182,13 +188,16 @@ export const knool2: ProjectPageData = {
           aspectRatio: "3324 / 2160",
         },
       ],
-      list: [
-        "**Why I tried it**\nAttorneys think in case stages, and what they need changes with each one. Showing only the prompts for the current stage cuts dozens of options to a handful that matter now.",
-        "**What I designed**\nPrompts beneath the composer, filtered to the case’s stage. Our in-house attorneys defined the stages and wrote the prompts, since legal content is their call.",
-        "**What testing showed**\nIt was the only concept nobody found a drawback in. Attorneys recognised their own workflow in it.",
-        "**Why I chose it**\nIt was the only concept that met all three criteria. It fits the stage, hands over a strong prompt written by attorneys, and adds no wait or AI guesswork before the first answer, because the prompts are fixed, not generated.",
+      paragraphs: [
+        "Takeaway: Matching prompts to the case stage narrows hundreds of possibilities to the few that matter now.",
       ],
-      callout: "The catch\nEngineering asked the question that reshaped the design: where does the case stage come from?",
+      list: [
+        "**Why I tried it**\nAttorneys think in case stages, and what they need changes with each one.",
+        "**What I designed**\nPrompts for the case’s current stage, grouped in accordions by task and written by our in-house attorneys. “Use prompt” inserts the prompt into the composer, where the attorney can edit it before sending.",
+        "**What testing showed**\nIt was the only concept that met all three criteria: it fit the stage, gave a strong prompt, and added no wait.",
+        "**Why I chose it, and the catch**\nIt depended on knowing each case’s stage, which Knool didn’t store. Solving that shaped the final design.",
+      ],
+      callout: "The catch\nEngineering pushed back with the question that reshaped the design: where does the case stage come from? Answering it turned this concept into the final solution.",
       calloutPostmark: { label: "THE CATCH", center: "03", bottom: "CASE STAGE", rotate: 9 },
     },
     {
