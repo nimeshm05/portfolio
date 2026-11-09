@@ -151,9 +151,9 @@
 }
 
 /* ---------- Page steps aside while media is open ----------
-   The sidebar slides left, the corner icons right, and the content grows
-   out from the middle of the viewport; all of it returns as the media
-   shrinks. Uses the individual translate / scale properties so it adds to
+   Everything moves radially away from the middle of the viewport: the
+   content grows around it and the sidebar and corner icons drift outward;
+   all of it returns as the media shrinks. Uses the individual translate / scale properties so it adds to
    any transform the elements already have. */
 
 :root :is(.project-sidebar, .project-back-mobile, .site-controls, .project-body) {
@@ -164,16 +164,12 @@
 
 :root .project-body {
   /* Set to the viewport's middle when opening (see ExpandableMedia) */
-  transform-origin: 50% var(--media-push-origin-y, 50%);
+  transform-origin: var(--media-push-origin-x, 50%) var(--media-push-origin-y, 50%);
 }
 
-[data-media-expanded] .project-sidebar,
-[data-media-expanded] .project-back-mobile {
-  translate: calc(-1 * var(--distance-media-push)) 0;
-}
-
-[data-media-expanded] .site-controls {
-  translate: var(--distance-media-push) 0;
+/* Offsets are set per element when opening (see pushPageAside) */
+[data-media-expanded] :is(.project-sidebar, .project-back-mobile, .site-controls) {
+  translate: var(--media-push-x, 0) var(--media-push-y, 0);
 }
 
 [data-media-expanded] .project-body {

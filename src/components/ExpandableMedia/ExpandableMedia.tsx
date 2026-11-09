@@ -24,16 +24,48 @@ type Rect = { left: number; top: number; width: number; height: number };
 /** Set on <html> while media is open, so the page around it steps aside */
 const PUSH_ATTRIBUTE = "data-media-expanded";
 
+/** Page chrome that drifts outward while media is open */
+const CHROME_SELECTORS = [
+  ".project-sidebar",
+  ".project-back-mobile",
+  ".site-controls",
+];
+
+/**
+ * Everything moves away from the middle of the viewport, as if the page were
+ * pushed past the viewer: the content grows around the centre, and each piece
+ * of fixed chrome drifts outward along the line from the centre through it,
+ * further the further out it sits.
+ */
 function pushPageAside() {
+  const centerX = window.innerWidth / 2;
+  const centerY = window.innerHeight / 2;
+
   // Grow the content from the middle of the viewport, wherever it's scrolled
   const body = document.querySelector<HTMLElement>(".project-body");
   if (body) {
-    const top = body.getBoundingClientRect().top;
-    body.style.setProperty(
-      "--media-push-origin-y",
-      `${window.innerHeight / 2 - top}px`,
-    );
+    const rect = body.getBoundingClientRect();
+    body.style.setProperty("--media-push-origin-x", `${centerX - rect.left}px`);
+    body.style.setProperty("--media-push-origin-y", `${centerY - rect.top}px`);
   }
+
+  const factor =
+    parseFloat(
+      getComputedStyle(document.documentElement).getPropertyValue(
+        "--factor-media-push-chrome",
+      ),
+    ) || 0;
+  for (const element of document.querySelectorAll<HTMLElement>(
+    CHROME_SELECTORS.join(","),
+  )) {
+    const rect = element.getBoundingClientRect();
+    if (!rect.width) continue;
+    const dx = rect.left + rect.width / 2 - centerX;
+    const dy = rect.top + rect.height / 2 - centerY;
+    element.style.setProperty("--media-push-x", `${dx * factor}px`);
+    element.style.setProperty("--media-push-y", `${dy * factor}px`);
+  }
+
   document.documentElement.setAttribute(PUSH_ATTRIBUTE, "");
 }
 
@@ -51,8 +83,7 @@ function restingRect(element: HTMLElement): Rect {
   const body = element.closest<HTMLElement>(".project-body");
   const scale = body ? parseFloat(getComputedStyle(body).scale) : NaN;
   if (!body || !Number.isFinite(scale) || scale === 1) return toRect(rect);
-  const bodyRect = body.getBoundingClientRect();
-  const originX = bodyRect.left + bodyRect.width / 2;
+  const originX = window.innerWidth / 2;
   const originY = window.innerHeight / 2;
   return {
     left: originX + (rect.left - originX) / scale,

@@ -278,7 +278,7 @@
   --color-media-expand-button-bg: var(--color-black); /* black in both themes */
   --color-media-expand-button-icon: var(--color-white);
   --z-media-expanded: var(--z-work-stamp-expanded);
-  --distance-media-push: var(--space-24); /* how far the page chrome steps aside while media is open */
+  --factor-media-push-chrome: 0.08; /* sidebar and corner icons move outward by this share of their distance from the viewport's centre */
   --scale-media-push: 1.04; /* the page content grows a touch, as if moving past the viewer */
   --transition-media-push-open: 600ms cubic-bezier(0.22, 1, 0.36, 1);
   --transition-media-push-close: 450ms cubic-bezier(0.22, 1, 0.36, 1);
