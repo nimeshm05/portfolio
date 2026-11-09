@@ -1,0 +1,195 @@
+.expandable-media {
+  position: relative;
+}
+
+/* The inline media steps out of view while its open copy is on screen */
+.expandable-media[data-lifted] > :not(.expandable-media-button) {
+  visibility: hidden;
+}
+
+/* ---------- Round expand / shrink button ---------- */
+
+.expandable-media-button {
+  position: absolute;
+  top: var(--inset-media-expand-button);
+  right: var(--inset-media-expand-button);
+  z-index: 4;
+  display: grid;
+  place-items: center;
+  width: var(--size-media-expand-button);
+  height: var(--size-media-expand-button);
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--color-media-expand-button-bg);
+  color: var(--color-media-expand-button-icon);
+  box-shadow:
+    0 6px 18px rgb(0 0 0 / 0.22),
+    0 1px 3px rgb(0 0 0 / 0.14);
+  cursor: pointer;
+  opacity: 0;
+  transform: scale(0.9);
+  filter: blur(4px);
+  transition:
+    opacity 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 360ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 260ms cubic-bezier(0.22, 1, 0.36, 1);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.expandable-media-button svg {
+  width: 1rem;
+  height: 1rem;
+  stroke-width: 2.25;
+}
+
+/* Shown only while the media is hovered (or the button has keyboard focus) */
+.expandable-media:hover > .expandable-media-button,
+.expandable-media-expanded:hover > .expandable-media-button,
+.expandable-media-button:focus-visible {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+.expandable-media-button:active {
+  transform: scale(0.94);
+  transition-duration: 120ms;
+}
+
+.expandable-media-button:focus-visible {
+  outline: 2px solid var(--color-media-expand-button-icon);
+  outline-offset: 2px;
+}
+
+.expandable-media[data-lifted] > .expandable-media-button {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Touch screens have no hover, so the button stays visible there */
+@media (hover: none) {
+  .expandable-media-button {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+/* ---------- Open view ---------- */
+
+.expandable-media-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-media-expanded);
+  background: var(--color-work-stamp-backdrop);
+  -webkit-backdrop-filter: blur(var(--blur-work-stamp-backdrop));
+  backdrop-filter: blur(var(--blur-work-stamp-backdrop));
+  cursor: zoom-out;
+}
+
+/* A full-screen blur is costly on phone GPUs while the media animates over it */
+@media (hover: none) {
+  .expandable-media-backdrop {
+    background: var(--color-work-stamp-backdrop-touch);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+.expandable-media-expanded {
+  position: fixed;
+  z-index: var(--z-media-expanded);
+  filter: var(--shadow-work-stamp-expanded);
+  outline: none;
+}
+
+/* The playing video sits over the still frame and fades in once it runs */
+.expandable-media-expanded-content > .expandable-media-frame {
+  position: absolute;
+  inset: 0;
+}
+
+.expandable-media-expanded-content > video {
+  position: relative;
+  opacity: 0;
+  transition: opacity 150ms linear;
+}
+
+.expandable-media-expanded-content > video[data-playing] {
+  opacity: 1;
+}
+
+/* Invisible until its media can paint, so the swap from the inline media is seamless */
+.expandable-media-expanded:not([data-ready]) {
+  opacity: 0;
+}
+
+.expandable-media-expanded-content {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: var(--radius-media);
+  corner-shape: squircle;
+}
+
+.expandable-media-expanded-content > img,
+.expandable-media-expanded-content > video,
+.expandable-media-expanded-content > .expandable-media-frame {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .expandable-media-button {
+    filter: none;
+    transform: none;
+    transition: opacity 150ms linear;
+  }
+}
+
+/* ---------- Page steps aside while media is open ----------
+   The sidebar slides left, the corner icons right, and the content grows
+   out from the middle of the viewport; all of it returns as the media
+   shrinks. Uses the individual translate / scale properties so it adds to
+   any transform the elements already have. */
+
+:root :is(.project-sidebar, .project-back-mobile, .site-controls, .project-body) {
+  transition-property: translate, scale, opacity, filter;
+  transition-duration: 450ms, 450ms, 400ms, 400ms;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1), cubic-bezier(0.22, 1, 0.36, 1), ease-out, ease-out;
+}
+
+:root .project-body {
+  /* Set to the viewport's middle when opening (see ExpandableMedia) */
+  transform-origin: 50% var(--media-push-origin-y, 50%);
+}
+
+[data-media-expanded] .project-sidebar,
+[data-media-expanded] .project-back-mobile {
+  translate: calc(-1 * var(--distance-media-push)) 0;
+}
+
+[data-media-expanded] .site-controls {
+  translate: var(--distance-media-push) 0;
+}
+
+[data-media-expanded] .project-body {
+  scale: var(--scale-media-push);
+}
+
+[data-media-expanded] :is(.project-sidebar, .project-back-mobile, .site-controls, .project-body) {
+  transition-duration: 600ms, 600ms, 400ms, 400ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-media-expanded] .project-sidebar,
+  [data-media-expanded] .project-back-mobile,
+  [data-media-expanded] .site-controls,
+  [data-media-expanded] .project-body {
+    translate: none;
+    scale: none;
+  }
+}

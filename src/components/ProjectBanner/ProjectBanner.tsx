@@ -1,3 +1,4 @@
+import { ExpandableMedia } from "@/components/ExpandableMedia/ExpandableMedia";
 import { LazyBannerVideo } from "./LazyBannerVideo";
 import "./ProjectBanner.css";
 
@@ -27,6 +28,20 @@ export function ProjectBanner({
   const isHeroMedia = variant === "page";
   const imageLoading = isHeroMedia ? "eager" : "lazy";
 
+  const media =
+    type === "video" ? (
+      <LazyBannerVideo
+        src={src}
+        largeSrc={largeSrc}
+        alt={alt}
+        eager={isHeroMedia}
+        aspectRatio={aspectRatio}
+      />
+    ) : (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img src={src} alt={alt} loading={imageLoading} decoding="async" />
+    );
+
   return (
     <div
       className={`project-banner${
@@ -36,18 +51,7 @@ export function ProjectBanner({
       }`}
     >
       <div className="project-banner-media">
-        {type === "video" ? (
-          <LazyBannerVideo
-            src={src}
-            largeSrc={largeSrc}
-            alt={alt}
-            eager={isHeroMedia}
-            aspectRatio={aspectRatio}
-          />
-        ) : (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={src} alt={alt} loading={imageLoading} decoding="async" />
-        )}
+        {isCard ? media : <ExpandableMedia label={alt}>{media}</ExpandableMedia>}
       </div>
     </div>
   );

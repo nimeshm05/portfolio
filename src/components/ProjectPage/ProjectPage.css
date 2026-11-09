@@ -135,8 +135,8 @@
   border-radius: inherit;
 }
 
-.project-section-media > img,
-.project-section-media > video {
+.project-section-media > .expandable-media > img,
+.project-section-media > .expandable-media > video {
   display: block;
   width: 100%;
   max-width: 100%;

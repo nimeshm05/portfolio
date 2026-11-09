@@ -161,3 +161,9 @@
   outline: 2px solid var(--color-text-primary);
   outline-offset: 3px;
 }
+
+/* The slider inside the open view fills it */
+.before-after-frame--expanded {
+  width: 100%;
+  height: 100%;
+}

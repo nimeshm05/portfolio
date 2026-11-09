@@ -272,6 +272,17 @@
   --blur-work-stamp-backdrop: var(--blur-4);
   --z-work-stamp-expanded: var(--z-index-30);
 
+  /* Expandable case-study media (ExpandableMedia) */
+  --size-media-expand-button: 2.25rem;
+  --inset-media-expand-button: var(--space-12);
+  --color-media-expand-button-bg: var(--color-black); /* black in both themes */
+  --color-media-expand-button-icon: var(--color-white);
+  --z-media-expanded: var(--z-work-stamp-expanded);
+  --distance-media-push: var(--space-24); /* how far the page chrome steps aside while media is open */
+  --scale-media-push: 1.04; /* the page content grows a touch, as if moving past the viewer */
+  --transition-media-push-open: 600ms cubic-bezier(0.22, 1, 0.36, 1);
+  --transition-media-push-close: 450ms cubic-bezier(0.22, 1, 0.36, 1);
+
   /* Photo stamps: photos printed on the work stamps' perforated paper */
   --size-photo-stamp: var(--size-photo-stamp-long-side); /* the longer side; the shorter follows the photo */
   --margin-photo-stamps-top: var(--space-16); /* extra room between the copy and the photos */

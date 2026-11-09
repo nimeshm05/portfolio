@@ -3,6 +3,7 @@ import { ArchitectureWorkflow } from "@/components/ArchitectureWorkflow/Architec
 import { Callout } from "@/components/Callout/Callout";
 import { ContentTable } from "@/components/ContentTable/ContentTable";
 import { DataAttributeCards } from "@/components/DataAttributeCards/DataAttributeCards";
+import { ExpandableMedia } from "@/components/ExpandableMedia/ExpandableMedia";
 import { InViewVideo } from "@/components/InViewVideo/InViewVideo";
 import { ListItem } from "@/components/ListItem/ListItem";
 import {
@@ -81,7 +82,13 @@ function SectionMedia({
 
   return (
     <div className={sectionMediaClassName(contained)}>
-      {framed ? <div className="project-section-media-frame">{media}</div> : media}
+      {framed ? (
+        <div className="project-section-media-frame">
+          <ExpandableMedia label={alt}>{media}</ExpandableMedia>
+        </div>
+      ) : (
+        <ExpandableMedia label={alt}>{media}</ExpandableMedia>
+      )}
     </div>
   );
 }

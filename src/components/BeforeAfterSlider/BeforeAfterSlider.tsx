@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion, type Variants } from "motion/react";
 import { BeforeAfter } from "react-simple-before-after";
 import type { BeforeAfterMedia } from "@/data/projects/types";
+import { ExpandableMedia } from "@/components/ExpandableMedia/ExpandableMedia";
 import "@/components/ProjectBanner/ProjectBanner.css";
 import "./BeforeAfterSlider.css";
 
@@ -62,7 +63,6 @@ export function BeforeAfterSlider({
   after,
   idleCaption,
 }: BeforeAfterSliderProps) {
-  const rootRef = useRef<HTMLDivElement>(null);
   const [captionKey, setCaptionKey] = useState<CaptionKey>("idle");
   const reduceMotion = useReducedMotion();
 
@@ -73,6 +73,78 @@ export function BeforeAfterSlider({
   };
   const active = captions[captionKey];
 
+  return (
+    <div className="before-after">
+      <div className="project-banner before-after-frame">
+        <div className="project-banner-media">
+          <ExpandableMedia
+            label="Compare before and after"
+            renderExpanded={() => (
+              // Its own slider, so the open view can be dragged too
+              <div className="before-after-frame before-after-frame--expanded">
+                <CompareSlider before={before} after={after} />
+              </div>
+            )}
+          >
+            <CompareSlider
+              before={before}
+              after={after}
+              onChange={(value) => setCaptionKey(getCaptionKey(value))}
+            />
+          </ExpandableMedia>
+        </div>
+      </div>
+      <div className="before-after-caption" aria-live="polite">
+        {/* Every caption sits in the same cell, invisibly, so the longest one
+            sets the height and swapping never shifts the content below */}
+        {(Object.keys(captions) as CaptionKey[]).map((key) => (
+          <p key={key} className="before-after-caption-line is-sizer" aria-hidden="true">
+            {toWords(captions[key]).map((word, index) => (
+              <span key={index} className="before-after-caption-word">
+                {word.text}
+              </span>
+            ))}
+          </p>
+        ))}
+        <AnimatePresence initial={false}>
+          <motion.p
+            key={captionKey}
+            className="before-after-caption-line"
+            variants={captionVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+          >
+            {toWords(active).map((word, index) => (
+              <motion.span
+                key={index}
+                className={
+                  word.label
+                    ? "before-after-caption-word before-after-caption-label"
+                    : "before-after-caption-word"
+                }
+                variants={reduceMotion ? reducedWordVariants : wordVariants}
+              >
+                {word.text}
+              </motion.span>
+            ))}
+          </motion.p>
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+}
+
+function CompareSlider({
+  before,
+  after,
+  onChange,
+}: {
+  before: BeforeAfterMedia["before"];
+  after: BeforeAfterMedia["after"];
+  onChange?: (value: number) => void;
+}) {
+  const rootRef = useRef<HTMLDivElement>(null);
   // The library hard-codes its image alts and leaves the range unlabelled
   useEffect(() => {
     const root = rootRef.current;
@@ -139,66 +211,22 @@ export function BeforeAfterSlider({
   }, []);
 
   return (
-    <div className="before-after">
-      <div className="project-banner before-after-frame">
-        <div ref={rootRef} className="project-banner-media">
-          <BeforeAfter
-            beforeImage={before.src}
-            afterImage={after.src}
-            className="before-after-slider"
-            buttonClassName="before-after-handle"
-            onChange={(event) =>
-              setCaptionKey(getCaptionKey(Number(event.target.value)))
-            }
-            style={{ width: "100%", cursor: "ew-resize" }}
-            beforeStyle={{ borderRight: 0 }}
-            buttonStyle={{
-              // Inline from the library, so the handle's fill is set here, not in CSS
-              backgroundColor: "var(--color-white)",
-              width: 48,
-              height: 48,
-            }}
-          />
-        </div>
-      </div>
-
-      <div className="before-after-caption" aria-live="polite">
-        {/* Every caption sits in the same cell, invisibly, so the longest one
-            sets the height and swapping never shifts the content below */}
-        {(Object.keys(captions) as CaptionKey[]).map((key) => (
-          <p key={key} className="before-after-caption-line is-sizer" aria-hidden="true">
-            {toWords(captions[key]).map((word, index) => (
-              <span key={index} className="before-after-caption-word">
-                {word.text}
-              </span>
-            ))}
-          </p>
-        ))}
-        <AnimatePresence initial={false}>
-          <motion.p
-            key={captionKey}
-            className="before-after-caption-line"
-            variants={captionVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-          >
-            {toWords(active).map((word, index) => (
-              <motion.span
-                key={index}
-                className={
-                  word.label
-                    ? "before-after-caption-word before-after-caption-label"
-                    : "before-after-caption-word"
-                }
-                variants={reduceMotion ? reducedWordVariants : wordVariants}
-              >
-                {word.text}
-              </motion.span>
-            ))}
-          </motion.p>
-        </AnimatePresence>
-      </div>
+    <div ref={rootRef} className="before-after-root">
+      <BeforeAfter
+        beforeImage={before.src}
+        afterImage={after.src}
+        className="before-after-slider"
+        buttonClassName="before-after-handle"
+        onChange={(event) => onChange?.(Number(event.target.value))}
+        style={{ width: "100%", cursor: "ew-resize" }}
+        beforeStyle={{ borderRight: 0 }}
+        buttonStyle={{
+          // Inline from the library, so the handle's fill is set here, not in CSS
+          backgroundColor: "var(--color-white)",
+          width: 48,
+          height: 48,
+        }}
+      />
     </div>
   );
 }
