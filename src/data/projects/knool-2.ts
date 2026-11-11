@@ -5,7 +5,7 @@ const asset = (path: string) =>
 
 export const knool2: ProjectPageData = {
   slug: "knool-2",
-  title: "Rethinking Knool's New Chat Experience",
+  title: "Rethinking Knool 2.0 Case Assistant",
   subtitle:
     "Turning a 20-option empty state into stage-aware prompts that show attorneys what the assistant can do for their case, right when they start a chat.",
   projectType: "Product Design",
