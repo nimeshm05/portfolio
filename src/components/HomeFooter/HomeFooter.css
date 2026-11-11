@@ -57,8 +57,12 @@
   letter-spacing: var(--text-footer-letter-spacing);
 }
 
+/* A short handwritten measure: long lines wrap, balanced so no line is left
+   with a lone word */
 .home-footer-line {
   display: block;
+  max-width: min(100%, 26rem);
+  text-wrap: balance;
 }
 
 .home-footer-word {
