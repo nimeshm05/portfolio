@@ -19,19 +19,24 @@
   pointer-events: none;
 }
 
-/* Glass recipe shared by the icon buttons and the mobile back pill:
-   gradient body, bright rim, top sheen, soft lift */
+/* Liquid glass shared by the icon buttons and the mobile back button,
+   modelled on iOS: a thin, see-through body that blurs and saturates what
+   sits behind it, a bright rim and top sheen, and on press it swells and
+   lights up from the touch point, then springs back on release */
 .site-control,
 .project-back-mobile {
-  --glass-top: rgb(255 255 255 / 0.85);
-  --glass-bottom: rgb(255 255 255 / 0.45);
-  --glass-rim: rgb(255 255 255 / 0.9);
+  --glass-top: rgb(255 255 255 / 0.62);
+  --glass-bottom: rgb(255 255 255 / 0.28);
+  --glass-rim: rgb(255 255 255 / 0.85);
   --glass-hairline: rgb(0 0 0 / 0.06);
-  --glass-inner-glow: rgb(255 255 255 / 0.9);
+  --glass-inner-glow: rgb(255 255 255 / 0.95);
   --glass-inner-shade: rgb(0 0 0 / 0.04);
   --glass-shadow-far: rgb(0 0 0 / 0.08);
   --glass-shadow-near: rgb(0 0 0 / 0.06);
-  --glass-sheen: rgb(255 255 255 / 0.75);
+  --glass-sheen: rgb(255 255 255 / 0.7);
+  --glass-bloom: rgb(255 255 255 / 0.75);
+  /* Overshoots past 1, so release settles with a small bounce */
+  --glass-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 
   position: relative;
   isolation: isolate;
@@ -45,26 +50,31 @@
     inset 0 -3px 8px var(--glass-inner-shade),
     0 10px 28px var(--glass-shadow-far),
     0 2px 6px var(--glass-shadow-near);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(200%) brightness(1.04);
+  backdrop-filter: blur(14px) saturate(200%) brightness(1.04);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
   scale: 1;
   transition:
     color var(--transition-fast),
-    scale 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    scale 560ms var(--glass-spring),
     box-shadow 420ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 [data-theme="dark"] .site-control,
 [data-theme="dark"] .project-back-mobile {
-  --glass-top: rgb(255 255 255 / 0.16);
-  --glass-bottom: rgb(255 255 255 / 0.05);
+  --glass-top: rgb(255 255 255 / 0.14);
+  --glass-bottom: rgb(255 255 255 / 0.04);
   --glass-rim: rgb(255 255 255 / 0.16);
   --glass-hairline: rgb(0 0 0 / 0.4);
-  --glass-inner-glow: rgb(255 255 255 / 0.22);
+  --glass-inner-glow: rgb(255 255 255 / 0.24);
   --glass-inner-shade: rgb(0 0 0 / 0.25);
   --glass-shadow-far: rgb(0 0 0 / 0.45);
   --glass-shadow-near: rgb(0 0 0 / 0.3);
   --glass-sheen: rgb(255 255 255 / 0.14);
+  --glass-bloom: rgb(255 255 255 / 0.22);
 }
 
 /* Specular sheen across the top half */
@@ -79,6 +89,24 @@
   opacity: 0.8;
   pointer-events: none;
   transition: opacity 300ms ease-out;
+}
+
+/* Light bloom that fills the glass while it is pressed */
+.site-control::after,
+.project-back-mobile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at 50% 40%,
+    var(--glass-bloom),
+    transparent 72%
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 420ms ease-out;
 }
 
 @media (hover: hover) {
@@ -99,16 +127,31 @@
   }
 }
 
+/* Press: the glass swells under the finger and lights up, quickly */
 .site-control:active,
 .project-back-mobile:active {
-  scale: 0.94;
+  scale: 1.16;
   box-shadow:
     0 0 0 0.5px var(--glass-hairline),
     inset 0 1px 1px var(--glass-inner-glow),
-    inset 0 2px 6px var(--glass-inner-shade),
-    0 4px 12px var(--glass-shadow-far),
-    0 1px 3px var(--glass-shadow-near);
-  transition-duration: 160ms;
+    inset 0 -3px 8px var(--glass-inner-shade),
+    0 16px 36px var(--glass-shadow-far),
+    0 4px 10px var(--glass-shadow-near);
+  transition:
+    color var(--transition-fast),
+    scale 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site-control:active::before,
+.project-back-mobile:active::before {
+  opacity: 1;
+}
+
+.site-control:active::after,
+.project-back-mobile:active::after {
+  opacity: 1;
+  transition-duration: 120ms;
 }
 
 @media (prefers-reduced-motion: reduce) {
