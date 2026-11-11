@@ -7,14 +7,20 @@ import {
 } from "react";
 import type { BioParagraph } from "@/data/home";
 import { JellyAvatar } from "@/components/JellyAvatar/JellyAvatar";
+import { CartoonAvatar } from "@/components/CartoonAvatar/CartoonAvatar";
 import { PageEnterItem } from "@/components/PageEnter/PageEnter";
 import "./Header.css";
+
+/** The jelly photo is kept but hidden for now; flip to bring it back. */
+const SHOW_JELLY_AVATAR = false;
 
 type HeaderProps = {
   name: string;
   bio: readonly BioParagraph[];
   avatarSrc: string;
   avatarAlt: string;
+  /** Illustrated portrait, shown while the jelly is hidden */
+  cartoonAvatarSrc: string;
   children?: ReactNode;
   /** Rendered directly below the bio, e.g. the work stamps */
   afterBio?: ReactNode;
@@ -26,6 +32,7 @@ export function Header({
   bio,
   avatarSrc,
   avatarAlt,
+  cartoonAvatarSrc,
   children,
   afterBio,
   bottom,
@@ -36,7 +43,11 @@ export function Header({
         <div className="site-header-profile-content">
           {/* not part of the text stagger: the jelly drops in on its own once the text has entered */}
           <div className="site-header-avatar-enter">
-            <JellyAvatar src={avatarSrc} alt={avatarAlt} />
+            {SHOW_JELLY_AVATAR ? (
+              <JellyAvatar src={avatarSrc} alt={avatarAlt} />
+            ) : (
+              <CartoonAvatar src={cartoonAvatarSrc} alt={avatarAlt} />
+            )}
           </div>
           <div className="site-header-details">
             <div className="site-header-info">

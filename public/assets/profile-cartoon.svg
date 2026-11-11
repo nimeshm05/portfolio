@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 24 320 320">
+  <defs>
+    <!-- film grain for the background; frequency is tuned for the 72px render -->
+    <filter id="grain" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.55" numOctaves="2" seed="7" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncR type="linear" slope="1.6" intercept="-0.3"/>
+        <feFuncG type="linear" slope="1.6" intercept="-0.3"/>
+        <feFuncB type="linear" slope="1.6" intercept="-0.3"/>
+        <feFuncA type="table" tableValues="0.45 0.45"/>
+      </feComponentTransfer>
+    </filter>
+  </defs>
+  <g stroke="#17171c" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="-40" y="-40" width="480" height="500" fill="#34C759" stroke="none"/>
+    <rect x="-40" y="-40" width="480" height="500" filter="url(#grain)" stroke="none" style="mix-blend-mode: overlay"/>
+
+    <!-- shirt -->
+    <path d="M40 450 C48 362 100 334 156 324 L244 324 C300 334 352 362 360 450 Z" fill="#F2F2F2"/>
+    <!-- neck -->
+    <path d="M170 272 L170 330 C184 348 216 348 230 330 L230 272 Z" fill="#D29A74"/>
+    <path d="M170 284 C186 296 214 296 230 284 L230 272 L170 272 Z" fill="#C2865F" stroke="none"/>
+    <path d="M168 328 C182 350 218 350 232 328" fill="none"/>
+
+    <!-- ears -->
+    <path d="M120 194 C98 182 88 210 96 232 C102 248 118 252 128 244 Z" fill="#E3AC86"/>
+    <path d="M280 194 C302 182 312 210 304 232 C298 248 282 252 272 244 Z" fill="#E3AC86"/>
+    <path d="M114 206 C106 210 106 224 114 232 M286 206 C294 210 294 224 286 232" fill="none" stroke-width="4"/>
+
+    <!-- face -->
+    <path d="M120 168 C118 118 152 94 200 94 C248 94 282 118 280 168 C280 212 274 244 258 268 C240 294 222 304 200 304 C178 304 160 294 142 268 C126 244 120 212 120 168 Z" fill="#EBB892"/>
+    <!-- soft shading on the right cheek and a hint of stubble -->
+    <path d="M268 178 C274 226 264 262 232 292 C254 262 260 226 254 188 Z" fill="#D9A07A" stroke="none"/>
+    <path d="M152 260 C170 296 230 296 248 260 C244 290 222 302 200 302 C178 302 156 290 152 260 Z" fill="#C98E69" stroke="none" opacity="0.35"/>
+
+    <!-- hair -->
+    <path d="M114 186 C102 144 110 102 136 82 C142 62 166 50 184 58 C196 44 220 44 230 56 C246 48 266 58 268 74 C290 82 302 112 292 146 C294 164 290 176 284 188 C282 166 276 148 268 138 C258 146 244 146 234 138 C228 148 214 152 202 144 C190 152 170 152 162 140 C150 150 136 148 132 140 C124 152 118 168 114 186 Z" fill="#1E1A19"/>
+    <path d="M152 106 C166 98 180 100 190 108 M212 102 C228 94 246 98 256 108" fill="none" stroke="#45403C" stroke-width="5"/>
+
+    <!-- sunglasses on head -->
+    <path d="M134 82 C150 68 184 70 190 84 C192 96 176 104 158 102 C142 100 132 92 134 82 Z" fill="#26323D"/>
+    <path d="M210 84 C216 70 250 68 266 82 C268 92 258 100 242 102 C224 104 208 96 210 84 Z" fill="#26323D"/>
+    <path d="M190 84 C196 78 204 78 210 84" fill="none"/>
+    <path d="M146 80 C154 76 164 76 170 78" fill="none" stroke="#6E8291" stroke-width="4"/>
+    <path d="M226 78 C234 76 244 76 252 80" fill="none" stroke="#6E8291" stroke-width="4"/>
+
+    <!-- brows: tapered, slightly raised -->
+    <path d="M148 166 C156 158 170 155 184 160 C172 160 160 162 150 170 Z" fill="#17171c" stroke-width="4"/>
+    <path d="M252 166 C244 158 230 155 216 160 C228 160 240 162 250 170 Z" fill="#17171c" stroke-width="4"/>
+
+    <!-- smiling eyes with a little lash flick -->
+    <path d="M154 192 C160 182 176 182 182 192" fill="none" stroke-width="6"/>
+    <path d="M218 192 C224 182 240 182 246 192" fill="none" stroke-width="6"/>
+    <path d="M182 192 L187 189 M218 192 L213 189" fill="none" stroke-width="4"/>
+
+    <!-- blush -->
+    <ellipse cx="160" cy="222" rx="15" ry="8" fill="#F08C80" stroke="none" opacity="0.45"/>
+    <ellipse cx="240" cy="222" rx="15" ry="8" fill="#F08C80" stroke="none" opacity="0.45"/>
+
+    <!-- nose -->
+    <path d="M204 204 C204 214 200 222 194 226 C198 230 206 230 210 226" fill="none" stroke-width="5"/>
+
+    <!-- grin -->
+    <path d="M168 246 C184 251 216 251 232 246 C230 268 216 280 200 280 C184 280 170 268 168 246 Z" fill="#FFFFFF" stroke-width="6"/>
+    <path d="M184 272 C192 266 208 266 216 272 C210 278 190 278 184 272 Z" fill="#E9787A" stroke="none"/>
+    <path d="M168 246 C184 251 216 251 232 246 C230 268 216 280 200 280 C184 280 170 268 168 246 Z" fill="none" stroke-width="6"/>
+    <path d="M162 242 C165 247 168 248 170 246 M238 242 C235 247 232 248 230 246" fill="none" stroke-width="4"/>
+  </g>
+</svg>

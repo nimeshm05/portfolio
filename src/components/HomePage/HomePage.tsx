@@ -52,6 +52,7 @@ export function HomePage() {
           name={profile.name}
           bio={profile.bio}
           avatarSrc={profile.avatarSrc}
+          cartoonAvatarSrc={profile.cartoonAvatarSrc}
           avatarAlt={profile.avatarAlt}
           afterBio={<WorkStamps stamps={workStamps} />}
         >
