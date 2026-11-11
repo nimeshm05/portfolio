@@ -63,6 +63,7 @@
   --gap-section: var(--space-80);
   --padding-page: var(--space-60);
   --padding-project-top: var(--space-120);
+  --height-project-cover-feather: var(--space-48); /* soft top edge of the content scrolling over the pinned header */
   --inset-x: var(--space-12);
   --gap-callout-cite: var(--space-16);
   --gap-callout-copy: var(--space-40);

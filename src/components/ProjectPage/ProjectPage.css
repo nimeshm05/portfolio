@@ -10,11 +10,12 @@
   background: var(--color-bg-page);
 }
 
+/* Two children: the pinned header, then the cover holding the rest */
 .project-body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--gap-page);
+  gap: var(--gap-project-section);
   width: 100%;
   min-width: 0;
   max-width: var(--content-width-project);
@@ -25,6 +26,32 @@
 /* Tighter title-to-description gap in project lists (home keeps its own) */
 .project-body .list-item-panel {
   padding-top: var(--gap-2xs);
+}
+
+/* Everything below the header, on the page colour so it hides the pinned
+   header as it scrolls up over it. A short feather above its top edge lets
+   it slide over the title softly rather than as a hard cut. */
+.project-cover {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--gap-page);
+  width: 100%;
+  min-width: 0;
+  background: var(--color-bg-page);
+}
+
+.project-cover::before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  width: 100%;
+  height: var(--height-project-cover-feather);
+  background: linear-gradient(to top, var(--color-bg-page), transparent);
+  pointer-events: none;
 }
 
 .project-intro {

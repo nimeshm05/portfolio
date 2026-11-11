@@ -190,12 +190,15 @@ export function ProjectPage({ project }: ProjectPageProps) {
       <ViewportEdgeBlur />
       <ProjectSidebar items={project.nav ?? []} />
       <PageEnter as="main" className="project-body">
+        {/* The header stays pinned in place; everything after it sits on
+            .project-cover, which scrolls up over it */}
+        <ProjectHeader
+          title={project.title}
+          subtitle={project.subtitle}
+          liveHref={project.liveHref}
+        />
+        <div className="project-cover">
         <div className="project-intro">
-          <ProjectHeader
-            title={project.title}
-            subtitle={project.subtitle}
-            liveHref={project.liveHref}
-          />
           <PageEnterItem>
             <ProjectBanner
               src={project.bannerSrc}
@@ -733,6 +736,7 @@ export function ProjectPage({ project }: ProjectPageProps) {
           </ProjectSection>
         ) : null}
         </PageEnterItems>
+        </div>
       </PageEnter>
     </div>
   );

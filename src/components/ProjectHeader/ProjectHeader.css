@@ -1,4 +1,8 @@
+/* Pinned where it starts; the content below scrolls up over it */
 .project-header {
+  position: sticky;
+  top: var(--padding-project-top);
+  z-index: 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -9,6 +13,8 @@
 }
 
 .project-header-content {
+  /* Shrinks towards its top edge, so it stays put as it gets smaller */
+  transform-origin: 50% 0;
   display: flex;
   flex-direction: column;
   align-items: center;
