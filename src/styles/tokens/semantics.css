@@ -194,7 +194,8 @@
   --padding-work-stamp-paper: var(--space-12); /* margin inside the perforated edge, wide enough to clear the bites */
   --padding-work-stamp-print: var(--space-8);
   --gap-work-stamp-print: var(--gap-md);
-  --gap-work-stamp-copy: var(--gap-md);
+  --gap-work-stamp-copy: var(--gap-md); /* name to role, opened stamp */
+  --gap-work-stamp-copy-card: var(--gap-xs); /* name to role, on the card */
   --padding-work-stamp-details-top: var(--space-20); /* nudges the name and meta down from the top edge */
   --padding-work-stamp-details-start: var(--space-8); /* keeps the name and meta off the left edge */
   --gap-work-stamp-meta: var(--gap-xs);

@@ -39,7 +39,9 @@ type Swipe = { pointerId: number; startX: number; dx: number };
 
 type Rect = { left: number; top: number; width: number; height: number };
 
-type Opened = { index: number; rect: Rect };
+/** detailsTop: how far down the card the name sits in the slot (it's centred
+    there), so the opened stamp starts and ends its copy at the same spot */
+type Opened = { index: number; rect: Rect; detailsTop: number };
 
 const toRect = ({ left, top, width, height }: DOMRect): Rect => ({ left, top, width, height });
 
@@ -144,7 +146,12 @@ export function WorkStamps({ stamps }: WorkStampsProps) {
     // The slot shows again when the stamp lands back, so it should be flat
     tiltReset(item);
     window.clearTimeout(fanTimer.current);
-    setOpened({ index, rect: toRect(item.getBoundingClientRect()) });
+    const details = item.querySelector<HTMLElement>(".work-stamp-details");
+    setOpened({
+      index,
+      rect: toRect(item.getBoundingClientRect()),
+      detailsTop: details?.offsetTop ?? 0,
+    });
     setLifted(index);
     setHoldFan(true);
   };
@@ -252,7 +259,8 @@ function StampFace({
             </p>
             <div className="work-stamp-meta">
               <p>{stamp.role}</p>
-              <p>{stamp.dates}</p>
+              {/* Dates only on the opened stamp; the card shows name and role */}
+              {showDescription ? <p className="work-stamp-dates">{stamp.dates}</p> : null}
             </div>
             {showDescription ? (
               <p className="work-stamp-description">{stamp.description}</p>
@@ -327,6 +335,7 @@ function ExpandedStamp({
               stamp={stamps[opened.index]}
               seed={opened.index + 1}
               origin={opened.rect}
+              detailsTop={opened.detailsTop}
               reduceMotion={Boolean(reduceMotion)}
               onClose={onClose}
             />
@@ -340,12 +349,14 @@ function ExpandedCard({
   stamp,
   seed,
   origin,
+  detailsTop,
   reduceMotion,
   onClose,
 }: {
   stamp: WorkStampData;
   seed: number;
   origin: Rect;
+  detailsTop: number;
   reduceMotion: boolean;
   onClose: () => void;
 }) {
@@ -431,6 +442,7 @@ function ExpandedCard({
         style={
           {
             "--work-stamp-description-width": `${target?.descriptionWidth ?? 0}px`,
+            "--work-stamp-details-top-collapsed": `${detailsTop}px`,
           } as CSSProperties
         }
         custom={origin}

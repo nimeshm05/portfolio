@@ -453,26 +453,29 @@
   opacity: var(--opacity-work-stamp-wash-vein);
 }
 
+/* On the card the name and role sit in the vertical middle, left-aligned;
+   the face value is pinned to the corner so it doesn't pull them off centre */
 .work-stamp-copy {
   display: flex;
   flex: 1 1 0;
   flex-direction: column;
   align-self: stretch;
-  justify-content: space-between;
+  justify-content: center;
   min-width: 0;
 }
 
 .work-stamp-details {
   display: flex;
   flex-direction: column;
-  gap: var(--gap-work-stamp-copy);
-  padding-top: var(--padding-work-stamp-details-top);
+  gap: var(--gap-work-stamp-copy-card);
   padding-inline-start: var(--padding-work-stamp-details-start);
 }
 
 /* Face value, bottom-right of the artwork */
 .work-stamp-value {
-  align-self: flex-end;
+  position: absolute;
+  right: 0;
+  bottom: 0;
   line-height: 1;
   font-size: var(--text-work-stamp-value-size);
   font-weight: var(--text-work-stamp-value-weight);
@@ -708,14 +711,36 @@
   justify-content: flex-start;
 }
 
+/* The copy starts where the name sits on the card (centred, measured from the
+   slot) and eases to its spot near the top as the stamp opens, so nothing
+   jumps when it lands back */
 .work-stamp-expanded .work-stamp-details {
+  --work-stamp-details-top-from: var(
+    --work-stamp-details-top-collapsed,
+    var(--padding-work-stamp-details-top)
+  );
+
+  padding-top: calc(
+    var(--work-stamp-details-top-from) +
+      (var(--padding-work-stamp-details-top) - var(--work-stamp-details-top-from)) *
+      var(--work-stamp-expand)
+  );
   padding-bottom: calc(var(--text-work-stamp-value-size) + var(--gap-work-stamp-copy));
+  /* Tight on the card, the roomier opened gap once it's out */
+  gap: calc(
+    var(--gap-work-stamp-copy-card) +
+      (var(--gap-work-stamp-copy) - var(--gap-work-stamp-copy-card)) * var(--work-stamp-expand)
+  );
 }
 
-.work-stamp-expanded .work-stamp-value {
-  position: absolute;
-  right: 0;
-  bottom: 0;
+/* Dates are only on the opened stamp: they come in with the description and,
+   on the way back, fade and fold away before the card lands */
+.work-stamp-dates {
+  height: calc(var(--work-stamp-expand) * 1lh);
+  margin-top: calc((var(--work-stamp-expand) - 1) * var(--gap-work-stamp-meta));
+  overflow: hidden;
+  opacity: var(--work-stamp-reveal);
+  filter: blur(calc((1 - var(--work-stamp-reveal)) * var(--blur-work-stamp-description)));
 }
 
 .work-stamp-description {
