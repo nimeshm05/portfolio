@@ -9,3 +9,10 @@
 .scroll-to-top-control {
   display: inline-flex;
 }
+
+/* Mobile: no back-to-top button */
+@media (max-width: 68.6875rem) {
+  .scroll-to-top {
+    display: none;
+  }
+}

@@ -20,11 +20,11 @@ export function SiteControls() {
           className="project-back-mobile"
           href="/"
           onClick={exitToHome}
+          aria-label="Back"
         >
           <span className="project-back-mobile-icon" aria-hidden="true">
-            <Icon name="chevron-left" size={16} />
+            <Icon name="chevron-left" size={18} />
           </span>
-          <span>Back</span>
         </Link>
       ) : null}
       <div className="site-controls">

@@ -49,20 +49,20 @@ export function ThemeToggle() {
         >
           {isDark ? (
             reduceMotion ? (
-              <Icon name="sun" size={20} className="site-control-icon" />
+              <Icon name="sun" size={18} className="site-control-icon" />
             ) : (
               <SunAnimatedIcon
                 ref={iconRef}
-                size={20}
+                size={18}
                 className="site-control-icon"
               />
             )
           ) : reduceMotion ? (
-            <Icon name="moon" size={20} className="site-control-icon" />
+            <Icon name="moon" size={18} className="site-control-icon" />
           ) : (
             <MoonAnimatedIcon
               ref={iconRef}
-              size={20}
+              size={18}
               className="site-control-icon"
             />
           )}

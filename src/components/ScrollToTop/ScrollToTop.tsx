@@ -126,11 +126,11 @@ export function ScrollToTop() {
           >
             <span className="site-control-icon-swap">
               {reduceMotion ? (
-                <Icon name="arrow-up" size={20} className="site-control-icon" />
+                <Icon name="arrow-up" size={18} className="site-control-icon" />
               ) : (
                 <ArrowUpAnimatedIcon
                   ref={iconRef}
-                  size={20}
+                  size={18}
                   className="site-control-icon"
                 />
               )}
