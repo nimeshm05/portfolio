@@ -1,0 +1,22 @@
+/* Fixed to the viewport so the page background fills the screen. */
+.work-stamps-page-standalone {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding-inline: var(--gap-lg);
+  overflow: hidden;
+  color: var(--color-text-primary);
+  /* Pure white so screen recordings blend into white slides with no edge */
+  background: #fff;
+}
+
+.work-stamps-page-standalone-inner {
+  width: min(100%, 50rem);
+}
+
+/* The stack grows rightward when it fans out; auto margins keep it centred
+   through the width transition, stacked or fanned. */
+.work-stamps-page-standalone .work-stamps {
+  margin-inline: auto;
+}

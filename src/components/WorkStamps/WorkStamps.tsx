@@ -50,6 +50,28 @@ export function WorkStamps({ stamps }: WorkStampsProps) {
 
   useEffect(() => () => window.clearTimeout(fanTimer.current), []);
 
+  // Hover is off while the stamps fly in on page load, so a resting cursor
+  // doesn't tint, tilt or fan them mid-flight. Lifted once every entrance
+  // animation has finished (or straight away if there are none).
+  const listRef = useRef<HTMLUListElement>(null);
+  const [arriving, setArriving] = useState(true);
+  useEffect(() => {
+    const flights =
+      listRef.current
+        ?.getAnimations({ subtree: true })
+        .filter(
+          (animation) =>
+            animation instanceof CSSAnimation && animation.animationName === "work-stamp-fly-in",
+        ) ?? [];
+    let cancelled = false;
+    Promise.allSettled(flights.map((animation) => animation.finished)).then(() => {
+      if (!cancelled) setArriving(false);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   const setDrag = (el: HTMLElement, dx: number | null) => {
     if (dx === null) {
       el.removeAttribute("data-dragging");
@@ -119,10 +141,12 @@ export function WorkStamps({ stamps }: WorkStampsProps) {
   return (
     <div className="work-stamps-frame">
       <ul
+        ref={listRef}
         className="work-stamps"
         aria-label="Experience"
         // Fanned while a stamp is out, so it closes back into its place in the row
         data-fanned={holdFan ? "" : undefined}
+        data-arriving={arriving ? "" : undefined}
         style={{ "--work-stamp-count": stamps.length } as CSSProperties}
       >
         {stamps.map((stamp, index) => {
@@ -307,6 +331,8 @@ function ExpandedCard({
   const cardRef = useRef<HTMLDivElement>(null);
   const measureRef = useRef<HTMLDivElement>(null);
   const perfRef = useRef<HTMLSpanElement>(null);
+  // True while the card animates between its slot and the middle of the page
+  const flying = useRef(true);
   const [target, setTarget] = useState<Target | null>(null);
 
   // Size the open stamp from a hidden, fully expanded copy: CSS sets the width
@@ -391,7 +417,19 @@ function ExpandedCard({
         animate={target ? "expanded" : "collapsed"}
         exit="collapsed"
         onClick={onClose}
-        onPointerMove={tiltFollow}
+        // No hover tilt while the stamp flies in or out: it only follows the
+        // cursor once it has settled in the middle
+        onAnimationStart={() => {
+          flying.current = true;
+          const card = cardRef.current;
+          if (card && tilts.has(card)) tiltTowards(card, { x: 0, y: 0, hover: 0 });
+        }}
+        onAnimationComplete={() => {
+          flying.current = false;
+        }}
+        onPointerMove={(event) => {
+          if (!flying.current) tiltFollow(event);
+        }}
         onPointerLeave={tiltRelease}
       >
         <StampFace stamp={stamp} seed={seed} showDescription titleId={titleId} />

@@ -93,6 +93,11 @@
   transition: width var(--transition-work-stamp);
 }
 
+/* No hover, tilt or clicks while the stamps fly in on page load */
+.work-stamps[data-arriving] {
+  pointer-events: none;
+}
+
 /* Each stamp is a button laid over its face, so the stamp opens on click */
 .work-stamp-trigger {
   position: absolute;
