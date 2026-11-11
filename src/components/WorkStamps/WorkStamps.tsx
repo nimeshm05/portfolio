@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, useSyncExternalStore } from "react";
 import type { CSSProperties, PointerEvent } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion, useReducedMotion, type Transition, type Variants } from "motion/react";
@@ -18,6 +18,23 @@ const TAP_SLOP = 6;
 /** How long the row stays fanned after a stamp lands back in it (ms) */
 const FAN_HOLD_AFTER_CLOSE = 700;
 
+/** Phones and narrow screens: the swipeable stack, where stamps don't open */
+const STACK_ONLY_QUERY = "(hover: none), (max-width: 68.6875rem)";
+
+const subscribeStackOnly = (onChange: () => void) => {
+  const query = window.matchMedia(STACK_ONLY_QUERY);
+  query.addEventListener("change", onChange);
+  return () => query.removeEventListener("change", onChange);
+};
+
+function useStackOnly() {
+  return useSyncExternalStore(
+    subscribeStackOnly,
+    () => window.matchMedia(STACK_ONLY_QUERY).matches,
+    () => false,
+  );
+}
+
 type Swipe = { pointerId: number; startX: number; dx: number };
 
 type Rect = { left: number; top: number; width: number; height: number };
@@ -30,11 +47,13 @@ const toRect = ({ left, top, width, height }: DOMRect): Rect => ({ left, top, wi
  * A stack of postage stamps, one per role. Stacked by default; hovering (or
  * focusing) the stack fans the stamps out into a row.
  * On touch, the front stamp can be swiped sideways and tucks behind the stack.
- * Clicking a stamp lifts it into the middle of the page with its description.
+ * Clicking a stamp lifts it into the middle of the page with its description;
+ * on mobile there's no expanded view, so the stamps only swipe.
  */
 export function WorkStamps({ stamps }: WorkStampsProps) {
   // order[position] = stamp index; position 0 is the front of the stack
   const [order, setOrder] = useState(() => stamps.map((_, index) => index));
+  const stackOnly = useStackOnly();
   const swipe = useRef<Swipe | null>(null);
   const suppressClick = useRef(false);
   const itemRefs = useRef<(HTMLLIElement | null)[]>([]);
@@ -172,16 +191,19 @@ export function WorkStamps({ stamps }: WorkStampsProps) {
               onPointerCancel={isFront ? endSwipe : undefined}
             >
               <StampFace stamp={stamp} seed={index + 1} />
-              <button
-                ref={(el) => {
-                  triggerRefs.current[index] = el;
-                }}
-                type="button"
-                className="work-stamp-trigger"
-                aria-label={`${stamp.company}, ${stamp.role}`}
-                aria-haspopup="dialog"
-                onClick={() => open(index)}
-              />
+              {/* No expanded view on mobile, so no trigger to open one */}
+              {stackOnly ? null : (
+                <button
+                  ref={(el) => {
+                    triggerRefs.current[index] = el;
+                  }}
+                  type="button"
+                  className="work-stamp-trigger"
+                  aria-label={`${stamp.company}, ${stamp.role}`}
+                  aria-haspopup="dialog"
+                  onClick={() => open(index)}
+                />
+              )}
             </li>
           );
         })}
