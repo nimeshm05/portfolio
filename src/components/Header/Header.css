@@ -66,6 +66,7 @@
   font-weight: var(--text-display-weight);
   line-height: var(--text-display-line-height);
   font-family: var(--font-family-sans);
+  font-variation-settings: var(--text-display-variation);
 }
 
 .site-header-name-rule {
@@ -86,6 +87,7 @@
   font-weight: var(--text-subtitle-display-weight);
   line-height: var(--line-height-body);
   letter-spacing: var(--letter-spacing-display);
+  font-variation-settings: var(--text-display-variation);
 }
 
 .site-header-bio-paragraph {

@@ -344,6 +344,9 @@
   --text-display-weight: var(--font-weight-semibold);
   --text-subtitle-display-weight: var(--font-weight-regular);
   --text-subtitle-display-size: var(--font-size-17-2);
+  /* Google Sans swaps to a tighter Display cut from 18px; pin the name and
+     bio to the Text cut so the two lines share one design at any size */
+  --text-display-variation: "opsz" 17;
 
   /* Typography: title (project header) */
   --text-title-family: var(--font-family-serif);
