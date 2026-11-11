@@ -511,17 +511,6 @@ export function ConnectPrompt() {
                 ),
               },
               {
-                key: "medium",
-                node: (
-                  <PromptLink
-                    href={connect.mediumHref}
-                    iconSrc={socialHoverIcons.medium}
-                  >
-                    Medium
-                  </PromptLink>
-                ),
-              },
-              {
                 key: "email",
                 node: (
                   <PromptLink

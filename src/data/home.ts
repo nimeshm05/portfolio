@@ -75,14 +75,12 @@ export const connect = {
   linkedInHref: "https://www.linkedin.com/in/nimeshm-work/",
   githubHref: "https://github.com/nimeshm05",
   xHref: "https://x.com/nimeshm_me",
-  mediumHref: "https://nimeshmohanakrishnan.medium.com/"
 } as const;
 
 export const socialHoverIcons = {
   linkedin: "/assets/social-media-icons/linkedin.svg",
   github: "/assets/social-media-icons/github.svg",
   x: "/assets/social-media-icons/x.svg",
-  medium: "/assets/social-media-icons/medium.svg",
   email: "/assets/social-media-icons/apple-mail.svg",
   phone: "/assets/social-media-icons/phone.svg",
 } as const;
@@ -109,12 +107,6 @@ export const footerLinks = [
     label: "X",
     href: connect.xHref,
     iconSrc: socialHoverIcons.x,
-  },
-  {
-    id: "medium",
-    label: "Medium",
-    href: connect.mediumHref,
-    iconSrc: socialHoverIcons.medium,
   },
   {
     id: "email",
