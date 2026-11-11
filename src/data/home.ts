@@ -50,7 +50,7 @@ export type ContentSectionData = {
 };
 
 export const profile = {
-  name: "@nimesh.mohanakrishnan",
+  name: "Nimesh Mohanakrishnan",
   avatarSrc: "/assets/profile-jelly.webp",
   avatarAlt: "Portrait of Nimesh Mohanakrishnan",
   bio: [
