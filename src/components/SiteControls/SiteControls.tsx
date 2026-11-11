@@ -8,6 +8,9 @@ import { ThemeToggle } from "@/components/ThemeToggle/ThemeToggle";
 import { useExitToHome } from "@/motion/pageExit";
 import "./SiteControls.css";
 
+/** Theme toggle and back-to-top are hidden for now; flip to bring them back */
+const SHOW_CORNER_CONTROLS = false;
+
 export function SiteControls() {
   const pathname = usePathname();
   const exitToHome = useExitToHome();
@@ -23,14 +26,16 @@ export function SiteControls() {
           aria-label="Back"
         >
           <span className="project-back-mobile-icon" aria-hidden="true">
-            <Icon name="chevron-left" size={18} />
+            <Icon name="chevron-left" size={20} />
           </span>
         </Link>
       ) : null}
-      <div className="site-controls">
-        <ScrollToTop />
-        <ThemeToggle />
-      </div>
+      {SHOW_CORNER_CONTROLS ? (
+        <div className="site-controls">
+          <ScrollToTop />
+          <ThemeToggle />
+        </div>
+      ) : null}
     </>
   );
 }

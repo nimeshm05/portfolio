@@ -185,13 +185,18 @@
   justify-content: center;
   width: calc(var(--icon-size-sm) + 2px);
   height: calc(var(--icon-size-sm) + 2px);
-  overflow: hidden;
 }
 
+/* Optical fixes for the chevron. Lucide's chevron is only a quarter of its box
+   wide, so it reads smaller than the moon beside it: it's drawn at the full
+   icon size, spilling past its 18px slot so the circle stays 42px. Dead
+   centre reads as sitting right in the circle, so it's nudged 1px left. */
 .project-back-mobile-icon .icon {
-  width: 100%;
-  height: 100%;
+  flex-shrink: 0;
+  width: var(--icon-size);
+  height: var(--icon-size);
   color: inherit;
+  translate: -1px 0;
 }
 
 .project-back-mobile:hover,

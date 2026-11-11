@@ -1,6 +1,7 @@
-/** Versioned so choices saved before light became the default (e.g. a stale
-   "dark") are ignored and every visitor starts in light mode. */
-export const THEME_STORAGE_KEY = "theme-v2";
+/** Versioned so stale saved choices are ignored and every visitor starts in
+   light mode. v3: the theme toggle is hidden, so a "dark" saved earlier
+   would otherwise be stuck with no way back to light. */
+export const THEME_STORAGE_KEY = "theme-v3";
 
 export type Theme = "light" | "dark";
 
