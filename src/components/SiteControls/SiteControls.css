@@ -19,14 +19,14 @@
   pointer-events: none;
 }
 
-/* Liquid glass shared by the icon buttons and the mobile back button,
+/* Liquid glass shared by the icon buttons and the mobile project dock,
    modelled on iOS: a thin, see-through body that blurs and saturates what
    sits behind it, a bright rim and top sheen, and on press it swells and
    lights up from the touch point, then springs back on release */
 .site-control,
-.project-back-mobile {
-  --glass-top: rgb(255 255 255 / 0.62);
-  --glass-bottom: rgb(255 255 255 / 0.28);
+.glass-control {
+  --glass-top: rgb(255 255 255 / 0.82);
+  --glass-bottom: rgb(255 255 255 / 0.58);
   --glass-rim: rgb(255 255 255 / 0.85);
   --glass-hairline: rgb(0 0 0 / 0.06);
   --glass-inner-glow: rgb(255 255 255 / 0.95);
@@ -64,9 +64,9 @@
 }
 
 [data-theme="dark"] .site-control,
-[data-theme="dark"] .project-back-mobile {
-  --glass-top: rgb(255 255 255 / 0.14);
-  --glass-bottom: rgb(255 255 255 / 0.04);
+[data-theme="dark"] .glass-control {
+  --glass-top: rgb(255 255 255 / 0.2);
+  --glass-bottom: rgb(255 255 255 / 0.08);
   --glass-rim: rgb(255 255 255 / 0.16);
   --glass-hairline: rgb(0 0 0 / 0.4);
   --glass-inner-glow: rgb(255 255 255 / 0.24);
@@ -79,7 +79,7 @@
 
 /* Specular sheen across the top half */
 .site-control::before,
-.project-back-mobile::before {
+.glass-control::before {
   content: "";
   position: absolute;
   inset: 1px 4px 50% 4px;
@@ -93,7 +93,7 @@
 
 /* Light bloom that fills the glass while it is pressed */
 .site-control::after,
-.project-back-mobile::after {
+.glass-control::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -111,7 +111,7 @@
 
 @media (hover: hover) {
   .site-control:hover,
-  .project-back-mobile:hover {
+  .glass-control:hover {
     scale: 1.06;
     box-shadow:
       0 0 0 0.5px var(--glass-hairline),
@@ -122,14 +122,14 @@
   }
 
   .site-control:hover::before,
-  .project-back-mobile:hover::before {
+  .glass-control:hover::before {
     opacity: 1;
   }
 }
 
 /* Press: the glass swells under the finger and lights up, quickly */
 .site-control:active,
-.project-back-mobile:active {
+.glass-control:active {
   scale: 1.16;
   box-shadow:
     0 0 0 0.5px var(--glass-hairline),
@@ -144,12 +144,12 @@
 }
 
 .site-control:active::before,
-.project-back-mobile:active::before {
+.glass-control:active::before {
   opacity: 1;
 }
 
 .site-control:active::after,
-.project-back-mobile:active::after {
+.glass-control:active::after {
   opacity: 1;
   transition-duration: 120ms;
 }
@@ -158,60 +158,10 @@
   .site-control,
   .site-control:hover,
   .site-control:active,
-  .project-back-mobile,
-  .project-back-mobile:hover,
-  .project-back-mobile:active {
+  .glass-control,
+  .glass-control:hover,
+  .glass-control:active {
     scale: 1;
-  }
-}
-
-.project-back-mobile {
-  position: fixed;
-  top: var(--inset-site-controls);
-  left: var(--inset-site-controls);
-  z-index: var(--z-site-controls);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  /* Same 42px circle as the icon buttons on the right */
-  padding: calc(var(--space-12) - 1px);
-  border-radius: 50%;
-}
-
-.project-back-mobile-icon {
-  display: flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  width: calc(var(--icon-size-sm) + 2px);
-  height: calc(var(--icon-size-sm) + 2px);
-}
-
-/* Optical fixes for the chevron. Lucide's chevron is only a quarter of its box
-   wide, so it reads smaller than the moon beside it: it's drawn at the full
-   icon size, spilling past its 18px slot so the circle stays 42px. Dead
-   centre reads as sitting right in the circle, so it's nudged 1px left. */
-.project-back-mobile-icon .icon {
-  flex-shrink: 0;
-  width: var(--icon-size);
-  height: var(--icon-size);
-  color: inherit;
-  translate: -1px 0;
-}
-
-.project-back-mobile:hover,
-.project-back-mobile:focus-visible {
-  color: var(--color-text-primary);
-}
-
-.project-back-mobile:focus-visible {
-  outline: var(--border-width) solid var(--color-text-subtle);
-  outline-offset: var(--space-4);
-}
-
-@media (max-width: 68.6875rem) {
-  .project-back-mobile {
-    display: flex;
   }
 }
 

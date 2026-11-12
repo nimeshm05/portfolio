@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
+import { ProjectDock } from "@/components/ProjectDock/ProjectDock";
 import { SidebarNav } from "@/components/SidebarNav/SidebarNav";
 import type { ProjectNavItem } from "@/data/projects/types";
 import { useProjectScrollSpy } from "@/motion/projectScrollSpy";
@@ -36,13 +37,16 @@ export function ProjectSidebar({
   );
 
   return (
-    <aside className="project-sidebar" aria-label="Project navigation">
-      <SidebarNav
-        items={navItems}
-        activeId={activeId}
-        showBack
-        animate
-      />
-    </aside>
+    <>
+      <aside className="project-sidebar" aria-label="Project navigation">
+        <SidebarNav
+          items={navItems}
+          activeId={activeId}
+          showBack
+          animate
+        />
+      </aside>
+      <ProjectDock items={navItems} activeId={activeId} />
+    </>
   );
 }

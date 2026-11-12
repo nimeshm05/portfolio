@@ -7,7 +7,7 @@ const SIDEBAR_ENTER_BLUR = "blur(8px)";
 export const sidebarEnterEase = [0.33, 1, 0.68, 1] as const;
 
 /** Loose, underdamped spring: items rise past their slot and settle back. */
-const sidebarEnterRise = {
+export const sidebarEnterRise = {
   type: "spring",
   stiffness: 80,
   damping: 8,

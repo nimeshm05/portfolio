@@ -18,7 +18,7 @@ const PAGE_EXIT_BLUR = "blur(8px)";
  */
 const PROJECT_EXIT_GROUPS = [
   ".project-body .page-enter-item",
-  ".project-sidebar .sidebar-nav-motion-item, .project-back-mobile",
+  ".project-sidebar .sidebar-nav-motion-item, .project-dock",
 ];
 
 /** Same reasoning as the entrance: phones can't repaint a full-page blur smoothly. */
@@ -65,8 +65,8 @@ export function useExitToHome() {
   const reduceMotion = useReducedMotion() ?? false;
   const leaving = useRef(false);
 
-  // The mobile Back link lives in the root layout and never remounts, so the
-  // flag has to clear once the page changes or the next exit is swallowed
+  // Clear the flag once the page changes, or a Back link that outlives the
+  // navigation would swallow the next exit
   useEffect(() => {
     leaving.current = false;
   }, [pathname]);
@@ -86,17 +86,21 @@ export function useExitToHome() {
       leaving.current = true;
       const blur = isTouchScreen() ? {} : { filter: PAGE_EXIT_BLUR };
 
-      const exits = PROJECT_EXIT_GROUPS.map((selector) =>
-        animate(
-          getExitItems(selector),
-          { opacity: 0, x: PAGE_EXIT_OFFSET_PX, ...blur },
-          {
-            duration: PAGE_EXIT_DURATION_S,
-            ease: pageEnterEase,
-            delay: stagger(PAGE_EXIT_STAGGER_S),
-          },
-        ),
-      );
+      // A group can be empty, e.g. the sidebar is hidden on phones; Motion
+      // throws when handed no elements, so those are skipped
+      const exits = PROJECT_EXIT_GROUPS.map(getExitItems)
+        .filter((items) => items.length > 0)
+        .map((items) =>
+          animate(
+            items,
+            { opacity: 0, x: PAGE_EXIT_OFFSET_PX, ...blur },
+            {
+              duration: PAGE_EXIT_DURATION_S,
+              ease: pageEnterEase,
+              delay: stagger(PAGE_EXIT_STAGGER_S),
+            },
+          ),
+        );
 
       Promise.all(exits).then(() => {
         router.push("/");

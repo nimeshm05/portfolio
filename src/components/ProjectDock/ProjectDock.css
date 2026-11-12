@@ -1,0 +1,212 @@
+/* Bottom-left controls on project pages, phones and tablets only: back, and a
+   pill naming the section in view that opens a menu of every section */
+.project-dock {
+  position: fixed;
+  /* The surface is positioned against the dock, which the back button sizes */
+  bottom: max(var(--inset-site-controls), env(safe-area-inset-bottom));
+  left: var(--inset-site-controls);
+  z-index: var(--z-site-controls);
+  display: none;
+  align-items: center;
+  gap: var(--gap-site-controls);
+}
+
+@media (max-width: 68.6875rem) {
+  .project-dock {
+    display: flex;
+  }
+}
+
+.project-dock-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* 42px circle: 1px less than space-12 so the border keeps it round */
+  padding: calc(var(--space-12) - 1px);
+  border-radius: 50%;
+}
+
+.project-dock-back-icon {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: calc(var(--icon-size-sm) + 2px);
+  height: calc(var(--icon-size-sm) + 2px);
+}
+
+/* Lucide's chevron is only a quarter of its box wide, so it's drawn at the
+   full icon size, and dead centre reads as sitting right: nudged 1px left */
+.project-dock-back-icon .icon {
+  flex-shrink: 0;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  color: inherit;
+  translate: -1px 0;
+}
+
+/* The glass that is the pill when closed and the menu when open. Bottom-left
+   anchored, so it grows up and over the back button */
+.project-dock-surface {
+  --menu-highlight: rgb(0 0 0 / 0.06);
+
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  /* The 999px pill radius from the shared glass is animated instead */
+  border-radius: 21px;
+  transform-origin: 0 100%;
+}
+
+[data-theme="dark"] .project-dock-surface {
+  --menu-highlight: rgb(255 255 255 / 0.1);
+}
+
+/* Once it's a menu, tapping inside shouldn't swell the whole panel */
+.project-dock-surface.is-open,
+.project-dock-surface.is-open:hover,
+.project-dock-surface.is-open:active {
+  scale: 1;
+}
+
+.project-dock-surface.is-open:active::after {
+  opacity: 0;
+}
+
+.project-dock-sections {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  height: 40px;
+  padding: 0 var(--space-16);
+  border: 0;
+  color: inherit;
+  background: none;
+  font: inherit;
+  font-size: var(--text-sidebar-size);
+  font-weight: var(--text-sidebar-weight);
+  line-height: var(--text-sidebar-line-height);
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.project-dock-enter {
+  display: flex;
+}
+
+/* Spans the dock so the surface inside positions against the same box */
+.project-dock-enter--surface {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.project-dock-enter--surface > * {
+  pointer-events: auto;
+}
+
+.project-dock-back-slot {
+  display: flex;
+  transform-origin: 50% 50%;
+}
+
+/* The surface clips, so the pill's focus ring sits inside it */
+.project-dock-sections:focus-visible {
+  border-radius: inherit;
+  outline: var(--border-width) solid var(--color-text-subtle);
+  outline-offset: -4px;
+}
+
+.project-dock-back:focus-visible {
+  outline: var(--border-width) solid var(--color-text-subtle);
+  outline-offset: var(--space-4);
+}
+
+.project-dock-back:hover,
+.project-dock-surface:hover {
+  color: var(--color-text-primary);
+}
+
+/* The outgoing and incoming labels share one box; the box's width follows
+   the incoming label and clips whatever spills over while they swap */
+.project-dock-label {
+  position: relative;
+  display: block;
+  height: var(--text-sidebar-line-height);
+  overflow: hidden;
+  /* Room for the blur so the glyphs aren't sheared at the edges */
+  padding-inline: 2px;
+  margin-inline: -2px;
+  white-space: nowrap;
+}
+
+/* In flow and invisible: it sizes the box before hydration, and is measured
+   for the width the box eases to after */
+.project-dock-label-sizer {
+  display: inline-block;
+  visibility: hidden;
+  white-space: nowrap;
+}
+
+.project-dock-label-line {
+  position: absolute;
+  inset: 0 auto 0 2px;
+  display: flex;
+  column-gap: 0.28em;
+  white-space: nowrap;
+}
+
+.project-dock-label-word {
+  display: inline-block;
+  will-change: transform, filter, opacity;
+}
+
+/* The list, pinned to the surface's bottom-left so the surface uncovers it
+   as it grows; measured at its natural size to set the open panel's size */
+.project-dock-menu {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+  min-width: 13.5rem;
+  max-height: min(70vh, 30rem);
+  padding: var(--space-8);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.project-dock-menu-item {
+  display: block;
+  padding: var(--space-8) var(--space-12);
+  border-radius: 999px;
+  color: var(--color-text-label);
+  font-size: var(--text-sidebar-size);
+  font-weight: var(--text-sidebar-weight);
+  line-height: var(--text-sidebar-line-height);
+  text-decoration: none;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.project-dock-menu-item.is-active {
+  color: var(--color-text-primary);
+  background: var(--menu-highlight);
+}
+
+.project-dock-menu-item:active {
+  background: var(--menu-highlight);
+}
+
+.project-dock-menu-item:focus-visible {
+  outline: var(--border-width) solid var(--color-text-subtle);
+  outline-offset: calc(var(--border-width) * -1);
+}
