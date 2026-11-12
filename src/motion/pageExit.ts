@@ -9,6 +9,8 @@ import { pageEnterEase } from "@/motion/pageEnter";
 const PAGE_EXIT_OFFSET_PX = 64;
 const PAGE_EXIT_DURATION_S = 0.32;
 const PAGE_EXIT_STAGGER_S = 0.04;
+/** The sidebar is a long list of short lines; at the content's pace it trails behind, so it leaves almost together */
+const SIDEBAR_EXIT_STAGGER_S = 0.012;
 const PAGE_EXIT_BLUR = "blur(8px)";
 
 /**
@@ -17,8 +19,11 @@ const PAGE_EXIT_BLUR = "blur(8px)";
  * the content.
  */
 const PROJECT_EXIT_GROUPS = [
-  ".project-body .page-enter-item",
-  ".project-sidebar .sidebar-nav-motion-item, .project-dock",
+  { selector: ".project-body .page-enter-item", stagger: PAGE_EXIT_STAGGER_S },
+  {
+    selector: ".project-sidebar .sidebar-nav-motion-item, .project-dock",
+    stagger: SIDEBAR_EXIT_STAGGER_S,
+  },
 ];
 
 /** Same reasoning as the entrance: phones can't repaint a full-page blur smoothly. */
@@ -88,16 +93,19 @@ export function useExitToHome() {
 
       // A group can be empty, e.g. the sidebar is hidden on phones; Motion
       // throws when handed no elements, so those are skipped
-      const exits = PROJECT_EXIT_GROUPS.map(getExitItems)
-        .filter((items) => items.length > 0)
-        .map((items) =>
+      const exits = PROJECT_EXIT_GROUPS.map((group) => ({
+        ...group,
+        items: getExitItems(group.selector),
+      }))
+        .filter(({ items }) => items.length > 0)
+        .map(({ items, stagger: gap }) =>
           animate(
             items,
             { opacity: 0, x: PAGE_EXIT_OFFSET_PX, ...blur },
             {
               duration: PAGE_EXIT_DURATION_S,
               ease: pageEnterEase,
-              delay: stagger(PAGE_EXIT_STAGGER_S),
+              delay: stagger(gap),
             },
           ),
         );
