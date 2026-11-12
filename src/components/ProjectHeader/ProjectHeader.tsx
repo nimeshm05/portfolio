@@ -20,6 +20,8 @@ type ProjectHeaderProps = {
 /** How small and faint the pinned header gets once the content covers it */
 const SHRUNK_SCALE = 0.88;
 const SHRUNK_OPACITY = 0.35;
+/** How soft the pinned header gets, in px of blur, once the content covers it */
+const SHRUNK_BLUR_PX = 6;
 
 export function ProjectHeader({
   title,
@@ -50,12 +52,16 @@ export function ProjectHeader({
   );
   const scale = useTransform(progress, [0, 1], [1, SHRUNK_SCALE]);
   const opacity = useTransform(progress, [0, 1], [1, SHRUNK_OPACITY]);
+  // "none" at rest so the crisp header never sits in a filter layer
+  const filter = useTransform(progress, (p) =>
+    p > 0 ? `blur(${(p * SHRUNK_BLUR_PX).toFixed(2)}px)` : "none",
+  );
 
   return (
     <header ref={headerRef} className="project-header">
       <motion.div
         className="project-header-content"
-        style={reduceMotion ? { opacity } : { scale, opacity }}
+        style={reduceMotion ? { opacity, filter } : { scale, opacity, filter }}
       >
         <div className="project-header-info">
           <PageEnterItem as="h1" className="project-header-title">
