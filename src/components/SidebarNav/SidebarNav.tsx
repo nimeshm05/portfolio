@@ -3,7 +3,6 @@
 import type { MouseEvent } from "react";
 import Link from "next/link";
 import { motion } from "motion/react";
-import { Icon } from "@/components/Icon/Icon";
 import { useStaggerEnter } from "@/motion/staggerEnter";
 import { useExitToHome } from "@/motion/pageExit";
 import "./SidebarNav.css";
@@ -72,10 +71,7 @@ export function SidebarNav({
 
   const backLink = showBack ? (
     <Link className="sidebar-nav-back" href="/" onClick={exitToHome}>
-      <span className="sidebar-nav-icon" aria-hidden="true">
-        <Icon name="chevron-left" size={16} />
-      </span>
-      <span>Back</span>
+      <span>Exit Project</span>
     </Link>
   ) : null;
 

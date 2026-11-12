@@ -22,22 +22,8 @@
 
 .sidebar-nav-back {
   align-items: center;
-}
-
-.sidebar-nav-icon {
-  display: flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  width: var(--icon-size-sm);
-  height: var(--icon-size-sm);
-  overflow: hidden;
-}
-
-.sidebar-nav-icon .icon {
-  width: 100%;
-  height: 100%;
-  color: inherit;
+  /* shares the links column's extra indent so its text lines up with the labels below */
+  padding-left: calc(var(--inset-x) * 2);
 }
 
 .sidebar-nav-links {
