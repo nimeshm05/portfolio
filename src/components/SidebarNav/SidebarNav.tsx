@@ -2,12 +2,9 @@
 
 import type { MouseEvent } from "react";
 import Link from "next/link";
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import { Icon } from "@/components/Icon/Icon";
-import {
-  getSidebarEnterContainerVariants,
-  getSidebarEnterItemVariants,
-} from "@/motion/sidebarEnter";
+import { useStaggerEnter } from "@/motion/staggerEnter";
 import { useExitToHome } from "@/motion/pageExit";
 import "./SidebarNav.css";
 
@@ -68,10 +65,9 @@ export function SidebarNav({
   "aria-label": ariaLabel,
   onItemClick,
 }: SidebarNavProps) {
-  const reduceMotion = useReducedMotion() ?? false;
   const exitToHome = useExitToHome();
-  const containerVariants = getSidebarEnterContainerVariants(reduceMotion);
-  const itemVariants = getSidebarEnterItemVariants(reduceMotion);
+  const { container: containerVariants, item: itemVariants } =
+    useStaggerEnter();
   const rootClassName = ["sidebar-nav", className].filter(Boolean).join(" ");
 
   const backLink = showBack ? (

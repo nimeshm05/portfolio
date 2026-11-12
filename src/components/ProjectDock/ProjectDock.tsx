@@ -12,13 +12,7 @@ import {
 } from "motion/react";
 import { Icon } from "@/components/Icon/Icon";
 import { useExitToHome } from "@/motion/pageExit";
-import {
-  getSidebarEnterContainerVariants,
-  getSidebarEnterItemVariants,
-  sidebarEnterEase,
-  sidebarEnterOpacityVariants,
-  sidebarEnterRise,
-} from "@/motion/sidebarEnter";
+import { useStaggerEnter } from "@/motion/staggerEnter";
 import "./ProjectDock.css";
 
 type ProjectDockItem = {
@@ -69,30 +63,6 @@ const morphTransition = {
   damping: 38,
   mass: 0.9,
 } as const;
-
-/* On arrival the buttons slide in from the right one after the other, the
-   desktop sidebar's entrance turned sideways. The filter is dropped at the
-   end: left on an ancestor, even at 0px, it stops the glass blurring what's
-   behind it */
-const enterContainerVariants: Variants = {
-  initial: {},
-  animate: { transition: { delayChildren: 0.12, staggerChildren: 0.06 } },
-};
-
-const enterItemVariants: Variants = {
-  initial: { opacity: 0, x: 60, filter: "blur(8px)" },
-  animate: {
-    opacity: 1,
-    x: 0,
-    filter: "blur(0px)",
-    transition: {
-      x: sidebarEnterRise,
-      opacity: { duration: 0.35, ease: sidebarEnterEase },
-      filter: { duration: 0.35, ease: sidebarEnterEase },
-    },
-    transitionEnd: { filter: "none" },
-  },
-};
 
 /** The back button's 42px circle plus the gap: where the pill sits closed */
 const PILL_LEFT_PX = 50;
@@ -174,24 +144,21 @@ export function ProjectDock({ items, activeId }: ProjectDockProps) {
   };
 
   const words = activeLabel.split(" ");
-  const menuContainerVariants = getSidebarEnterContainerVariants(reduceMotion);
-  const menuItemVariants = getSidebarEnterItemVariants(reduceMotion);
+  // On arrival the buttons slide in from the right one after the other;
+  // the menu's items rise in like the desktop sidebar
+  const enter = useStaggerEnter({ from: "right", stagger: 0.06, delay: 0.12 });
+  const menuEnter = useStaggerEnter();
   const instant = { duration: reduceMotion ? 0.15 : 0.2 };
 
   return (
     <motion.div
       ref={rootRef}
       className="project-dock"
-      variants={enterContainerVariants}
+      variants={enter.container}
       initial="initial"
       animate="animate"
     >
-      <motion.div
-        className="project-dock-enter"
-        variants={
-          reduceMotion ? sidebarEnterOpacityVariants : enterItemVariants
-        }
-      >
+      <motion.div className="project-dock-enter" variants={enter.item}>
         <motion.div
           className="project-dock-back-slot"
           initial={false}
@@ -230,9 +197,7 @@ export function ProjectDock({ items, activeId }: ProjectDockProps) {
       {links.length > 0 ? (
         <motion.div
           className="project-dock-enter project-dock-enter--surface"
-          variants={
-            reduceMotion ? sidebarEnterOpacityVariants : enterItemVariants
-          }
+          variants={enter.item}
         >
           <motion.div
             ref={surfaceRef}
@@ -266,7 +231,7 @@ export function ProjectDock({ items, activeId }: ProjectDockProps) {
               aria-label="Sections"
               // Items rise in one after another, like the desktop sidebar's
               // entrance, and drop away in reverse when it closes
-              variants={menuContainerVariants}
+              variants={menuEnter.container}
               initial={false}
               animate={open ? "animate" : "exit"}
               inert={!open}
@@ -276,7 +241,7 @@ export function ProjectDock({ items, activeId }: ProjectDockProps) {
                 return (
                   <motion.a
                     key={item.id}
-                    variants={menuItemVariants}
+                    variants={menuEnter.item}
                     className={
                       isActive
                         ? "project-dock-menu-item is-active"
