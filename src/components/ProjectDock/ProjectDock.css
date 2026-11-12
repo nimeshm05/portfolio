@@ -179,6 +179,14 @@
   padding: var(--space-8);
   overflow-y: auto;
   overscroll-behavior: contain;
+  /* No scrollbar, like an iOS menu. While the items rise in they overhang
+     the list, and a desktop scrollbar would appear for that moment, widen
+     the list, then vanish and snap it back */
+  scrollbar-width: none;
+}
+
+.project-dock-menu::-webkit-scrollbar {
+  display: none;
 }
 
 .project-dock-menu-item {

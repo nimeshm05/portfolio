@@ -28,11 +28,11 @@
   --glass-top: rgb(255 255 255 / 0.82);
   --glass-bottom: rgb(255 255 255 / 0.58);
   --glass-rim: rgb(255 255 255 / 0.85);
-  --glass-hairline: rgb(0 0 0 / 0.06);
+  --glass-hairline: rgb(0 0 0 / 0.08);
   --glass-inner-glow: rgb(255 255 255 / 0.95);
   --glass-inner-shade: rgb(0 0 0 / 0.04);
-  --glass-shadow-far: rgb(0 0 0 / 0.08);
-  --glass-shadow-near: rgb(0 0 0 / 0.06);
+  --glass-shadow-far: rgb(0 0 0 / 0.16);
+  --glass-shadow-near: rgb(0 0 0 / 0.1);
   --glass-sheen: rgb(255 255 255 / 0.7);
   --glass-bloom: rgb(255 255 255 / 0.75);
   /* Overshoots past 1, so release settles with a small bounce */
