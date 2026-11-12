@@ -125,7 +125,17 @@
 
   .project-page .project-section-media,
   .project-page .list-item-panel .project-section-media,
-  .project-page .list-item-panel .project-banner:not(.project-banner--card) {
+  .project-page .list-item-panel .project-banner:not(.project-banner--card),
+  /* Every image on the dark banner background, and every video (they load
+     on the same dark placeholder), wherever it sits */
+  .project-page
+    .project-banner:not(.project-banner--card):not(
+      .project-banner--no-background
+    ),
+  .project-page
+    .project-banner:not(.project-banner--card):has(
+      .project-banner-video-wrap
+    ) {
     width: 100vw;
     max-width: 100vw;
     margin-inline: calc(50% - 50vw);

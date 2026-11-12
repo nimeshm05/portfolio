@@ -167,7 +167,9 @@
     overflow-x: clip;
   }
 
+  /* Media that bleeds edge to edge on phones has to spill past the panel */
   .list-item-panel:has(.project-section-media),
+  .list-item-panel:has(.project-banner:not(.project-banner--card)),
   .list-item-panel:has(.photo-stamps) {
     overflow-x: visible;
   }
