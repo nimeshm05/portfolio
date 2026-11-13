@@ -71,28 +71,6 @@ export function WorkStamps({ stamps }: WorkStampsProps) {
 
   useEffect(() => () => window.clearTimeout(fanTimer.current), []);
 
-  // Hover is off while the stamps fly in on page load, so a resting cursor
-  // doesn't tint, tilt or fan them mid-flight. Lifted once every entrance
-  // animation has finished (or straight away if there are none).
-  const listRef = useRef<HTMLUListElement>(null);
-  const [arriving, setArriving] = useState(true);
-  useEffect(() => {
-    const flights =
-      listRef.current
-        ?.getAnimations({ subtree: true })
-        .filter(
-          (animation) =>
-            animation instanceof CSSAnimation && animation.animationName === "work-stamp-fly-in",
-        ) ?? [];
-    let cancelled = false;
-    Promise.allSettled(flights.map((animation) => animation.finished)).then(() => {
-      if (!cancelled) setArriving(false);
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-
   const setDrag = (el: HTMLElement, dx: number | null) => {
     if (dx === null) {
       el.removeAttribute("data-dragging");
@@ -167,12 +145,10 @@ export function WorkStamps({ stamps }: WorkStampsProps) {
   return (
     <div className="work-stamps-frame">
       <ul
-        ref={listRef}
         className="work-stamps"
         aria-label="Experience"
         // Fanned while a stamp is out, so it closes back into its place in the row
         data-fanned={holdFan ? "" : undefined}
-        data-arriving={arriving ? "" : undefined}
         style={{ "--work-stamp-count": stamps.length } as CSSProperties}
       >
         {stamps.map((stamp, index) => {

@@ -19,14 +19,6 @@
   initial-value: 0;
 }
 
-/* Entrance progress: 1 off-screen, 0 in the slot. One eased value drives the
-   whole path, so x and y stay on the same arc whatever the easing. */
-@property --work-stamp-fly {
-  syntax: "<number>";
-  inherits: false;
-  initial-value: 0;
-}
-
 /* Tint: 0 shows the blank grey stamp, 1 its own colour. Inherited, so the
    print, type and postmark below all follow the one eased value. */
 @property --work-stamp-tint {
@@ -91,11 +83,6 @@
   list-style: none;
   outline: none;
   transition: width var(--transition-work-stamp);
-}
-
-/* No hover, tilt or clicks while the stamps fly in on page load */
-.work-stamps[data-arriving] {
-  pointer-events: none;
 }
 
 /* Each stamp is a button laid over its face, so the stamp opens on click */
@@ -166,30 +153,6 @@
 
 .work-stamp[data-dragging] {
   transition: none;
-}
-
-/* Page-load entrance. Rides the individual translate/rotate properties, which
-   apply on top of `transform`, so the stack, fan and swipe offsets stay as they
-   are. The path is a parabola: x shrinks linearly with progress, y starts below
-   the slot, bows up past it, then settles. The back stamp is dealt first, so
-   the front one lands last, on top. */
-.work-stamp {
-  translate: calc(var(--work-stamp-fly) * var(--offset-work-stamp-fly-in-x))
-    calc(
-      var(--work-stamp-fly) * var(--offset-work-stamp-fly-in-drop) -
-        4 * var(--work-stamp-fly) * (1 - var(--work-stamp-fly)) * var(--offset-work-stamp-fly-in-rise)
-    );
-  rotate: calc(var(--work-stamp-fly) * var(--rotate-work-stamp-fly-in));
-  animation: work-stamp-fly-in var(--duration-work-stamp-fly-in) var(--ease-work-stamp-fly-in) backwards;
-  animation-delay: calc(
-    var(--delay-work-stamp-fly-in) +
-      (var(--work-stamp-count) - 1 - var(--work-stamp-index)) * var(--delay-work-stamp-fly-in-stagger)
-  );
-}
-
-@keyframes work-stamp-fly-in {
-  from { --work-stamp-fly: 1; }
-  to { --work-stamp-fly: 0; }
 }
 
 /* The paper carries the mask, the wrapper above carries the shadow, so the
@@ -795,42 +758,15 @@
 }
 
 /* ---------- Face ----------
-   The face (name, role, dates, value, imprint, postmark) shows while the
-   stamps fly in, fades as they land, and comes back with a staggered rise
-   when the row fans out. Each piece has its own --work-stamp-face-step. */
+   The face (name, role, dates, value, imprint, postmark) rests hidden on the
+   stamps behind the front one, and comes back with a staggered rise when the
+   row fans out. Each piece has its own --work-stamp-face-step. */
 .work-stamp-name { --work-stamp-face-step: 0; }
 .work-stamp-meta > :nth-child(1) { --work-stamp-face-step: 1; }
 .work-stamp-meta > :nth-child(2) { --work-stamp-face-step: 2; }
 .work-stamp-postmark { --work-stamp-face-step: 2; --work-stamp-face-opacity: var(--opacity-work-stamp-postmark); }
 .work-stamp-value { --work-stamp-face-step: 3; }
 .work-stamp-imprint { --work-stamp-face-step: 4; }
-
-/* In flight the face is up; once the stamp lands it eases to its resting
-   value (no `to` keyframe, so it ends on whatever the stamp shows at rest) */
-@keyframes work-stamp-face-fly {
-  from,
-  80% {
-    opacity: var(--work-stamp-face-opacity, 1);
-    translate: 0 0;
-    filter: none;
-  }
-}
-
-/* .work-stamp-copy is in the list because the stamps behind hide it whole */
-.work-stamp :is(
-    .work-stamp-copy,
-    .work-stamp-name,
-    .work-stamp-meta > *,
-    .work-stamp-value,
-    .work-stamp-imprint,
-    .work-stamp-postmark
-  ) {
-  animation: work-stamp-face-fly calc(var(--duration-work-stamp-fly-in) + 500ms) ease-out backwards;
-  animation-delay: calc(
-    var(--delay-work-stamp-fly-in) +
-      (var(--work-stamp-count) - 1 - var(--work-stamp-index)) * var(--delay-work-stamp-fly-in-stagger)
-  );
-}
 
 /* Where the row fans out, the stamps stacked behind the front one rest as
    bare glass; the front stamp keeps its face */
@@ -884,7 +820,7 @@
 
 /* Each stamp's shadows, perforation mask and SVG noise filters are slow to
    paint on phones. Keep every stamp on its own GPU layer so swipes, reorders
-   and the fly-in move the painted stamp instead of repainting it each frame. */
+   and the page entrance move the painted stamp instead of repainting it each frame. */
 @media (hover: none) {
   .work-stamp {
     will-change: transform;
@@ -895,18 +831,6 @@
   .work-stamps,
   .work-stamp {
     transition: none;
-  }
-
-  .work-stamp,
-  .work-stamp :is(
-      .work-stamp-copy,
-      .work-stamp-name,
-      .work-stamp-meta > *,
-      .work-stamp-value,
-      .work-stamp-imprint,
-      .work-stamp-postmark
-    ) {
-    animation: none;
   }
 
   .work-stamp :is(
