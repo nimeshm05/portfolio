@@ -30,9 +30,6 @@ function scrollToHomeSection(
   }
 
   event.preventDefault();
-  // Release the hero/content scroll snap first, otherwise a click that lands
-  // while snapping is still active gets pulled back to the snap point.
-  document.documentElement.style.scrollSnapType = "none";
   target.scrollIntoView({
     behavior: reduceMotion ? "auto" : "smooth",
     block: "start",

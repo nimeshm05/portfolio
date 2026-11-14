@@ -25,7 +25,6 @@ import {
   resume,
   workStamps,
 } from "@/data/home";
-import { useHomeSectionSnap } from "@/motion/homeSectionSnap";
 import { useHomeSidebarVisibility } from "@/motion/homeSidebarVisibility";
 import "./HomePage.css";
 
@@ -33,7 +32,6 @@ export function HomePage() {
   const [pageEl, setPageEl] = useState<HTMLDivElement | null>(null);
   const [contentEl, setContentEl] = useState<HTMLDivElement | null>(null);
   const homeSidebarVisible = useHomeSidebarVisibility(contentEl);
-  useHomeSectionSnap(pageEl);
   const reduceMotion = useReducedMotion() ?? false;
 
   const handleWorkCueSelect = () => {

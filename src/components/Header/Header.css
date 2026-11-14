@@ -17,8 +17,6 @@
   min-height: 100dvh;
   padding-top: var(--padding-page);
   padding-bottom: var(--padding-page);
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
   overflow: visible;
 }
 
@@ -111,8 +109,6 @@
     justify-content: flex-start;
     min-height: 0;
     padding-bottom: 0;
-    scroll-snap-align: none;
-    scroll-snap-stop: normal;
   }
 }
 
