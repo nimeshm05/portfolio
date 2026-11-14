@@ -5,7 +5,7 @@ import { ThemeToggle } from "@/components/ThemeToggle/ThemeToggle";
 import "./SiteControls.css";
 
 /** Corner controls; flip either to show or hide it */
-const SHOW_THEME_TOGGLE = true;
+const SHOW_THEME_TOGGLE = false;
 const SHOW_SCROLL_TO_TOP = false;
 
 export function SiteControls() {
