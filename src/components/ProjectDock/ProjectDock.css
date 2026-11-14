@@ -218,3 +218,30 @@
   outline: var(--border-width) solid var(--color-text-subtle);
   outline-offset: calc(var(--border-width) * -1);
 }
+
+/* Black glass in both themes: a smoked body with a faint light rim, and the
+   dark theme's light text on it */
+.project-dock {
+  --color-text-primary: var(--color-white);
+  --color-text-label: var(--color-neutral-400);
+  --color-text-subtle: var(--color-neutral-500);
+}
+
+:root .project-dock .glass-control {
+  --glass-top: rgb(28 28 28 / 0.88);
+  --glass-bottom: rgb(0 0 0 / 0.8);
+  --glass-rim: rgb(255 255 255 / 0.14);
+  --glass-hairline: rgb(0 0 0 / 0.35);
+  --glass-inner-glow: rgb(255 255 255 / 0.18);
+  --glass-inner-shade: rgb(0 0 0 / 0.3);
+  --glass-shadow-far: rgb(0 0 0 / 0.28);
+  --glass-shadow-near: rgb(0 0 0 / 0.18);
+  --glass-sheen: rgb(255 255 255 / 0.12);
+  --glass-bloom: rgb(255 255 255 / 0.2);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+  backdrop-filter: blur(14px) saturate(180%);
+}
+
+:root .project-dock .project-dock-surface {
+  --menu-highlight: rgb(255 255 255 / 0.12);
+}
