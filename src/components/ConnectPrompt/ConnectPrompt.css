@@ -116,20 +116,6 @@
   height: var(--icon-size);
 }
 
-.connect-prompt-coffee-phrase {
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--gap-connect);
-}
-
-.connect-prompt-coffee {
-  flex-shrink: 0;
-  width: var(--icon-size-coffee);
-  height: var(--icon-size-coffee);
-  color: var(--color-icon-coffee);
-}
-
 .connect-prompt-phone-label {
   display: inline-grid;
   align-items: center;

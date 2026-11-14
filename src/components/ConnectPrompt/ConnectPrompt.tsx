@@ -3,7 +3,6 @@
 import { Fragment, useEffect, useRef, useState, type ReactNode } from "react";
 import { AnimatePresence, motion, type Transition } from "motion/react";
 import { ConnectExcitement, type ExcitementExitMode } from "@/components/ConnectExcitement/ConnectExcitement";
-import { AnimatedCoffeeIcon } from "@/components/AnimatedCoffeeIcon/AnimatedCoffeeIcon";
 import { MorphingArrowRight } from "@/components/MorphingArrowRight/MorphingArrowRight";
 import { SocialHoverLink } from "@/components/SocialHoverLink/SocialHoverLink";
 import { connect, socialHoverIcons } from "@/data/home";
@@ -23,12 +22,9 @@ import {
 } from "@/motion/tabContent";
 import "./ConnectPrompt.css";
 
-type ConnectStep = "invite" | "prefer" | "social" | "inPerson" | "phone";
-type PhoneLabel = "contact" | "soon";
+type ConnectStep = "invite" | "social";
 type SocialLabel = "handles" | "bye";
 
-const PHONE_LABEL_CONTACT = "Here's my number and email.";
-const PHONE_LABEL_SOON = `I'll see you soon my fren ${PHONE_WAVE_EMOJI}`;
 const SOCIAL_LABEL_HANDLES = "My handles:";
 const SOCIAL_LABEL_BYE = `See ya ${PHONE_WAVE_EMOJI}`;
 const LABEL_SWAP_DELAY_MS = 1500;
@@ -282,8 +278,6 @@ export function ConnectPrompt() {
   const [burstExitMode, setBurstExitMode] =
     useState<ExcitementExitMode>("reverse");
   const isInvite = step === "invite";
-  const phoneLabel: PhoneLabel =
-    step === "phone" && labelSwappedStep === "phone" ? "soon" : "contact";
   const socialLabel: SocialLabel =
     step === "social" && labelSwappedStep === "social" ? "bye" : "handles";
   const rootRef = useRef<HTMLDivElement>(null);
@@ -340,7 +334,7 @@ export function ConnectPrompt() {
   }, [isInvite]);
 
   useEffect(() => {
-    if (step !== "phone" && step !== "social") {
+    if (step !== "social") {
       return;
     }
 
@@ -418,46 +412,15 @@ export function ConnectPrompt() {
                         smokeTimeoutRef.current = window.setTimeout(() => {
                           smokingRef.current = false;
                           setBurstExitMode("reverse");
-                          setStep("prefer");
+                          setStep("social");
                         }, excitementSmokeTransition.duration * 1000);
                         return;
                       }
 
-                      setStep("prefer");
+                      setStep("social");
                     }}
                   >
                     Sure
-                  </PromptAction>
-                ),
-              },
-            ]}
-          />
-        </>
-      );
-      break;
-    case "prefer":
-      content = (
-        <>
-          <PromptText>How do you prefer?</PromptText>
-          <Options
-            items={[
-              {
-                key: "social",
-                node: (
-                  <PromptAction
-                    onClick={() => setStep("social")}
-                  >
-                    Social Media
-                  </PromptAction>
-                ),
-              },
-              {
-                key: "inPerson",
-                node: (
-                  <PromptAction
-                    onClick={() => setStep("inPerson")}
-                  >
-                    In Person
                   </PromptAction>
                 ),
               },
@@ -507,79 +470,6 @@ export function ConnectPrompt() {
                     iconSrc={socialHoverIcons.x}
                   >
                     X
-                  </PromptLink>
-                ),
-              },
-              {
-                key: "email",
-                node: (
-                  <PromptLink
-                    href={connect.emailHref}
-                    iconSrc={socialHoverIcons.email}
-                  >
-                    Email
-                  </PromptLink>
-                ),
-              },
-            ]}
-          />
-        </>
-      );
-      break;
-    case "inPerson":
-      content = (
-        <>
-          <span className="connect-prompt-coffee-phrase">
-            <PromptText>Cup of</PromptText>
-            <AnimatedCoffeeIcon className="connect-prompt-coffee" size={18} />
-            <PromptText>sometime in Seattle?</PromptText>
-          </span>
-          <Options
-            items={[
-              {
-                key: "cool",
-                node: (
-                  <PromptAction
-                    onClick={() => setStep("phone")}
-                  >
-                    Cool
-                  </PromptAction>
-                ),
-              },
-              {
-                key: "nah",
-                node: (
-                  <PromptAction
-                    onClick={() => setStep("phone")}
-                  >
-                    Nah, something else?
-                  </PromptAction>
-                ),
-              },
-            ]}
-          />
-        </>
-      );
-      break;
-    case "phone":
-      content = (
-        <>
-          <PullLabelSlot
-            labelKey={phoneLabel}
-            idleText={PHONE_LABEL_CONTACT}
-            activeText={PHONE_LABEL_SOON}
-            isActive={phoneLabel === "soon"}
-          />
-          <Options
-            items={[
-              {
-                key: "phone",
-                node: (
-                  <PromptLink
-                    href={connect.phoneHref}
-                    iconSrc={socialHoverIcons.phone}
-                  >
-                    {connect.phoneDisplay}
                   </PromptLink>
                 ),
               },
