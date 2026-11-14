@@ -12,6 +12,7 @@ import {
 } from "motion/react";
 import { Icon } from "@/components/Icon/Icon";
 import { useExitToHome } from "@/motion/pageExit";
+import { smoothScrollTo } from "@/motion/smoothScroll";
 import { useStaggerEnter } from "@/motion/staggerEnter";
 import "./ProjectDock.css";
 
@@ -249,7 +250,18 @@ export function ProjectDock({ items, activeId }: ProjectDockProps) {
                     }
                     href={item.href}
                     aria-current={isActive ? "location" : undefined}
-                    onClick={() => setOpen(false)}
+                    onClick={(event) => {
+                      setOpen(false);
+                      // Glide there on our own easing: Safari's smooth
+                      // scroll covers any distance in a blink
+                      const target = item.href?.startsWith("#")
+                        ? document.getElementById(item.href.slice(1))
+                        : null;
+                      if (!target) return;
+                      event.preventDefault();
+                      history.pushState(null, "", item.href);
+                      smoothScrollTo(target);
+                    }}
                   >
                     {item.label}
                   </motion.a>
