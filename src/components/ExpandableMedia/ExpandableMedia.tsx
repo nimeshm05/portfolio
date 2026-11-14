@@ -16,7 +16,6 @@ import {
   type Transition,
   type Variants,
 } from "motion/react";
-import { Maximize2, Minimize2 } from "lucide-react";
 import "./ExpandableMedia.css";
 
 type Rect = { left: number; top: number; width: number; height: number };
@@ -148,8 +147,8 @@ type ExpandableMediaProps = {
 };
 
 /**
- * Wraps a case-study image or video with a round expand button (shown on
- * hover). Opening lifts the media from its spot into the middle of the page,
+ * Wraps a case-study image or video with an "Expand" button that rises into
+ * view at its bottom centre on hover. Opening lifts the media from its spot into the middle of the page,
  * up to 90% of the viewport, over a dimmed and blurred page — the same
  * motion as the stamp cards.
  */
@@ -231,7 +230,7 @@ export function ExpandableMedia({
         aria-haspopup="dialog"
         onClick={open}
       >
-        <Maximize2 aria-hidden="true" />
+        <span aria-hidden="true">Expand</span>
       </button>
       {typeof document === "undefined"
         ? null
@@ -498,7 +497,7 @@ function ExpandedMedia({
         aria-label="Shrink"
         onClick={onClose}
       >
-        <Minimize2 aria-hidden="true" />
+        <span aria-hidden="true">Shrink</span>
       </button>
     </motion.div>
   );
