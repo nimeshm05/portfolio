@@ -183,7 +183,7 @@
   --color-work-stamp-teal-surface: var(--color-stamp-teal-600);
   --color-work-stamp-teal-engraving: var(--color-stamp-teal-300);
   --color-work-stamp-teal-meta: var(--color-stamp-teal-100);
-  --width-work-stamp-max: var(--size-work-stamp-width-max);
+  --width-work-stamp-max: var(--size-work-stamp-fanned-width-max); /* stacked stamps match the fanned row, so phones get the same size as the web */
   --width-work-stamp-fanned-max: var(--size-work-stamp-fanned-width-max);
   --height-work-stamp: var(--size-work-stamp-height);
   --work-stamp-perf-x: var(--size-work-stamp-perf-x);

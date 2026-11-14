@@ -106,12 +106,10 @@
   }
 }
 
-/* Touch screens have no hover, so the button stays in view there */
+/* No Expand / Shrink on touch screens */
 @media (hover: none) {
   .expandable-media-button {
-    translate: -50% 0;
-    opacity: 1;
-    filter: none;
+    display: none;
   }
 }
 

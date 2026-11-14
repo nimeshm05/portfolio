@@ -288,6 +288,17 @@
   --color-work-stamp-glass-shade: rgb(0 0 0 / 0.35);
 }
 
+/* Phones and narrow screens show one wide stamp, so the clear white glass
+   reads almost paper-white there; on the wide layout the smaller stamps pick
+   up the shadows of the ones stacked behind. Tint the glass a light grey so
+   the stack reads the same everywhere. */
+@media (hover: none), (max-width: 68.6875rem) {
+  :root:not([data-theme="dark"]) .work-stamp-paper {
+    --color-work-stamp-glass-core: oklch(0.955 0 0 / 0.9);
+    --color-work-stamp-glass-edge: oklch(0.93 0 0 / 0.55);
+  }
+}
+
 .work-stamp-print {
   /* Glass layers fade out with the tint; the muted print fades in under them */
   background:
