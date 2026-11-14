@@ -54,7 +54,6 @@
 
 /* Arriving: rises with a little overshoot and settles */
 .expandable-media:hover > .expandable-media-button,
-.expandable-media-expanded:hover > .expandable-media-button,
 .expandable-media-button:focus-visible {
   translate: -50% 0;
   opacity: 1;
@@ -75,9 +74,36 @@
   outline-offset: 2px;
 }
 
+/* Opening and closing hand the pill between the inline media and its open
+   copy in the same spot, so it doesn't move: the swap is instant and only
+   the text changes, Expand ↔ Shrink */
 .expandable-media[data-lifted] > .expandable-media-button {
   opacity: 0;
   pointer-events: none;
+}
+
+.expandable-media:is([data-lifted], [data-returning]) > .expandable-media-button {
+  transition: none;
+}
+
+/* The open copy's pill is simply there, riding along as the media grows */
+.expandable-media-expanded > .expandable-media-button {
+  translate: -50% 0;
+  opacity: 1;
+  filter: none;
+  transition: scale 160ms ease-out;
+}
+
+.expandable-media-button-label[data-swap] {
+  animation: expandable-media-label-swap 320ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes expandable-media-label-swap {
+  from {
+    opacity: 0;
+    filter: blur(3px);
+    translate: 0 0.25rem;
+  }
 }
 
 /* Touch screens have no hover, so the button stays in view there */
@@ -158,12 +184,15 @@
 @media (prefers-reduced-motion: reduce) {
   .expandable-media-button,
   .expandable-media:hover > .expandable-media-button,
-  .expandable-media-expanded:hover > .expandable-media-button,
   .expandable-media-button:focus-visible {
     translate: -50% 0;
     filter: none;
     scale: none;
     transition: opacity 150ms linear;
+  }
+
+  .expandable-media-button-label[data-swap] {
+    animation: none;
   }
 }
 

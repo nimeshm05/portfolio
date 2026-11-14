@@ -164,6 +164,16 @@ export function ExpandableMedia({
   // Keeps the inline media hidden until the open copy has flown back
   const [lifted, setLifted] = useState(false);
   const [returnRect, setReturnRect] = useState<Rect | null>(null);
+  // Counts closes, so the inline label replays its text swap each time
+  const [returns, setReturns] = useState(0);
+  // The frame the inline button takes back over from the open copy's
+  const [returning, setReturning] = useState(false);
+
+  useEffect(() => {
+    if (!returning) return;
+    const frameId = requestAnimationFrame(() => setReturning(false));
+    return () => cancelAnimationFrame(frameId);
+  }, [returning]);
 
   const open = () => {
     const wrapper = wrapperRef.current;
@@ -220,6 +230,7 @@ export function ExpandableMedia({
         className ? `expandable-media ${className}` : "expandable-media"
       }
       data-lifted={lifted ? "" : undefined}
+      data-returning={returning ? "" : undefined}
     >
       {children}
       <button
@@ -230,7 +241,14 @@ export function ExpandableMedia({
         aria-haspopup="dialog"
         onClick={open}
       >
-        <span aria-hidden="true">Expand</span>
+        <span
+          key={returns}
+          aria-hidden="true"
+          className="expandable-media-button-label"
+          data-swap={returns > 0 ? "" : undefined}
+        >
+          Expand
+        </span>
       </button>
       {typeof document === "undefined"
         ? null
@@ -245,6 +263,8 @@ export function ExpandableMedia({
               onReady={lift}
               onClosed={() => {
                 setLifted(false);
+                setReturning(true);
+                setReturns((count) => count + 1);
                 requestAnimationFrame(() =>
                   buttonRef.current?.focus({ preventScroll: true }),
                 );
@@ -497,7 +517,13 @@ function ExpandedMedia({
         aria-label="Shrink"
         onClick={onClose}
       >
-        <span aria-hidden="true">Shrink</span>
+        <span
+          aria-hidden="true"
+          className="expandable-media-button-label"
+          data-swap=""
+        >
+          Shrink
+        </span>
       </button>
     </motion.div>
   );
