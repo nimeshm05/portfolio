@@ -129,7 +129,8 @@ html:has(.home-page) body {
     .content-section-divider,
     .content-section,
     .content-section-label-wrap,
-    .list-item-shell
+    .list-item-shell,
+    .content-section-card > .project-card
   ) {
   transition: opacity var(--transition-expand);
 }
@@ -146,6 +147,24 @@ html:has(.home-page) body {
       .list-item-shell:not(:has(.list-item.is-open))
   ) {
   opacity: var(--opacity-home-dimmed);
+}
+
+@media (hover: hover) {
+  .home-page:has(.content-section-card:hover)
+    :is(
+      .site-header,
+      .home-sidebar .sidebar-nav-links,
+      .home-footer,
+      .content-section-divider,
+      .content-section:not(:has(.content-section-card:hover)),
+      .content-section:has(.content-section-card:hover)
+        .content-section-label-wrap,
+      .content-section:has(.content-section-card:hover)
+        .content-section-card:not(:hover)
+        > .project-card
+    ) {
+    opacity: var(--opacity-home-dimmed);
+  }
 }
 
 /* Reading the photo book (open, or hovering a page) dims everything else */
@@ -195,6 +214,7 @@ html:has(.home-page) body {
       .content-section,
       .content-section-label-wrap,
       .list-item-shell,
+      .content-section-card > .project-card,
       .site-header-avatar-enter,
       .site-header-info,
       .home-prompt-enter > *
