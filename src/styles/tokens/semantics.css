@@ -267,7 +267,7 @@
 
   /* Expandable case-study media (ExpandableMedia) */
   --size-media-expand-button: 2.25rem;
-  --inset-media-expand-button: var(--space-12);
+  --inset-media-expand-button: var(--space-32);
   --color-media-expand-button-bg: var(--color-black); /* black in both themes */
   --color-media-expand-button-icon: var(--color-white);
   --z-media-expanded: var(--z-work-stamp-expanded);

@@ -15,7 +15,7 @@
   position: absolute;
   left: 50%;
   bottom: var(--inset-media-expand-button);
-  translate: -50% 0.75rem;
+  translate: -50% 1.25rem;
   z-index: 4;
   display: flex;
   align-items: center;
@@ -44,6 +44,12 @@
     filter 180ms ease-in,
     scale 160ms ease-out;
   -webkit-tap-highlight-color: transparent;
+}
+
+/* Trim the label's line box to the capitals so "Expand" centres optically,
+   instead of with the descender's room hanging below it */
+.expandable-media-button > span {
+  text-box: trim-both cap alphabetic;
 }
 
 /* Arriving: rises with a little overshoot and settles */
