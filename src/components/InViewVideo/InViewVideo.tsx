@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { pauseInline, playInline } from "./playInline";
 
 type InViewVideoProps = {
   src: string;
@@ -45,9 +46,9 @@ export function InViewVideo({ src, alt }: InViewVideoProps) {
     }
 
     if (inView) {
-      video.play().catch(() => {});
+      playInline(video);
     } else {
-      video.pause();
+      pauseInline(video);
     }
   }, [shouldLoad, inView]);
 

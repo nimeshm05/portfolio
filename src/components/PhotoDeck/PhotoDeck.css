@@ -48,7 +48,10 @@
   z-index: 1;
   margin: 0;
   color: var(--color-work-stamp-live-ink);
-  font-size: var(--font-size-14);
+  /* Grows with the card as it opens (--work-stamp-expand, 0 on the deck) */
+  font-size: calc(
+    var(--font-size-14) + (var(--font-size-16) - var(--font-size-14)) * var(--work-stamp-expand, 0)
+  );
   line-height: var(--line-height-tight);
   text-wrap: pretty;
 }
@@ -66,12 +69,27 @@
 
 /* Denser glass than a work stamp, so the caption reads cleanly over the
    cards behind */
-:root .photo-deck .photo-deck-card .work-stamp-paper {
+:root :is(.photo-deck .photo-deck-card, .photo-deck-open) .work-stamp-paper {
   --color-work-stamp-glass-core: oklch(0.965 0 0 / 0.97);
   --color-work-stamp-glass-edge: oklch(0.94 0 0 / 0.9);
 }
 
-:root[data-theme="dark"] .photo-deck .photo-deck-card .work-stamp-paper {
+:root[data-theme="dark"] :is(.photo-deck .photo-deck-card, .photo-deck-open) .work-stamp-paper {
   --color-work-stamp-glass-core: oklch(0.23 0 0 / 0.97);
   --color-work-stamp-glass-edge: oklch(0.23 0 0 / 0.9);
+}
+
+/* The front card opens on tap */
+.photo-deck-card:not([data-behind]) {
+  cursor: pointer;
+}
+
+.photo-deck-card:focus-visible {
+  outline: var(--border-width) solid var(--color-text-subtle);
+  outline-offset: var(--offset-work-stamps-focus);
+}
+
+/* Open, the card stays glass rather than taking on a stamp colour */
+.work-stamp-expanded.photo-deck-open .work-stamp-paper {
+  --work-stamp-tint: 0;
 }

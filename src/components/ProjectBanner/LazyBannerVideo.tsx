@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { pauseInline, playInline } from "@/components/InViewVideo/playInline";
 import { BannerVideoPlaceholder } from "./BannerVideoPlaceholder";
 import {
   isVideoFocused,
@@ -132,9 +133,9 @@ export function LazyBannerVideo({
     }
 
     if (shouldPlay) {
-      video.play().catch(() => {});
+      playInline(video);
     } else {
-      video.pause();
+      pauseInline(video);
     }
   }, [shouldLoad, resolvedSrc, shouldPlay]);
 

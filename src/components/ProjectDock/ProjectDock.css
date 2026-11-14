@@ -65,10 +65,13 @@
   --menu-highlight: rgb(255 255 255 / 0.1);
 }
 
-/* Once it's a menu, tapping inside shouldn't swell the whole panel */
-.project-dock-surface.is-open,
-.project-dock-surface.is-open:hover,
-.project-dock-surface.is-open:active {
+/* The pill doesn't swell under the finger like the other glass: the press
+   swell (1.16) carried into the opening menu, which then visibly shrank back
+   to its size as the spring released. It only lights up on press; once it's
+   a menu, tapping inside doesn't swell the panel either. */
+.glass-control.project-dock-surface,
+.glass-control.project-dock-surface:hover,
+.glass-control.project-dock-surface:active {
   scale: 1;
 }
 
