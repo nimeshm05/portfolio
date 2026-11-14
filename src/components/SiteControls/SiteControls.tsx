@@ -4,18 +4,17 @@ import { ScrollToTop } from "@/components/ScrollToTop/ScrollToTop";
 import { ThemeToggle } from "@/components/ThemeToggle/ThemeToggle";
 import "./SiteControls.css";
 
-/** Theme toggle and back-to-top are hidden for now; flip to bring them back */
-const SHOW_CORNER_CONTROLS = false;
+/** Corner controls; flip either to show or hide it */
+const SHOW_THEME_TOGGLE = true;
+const SHOW_SCROLL_TO_TOP = false;
 
 export function SiteControls() {
+  if (!SHOW_THEME_TOGGLE && !SHOW_SCROLL_TO_TOP) return null;
+
   return (
-    <>
-      {SHOW_CORNER_CONTROLS ? (
-        <div className="site-controls">
-          <ScrollToTop />
-          <ThemeToggle />
-        </div>
-      ) : null}
-    </>
+    <div className="site-controls">
+      {SHOW_SCROLL_TO_TOP ? <ScrollToTop /> : null}
+      {SHOW_THEME_TOGGLE ? <ThemeToggle /> : null}
+    </div>
   );
 }
