@@ -13,8 +13,9 @@
 # testing
 /coverage
 
-# next.js
-/.next/
+# next.js (the build folder lives in .next.nosync so iCloud skips it; .next links to it)
+/.next
+/.next.nosync/
 /out/
 
 # production
