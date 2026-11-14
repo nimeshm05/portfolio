@@ -57,6 +57,7 @@
   --gap-intro: var(--space-60);
   --gap-page: var(--space-160);
   --gap-list-item: var(--space-20);
+  --padding-list-item-y: var(--space-12);
   --gap-project-section: var(--space-60);
   --gap-heading-divider: var(--space-8);
   --gap-site-header-info: var(--space-32);

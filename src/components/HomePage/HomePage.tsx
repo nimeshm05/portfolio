@@ -14,6 +14,7 @@ import {
 } from "@/components/PageEnter/PageEnter";
 import { LinkCue } from "@/components/LinkCue/LinkCue";
 import { PhotoBook } from "@/components/PhotoBook/PhotoBook";
+import { PhotoDeck } from "@/components/PhotoDeck/PhotoDeck";
 import { SocialIconRow } from "@/components/SocialIconRow/SocialIconRow";
 import { ViewportEdgeBlur } from "@/components/ViewportEdgeBlur/ViewportEdgeBlur";
 import { WorkStamps } from "@/components/WorkStamps/WorkStamps";
@@ -85,6 +86,7 @@ export function HomePage() {
                 <hr className="content-section-divider" />
                 <section className="home-photo-book" aria-label={photoBookTitle}>
                   <PhotoBook title={photoBookTitle} spreads={photoBookSpreads} />
+                  <PhotoDeck title={photoBookTitle} spreads={photoBookSpreads} />
                 </section>
               </div>
             </PageEnterItem>

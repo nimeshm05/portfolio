@@ -8,7 +8,9 @@
   gap: var(--gap-md);
   width: 100%;
   min-height: 2.75rem;
-  padding: var(--inset-x);
+  /* Own vertical padding: phones widen --inset-x for the page margins, which
+     would otherwise double the space between items */
+  padding: var(--padding-list-item-y) var(--inset-x);
   border-radius: var(--radius-md);
   text-align: left;
   -webkit-tap-highlight-color: transparent;

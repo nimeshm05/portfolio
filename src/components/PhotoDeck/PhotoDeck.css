@@ -1,0 +1,77 @@
+/*
+  Photo deck: the photo book on phones, as a stack of work-stamp cards (see
+  WorkStamps.css for the paper, perforations, glass and swipe). Only the
+  card's size and its photo-over-caption layout are set here.
+*/
+
+.photo-deck {
+  /* Bigger than a work stamp: as wide as the column allows (after the cards
+     peeking out behind), up to 364px, and tall enough for the photo and its
+     caption. Both stay whole multiples of the 14px perforation. */
+  --width-work-stamp-max: 22.75rem;
+  --height-work-stamp: 26.25rem;
+}
+
+.photo-deck-card {
+  transition:
+    transform var(--transition-work-stamp),
+    opacity var(--transition-work-stamp);
+}
+
+/* Cards beyond the ones peeking out wait, hidden, under the stack */
+.photo-deck-card[data-hidden] {
+  opacity: 0;
+}
+
+/* Photo on top, caption below, both inside the perforated margin */
+.photo-deck-print {
+  flex-direction: column;
+  align-items: stretch;
+  padding-bottom: calc(var(--padding-work-stamp-paper) + var(--padding-work-stamp-print));
+}
+
+.photo-deck-photo {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.photo-deck-photo img {
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.photo-deck-caption {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  color: var(--color-work-stamp-live-ink);
+  font-size: var(--font-size-14);
+  line-height: var(--line-height-tight);
+  text-wrap: pretty;
+}
+
+/* The glass is see-through, so the cards behind the front one rest bare,
+   like the work stamps stacked behind; a card's photo and caption come in
+   as it reaches the front */
+.photo-deck-card :is(.photo-deck-photo, .photo-deck-caption) {
+  transition: opacity var(--transition-work-stamp);
+}
+
+.photo-deck-card[data-behind] :is(.photo-deck-photo, .photo-deck-caption) {
+  opacity: 0;
+}
+
+/* Denser glass than a work stamp, so the caption reads cleanly over the
+   cards behind */
+:root .photo-deck .photo-deck-card .work-stamp-paper {
+  --color-work-stamp-glass-core: oklch(0.965 0 0 / 0.97);
+  --color-work-stamp-glass-edge: oklch(0.94 0 0 / 0.9);
+}
+
+:root[data-theme="dark"] .photo-deck .photo-deck-card .work-stamp-paper {
+  --color-work-stamp-glass-core: oklch(0.23 0 0 / 0.97);
+  --color-work-stamp-glass-edge: oklch(0.23 0 0 / 0.9);
+}

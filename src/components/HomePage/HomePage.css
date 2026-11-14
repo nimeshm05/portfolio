@@ -66,6 +66,21 @@ html:has(.home-page) body {
   width: 100%;
 }
 
+/* Phones are too short for the open book: they get the swipeable photo deck */
+.home-photo-book > .photo-deck-frame {
+  display: none;
+}
+
+@media (max-width: 39.9375rem) {
+  .home-photo-book > .photo-book {
+    display: none;
+  }
+
+  .home-photo-book > .photo-deck-frame {
+    display: block;
+  }
+}
+
 /* Expandable sections (experience, education, journey) read as text, so they
    share the text measure; cards, notes and the footer keep the full column. */
 .home-content .content-section-list {
