@@ -6,6 +6,7 @@ import { createPortal } from "react-dom";
 import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion, type Transition, type Variants } from "motion/react";
 import type { PhotoBookSpread } from "@/data/photoBook";
+import { pauseInline, playInline } from "@/components/InViewVideo/playInline";
 import "@/components/WorkStamps/WorkStamps.css";
 import "./PhotoDeck.css";
 
@@ -152,7 +153,7 @@ export function PhotoDeck({
               onPointerUp={isFront ? (event) => endSwipe(event, index) : undefined}
               onPointerCancel={isFront ? (event) => endSwipe(event, index) : undefined}
             >
-              <PhotoCardFace spread={spread} />
+              <PhotoCardFace spread={spread} playing={isFront && lifted !== index} />
             </li>
           );
         })}
@@ -176,16 +177,61 @@ export function PhotoDeck({
     instead of fetching a new one (it covers the open card on 3x phones too) */
 const PHOTO_SIZES = "340px";
 
-function PhotoCardFace({ spread }: { spread: PhotoBookSpread }) {
+function PhotoCardFace({ spread, playing }: { spread: PhotoBookSpread; playing: boolean }) {
   return (
     <div className="work-stamp-paper">
       <div className="work-stamp-print photo-deck-print">
         <div className="photo-deck-photo">
           <Image src={spread.image} alt={spread.alt} fill sizes={PHOTO_SIZES} draggable={false} />
+          {spread.video ? <DeckVideo src={spread.video} playing={playing} /> : null}
         </div>
         <p className="photo-deck-caption">{spread.caption}</p>
       </div>
     </div>
+  );
+}
+
+/**
+ * A spread's clip, laid over its still: it loads once its card first reaches
+ * the front, plays while that card is at the front and on screen, and fades
+ * in over the still once it's actually running.
+ */
+function DeckVideo({ src, playing }: { src: string; playing: boolean }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [loaded, setLoaded] = useState(playing);
+  const [inView, setInView] = useState(false);
+  const [running, setRunning] = useState(false);
+
+  if (playing && !loaded) setLoaded(true);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    const observer = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting));
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !loaded) return;
+    if (playing && inView) playInline(video);
+    else pauseInline(video);
+  }, [loaded, playing, inView]);
+
+  return (
+    <video
+      ref={videoRef}
+      className="photo-deck-video"
+      src={loaded ? src : undefined}
+      data-running={running ? "" : undefined}
+      aria-hidden="true"
+      loop
+      muted
+      playsInline
+      preload="none"
+      onPlaying={() => setRunning(true)}
+    />
   );
 }
 
@@ -326,7 +372,7 @@ function OpenCard({
       exit="collapsed"
       onClick={onClose}
     >
-      <PhotoCardFace spread={spread} />
+      <PhotoCardFace spread={spread} playing />
     </motion.div>
   );
 }

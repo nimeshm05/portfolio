@@ -93,3 +93,19 @@
 .work-stamp-expanded.photo-deck-open .work-stamp-paper {
   --work-stamp-tint: 0;
 }
+
+/* A spread's clip sits over its still and fades in once it's playing */
+.photo-deck-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms linear;
+}
+
+.photo-deck-video[data-running] {
+  opacity: 1;
+}
