@@ -11,9 +11,9 @@ export const conversationInsightsCard: ProjectCardData = {
   timeline: "Q3 2024 - Q2 2025",
   description:
     "Eliminating manual insight reporting in contact centers with self-serve analytics platform to enable faster operational decision making.",
-  bannerSrc: asset("conversation-insights-preview-2k.mp4"),
-  bannerLargeSrc: asset("conversation-insights-preview.mp4"),
+  bannerSrc: asset("conversation-insights-2k.mp4"),
+  bannerLargeSrc: asset("conversation-insights.mp4"),
   bannerAlt: "Conversation Insights dashboard preview",
   bannerType: "video",
-  bannerAspectRatio: "3320 / 2160",
+  bannerAspectRatio: "3326 / 2160",
 };

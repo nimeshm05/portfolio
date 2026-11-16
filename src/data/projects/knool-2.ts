@@ -10,8 +10,8 @@ export const knool2: ProjectPageData = {
     "Turning a 20-option empty state into stage-aware prompts that show attorneys what the assistant can do for their case, right when they start a chat.",
   projectType: "Product Design",
   timeline: "June 2026 – September 2026",
-  bannerSrc: asset("knool-initial-chat-experience-preview-2k.mp4"),
-  bannerLargeSrc: asset("knool-initial-chat-experience-preview.mp4"),
+  bannerSrc: asset("concept-final-solution-2k.mp4"),
+  bannerLargeSrc: asset("concept-final-solution.mp4"),
   bannerAlt: "Knool case assistant first screen preview",
   bannerType: "video",
   listItemsAlwaysExpanded: true,
@@ -206,10 +206,10 @@ export const knool2: ProjectPageData = {
       mediaFirst: true,
       media: [
         {
-          src: asset("knool-initial-chat-experience-preview-2k.mp4"),
+          src: asset("concept-final-solution.mp4"),
           alt: "Final Knool chat screen: “What are we working on?”, one composer and six case-stage chips; picking a stage opens its actions, and an action’s prompt goes into the composer",
           type: "video",
-          aspectRatio: "2048 / 1330",
+          aspectRatio: "3324 / 2160",
         },
       ],
       paragraphs: [

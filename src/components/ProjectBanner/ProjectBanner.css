@@ -11,11 +11,12 @@
   height: auto;
   margin-inline: 0;
   padding: var(--gap-2xl);
-  border: var(--border-width) solid var(--color-border);
+  /* The light wash is its own edge, so the frame needs no border */
+  border: 0;
   border-radius: var(--radius-media);
   corner-shape: squircle;
   overflow: hidden;
-  background-color: var(--color-banner-bg);
+  background: var(--background-banner);
 }
 
 /* Hero / full-width page banners only — not inline case-study media */
@@ -42,7 +43,7 @@
 }
 
 .project-banner--no-background {
-  background-color: transparent;
+  background: transparent;
   border-color: transparent;
   padding: 0;
 }
@@ -92,7 +93,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #262626;
+  background: var(--background-banner);
   transition: opacity 600ms ease-out;
 }
 
@@ -108,12 +109,12 @@
 }
 
 .banner-video-placeholder-frame {
-  stroke: rgb(255 255 255 / 0.3);
+  stroke: var(--color-banner-placeholder-ink);
   stroke-width: 0.8;
 }
 
 .banner-video-placeholder-tile {
-  stroke: rgb(255 255 255 / 0.4);
+  stroke: var(--color-banner-placeholder-ink-strong);
   stroke-width: 0.8;
 }
 
@@ -131,7 +132,7 @@
   font-size: clamp(0.75rem, 0.6rem + 0.5vw, 0.875rem);
   font-weight: var(--font-weight-medium);
   letter-spacing: 0.01em;
-  color: rgb(255 255 255 / 0.6);
+  color: var(--color-banner-placeholder-text);
 }
 
 .banner-video-placeholder-message {
@@ -232,11 +233,7 @@
   padding: 0;
   border: 0;
   border-radius: 0;
-  background-color: transparent;
-}
-
-.project-banner--card .project-banner-media {
-  border-block: var(--border-card);
+  background: transparent;
 }
 
 @media (max-width: 68.6875rem) {

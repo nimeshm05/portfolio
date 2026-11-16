@@ -3,7 +3,27 @@
   --color-bg-page: var(--color-white);
   --color-bg-surface: var(--color-white);
   --color-bg-muted: var(--color-neutral-100);
-  --color-banner-bg: var(--color-neutral-900);
+  /* The backdrop the videos are exported on: the #F5F7FA → #C3CFE2 wash
+     darkened by the window's shadow, sampled along their edges so image
+     frames and the video loader read as the same surface */
+  --background-banner: linear-gradient(
+    to bottom right,
+    var(--color-wash-cool-100) 0%,
+    var(--color-wash-cool-200) 5%,
+    var(--color-wash-cool-250) 15%,
+    var(--color-wash-cool-300) 25%,
+    var(--color-wash-cool-350) 35%,
+    var(--color-wash-cool-400) 45%,
+    var(--color-wash-cool-500) 60%,
+    var(--color-wash-cool-550) 70%,
+    var(--color-wash-cool-600) 80%,
+    var(--color-wash-cool-650) 90%,
+    var(--color-wash-cool-700) 100%
+  );
+  /* Loading graphic and caption on that wash */
+  --color-banner-placeholder-ink: color-mix(in srgb, var(--color-wash-cool-ink) 55%, transparent);
+  --color-banner-placeholder-ink-strong: color-mix(in srgb, var(--color-wash-cool-ink) 80%, transparent);
+  --color-banner-placeholder-text: var(--color-wash-cool-ink-deep);
   --color-divider: var(--color-neutral-200);
 
   /* Text */
@@ -420,7 +440,6 @@
   --color-bg-page: var(--color-black);
   --color-bg-surface: var(--color-neutral-800);
   --color-bg-muted: var(--color-neutral-900);
-  --color-banner-bg: var(--color-bg-surface);
   --color-card-chip-bg: var(--color-bg-surface);
   --color-card-chip-bg-hover: var(--color-neutral-750);
   --color-divider: var(--color-neutral-800);

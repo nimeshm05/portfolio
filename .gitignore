@@ -40,3 +40,15 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Source and spare media the site doesn't use: kept locally, never committed
+.DS_Store
+*.heic
+public/assets/images/innovation-fellows/VID_20220320_174530.mov
+public/assets/projects/conversation-insights/conversation-insights-preview-2k.mp4
+public/assets/projects/conversation-insights/final-solution/filters.mp4
+public/assets/projects/knool-chat-experience/concept-case-stage 2.mp4
+public/assets/projects/knool-chat-experience/knool-initial-chat-experience-preview*.mp4
+public/assets/projects/knool-chat-experience/knool-pd-huddle.png
+public/assets/projects/knool-chat-experience/new.png
+public/assets/projects/knool-chat-experience/new-without-chips.png

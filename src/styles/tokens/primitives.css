@@ -14,6 +14,21 @@
   --color-neutral-800: oklch(0.27 0.00 0);
   --color-neutral-850: oklch(0.24 0 0);
   --color-neutral-900: oklch(0.20 0.00 0);
+
+  /* Cool grey wash the media sits on (sampled from the video backdrops) */
+  --color-wash-cool-100: #e5e8ea;
+  --color-wash-cool-200: #d8dbdf;
+  --color-wash-cool-250: #d4d7db;
+  --color-wash-cool-300: #cfd4da;
+  --color-wash-cool-350: #cbd0d7;
+  --color-wash-cool-400: #c5cbd4;
+  --color-wash-cool-500: #b2b7c3;
+  --color-wash-cool-550: #acb4bf;
+  --color-wash-cool-600: #a9b1be;
+  --color-wash-cool-650: #a5aebd;
+  --color-wash-cool-700: #a3acbb;
+  --color-wash-cool-ink: #8494b0;
+  --color-wash-cool-ink-deep: #5f6f8c;
   --color-lime-50: oklch(0.96 0.04 137.06);
   --color-lime-900: oklch(0.24 0.055 137.06);
   --color-coffee-500: oklch(63.008% 0.17108 48.174);

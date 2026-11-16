@@ -10,7 +10,8 @@ export const architectureAgentCard: ProjectCardData = {
   timeline: "Jan 2026 - Mar 2026",
   description:
     "Making AI recommendations easier to understand and act on - a usability test for the Architecture Agent.",
-  bannerSrc: asset("actual-ai-preview.mp4"),
+  bannerSrc: asset("actual-ai-preview-2k.mp4"),
+  bannerLargeSrc: asset("actual-ai-preview.mp4"),
   bannerAlt: "Architecture Agent product preview",
   bannerType: "video",
 };

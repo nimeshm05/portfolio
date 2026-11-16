@@ -9,10 +9,11 @@ export const connectPrompt: ProjectPageData = {
     "A playful component developed using motion + cursor agent for my portfolio",
   projectType: "Interaction Design",
   timeline: "August 2026, 1 week",
-  bannerSrc: asset("connect-prompt-preview.mp4"),
+  bannerSrc: asset("connect-prompt-preview-2k.mp4"),
+  bannerLargeSrc: asset("connect-prompt-preview.mp4"),
   bannerAlt: "Connect Prompt component preview",
   bannerType: "video",
-  bannerAspectRatio: "3840 / 1242",
+  bannerAspectRatio: "3840 / 1602",
   meta: {
     items: [
       { label: "Project Type", value: "Personal" },
