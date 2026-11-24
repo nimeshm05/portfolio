@@ -26,6 +26,7 @@ import {
   Moon,
   Music2,
   NotebookPen,
+  Tv,
   PanelsTopLeft,
   Scale,
   Search,
@@ -56,6 +57,7 @@ export type IconName =
   | "workflow"
   | "settings"
   | "notebook-pen"
+  | "tv"
   | "message-square"
   | "list"
   | "layout-grid"
@@ -97,6 +99,7 @@ const icons: Record<IconName, LucideIcon> = {
   workflow: Workflow,
   settings: Settings,
   "notebook-pen": NotebookPen,
+  tv: Tv,
   "message-square": MessageSquare,
   list: List,
   "layout-grid": LayoutGrid,

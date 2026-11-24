@@ -1,6 +1,7 @@
 import { architectureAgent } from "./architecture-agent";
 import { smartPromptSuggestions } from "./smart-prompt-suggestions";
 import { connectPrompt } from "./connect-prompt";
+import { interactionDesignLog } from "./interaction-design-log";
 // Conversation Insights variations (only one is rendered at a time):
 // - ./conversation-insights     original case study
 // - ./conversation-insights-v3  original with Solutions told as three jobs (live)
@@ -17,6 +18,7 @@ const projects: Record<string, ProjectPageData> = {
   [karNoKey.slug]: karNoKey,
   [gzLang.slug]: gzLang,
   [connectPrompt.slug]: connectPrompt,
+  [interactionDesignLog.slug]: interactionDesignLog,
   [smartPromptSuggestions.slug]: smartPromptSuggestions,
 };
 

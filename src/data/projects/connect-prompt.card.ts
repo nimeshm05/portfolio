@@ -9,7 +9,7 @@ export const connectPromptCard: ProjectCardData = {
   chips: ["Interaction design"],
   timeline: "August 2026",
   description:
-    "A playful component developed using motion + cursor agent for my portfolio",
+    "Mapping my real-world conversation starters to a software interaction pattern",
   bannerSrc: asset("connect-prompt-preview-2k.mp4"),
   bannerLargeSrc: asset("connect-prompt-preview.mp4"),
   bannerAlt: "Connect Prompt component preview",
