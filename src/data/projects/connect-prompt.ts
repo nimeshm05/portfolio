@@ -6,7 +6,7 @@ export const connectPrompt: ProjectPageData = {
   slug: "connect-prompt",
   title: "Connect Prompt",
   subtitle:
-    "A playful component developed using motion + cursor agent for my portfolio",
+    "Mapping my real-world conversation starters to a software interaction pattern",
   projectType: "Interaction Design",
   timeline: "August 2026, 1 week",
   bannerSrc: asset("connect-prompt-preview-2k.mp4"),
@@ -17,9 +17,16 @@ export const connectPrompt: ProjectPageData = {
   meta: {
     items: [
       { label: "Project Type", value: "Personal" },
-      { label: "Intent", value: "To explore motion & interaction design with coding agents" },
+      { label: "Intent", value: "To sense-make how my conversations take place in real-world and translating that into software pattern" },
       { label: "Timeline", value: "August 2026, 1 week" },
-      { label: "Tools", value: "NextJS, CSS, Motion (Animation)" },
+      {
+        label: "Tools",
+        value: "Motion, Cursor Agents",
+        tools: [
+          { name: "Motion", logoSrc: "/assets/tools/motion.svg" },
+          { name: "Cursor Agents", logoSrc: "/assets/tools/cursor.png" },
+        ],
+      },
     ],
   },
 };

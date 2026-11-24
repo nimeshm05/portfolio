@@ -117,9 +117,20 @@ export type ProjectSectionWithMedia = {
   workflow?: ArchitectureWorkflowData;
 };
 
+/** A tool shown with its logo in a squircle tile */
+export type ProjectTool = {
+  name: string;
+  /** Square logo image; the tile clips it to a squircle */
+  logoSrc?: string;
+  /** Shown in a neutral tile when there's no logo image */
+  emoji?: string;
+};
+
 export type ProjectMetaItem = {
   label: string;
   value: string;
+  /** When set, shown as logos + names in place of the plain value */
+  tools?: ProjectTool[];
 };
 
 export type ProjectCardData = {

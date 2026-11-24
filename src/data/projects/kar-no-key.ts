@@ -19,7 +19,16 @@ export const karNoKey: ProjectPageData = {
       { label: "Project Type", value: "Personal Project" },
       { label: "Intent", value: "To build an end-to-end multiplayer typing game with AI agents" },
       { label: "Timeline", value: "2026, 3 weeks" },
-      { label: "Tools", value: "Cusor agents, Supabase, NextJS, Youtube API" },
+      {
+        label: "Tools",
+        value: "Cursor Agents, Supabase, NextJS, YouTube API",
+        tools: [
+          { name: "Cursor Agents", logoSrc: "/assets/tools/cursor.png" },
+          { name: "Supabase", logoSrc: "/assets/tools/supabase.png" },
+          { name: "NextJS", logoSrc: "/assets/tools/nextjs.png" },
+          { name: "YouTube API", logoSrc: "/assets/tools/youtube.png" },
+        ],
+      },
     ],
   },
 };
