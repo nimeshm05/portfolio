@@ -84,6 +84,10 @@ type Turn = {
 type PhotoBookProps = {
   /** Line breaks (\n) set the cover's lines; elsewhere they read as spaces */
   title?: string;
+  /** Printed on the spine and back cover */
+  author?: string;
+  /** Short paragraphs set on the back cover */
+  blurb?: readonly string[];
   /** Any CSS color; defaults to the theme's cloth token */
   coverColor?: string;
   spreads: PhotoBookSpread[];
@@ -129,6 +133,102 @@ function Cover({ title }: { title?: string }) {
         </span>
       ) : null}
       <span className="photo-book-cover-shine" />
+    </div>
+  );
+}
+
+/* The back of the book, read with the book turned over (the spine is on
+   the right): a winding road that runs off the top edge, a short blurb and
+   a barcode sticker, all inked in the cover's white */
+function BackCover({
+  title,
+  author,
+  blurb,
+}: {
+  title?: string;
+  author?: string;
+  blurb?: readonly string[];
+}) {
+  return (
+    <div className="photo-book-cover photo-book-back">
+      <span className="photo-book-cover-hinge photo-book-cover-hinge--back" />
+      <svg
+        className="photo-book-back-road"
+        viewBox="0 0 100 64"
+        preserveAspectRatio="xMidYMin meet"
+      >
+        <path
+          className="photo-book-back-road-surface"
+          d={BACK_ROAD_PATH}
+        />
+        <path className="photo-book-back-road-line" d={BACK_ROAD_PATH} />
+      </svg>
+      {blurb?.length ? (
+        <div className="photo-book-back-blurb">
+          {title ? (
+            <p className="photo-book-back-blurb-title">
+              {title.replace(/\s*\n\s*/g, ", ")}
+            </p>
+          ) : null}
+          {blurb.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+          {author ? (
+            <p className="photo-book-back-blurb-author">{author}</p>
+          ) : null}
+        </div>
+      ) : null}
+      <Barcode />
+    </div>
+  );
+}
+
+/* One stroke for both the road and its centre line: down from the top
+   edge, a U-turn, back up near the edge, then a long bend out the side */
+const BACK_ROAD_PATH =
+  "M 22 -12 L 22 24 C 22 42 48 42 48 24 L 48 14 C 48 0 72 0 72 16 C 72 32 84 38 112 34";
+
+/* Bar widths (1–3) for a made-up code; the sticker reads like an ISBN */
+const BARCODE_BARS = [
+  1, 1, 2, 1, 3, 1, 1, 2, 2, 1, 1, 3, 1, 2, 1, 1, 2, 3, 1, 1, 2, 1, 1, 2, 3,
+  1, 2, 1, 1, 1, 2, 2, 1, 3, 1, 1, 2, 1, 2, 1, 1, 3, 2, 1, 1, 1, 2, 1,
+];
+
+function Barcode() {
+  let x = 0;
+  const bars: { x: number; w: number }[] = [];
+  BARCODE_BARS.forEach((width, index) => {
+    if (index % 2 === 0) bars.push({ x, w: width });
+    x += width;
+  });
+
+  return (
+    <span className="photo-book-back-barcode">
+      <svg viewBox={`0 0 ${x} 24`} preserveAspectRatio="none">
+        {bars.map((bar) => (
+          <rect key={bar.x} x={bar.x} width={bar.w} height="24" />
+        ))}
+      </svg>
+      <span className="photo-book-back-barcode-digits">
+        9 781206 536042
+      </span>
+    </span>
+  );
+}
+
+/* The spine, read top to bottom like a shelf: title, a lens mark, author */
+function Spine({ title, author }: { title?: string; author?: string }) {
+  return (
+    <div className="photo-book-spine">
+      {title ? (
+        <span className="photo-book-spine-title">
+          {title.replace(/\s*\n\s*/g, " · ")}
+        </span>
+      ) : null}
+      <span className="photo-book-spine-mark" />
+      {author ? (
+        <span className="photo-book-spine-author">{author}</span>
+      ) : null}
     </div>
   );
 }
@@ -236,7 +336,13 @@ function CaptionPage({
   );
 }
 
-export function PhotoBook({ title, coverColor, spreads }: PhotoBookProps) {
+export function PhotoBook({
+  title,
+  author,
+  blurb,
+  coverColor,
+  spreads,
+}: PhotoBookProps) {
   const name = title?.replace(/\s*\n\s*/g, " ") ?? "Photo book";
   const reduceMotion = useReducedMotion() ?? false;
   const hintId = useId();
@@ -652,10 +758,12 @@ export function PhotoBook({ title, coverColor, spreads }: PhotoBookProps) {
                     <div className="photo-book-page" />
                   </Face>
                   <Face side="back" className="photo-book-face--cover">
-                    <div className="photo-book-cover" />
+                    <BackCover title={title} author={author} blurb={blurb} />
                   </Face>
                 </div>
-                <div className="photo-book-edge photo-book-edge--spine" />
+                <div className="photo-book-edge photo-book-edge--spine">
+                  <Spine title={title} author={author} />
+                </div>
                 <div className="photo-book-edge photo-book-edge--fore" />
                 <div className="photo-book-edge photo-book-edge--top" />
                 <div className="photo-book-edge photo-book-edge--bottom" />

@@ -11,6 +11,15 @@ export type PhotoBookSpread = {
 /** Line breaks (\n) carry over to the cover */
 export const photoBookTitle = "Designed by Nature\nShot by Me";
 
+/** Printed on the back cover and spine */
+export const photoBookAuthor = "Nimesh Mohanakrishnan";
+
+/** Short paragraphs set on the back cover */
+export const photoBookBlurb = [
+  "A pocket book of Seattle: mostly sunsets, one very sleepy bird, and a mountain that only shows up when it feels like it.",
+  "Every photo was taken on a phone, on the way to somewhere else.",
+];
+
 export const photoBookSpreads: PhotoBookSpread[] = [
   {
     image: "/assets/images/photo-book/udub-rainier.jpg",

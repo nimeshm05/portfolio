@@ -685,6 +685,139 @@
   clip-path: inset(0 calc(50% + var(--pb-seam)) 0 0);
 }
 
+/* ── Back cover ───────────────────────────────────────────── */
+
+/* Seen with the book turned over, so the spine (and hinge) is on the right */
+.photo-book-cover-hinge--back {
+  right: 0;
+  left: auto;
+  scale: -1 1;
+}
+
+/* A bold road that runs off the top edge, like a printed back-cover graphic */
+.photo-book-back-road {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.photo-book-back-road-surface {
+  fill: none;
+  stroke: var(--color-photo-book-cover-title);
+  stroke-width: 11;
+}
+
+.photo-book-back-road-line {
+  fill: none;
+  stroke: var(--pb-cover-color);
+  stroke-width: 0.9;
+  stroke-dasharray: 3 3;
+}
+
+/* Blurb in a narrow column, right of centre, like a paperback's back */
+.photo-book-back-blurb {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  right: 16%;
+  left: 38%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9em;
+  color: oklch(from var(--color-photo-book-cover-title) l c h / 0.72);
+  font-size: calc(var(--pb-text-size) * 0.78);
+  line-height: var(--line-height-body);
+  text-wrap: pretty;
+}
+
+.photo-book-back-blurb p {
+  margin: 0;
+}
+
+.photo-book-back-blurb-title {
+  color: var(--color-photo-book-cover-title);
+  font-weight: var(--text-list-weight);
+}
+
+.photo-book-back-blurb-author {
+  font-size: 0.85em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Barcode sticker, bottom left */
+.photo-book-back-barcode {
+  position: absolute;
+  z-index: 1;
+  bottom: 9%;
+  left: 10%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+  width: 26%;
+  padding: 0.6em 0.7em 0.45em;
+  border-radius: 1px;
+  background: var(--color-photo-book-paper);
+  color: var(--color-photo-book-caption);
+  font-size: calc(var(--pb-text-size) * 0.5);
+  line-height: 1;
+}
+
+.photo-book-back-barcode svg {
+  display: block;
+  width: 100%;
+  height: 2.6em;
+  fill: currentColor;
+}
+
+.photo-book-back-barcode-digits {
+  letter-spacing: 0.12em;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* ── Spine ────────────────────────────────────────────────── */
+
+/* Set sideways and read top to bottom: title, a lens mark, the author */
+.photo-book-spine {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  gap: 1.6em;
+  /* Sideways, the inline axis runs down the spine */
+  padding-inline: 4em;
+  overflow: hidden;
+  color: var(--color-photo-book-cover-title);
+  font-size: min(0.5625rem, calc(var(--pb-thickness) * 0.34));
+  font-weight: var(--text-list-weight);
+  line-height: 1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  writing-mode: vertical-rl;
+}
+
+.photo-book-spine-author {
+  color: oklch(from var(--color-photo-book-cover-title) l c h / 0.72);
+}
+
+/* A small lens: white ring around a dark pupil */
+.photo-book-spine-mark {
+  flex: none;
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    var(--pb-cover-color) 0 32%,
+    var(--color-photo-book-cover-title) 34%
+  );
+}
+
 /* ── Hit areas (flat, over the book) ──────────────────────── */
 
 .photo-book-hit {

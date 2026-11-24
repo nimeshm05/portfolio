@@ -18,7 +18,12 @@ import { PhotoDeck } from "@/components/PhotoDeck/PhotoDeck";
 import { SocialIconRow } from "@/components/SocialIconRow/SocialIconRow";
 import { ViewportEdgeBlur } from "@/components/ViewportEdgeBlur/ViewportEdgeBlur";
 import { WorkStamps } from "@/components/WorkStamps/WorkStamps";
-import { photoBookSpreads, photoBookTitle } from "@/data/photoBook";
+import {
+  photoBookAuthor,
+  photoBookBlurb,
+  photoBookSpreads,
+  photoBookTitle,
+} from "@/data/photoBook";
 import {
   homeSectionGroups,
   homeSections,
@@ -85,7 +90,12 @@ export function HomePage() {
                 ))}
                 <hr className="content-section-divider" />
                 <section className="home-photo-book" aria-label={photoBookTitle}>
-                  <PhotoBook title={photoBookTitle} spreads={photoBookSpreads} />
+                  <PhotoBook
+                    title={photoBookTitle}
+                    author={photoBookAuthor}
+                    blurb={photoBookBlurb}
+                    spreads={photoBookSpreads}
+                  />
                   <PhotoDeck title={photoBookTitle} spreads={photoBookSpreads} />
                 </section>
               </div>
